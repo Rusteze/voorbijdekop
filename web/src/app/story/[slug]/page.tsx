@@ -3,7 +3,66 @@ import { getAllStories, getStoryBySlug } from "@/lib/generated";
 import { getFallbackImage } from "@/lib/fallbackImage";
 import { storyRecencyMs, timeAgoFromMs, storySourceLabel, topicLabel } from "@/lib/storyUtils";
 import { stripAiMarkup } from "@/lib/stripAiMarkup";
-import { ResearchWorkflow } from "./research";
+import {
+  StoryCriticalCarousel,
+  buildInvestigationSuggestions,
+  buildWhyParagraph,
+  resolveCriticalQuestions,
+} from "./research";
+
+function isNarrativeSubheading(paragraph: string) {
+  const t = paragraph.trim();
+  if (t.length >= 100) return false;
+  return /^Wat hier opvalt\b/i.test(t);
+}
+
+function NarrativeLead({
+  aiSucceeded,
+  narrative,
+  summaryFallback,
+}: {
+  aiSucceeded: boolean;
+  narrative: string;
+  summaryFallback: string;
+}) {
+  const blocks =
+    aiSucceeded && narrative.trim()
+      ? narrative
+          .split(/\n\n+/)
+          .map((p) => stripAiMarkup(p).trim())
+          .filter(Boolean)
+      : [];
+
+  return (
+    <section className="mb-12" aria-labelledby="narrative-heading">
+      <p id="narrative-heading" className="text-sm text-gray-500 dark:text-gray-500">
+        Samengevoegd verhaal
+      </p>
+      <div className="mt-4 text-lg leading-relaxed text-gray-900 dark:text-gray-100">
+        {aiSucceeded && blocks.length > 0 ? (
+          <div className="space-y-6">
+            {blocks.map((p, i) =>
+              isNarrativeSubheading(p) ? (
+                <h3
+                  key={i}
+                  className={`mb-4 text-base font-semibold text-gray-900 dark:text-gray-100 ${i > 0 ? "!mt-8" : ""}`}
+                >
+                  {p.trim()}
+                </h3>
+              ) : (
+                <p key={i} className="whitespace-pre-wrap">
+                  {p}
+                </p>
+              )
+            )}
+          </div>
+        ) : (
+          <p className="text-lg leading-relaxed text-gray-900 dark:text-gray-100">{summaryFallback}</p>
+        )}
+      </div>
+    </section>
+  );
+}
 
 function pickCipherPreferredImage(story: any) {
   const SKIP_IMAGE_DOMAINS = new Set(["thecipherbrief.com", "rijksoverheid.nl", "feeds.rijksoverheid.nl"]);
@@ -17,7 +76,6 @@ function pickCipherPreferredImage(story: any) {
 
   if (others.length === 0) return undefined;
 
-  // Neem de meest recente andere bron met image (eenvoudige, stabiele keuze).
   const best = [...others].sort((a: any, b: any) => {
     const at = new Date(a?.publishedAt ?? "").getTime();
     const bt = new Date(b?.publishedAt ?? "").getTime();
@@ -42,12 +100,12 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
 
   if (!story) {
     return (
-      <div className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
-        <main className="mx-auto max-w-3xl px-6 py-14">
-          <Link className="text-sm font-medium text-[var(--muted)] hover:text-[var(--text)]" href="/">
+      <div className="min-h-screen bg-[var(--bg)] text-gray-900 dark:text-gray-100">
+        <main className="mx-auto max-w-2xl px-5 py-12">
+          <Link className="text-sm font-medium text-gray-900 hover:text-black hover:underline dark:text-gray-300 dark:hover:text-white" href="/">
             ← terug
           </Link>
-          <h1 className="mt-6 text-2xl font-semibold">Story niet gevonden</h1>
+          <h1 className="mt-6 text-2xl font-semibold leading-tight">Story niet gevonden</h1>
         </main>
       </div>
     );
@@ -63,7 +121,6 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
     bias: a.source.bias as string
   }));
 
-  // Dedupeer op domain: bron-teller en rendering moeten exact dezelfde dataset gebruiken.
   const sources = Array.from(new Map(rawSources.map((s) => [s.domain, s])).values());
   const sourceCount = sources.length;
 
@@ -71,21 +128,19 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
   const buildAtDate = new Date(buildAt);
   const referenceTimeMs = Number.isFinite(buildAtDate.getTime()) ? buildAtDate.getTime() : Date.now();
 
-  const investigationSourceQuickLinks = (story.articles as any[]).slice(0, 8).map((a: any) => {
-    const tit = (a.titleNl ?? a.title) as string;
-    const short = tit.length > 64 ? `${tit.slice(0, 62)}…` : tit;
-    return {
-      label: `${a.sourceDomain} — ${short}`,
-      url: a.url as string,
-    };
-  });
-
   const ai = story.ai;
   const aiSucceeded =
     story.aiStatus === "ok" &&
     ai &&
     typeof ai.narrative === "string" &&
     ai.narrative.trim().length > 0;
+
+  const investigations = (ai?.investigations ?? []) as any[];
+  const inv0 = investigations[0];
+  const inv1 = investigations[1];
+  const criticalQuestions = resolveCriticalQuestions((ai?.questions ?? []).map((q: string) => stripAiMarkup(q)));
+  const whyParagraph = buildWhyParagraph([inv0, inv1]);
+  const investigationSuggestions = buildInvestigationSuggestions([inv0, inv1]);
 
   const cipherImage = pickCipherPreferredImage(story);
   const fallbackTopic = story.topic ?? story.category ?? "overig";
@@ -95,11 +150,9 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
 
   const relatedCandidates = [...getAllStories()].filter((s) => s.slug !== story.slug);
 
-  // Correct scheiden: topic-only voor topic, category-only voor category.
   const relatedTopicAnchor = story.topic ?? "overig";
   const relatedCategoryAnchor = story.category ?? "overig";
 
-  // Precompute recency: voorkomt herhaald date-parsen in sort.
   const recencyMap = new Map<string, number>();
   for (const s of relatedCandidates) {
     recencyMap.set(s.slug, storyRecencyMs(s));
@@ -151,16 +204,19 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
   })();
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
-      <main className="mx-auto max-w-7xl px-6 py-14">
-        <div className="mx-auto max-w-[680px]">
-          <Link className="text-sm font-medium text-[var(--muted)] hover:text-[var(--text)]" href="/">
-            ← terug
-          </Link>
+    <div className="min-h-screen bg-[var(--bg)]">
+      <main>
+        <div className="mx-auto max-w-2xl px-5 pt-12">
+        <Link
+          className="text-sm font-medium text-gray-900 hover:text-black hover:underline dark:text-gray-300 dark:hover:text-white"
+          href="/"
+        >
+          ← terug
+        </Link>
 
-        <header className="mt-6">
-          <div className="text-xs font-medium text-[var(--muted)]">voorbijdekop</div>
-          <div className="mt-6 overflow-hidden rounded-2xl bg-[var(--card-bg)] ring-1 ring-[var(--border)]">
+        <header className="mt-6 mb-8">
+          <p className="text-sm text-gray-500 dark:text-gray-500">voorbijdekop</p>
+          <div className="mt-6 overflow-hidden rounded-xl bg-[var(--card-bg)]">
             <div className="relative aspect-[16/9] w-full bg-[var(--card-bg)]">
               <img
                 src={heroSrc}
@@ -170,153 +226,150 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
                 decoding="async"
               />
               {usedFallback ? (
-                <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-[var(--card-bg)] px-2 py-1 text-[11px] font-medium text-[var(--muted)] ring-1 ring-[var(--border)]">
+                <span className="pointer-events-none absolute right-3 top-3 rounded-md bg-[var(--card-bg)] px-2 py-2 text-sm text-gray-500 dark:text-gray-500">
                   Ter illustratie
                 </span>
               ) : null}
             </div>
           </div>
-          <p className="mt-4 text-xs uppercase tracking-wide text-[var(--muted)]">
+          <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">
             {(story.topic ?? story.category ?? "overig").toString()}
           </p>
-          <h1 className="mt-2 text-4xl font-semibold leading-tight tracking-tight text-[var(--text)]">
-            {story.title}
-          </h1>
-          <p className="mt-5 text-base leading-8 text-[var(--muted)]">{story.summary}</p>
-          {/* Editorial: alleen bronlabel + (relatieve) publicatietijd */}
-          <p className="mt-4 text-sm text-[var(--muted)]">
+          <h1 className="mt-4 text-2xl font-semibold leading-tight text-gray-900 dark:text-gray-100">{story.title}</h1>
+          <p className="mt-4 text-sm leading-relaxed text-gray-900 dark:text-gray-100">{story.summary}</p>
+          <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">
             {storySourceLabel(story)} · {timeAgoFromMs(storyRecencyMs(story), referenceTimeMs)}
           </p>
         </header>
 
-        <article className="mt-12">
-          <h2 className="text-2xl font-semibold tracking-tight text-[var(--text)]">Samengevoegd verhaal</h2>
-          <div className="mt-6 text-base leading-8 text-[var(--text)]">
-            {aiSucceeded ? (
-              <p className="whitespace-pre-wrap leading-8">{stripAiMarkup(ai?.narrative ?? "")}</p>
-            ) : (
-              <p className="text-[var(--muted)]">{story.summary}</p>
-            )}
-          </div>
+        <NarrativeLead
+          aiSucceeded={aiSucceeded}
+          narrative={stripAiMarkup(ai?.narrative ?? "")}
+          summaryFallback={story.summary}
+        />
 
-          <div className="mt-12 border-t border-[var(--border)] pt-10">
-            <div className="space-y-8">
-              <section>
-                <h3 className="text-sm font-semibold tracking-wide text-[var(--text)]">Feiten</h3>
-                <ul className="mt-4 space-y-2 text-base leading-7 text-[var(--text)]">
-                  {(ai?.facts ?? []).slice(0, 16).map((x: string, i: number) => (
-                    <li key={i} className="list-disc pl-5">
-                      {stripAiMarkup(x)}
-                    </li>
-                  ))}
-                  {(ai?.facts ?? []).length === 0 && (
-                    <li className="text-[var(--muted)]">Geen (of niet automatisch afgeleid).</li>
-                  )}
-                </ul>
-              </section>
+        <div className="mb-12 space-y-8">
+          <section>
+            <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Feiten</h2>
+            <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500">
+              {(ai?.facts ?? []).slice(0, 16).map((x: string, i: number) => (
+                <li key={i} className="break-words">
+                  {stripAiMarkup(x)}
+                </li>
+              ))}
+              {(ai?.facts ?? []).length === 0 && (
+                <li className="text-sm text-gray-800 dark:text-gray-300">Geen (of niet automatisch afgeleid).</li>
+              )}
+            </ul>
+          </section>
 
-              <section>
-                <h3 className="text-sm font-semibold tracking-wide text-[var(--text)]">Interpretaties</h3>
-                <ul className="mt-4 space-y-2 text-base leading-7 text-[var(--text)]">
-                  {(ai?.interpretations ?? []).slice(0, 16).map((x: string, i: number) => (
-                    <li key={i} className="list-disc pl-5">
-                      {stripAiMarkup(x)}
-                    </li>
-                  ))}
-                  {(ai?.interpretations ?? []).length === 0 && (
-                    <li className="text-[var(--muted)]">Geen (of niet automatisch afgeleid).</li>
-                  )}
-                </ul>
-              </section>
+          <section>
+            <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Interpretaties</h2>
+            <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500">
+              {(ai?.interpretations ?? []).slice(0, 16).map((x: string, i: number) => (
+                <li key={i} className="break-words">
+                  {stripAiMarkup(x)}
+                </li>
+              ))}
+              {(ai?.interpretations ?? []).length === 0 && (
+                <li className="text-sm text-gray-800 dark:text-gray-300">Geen (of niet automatisch afgeleid).</li>
+              )}
+            </ul>
+          </section>
 
-              <section>
-                <h3 className="text-sm font-semibold tracking-wide text-[var(--text)]">Onbekend</h3>
-                <ul className="mt-4 space-y-2 text-base leading-7 text-[var(--text)]">
-                  {(ai?.unknowns ?? []).slice(0, 16).map((x: string, i: number) => (
-                    <li key={i} className="list-disc pl-5">
-                      {stripAiMarkup(x)}
-                    </li>
-                  ))}
-                  {(ai?.unknowns ?? []).length === 0 && (
-                    <li className="text-[var(--muted)]">Geen (of niet automatisch afgeleid).</li>
-                  )}
-                </ul>
-              </section>
-            </div>
-          </div>
-        </article>
+          <section>
+            <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Onbekend</h2>
+            <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500">
+              {(ai?.unknowns ?? []).slice(0, 16).map((x: string, i: number) => (
+                <li key={i} className="break-words">
+                  {stripAiMarkup(x)}
+                </li>
+              ))}
+              {(ai?.unknowns ?? []).length === 0 && (
+                <li className="text-sm text-gray-800 dark:text-gray-300">Geen (of niet automatisch afgeleid).</li>
+              )}
+            </ul>
+          </section>
+        </div>
 
-        <section className="mt-12">
-          <h2 className="text-lg font-semibold tracking-tight">Bronvergelijking</h2>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-[var(--text)]">
+        <section className="mb-16">
+          <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Bronvergelijking</h2>
+          <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500">
             {(ai?.comparisons ?? []).slice(0, 12).map((x: string, i: number) => (
-              <li key={i} className="list-disc pl-5">
+              <li key={i} className="break-words">
                 {stripAiMarkup(x)}
               </li>
             ))}
             {(ai?.comparisons ?? []).length === 0 && (
-              <li className="text-[var(--muted)]">Nog geen vergelijking beschikbaar.</li>
+              <li className="text-sm text-gray-800 dark:text-gray-300">Nog geen vergelijking beschikbaar.</li>
             )}
           </ul>
         </section>
-
         </div>
 
-        <section className="relative left-1/2 right-1/2 mt-12 w-screen -translate-x-1/2 border-y border-[var(--border)] bg-[var(--card-bg-hover)] px-6 py-10 pb-28 sm:pb-32">
-          <div className="mx-auto max-w-[680px]">
-            <h2 className="text-2xl font-semibold tracking-tight text-[var(--text)]">Onderzoek dit verhaal</h2>
-            <ResearchWorkflow
-              slug={story.slug}
-              questions={(ai?.questions ?? []).slice(0, 10).map((q) => stripAiMarkup(q))}
-              investigations={[
-                (ai?.investigations ?? [])[0] ?? null,
-                (ai?.investigations ?? [])[1] ?? null,
-              ]}
-              sourceQuickLinks={investigationSourceQuickLinks}
+        <section
+          className="mb-12 bg-neutral-50 py-12 dark:bg-neutral-950/35"
+          aria-labelledby="critical-reflection-heading"
+        >
+          <div className="mx-auto max-w-2xl px-6">
+            <h2 id="critical-reflection-heading" className="mb-6 text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Kijk hier kritisch naar
+            </h2>
+            <StoryCriticalCarousel
+              questions={criticalQuestions}
+              whyText={whyParagraph}
+              suggestions={investigationSuggestions}
             />
           </div>
         </section>
 
-        <div className="mx-auto max-w-[680px]">
-        <section className="mt-12">
-          <h2 className="text-lg font-semibold tracking-tight text-[var(--text)]">Verificatie (claims)</h2>
-          <ol className="mt-4 space-y-5">
+        <div className="mx-auto max-w-2xl px-5 pb-12">
+        <section className="mb-12">
+          <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Verificatie (claims)</h2>
+          <ol className="space-y-6">
             {(ai?.claims ?? []).slice(0, 12).map((c: any, i: number) => (
-              <li key={i} className="border-l border-[var(--border)] pl-4">
-                <div className="text-base font-semibold leading-6 text-[var(--text)]">
+              <li key={i}>
+                <div className="text-sm font-semibold leading-relaxed text-gray-900 dark:text-gray-100">
                   {i + 1}. {stripAiMarkup(String(c.claim ?? ""))}
                 </div>
-                <div className="mt-2 text-sm text-[var(--muted)]">Confidence: {c.confidence}</div>
-                <div className="mt-2 text-base leading-7 text-[var(--text)]">
+                <div className="mt-2 text-sm text-gray-500 dark:text-gray-500">Confidence: {c.confidence}</div>
+                <div className="mt-3 text-sm leading-relaxed text-gray-900 dark:text-gray-100">
                   {stripAiMarkup(String(c.verification ?? ""))}
                 </div>
               </li>
             ))}
             {(ai?.claims ?? []).length === 0 && (
-              <li className="text-sm text-[var(--muted)]">Nog geen claims beschikbaar.</li>
+              <li className="text-sm text-gray-800 dark:text-gray-300">Nog geen claims beschikbaar.</li>
             )}
           </ol>
         </section>
-        <section className="mt-12">
-          <h2 className="text-lg font-semibold tracking-tight text-[var(--text)]">Transparantie</h2>
-          <div className="mt-4 text-base leading-7 text-[var(--text)]">
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Transparantie</h2>
+          <div className="text-sm leading-relaxed">
             <div>
-              <span className="font-medium text-[var(--muted)]">Build tijd:</span> {safeFormatDateTimeNl(buildAt)}
+              <span className="font-semibold text-gray-500 dark:text-gray-500">Build tijd:</span>{" "}
+              <span className="text-gray-900 dark:text-gray-100">{safeFormatDateTimeNl(buildAt)}</span>
             </div>
-            <div className="mt-1">
-              <span className="font-medium text-[var(--muted)]">Gebruikte bronnen:</span> {sourceCount}
+            <div className="mt-2">
+              <span className="font-semibold text-gray-500 dark:text-gray-500">Gebruikte bronnen:</span>{" "}
+              <span className="text-gray-900 dark:text-gray-100">{sourceCount}</span>
             </div>
           </div>
-          <ul className="mt-5 space-y-3 text-base leading-7 text-[var(--text)]">
+          <ul className="mt-6 space-y-4 text-sm leading-relaxed text-gray-900 dark:text-gray-100">
             {sources.map((s, i) => (
-              <li key={i} className="border-l border-[var(--border)] pl-4">
-                <a className="font-semibold text-[var(--text)] hover:underline" href={s.url} rel="noreferrer">
+              <li key={i}>
+                <a
+                  className="font-semibold text-gray-900 underline-offset-4 hover:text-black hover:underline dark:text-gray-100 dark:hover:text-white"
+                  href={s.url}
+                  rel="noreferrer"
+                >
                   {s.domain}
                 </a>
-                <div className="mt-1 text-sm text-[var(--muted)]">
+                <div className="mt-2 text-sm text-gray-500 dark:text-gray-500">
                   {safeFormatDateTimeNl(s.publishedAt)} • {s.type} • {s.depth} • {s.bias}
                 </div>
-                <div className="mt-1 text-sm text-[var(--muted)]">{s.title}</div>
+                <div className="mt-2 text-sm text-gray-800 dark:text-gray-300">{s.title}</div>
               </li>
             ))}
           </ul>
@@ -324,38 +377,44 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
         </div>
 
         {relatedFinal.length > 0 ? (
-          <section className="mt-16 border-t border-[var(--border)] pt-10">
-            <h2 className="text-lg font-semibold tracking-tight">Misschien vind je dit ook interessant...</h2>
-
-            <div className="mt-4 w-full grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-4">
-              {relatedFinal.map((s: any) => (
-                <Link key={s.slug} href={`/story/${s.slug}`} className="group block cursor-pointer" aria-label={s.title}>
-                  <article className="flex flex-col overflow-hidden rounded-[4px] border border-[var(--card-border)] bg-[var(--card-bg)] transition-all duration-150 hover:bg-[var(--card-bg-hover)]">
-                    <div className="aspect-[16/9] w-full overflow-hidden bg-[var(--card-bg)]">
-                      <img
-                        src={pickCipherPreferredImage(s) || getFallbackImage(s.topic ?? s.category)}
-                        alt=""
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-
-                    <div className="p-3">
-                      <h3 className="mt-0.5 font-sans text-sm font-semibold leading-snug tracking-tight text-[var(--text)] group-hover:underline line-clamp-2">
-                        {s.shortHeadline ?? s.title}
-                      </h3>
-
-                      <div className="mt-2 flex flex-col gap-1 text-[11px] leading-4 text-[var(--muted)]">
-                        <div>
-                          {storySourceLabel(s)} · {timeAgoFromMs(storyRecencyMs(s), referenceTimeMs)}
-                        </div>
-                        <div className="uppercase tracking-wide">{topicLabel(s.topic ?? s.category ?? "overig")}</div>
+          <section className="pb-12" aria-labelledby="related-articles-heading">
+            <div className="mx-auto max-w-7xl border-t border-[var(--border)] px-6 pt-8">
+              <h2 id="related-articles-heading" className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">
+                Relevante artikelen
+              </h2>
+              <div className="mt-4 grid grid-cols-2 gap-6 md:grid-cols-4">
+                {relatedFinal.map((s: any) => (
+                  <Link
+                    key={s.slug}
+                    href={`/story/${s.slug}`}
+                    className="group block cursor-pointer"
+                    aria-label={s.title}
+                  >
+                    <article className="flex flex-col overflow-hidden rounded-md border border-[var(--card-border)] bg-[var(--card-bg)] transition-colors duration-150 hover:bg-[var(--card-bg-hover)]">
+                      <div className="aspect-[16/9] w-full overflow-hidden bg-[var(--card-bg)]">
+                        <img
+                          src={pickCipherPreferredImage(s) || getFallbackImage(s.topic ?? s.category)}
+                          alt=""
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </div>
-                    </div>
-                  </article>
-                </Link>
-              ))}
+                      <div className="p-3">
+                        <h3 className="text-sm font-semibold leading-snug text-gray-900 line-clamp-2 group-hover:text-black group-hover:underline dark:text-gray-100 dark:group-hover:text-white">
+                          {s.shortHeadline ?? s.title}
+                        </h3>
+                        <div className="mt-2 flex flex-col gap-2 text-sm leading-relaxed text-gray-500 dark:text-gray-500">
+                          <span>
+                            {storySourceLabel(s)} · {timeAgoFromMs(storyRecencyMs(s), referenceTimeMs)}
+                          </span>
+                          <span className="uppercase tracking-wide">{topicLabel(s.topic ?? s.category ?? "overig")}</span>
+                        </div>
+                      </div>
+                    </article>
+                  </Link>
+                ))}
+              </div>
             </div>
           </section>
         ) : null}
@@ -363,4 +422,3 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
     </div>
   );
 }
-
