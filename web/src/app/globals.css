@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --muted: #666666;
+  --header-bg: rgba(255, 255, 255, 0.95);
+
+  /* Aliassen voor het theme-systeem (zoals gevraagd) */
+  --bg: #ffffff;
+  --text: #111111;
+  --border: rgba(17, 17, 17, 0.08);
+
+  --card-bg: #ffffff;
+  --card-bg-hover: #f7f7f8;
+  --card-border: #e8e8ea;
+
+  /* Settings overlay (slide-out panel) */
+  --overlay-bg: rgba(0, 0, 0, 0.25);
+  --settings-panel-bg: #ffffff;
+  --settings-panel-border: #e5e7eb;
+
+  --settings-close-hover-bg: rgba(0, 0, 0, 0.05);
+
+  /* Category navigation arrows */
+  --nav-arrow-bg: rgba(245, 247, 250, 0.95);
+  --nav-arrow-bg-hover: rgba(238, 242, 246, 0.98);
+  /* Zonder border in light mode (staat wel in className, maar kleur is transparant) */
+  --nav-arrow-border: rgba(0, 0, 0, 0);
+  --nav-arrow-fg: #111111;
+
+  /* Fadende zijkanten bij categorie-navigatie */
+  --nav-fade-bg: rgba(245, 247, 250, 0.95);
+}
+
+[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #171717;
+  --muted: #666666;
+  --header-bg: rgba(255, 255, 255, 0.95);
+
+  --bg: #ffffff;
+  --text: #111111;
+  --border: rgba(17, 17, 17, 0.08);
+
+  --card-bg: #ffffff;
+  --card-bg-hover: #f7f7f8;
+  --card-border: #e8e8ea;
+}
+
+[data-theme="dark"] {
+  --background: #0f1115;
+  --foreground: #e6e8eb;
+  --muted: #b1b8c2;
+  --header-bg: rgba(11, 11, 11, 0.78);
+
+  --bg: #0f1115;
+  --text: #e6e8eb;
+  --border: rgba(230, 232, 235, 0.14);
+
+  --card-bg: #16181c;
+  --card-bg-hover: #1c1f24;
+  --card-border: #2a2f36;
+
+  /* Settings overlay (slide-out panel) */
+  --overlay-bg: rgba(0, 0, 0, 0.6);
+  --settings-panel-bg: #16181c;
+  --settings-panel-border: #2a2f36;
+
+  --settings-close-hover-bg: rgba(255, 255, 255, 0.07);
+
+  /* Category navigation arrows */
+  --nav-arrow-bg: rgba(42, 47, 54, 0.98);
+  --nav-arrow-bg-hover: rgba(60, 70, 80, 0.98);
+  --nav-arrow-border: #2a2f36;
+  --nav-arrow-fg: #ffffff;
+
+  /* Fadende zijkanten bij categorie-navigatie */
+  --nav-fade-bg: rgba(11, 11, 11, 0.78);
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Effra-Bold", "Roboto", "Helvetica", "Arial", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* Donkere theme: override de meest gebruikte Tailwind zinc/white klassen */
+html[data-theme="dark"] .bg-white {
+  background-color: var(--background) !important;
+}
+html[data-theme="dark"] .text-zinc-950,
+html[data-theme="dark"] .text-zinc-900 {
+  color: var(--foreground) !important;
+}
+html[data-theme="dark"] .text-zinc-800,
+html[data-theme="dark"] .text-zinc-700 {
+  color: var(--muted) !important;
+}
+html[data-theme="dark"] .text-zinc-600,
+html[data-theme="dark"] .text-zinc-500 {
+  color: var(--muted) !important;
+}
+html[data-theme="dark"] .bg-zinc-50 {
+  background-color: #0f0f10 !important;
+}
+
+/* Hide horizontal/vertical scrollbars (NOS-like) */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}

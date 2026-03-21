@@ -1,0 +1,20 @@
+{
+  "name": "voorbijdekop-root",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:data": "tsx scripts/build-data.ts",
+    "dev:web": "npm --prefix web run dev",
+    "build:web": "npm --prefix web run build"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.87",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "fast-xml-parser": "^5.2.5",
+    "openai": "^4.86.2"
+  }
+}
