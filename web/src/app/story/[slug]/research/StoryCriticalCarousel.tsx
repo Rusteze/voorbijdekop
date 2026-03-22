@@ -38,7 +38,7 @@ export function StoryCriticalCarousel({ questions, whyText, suggestions }: Story
               type="button"
               onClick={() => go(i)}
               aria-current={active ? "true" : undefined}
-              className={`rounded-md px-3 py-2 text-sm transition-colors ${
+              className={`inline-flex min-h-11 items-center justify-center rounded-md px-4 text-base transition-colors md:min-h-0 md:px-3 md:py-2 md:text-sm ${
                 active
                   ? "font-medium text-gray-900 underline decoration-gray-700 decoration-2 underline-offset-8 dark:text-gray-100 dark:decoration-gray-500"
                   : "text-gray-800 hover:text-black hover:underline dark:text-gray-300 dark:hover:text-white"
@@ -50,7 +50,7 @@ export function StoryCriticalCarousel({ questions, whyText, suggestions }: Story
         })}
       </nav>
 
-      <div className="pt-6">
+      <div className="pt-5 md:pt-6">
         {slide === 0 ? <CriticalQuestions items={questions} /> : null}
         {slide === 1 ? <WhySection text={whyText} /> : null}
         {slide === 2 && hasThird ? <InvestigationSuggestions lines={suggestions} variant="embedded" /> : null}

@@ -52,7 +52,7 @@ export function SearchOverlay() {
     >
       <div
         className={
-          "mx-auto w-full max-w-7xl px-6 pt-24 transition-transform duration-200 " +
+          "mx-auto w-full max-w-7xl px-4 pt-20 transition-transform duration-200 md:px-6 md:pt-24 " +
           (searchOpen ? "translate-y-0" : "-translate-y-2")
         }
       >

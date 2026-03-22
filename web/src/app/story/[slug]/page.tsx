@@ -34,18 +34,18 @@ function NarrativeLead({
       : [];
 
   return (
-    <section className="mb-12" aria-labelledby="narrative-heading">
+    <section className="mb-10 md:mb-12" aria-labelledby="narrative-heading">
       <p id="narrative-heading" className="text-sm text-gray-500 dark:text-gray-500">
         Samengevoegd verhaal
       </p>
-      <div className="mt-4 text-lg leading-relaxed text-gray-900 dark:text-gray-100">
+      <div className="mt-4 text-base leading-relaxed text-gray-900 dark:text-gray-100 md:text-lg">
         {aiSucceeded && blocks.length > 0 ? (
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {blocks.map((p, i) =>
               isNarrativeSubheading(p) ? (
                 <h3
                   key={i}
-                  className={`mb-4 text-base font-semibold text-gray-900 dark:text-gray-100 ${i > 0 ? "!mt-8" : ""}`}
+                  className={`mb-3 text-base font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 ${i > 0 ? "!mt-6 md:!mt-8" : ""}`}
                 >
                   {p.trim()}
                 </h3>
@@ -57,7 +57,7 @@ function NarrativeLead({
             )}
           </div>
         ) : (
-          <p className="text-lg leading-relaxed text-gray-900 dark:text-gray-100">{summaryFallback}</p>
+          <p className="text-base leading-relaxed text-gray-900 dark:text-gray-100 md:text-lg">{summaryFallback}</p>
         )}
       </div>
     </section>
@@ -101,8 +101,11 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
   if (!story) {
     return (
       <div className="min-h-screen bg-[var(--bg)] text-gray-900 dark:text-gray-100">
-        <main className="mx-auto max-w-2xl px-5 py-12">
-          <Link className="text-sm font-medium text-gray-900 hover:text-black hover:underline dark:text-gray-300 dark:hover:text-white" href="/">
+        <main className="mx-auto max-w-2xl px-4 py-8 md:px-5 md:py-12">
+          <Link
+            className="inline-flex min-h-11 items-center text-sm font-medium text-gray-900 hover:text-black hover:underline dark:text-gray-300 dark:hover:text-white"
+            href="/"
+          >
             ← terug
           </Link>
           <h1 className="mt-6 text-2xl font-semibold leading-tight">Story niet gevonden</h1>
@@ -235,8 +238,12 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
           <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">
             {(story.topic ?? story.category ?? "overig").toString()}
           </p>
-          <h1 className="mt-4 text-2xl font-semibold leading-tight text-gray-900 dark:text-gray-100">{story.title}</h1>
-          <p className="mt-4 text-sm leading-relaxed text-gray-900 dark:text-gray-100">{story.summary}</p>
+          <h1 className="mt-4 text-xl font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-2xl">
+            {story.title}
+          </h1>
+          <p className="mt-4 text-base leading-relaxed text-gray-900 dark:text-gray-100 md:text-sm">
+            {story.summary}
+          </p>
           <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">
             {storySourceLabel(story)} · {timeAgoFromMs(storyRecencyMs(story), referenceTimeMs)}
           </p>
@@ -248,10 +255,12 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
           summaryFallback={story.summary}
         />
 
-        <div className="mb-12 space-y-8">
-          <section>
-            <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Feiten</h2>
-            <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500">
+        <div className="mb-10 space-y-8 md:mb-12">
+          <section className="mt-8 md:mt-0">
+            <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
+              Feiten
+            </h2>
+            <ul className="list-disc space-y-3 pl-5 text-base leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500 md:text-sm">
               {(ai?.facts ?? []).slice(0, 16).map((x: string, i: number) => (
                 <li key={i} className="break-words">
                   {stripAiMarkup(x)}
@@ -263,9 +272,11 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
             </ul>
           </section>
 
-          <section>
-            <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Interpretaties</h2>
-            <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500">
+          <section className="mt-8 md:mt-0">
+            <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
+              Interpretaties
+            </h2>
+            <ul className="list-disc space-y-3 pl-5 text-base leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500 md:text-sm">
               {(ai?.interpretations ?? []).slice(0, 16).map((x: string, i: number) => (
                 <li key={i} className="break-words">
                   {stripAiMarkup(x)}
@@ -277,9 +288,11 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
             </ul>
           </section>
 
-          <section>
-            <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Onbekend</h2>
-            <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500">
+          <section className="mt-8 md:mt-0">
+            <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
+              Onbekend
+            </h2>
+            <ul className="list-disc space-y-3 pl-5 text-base leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500 md:text-sm">
               {(ai?.unknowns ?? []).slice(0, 16).map((x: string, i: number) => (
                 <li key={i} className="break-words">
                   {stripAiMarkup(x)}
@@ -292,9 +305,11 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
           </section>
         </div>
 
-        <section className="mb-16">
-          <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Bronvergelijking</h2>
-          <ul className="list-disc space-y-3 pl-5 text-sm leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500">
+        <section className="mb-12 mt-10 md:mb-16 md:mt-0">
+          <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
+            Bronvergelijking
+          </h2>
+          <ul className="list-disc space-y-3 pl-5 text-base leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500 md:text-sm">
             {(ai?.comparisons ?? []).slice(0, 12).map((x: string, i: number) => (
               <li key={i} className="break-words">
                 {stripAiMarkup(x)}
@@ -308,11 +323,14 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
         </div>
 
         <section
-          className="mb-12 bg-neutral-50 py-12 dark:bg-neutral-950/35"
+          className="mb-10 bg-neutral-50 py-8 dark:bg-neutral-950/35 md:mb-12 md:py-12"
           aria-labelledby="critical-reflection-heading"
         >
-          <div className="mx-auto max-w-2xl px-6">
-            <h2 id="critical-reflection-heading" className="mb-6 text-xl font-semibold text-gray-900 dark:text-gray-100">
+          <div className="mx-auto max-w-2xl px-4 md:px-6">
+            <h2
+              id="critical-reflection-heading"
+              className="mb-5 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-6 md:text-xl"
+            >
               Kijk hier kritisch naar
             </h2>
             <StoryCriticalCarousel
@@ -323,17 +341,19 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
 
-        <div className="mx-auto max-w-2xl px-5 pb-12">
-        <section className="mb-12">
-          <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Verificatie (claims)</h2>
-          <ol className="space-y-6">
+        <div className="mx-auto max-w-2xl px-4 pb-10 md:px-5 md:pb-12">
+        <section className="mb-10 md:mb-12">
+          <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
+            Verificatie (claims)
+          </h2>
+          <ol className="space-y-5 md:space-y-6">
             {(ai?.claims ?? []).slice(0, 12).map((c: any, i: number) => (
               <li key={i}>
-                <div className="text-sm font-semibold leading-relaxed text-gray-900 dark:text-gray-100">
+                <div className="text-base font-semibold leading-relaxed text-gray-900 dark:text-gray-100 md:text-sm">
                   {i + 1}. {stripAiMarkup(String(c.claim ?? ""))}
                 </div>
                 <div className="mt-2 text-sm text-gray-500 dark:text-gray-500">Confidence: {c.confidence}</div>
-                <div className="mt-3 text-sm leading-relaxed text-gray-900 dark:text-gray-100">
+                <div className="mt-3 text-base leading-relaxed text-gray-900 dark:text-gray-100 md:text-sm">
                   {stripAiMarkup(String(c.verification ?? ""))}
                 </div>
               </li>
@@ -344,9 +364,11 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
           </ol>
         </section>
 
-        <section className="mb-12">
-          <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">Transparantie</h2>
-          <div className="text-sm leading-relaxed">
+        <section className="mb-10 md:mb-12">
+          <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
+            Transparantie
+          </h2>
+          <div className="text-base leading-relaxed md:text-sm">
             <div>
               <span className="font-semibold text-gray-500 dark:text-gray-500">Build tijd:</span>{" "}
               <span className="text-gray-900 dark:text-gray-100">{safeFormatDateTimeNl(buildAt)}</span>
@@ -356,7 +378,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
               <span className="text-gray-900 dark:text-gray-100">{sourceCount}</span>
             </div>
           </div>
-          <ul className="mt-6 space-y-4 text-sm leading-relaxed text-gray-900 dark:text-gray-100">
+          <ul className="mt-6 space-y-4 text-base leading-relaxed text-gray-900 dark:text-gray-100 md:text-sm">
             {sources.map((s, i) => (
               <li key={i}>
                 <a
@@ -377,12 +399,15 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
         </div>
 
         {relatedFinal.length > 0 ? (
-          <section className="pb-12" aria-labelledby="related-articles-heading">
-            <div className="mx-auto max-w-7xl border-t border-[var(--border)] px-6 pt-8">
-              <h2 id="related-articles-heading" className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">
+          <section className="pb-10 md:pb-12" aria-labelledby="related-articles-heading">
+            <div className="mx-auto max-w-7xl border-t border-[var(--border)] px-4 pt-6 md:px-6 md:pt-8">
+              <h2
+                id="related-articles-heading"
+                className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl"
+              >
                 Relevante artikelen
               </h2>
-              <div className="mt-4 grid grid-cols-2 gap-6 md:grid-cols-4">
+              <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-6">
                 {relatedFinal.map((s: any) => (
                   <Link
                     key={s.slug}
@@ -390,7 +415,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
                     className="group block cursor-pointer"
                     aria-label={s.title}
                   >
-                    <article className="flex flex-col overflow-hidden rounded-md border border-[var(--card-border)] bg-[var(--card-bg)] transition-colors duration-150 hover:bg-[var(--card-bg-hover)]">
+                    <article className="flex flex-col overflow-hidden rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] shadow-sm transition-all duration-150 active:scale-[0.99] hover:shadow-md md:rounded-md md:shadow-none md:hover:bg-[var(--card-bg-hover)] md:hover:shadow-none md:active:scale-100">
                       <div className="aspect-[16/9] w-full overflow-hidden bg-[var(--card-bg)]">
                         <img
                           src={pickCipherPreferredImage(s) || getFallbackImage(s.topic ?? s.category)}
@@ -400,8 +425,8 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
                           decoding="async"
                         />
                       </div>
-                      <div className="p-3">
-                        <h3 className="text-sm font-semibold leading-snug text-gray-900 line-clamp-2 group-hover:text-black group-hover:underline dark:text-gray-100 dark:group-hover:text-white">
+                      <div className="p-4 md:p-3">
+                        <h3 className="text-base font-semibold leading-snug text-gray-900 line-clamp-2 group-hover:text-black group-hover:underline dark:text-gray-100 dark:group-hover:text-white md:text-sm">
                           {s.shortHeadline ?? s.title}
                         </h3>
                         <div className="mt-2 flex flex-col gap-2 text-sm leading-relaxed text-gray-500 dark:text-gray-500">

@@ -15,7 +15,7 @@ export function InvestigationSuggestions({
 
   const titleCls =
     variant === "embedded"
-      ? "text-sm font-semibold leading-relaxed text-gray-900 dark:text-gray-100"
+      ? "text-base font-semibold leading-relaxed text-gray-900 dark:text-gray-100 md:text-sm"
       : "text-xl font-semibold text-gray-900 dark:text-gray-100";
 
   const title = "Wil je verder onderzoeken?";
@@ -27,7 +27,7 @@ export function InvestigationSuggestions({
       ) : (
         <h3 className={titleCls}>{title}</h3>
       )}
-      <ul className="mt-4 list-disc space-y-3 pl-5 text-sm leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500">
+      <ul className="mt-4 list-disc space-y-3 pl-5 text-base leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500 md:text-sm">
         {list.map((line, i) => (
           <li key={`${i}-${line.slice(0, 20)}`} className="break-words">
             {line}

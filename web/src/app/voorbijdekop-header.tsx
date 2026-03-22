@@ -122,7 +122,7 @@ export function VoorbijDekopHeader() {
     const start = Math.min(Math.max(0, restStartIndex), Math.max(0, len - 1));
 
     // beschikbare ruimte (gecompenseerd voor de zijkant padding op het scherm)
-    const available = Math.max(0, viewportWidthPx - 2 * NAV_SIDE_PADDING_PX);
+    const available = Math.max(0, viewportWidthPx - 2 * navSidePadPx);
 
     // Fallback als we nog geen viewport/meting hebben
     if (viewportWidthPx <= 0) {

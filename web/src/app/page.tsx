@@ -962,10 +962,10 @@ export default function Home() {
                         <div className="min-w-0 flex-1">
                           <span
                             className={
-                              "block truncate leading-6 transition-colors " +
+                              "block truncate leading-snug transition-colors md:leading-6 " +
                               (prominent
-                                ? "text-sm font-semibold text-zinc-950 group-hover:underline"
-                                : "text-sm font-medium text-zinc-800 group-hover:underline")
+                                ? "text-base font-semibold text-zinc-950 group-hover:underline md:text-sm"
+                                : "text-base font-medium text-zinc-800 group-hover:underline md:text-sm")
                             }
                           >
                             {s.title}
