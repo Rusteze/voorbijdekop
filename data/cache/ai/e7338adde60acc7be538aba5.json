@@ -1,0 +1,102 @@
+{
+  "category": "geopolitiek",
+  "topic": "conflict",
+  "shortHeadline": "Israël meldt Iraanse raketaanval op stad met nucleaire faciliteit",
+  "summary": "Volgens het Israëlische leger heeft Iran een raket afgevuurd die een stad met een nucleaire faciliteit raakte. Deze informatie komt uit een bericht van France24 van 21 maart 2026. Details over de exacte locatie, tijd van de aanval en eventuele slachtoffers ontbreken, evenals onafhankelijke bevestiging van de aanval.",
+  "narrative": "Op 21 maart 2026 meldde het Israëlische leger dat Iran een raket had afgevuurd die een stad met een nucleaire faciliteit trof. Deze claim kwam naar buiten via het nieuwsplatform France24, dat melding maakte van deze aanval in de context van aanhoudende spanningen in het Midden-Oosten.\n\nDe melding bevat weinig concrete details. Er wordt geen specifieke naam genoemd van de getroffen stad, noch wordt het moment van de aanval precies aangegeven. Ook ontbreken cijfers over eventuele slachtoffers of materiële schade. Deze informatie ontbreekt expliciet in de beschikbaar gestelde bron.\n\nDe claim wordt voor zover bekend slechts door France24 genoemd en is niet onafhankelijk bevestigd door andere bronnen met een hoge diepte of reputatie. Ook in de andere vermeldingen uit de context van deze bron of andere bronnen komen geen bevestigingen of aanvullingen voor. Daarmee is de betrouwbaarheid van de specifieke aanval moeilijk te beoordelen.\n\nDe framing in de bron gebruikt het woord 'trof', wat wijst op een succesvolle inslag. Er is geen sprake van een bredere militaire operatie of uitgebreide campagne in de beschrijving. Dit beperkt het overzicht van de aard en omvang van het incident.\n\nWat hier opvalt\n\nTen eerste ontbreekt cruciale informatie: het is onduidelijk welke stad exact werd getroffen, wanneer precies de raket werd afgevuurd en wat de omvang van de schade is. Zonder deze gegevens is het moeilijk de impact te duiden.\n\nTen tweede wordt deze claim slechts in één bron met een hoge diepte vermeld, zonder bevestiging elders. Dit betekent dat verdere validatie noodzakelijk is om het incident als feit vast te stellen.\n\nVerder valt het op dat de melding van de aanval vanuit een militaire bron komt (Israëlisch leger) en via een mediakanaal met mixed bias wordt gepresenteerd, wat vragen oproept over mogelijke framing of strategisch communiqué.\n\nDe afwezigheid van tegenstrijdigheden onder bronnen is geen sterkte, gezien het gebrek aan aanvullende informatie dat vergelijking of verificatie onmogelijk maakt.\n\nDeze situatie vraagt om nader onderzoek gericht op het verifiëren van de claim, het achterhalen van precieze locatiegegevens, en de context van de aanval.",
+  "facts": [
+    "Het Israëlische leger meldt dat een Iraanse raket een stad met een nucleaire faciliteit heeft getroffen.",
+    "Deze melding werd gepubliceerd op 21 maart 2026 door France24.",
+    "Er is geen concrete locatie van de getroffen stad genoemd in de bron.",
+    "De bron geeft geen informatie over het exacte tijdstip van de aanval.",
+    "Er zijn geen cijfers over slachtoffers of materiële schade beschikbaar in de bron.",
+    "De claim wordt slechts door één bron met hoge diepte vermeld en is niet onafhankelijk bevestigd."
+  ],
+  "interpretations": [
+    "De melding lijkt afkomstig van het Israëlische leger en kan onderdeel zijn van informatieoperaties binnen het conflict tussen Iran en Israël.",
+    "Het ontbreken van concrete details kan wijzen op het vroegtijdige stadium van de berichtgeving of op gerichte onzekerheidsstrategie.",
+    "Doordat slechts één bron deze claim meldt zonder bevestiging, is de betrouwbaarheid van het incident twijfelachtig en vraagt om externe verificatie.",
+    "Het gebruik van het woord 'trof' suggereert een succesvolle inslag zonder verdere uitleg over omvang of impact, wat op terughoudendheid in communicatie kan duiden."
+  ],
+  "unknowns": [
+    "De exacte naam en locatie van de getroffen stad is niet bekendgemaakt.",
+    "Het precieze tijdstip en de datum van de raketaanval zijn niet vermeld.",
+    "Er is geen informatie over het aantal slachtoffers, schade of de omvang van de aanval.",
+    "Onbekend is of de nucleaire faciliteit operationeel was en of de aanval een specifieke strategische doelstelling had.",
+    "Onbekend is of er aanvullende bevestigingen zijn van andere bronnen of onafhankelijke verificatie.",
+    "Het is onduidelijk of de aanval deel uitmaakt van een bredere militaire campagne of een geïsoleerd incident."
+  ],
+  "comparisons": [
+    "Alle beschikbare bronnen stemmen overeen over de kernclaim maar bieden geen aanvullende details om de bewering verder te verifiëren.",
+    "Er is geen contradictie tussen de bronnen maar het ontbreken van vergelijkbare meldingen beperkt de toetsbaarheid.",
+    "Framing is consistent met een militaire aanslag, maar het beperkte taalgebruik kan wijzen op communicatiestrategie van het leger."
+  ],
+  "questions": [
+    "Welke stad in Iran werd volgens het Israëlische leger getroffen door de raket?",
+    "Op welk exact tijdstip vond de aanval plaats?",
+    "Wat was de aard en omvang van de schade aan de nucleaire faciliteit?",
+    "Zijn er onafhankelijke bronnen of satellietbeelden die de aanval bevestigen?",
+    "Wat is de strategische context van deze aanval binnen het spanningsveld tussen Iran en Israël?",
+    "Welke gevolgen heeft deze aanval voor de regionale veiligheid en internationale betrekkingen?"
+  ],
+  "investigations": [
+    {
+      "title": "Verifiëren van de claim over de Iraanse raketaanval op een nucleaire faciliteit",
+      "what": "De juistheid van de bewering dat Iran een raket afvuurde op een stad met een nucleaire faciliteit.",
+      "why": "De claim komt slechts uit één bron en heeft geen onafhankelijke bevestiging, waardoor het noodzakelijk is dit te verifiëren voor feitelijke verslaggeving.",
+      "steps": [
+        "Open france24.com en controleer het artikel van 21 maart 2026 over de Iraanse raketaanval. Zoek naar details over de locatie, het tijdstip en aard van de aanval.",
+        "Zoek op internationale nieuwssites met hoge diepte (bijv. Reuters, AP) naar meldingen over een raketaanval op een nucleaire locatie in Iran rond dezelfde datum.",
+        "Controleer beschikbare analyses op platforms als Bellingcat voor inzet van satellietbeelden of open source intelligence die de claim ondersteunen.",
+        "Vergelijk de framing en details in meerdere bronnen om verschillen en mogelijke belangen in communicatie aan te tonen."
+      ],
+      "tools": [
+        {
+          "label": "Controleer de oorspronkelijke bron op france24.com op details en updates"
+        },
+        {
+          "label": "Vergelijk berichtgeving op internationale nieuwssites met hoge diepte"
+        },
+        {
+          "label": "Analyseer open source satellietbeelden via platforms als Google Earth en Bellingcat"
+        },
+        {
+          "label": "Vergelijk framing tussen france24.com en andere media over deze aanval"
+        },
+        {
+          "label": "Zoek officiële verklaringen van het Israëlische leger en de Iraanse overheid"
+        },
+        {
+          "label": "Onderzoek historische context van raketaanvallen in de regio via archieven"
+        },
+        {
+          "label": "Beoordeel consistentie van tijdstippen en locaties in nieuwsberichten"
+        }
+      ],
+      "resourceLinks": [
+        {
+          "label": "Lees het artikel op France24 over de Iraanse raketaanval",
+          "url": "https://www.france24.com/en/middle-east/20260321-middle-east-war-live-trump-mulls-winding-down-iran-war-as-us-sends-thousands-more-marines",
+          "note": "Bevat de eerste en mogelijk enige melding van de raketaanval."
+        },
+        {
+          "label": "Zoek naar aanvullende rapportages op Reuters",
+          "url": "https://www.reuters.com",
+          "note": "Controleer op onafhankelijke berichtgeving en details over de aanval."
+        },
+        {
+          "label": "Bekijk open source analyse op Bellingcat",
+          "url": "https://www.bellingcat.com",
+          "note": "Mogelijke satellietbeeldanalyse om de claim te bevestigen of weerleggen."
+        }
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Het Israëlische leger zegt dat een Iraanse raket een stad met een nucleaire faciliteit heeft geraakt.",
+      "confidence": "laag tot middelmatig",
+      "verification": "Enkel genoemd in artikel op france24.com, geen onafhankelijke bevestiging in andere bronnen aanwezig."
+    }
+  ]
+}
