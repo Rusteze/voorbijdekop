@@ -96,7 +96,15 @@ export function VoorbijDekopHeader() {
     setTopicWidths(next);
   }, [topicsFilteredIdsKey]);
 
-  const NAV_SIDE_PADDING_PX = 24; // px-6 in de UI
+  const [navSidePadPx, setNavSidePadPx] = useState(24);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const sync = () => setNavSidePadPx(mq.matches ? 24 : 16);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   const { visibleTopics, atStart, atEnd, stepPxVisibleCount } = useMemo(() => {
     const list = topicsFiltered;
@@ -157,7 +165,7 @@ export function VoorbijDekopHeader() {
       atEnd: start + step >= len,
       stepPxVisibleCount: Math.max(1, step)
     };
-  }, [TOPICS_GAP_PX, topicsFiltered, restStartIndex, topicWidths, viewportWidthPx]);
+  }, [TOPICS_GAP_PX, navSidePadPx, topicsFiltered, restStartIndex, topicWidths, viewportWidthPx]);
 
   const showLeftFade = !atStart;
   const showRightFade = !atEnd;
@@ -186,16 +194,16 @@ export function VoorbijDekopHeader() {
     <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--header-bg)] backdrop-blur">
         <div className="relative">
         {/* Row 1: Logo + Zoeken */}
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
-          <Link href="/" className="flex items-center gap-2">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 md:gap-4 md:px-6 md:py-4">
+          <Link href="/" className="flex min-h-11 items-center gap-2 py-1 md:min-h-0 md:py-0">
             <span className="font-bold lowercase tracking-tight text-[var(--text)]">voorbijdekop</span>
             <span className="h-1.5 w-1.5 rounded-full bg-red-900/90" aria-hidden="true" />
           </Link>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             {searchOpen ? (
               <span
-                className="text-base leading-[1.375] font-medium font-['Helvetica Neue',Helvetica,Arial,sans-serif] text-[var(--muted)]"
+                className="min-h-11 px-1 text-base font-medium leading-[1.375] text-[var(--muted)] font-['Helvetica Neue',Helvetica,Arial,sans-serif] md:min-h-0 md:px-0"
               >
                 Zoeken: {activeTopicLabel}
               </span>
@@ -206,7 +214,7 @@ export function VoorbijDekopHeader() {
                   if (settingsOpen) closeSettings();
                   openSearch();
                 }}
-                className="text-base leading-[1.375] font-medium font-['Helvetica Neue',Helvetica,Arial,sans-serif] text-[var(--muted)] hover:text-red-900 hover:underline hover:underline-offset-4"
+                className="min-h-11 rounded-md px-2 text-base font-medium leading-[1.375] text-[var(--muted)] font-['Helvetica Neue',Helvetica,Arial,sans-serif] hover:text-red-900 hover:underline hover:underline-offset-4 md:min-h-0 md:px-0"
               >
                 Zoeken
               </button>
@@ -217,7 +225,7 @@ export function VoorbijDekopHeader() {
                 closeSearch();
                 openSettings();
               }}
-              className="rounded-md p-2 text-[var(--muted)] hover:bg-[var(--settings-close-hover-bg)] hover:text-[var(--text)]"
+              className="flex h-11 w-11 items-center justify-center rounded-md text-[var(--muted)] hover:bg-[var(--settings-close-hover-bg)] hover:text-[var(--text)] md:h-auto md:w-auto md:p-2"
               aria-label="Instellingen"
               aria-expanded={settingsOpen}
             >
@@ -234,7 +242,7 @@ export function VoorbijDekopHeader() {
         </div>
 
         {/* Row 2: Topic navigation (windowed pagination, NOS-like) */}
-        <div className="mx-auto flex max-w-7xl items-center gap-6 px-6 pb-3">
+        <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 pb-3 md:gap-6 md:px-6">
           <div className="relative flex-1">
             {showLeftFade ? (
               <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-[var(--nav-fade-bg)] to-transparent" />
@@ -250,7 +258,7 @@ export function VoorbijDekopHeader() {
                   setRestStartIndex((cur) => Math.max(0, cur - stepPxVisibleCount))
                 }
                 aria-label="Vorige topics"
-                className="absolute left-0 top-1/2 z-10 -translate-y-1/2 translate-x-1 flex h-9 w-9 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)]"
+                className="absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:h-9 md:w-9"
               >
                 <svg
                   fill="currentColor"
@@ -280,7 +288,7 @@ export function VoorbijDekopHeader() {
                   )
                 }
                 aria-label="Volgende topics"
-                className="absolute right-0 top-1/2 z-10 -translate-y-1/2 -translate-x-1 flex h-9 w-9 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)]"
+                className="absolute right-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 -translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:h-9 md:w-9"
               >
                 <svg
                   fill="currentColor"
@@ -302,11 +310,11 @@ export function VoorbijDekopHeader() {
               ref={topicsViewportRef}
               className={
                 "no-scrollbar overflow-hidden " +
-                (showLeftFade ? "pl-6 " : "") +
-                (showRightFade ? "pr-6" : "")
+                (showLeftFade ? "pl-4 md:pl-6 " : "") +
+                (showRightFade ? "pr-4 md:pr-6" : "")
               }
             >
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-4 md:gap-6">
                 {visibleTopics.map(([id, label]) => {
                   const active = topic === id;
                   return (
@@ -315,7 +323,7 @@ export function VoorbijDekopHeader() {
                       type="button"
                       onClick={() => setTopic(id)}
                       className={
-                        "relative whitespace-nowrap pb-1 text-base leading-[1.375] font-medium font-['Helvetica Neue',Helvetica,Arial,sans-serif] transition-colors " +
+                        "relative min-h-11 shrink-0 whitespace-nowrap py-2 text-base font-medium leading-[1.375] font-['Helvetica Neue',Helvetica,Arial,sans-serif] transition-colors md:min-h-0 md:py-0 md:pb-1 " +
                         (active ? "text-[var(--text)]" : "text-[var(--muted)] hover:text-[var(--text)]") +
                         " after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-red-900/80 after:transition-transform after:duration-200 " +
                         (active ? "after:scale-x-100" : "hover:after:scale-x-100")
@@ -333,7 +341,7 @@ export function VoorbijDekopHeader() {
 
         {/* Hidden measurement row (voor exact fitten zonder cut-off) */}
         <div ref={topicsMeasureRowRef} className="pointer-events-none absolute left-0 top-0 opacity-0">
-          <div className="flex items-center gap-6 whitespace-nowrap">
+          <div className="flex items-center gap-4 whitespace-nowrap md:gap-6">
             {topicsFiltered.map(([id, label]) => {
               const active = topic === id;
               return (
@@ -343,7 +351,7 @@ export function VoorbijDekopHeader() {
                   data-topic-id={id}
                   onClick={() => setTopic(id)}
                   className={
-                    "relative whitespace-nowrap pb-1 text-base leading-[1.375] font-medium font-['Helvetica Neue',Helvetica,Arial,sans-serif] transition-colors " +
+                    "relative min-h-11 shrink-0 whitespace-nowrap py-2 text-base font-medium leading-[1.375] font-['Helvetica Neue',Helvetica,Arial,sans-serif] transition-colors md:min-h-0 md:py-0 md:pb-1 " +
                     (active ? "text-[var(--text)]" : "text-[var(--muted)]")
                   }
                 >

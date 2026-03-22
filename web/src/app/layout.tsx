@@ -23,10 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl">
+    <html lang="nl" className="light" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
         <script
-          // Voorkom flash: zet theme vroeg op basis van localStorage + systeeminstelling.
+          // Voorkom flash: class op <html> (Tailwind darkMode: class + CSS-variabelen). Systeem alleen als modus "system".
           dangerouslySetInnerHTML={{
             __html: `
               (function () {
@@ -40,7 +40,10 @@ export default function RootLayout({
                     if (mode === "light") return "light";
                     return mql && mql.matches ? "dark" : "light";
                   }
-                  document.documentElement.dataset.theme = resolve();
+                  var r = resolve();
+                  var el = document.documentElement;
+                  el.classList.remove("light", "dark");
+                  el.classList.add(r);
                 } catch (e) {}
               })();
             `

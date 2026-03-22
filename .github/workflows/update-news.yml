@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "0 * * * *" # elk uur
   workflow_dispatch: # handmatig starten
+  
+permissions:
+  contents: write
 
 jobs:
   update:

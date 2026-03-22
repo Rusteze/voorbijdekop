@@ -35,22 +35,8 @@
   --nav-fade-bg: rgba(245, 247, 250, 0.95);
 }
 
-[data-theme="light"] {
-  --background: #ffffff;
-  --foreground: #171717;
-  --muted: #666666;
-  --header-bg: rgba(255, 255, 255, 0.95);
-
-  --bg: #ffffff;
-  --text: #111111;
-  --border: rgba(17, 17, 17, 0.08);
-
-  --card-bg: #ffffff;
-  --card-bg-hover: #f7f7f8;
-  --card-border: #e8e8ea;
-}
-
-[data-theme="dark"] {
+/* Donker: alleen via class op <html> (zelfde bron als Tailwind dark:) */
+html.dark {
   --background: #0f1115;
   --foreground: #e6e8eb;
   --muted: #b1b8c2;
@@ -94,22 +80,22 @@ body {
 }
 
 /* Donkere theme: override de meest gebruikte Tailwind zinc/white klassen */
-html[data-theme="dark"] .bg-white {
+html.dark .bg-white {
   background-color: var(--background) !important;
 }
-html[data-theme="dark"] .text-zinc-950,
-html[data-theme="dark"] .text-zinc-900 {
+html.dark .text-zinc-950,
+html.dark .text-zinc-900 {
   color: var(--foreground) !important;
 }
-html[data-theme="dark"] .text-zinc-800,
-html[data-theme="dark"] .text-zinc-700 {
+html.dark .text-zinc-800,
+html.dark .text-zinc-700 {
   color: var(--muted) !important;
 }
-html[data-theme="dark"] .text-zinc-600,
-html[data-theme="dark"] .text-zinc-500 {
+html.dark .text-zinc-600,
+html.dark .text-zinc-500 {
   color: var(--muted) !important;
 }
-html[data-theme="dark"] .bg-zinc-50 {
+html.dark .bg-zinc-50 {
   background-color: #0f0f10 !important;
 }
 

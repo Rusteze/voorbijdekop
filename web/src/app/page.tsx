@@ -315,6 +315,15 @@ export default function Home() {
   const [sourcesViewportWidthPx, setSourcesViewportWidthPx] = useState(0);
   const [sourceWidths, setSourceWidths] = useState<Record<string, number>>({});
   const [sourceStartIndex, setSourceStartIndex] = useState(0);
+  const [navSidePadPx, setNavSidePadPx] = useState(24);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const sync = () => setNavSidePadPx(mq.matches ? 24 : 16);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   const storiesAllFiltered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -447,8 +456,6 @@ export default function Home() {
   }, [sourcesFilteredIdsKey]);
 
   const SOURCES_GAP_PX = 16;
-  const NAV_SIDE_PADDING_PX = 24;
-
   const { visibleSources, atStart, atEnd, stepPxVisibleCount } = useMemo(() => {
     const list = sourcesFiltered;
     const len = list.length;
@@ -463,7 +470,7 @@ export default function Home() {
     }
 
     const start = Math.min(Math.max(0, sourceStartIndex), Math.max(0, len - 1));
-    const available = Math.max(0, sourcesViewportWidthPx - 2 * NAV_SIDE_PADDING_PX);
+    const available = Math.max(0, sourcesViewportWidthPx - 2 * navSidePadPx);
 
     if (sourcesViewportWidthPx <= 0) {
       const fallbackSlice = list.slice(start, start + 1);
@@ -501,7 +508,7 @@ export default function Home() {
       atEnd: start + step >= len,
       stepPxVisibleCount: Math.max(1, step)
     };
-  }, [SOURCES_GAP_PX, NAV_SIDE_PADDING_PX, sourcesFiltered, sourceWidths, sourceStartIndex, sourcesViewportWidthPx]);
+  }, [SOURCES_GAP_PX, navSidePadPx, sourcesFiltered, sourceWidths, sourceStartIndex, sourcesViewportWidthPx]);
 
   const showLeftFade = !atStart;
   const showRightFade = !atEnd;
@@ -581,22 +588,22 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white text-zinc-950">
-      <main className="mx-auto max-w-7xl px-6 py-14">
-        <div className="mb-10">
-          <h1 className="mt-3 text-4xl font-semibold leading-tight tracking-tight text-zinc-950">
+      <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-14">
+        <div className="mb-8 space-y-4 md:mb-10 md:space-y-0">
+          <h1 className="mt-1 text-2xl font-semibold leading-tight tracking-tight text-zinc-950 md:mt-3 md:text-4xl">
             Het verhaal achter het nieuws
           </h1>
-          <div className="mt-3 flex flex-wrap items-center gap-2">
-            <p className="text-base leading-7 text-zinc-600">
+          <div className="flex flex-wrap items-center gap-3 md:gap-2">
+            <p className="text-base leading-relaxed text-zinc-600 md:leading-7">
               Analyse en context door AI op basis van meerdere betrouwbare bronnen
             </p>
             <button
               type="button"
               onClick={openAiInfo}
-              className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-[var(--border)] text-zinc-600 transition hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)]"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-zinc-600 transition hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)] md:h-5 md:w-5"
               aria-label="Uitleg AI-analyse"
             >
-              <span aria-hidden="true" className="text-[11px] font-semibold leading-none">
+              <span aria-hidden="true" className="text-sm font-semibold leading-none md:text-[11px]">
                 i
               </span>
             </button>
@@ -608,12 +615,12 @@ export default function Home() {
             Nog geen stories gevonden. Draai eerst <code className="font-mono">npm run build:data</code>.
           </div>
         ) : (
-          <div className="grid grid-cols-12 gap-10">
-            <div className="col-span-8 space-y-14">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-10">
+            <div className="space-y-8 md:col-span-8 md:space-y-14">
             {top && (
               <section aria-label="Must-read">
                 <article className="mt-2">
-                  <div className="relative overflow-hidden rounded-2xl bg-zinc-100 ring-1 ring-zinc-900/10">
+                  <div className="relative overflow-hidden rounded-lg bg-zinc-100 ring-1 ring-zinc-900/10 md:rounded-2xl">
                     <div className="aspect-[16/9] w-full bg-gradient-to-br from-zinc-100 via-zinc-50 to-zinc-200">
                       <img
                         src={
@@ -628,7 +635,7 @@ export default function Home() {
                     </div>
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-zinc-950/75 via-zinc-950/30 to-transparent" />
 
-                    <div className="absolute inset-x-0 bottom-0 px-5 pb-5 pt-4 sm:px-8 sm:pb-8 sm:pt-5">
+                    <div className="absolute inset-x-0 bottom-0 px-4 pb-4 pt-3 sm:px-8 sm:pb-8 sm:pt-5 md:px-8 md:pb-8 md:pt-5">
                       <div className="mx-auto max-w-5xl">
                         <h2
                           className="mt-0.5 mb-3.5 max-w-full font-semibold leading-[1.15] tracking-tight text-white drop-shadow-sm"
@@ -666,7 +673,7 @@ export default function Home() {
                           );
                         })()}
 
-                        <p className="mt-2 max-w-3xl text-lg leading-relaxed text-white/80 line-clamp-2 md:line-clamp-3">
+                        <p className="mt-2 max-w-3xl text-base leading-relaxed text-white/80 line-clamp-2 md:line-clamp-3 md:text-lg">
                           {top.summary}
                         </p>
 
@@ -700,7 +707,7 @@ export default function Home() {
                     type="button"
                     onClick={() => setSourceStartIndex((cur) => Math.max(0, cur - stepPxVisibleCount))}
                     aria-label="Vorige bronnen"
-                    className="absolute left-0 top-1/2 z-10 -translate-y-1/2 translate-x-1 flex h-9 w-9 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)]"
+                    className="absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:h-9 md:w-9"
                   >
                     <svg
                       fill="currentColor"
@@ -727,7 +734,7 @@ export default function Home() {
                       )
                     }
                     aria-label="Volgende bronnen"
-                    className="absolute right-0 top-1/2 z-10 -translate-y-1/2 -translate-x-1 flex h-9 w-9 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)]"
+                    className="absolute right-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 -translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:h-9 md:w-9"
                   >
                     <svg
                       fill="currentColor"
@@ -749,8 +756,8 @@ export default function Home() {
                   ref={sourcesViewportRef}
                   className={
                     "no-scrollbar overflow-hidden " +
-                    (showLeftFade ? "pl-6 " : "") +
-                    (showRightFade ? "pr-6" : "")
+                    (showLeftFade ? "pl-4 md:pl-6 " : "") +
+                    (showRightFade ? "pr-4 md:pr-6" : "")
                   }
                 >
                   <div className="flex items-center gap-4 py-1">
@@ -765,7 +772,7 @@ export default function Home() {
                           onClick={() => setSourceFilter(id)}
                           aria-current={active ? "page" : undefined}
                           className={
-                            "relative flex h-9 items-center justify-center rounded-full px-2 transition-colors " +
+                            "relative flex min-h-11 min-w-11 items-center justify-center rounded-full px-3 transition-colors md:h-9 md:min-h-0 md:min-w-0 md:px-2 " +
                             (active
                               ? "text-[var(--text)] ring-1 ring-[var(--border)]"
                               : "text-[var(--muted)] hover:text-[var(--text)]")
@@ -803,7 +810,7 @@ export default function Home() {
                           tabIndex={-1}
                           aria-hidden="true"
                           className={
-                            "relative flex h-9 items-center justify-center rounded-full px-2 transition-colors " +
+                            "relative flex min-h-11 min-w-11 items-center justify-center rounded-full px-3 transition-colors md:h-9 md:min-h-0 md:min-w-0 md:px-2 " +
                             (active
                               ? "text-[var(--text)] ring-1 ring-[var(--border)]"
                               : "text-[var(--muted)]")
@@ -827,7 +834,7 @@ export default function Home() {
             {now.length > 0 && (
               <section>
                 <div className="text-xs font-semibold tracking-wide text-zinc-500">Wat speelt er nu</div>
-                <div className="mt-5 grid grid-cols-2 gap-6">
+                <div className="mt-4 grid grid-cols-1 gap-4 md:mt-5 md:grid-cols-2 md:gap-6">
                   {now.map((s: any) => {
                     return (
                       <Link
@@ -836,7 +843,7 @@ export default function Home() {
                         className="group block cursor-pointer"
                         aria-label={s.title}
                       >
-                        <article className="flex flex-col overflow-hidden rounded-[4px] border border-[var(--card-border)] bg-[var(--card-bg)] transition-all duration-150 hover:bg-[var(--card-bg-hover)]">
+                        <article className="flex flex-col overflow-hidden rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] shadow-sm transition-all duration-150 hover:shadow-md active:scale-[0.99] md:rounded-[4px] md:shadow-none md:hover:bg-[var(--card-bg-hover)] md:hover:shadow-none md:active:scale-100">
                           <div className="aspect-[16/9] w-full overflow-hidden bg-zinc-100">
                             <img
                               src={
@@ -851,18 +858,20 @@ export default function Home() {
                           </div>
 
                           <div className="p-4">
-                            <h3 className="mt-0 font-sans text-lg font-semibold leading-snug tracking-tight text-[var(--text)] group-hover:underline line-clamp-2">
+                            <h3 className="mt-0 font-sans text-base font-semibold leading-snug tracking-tight text-[var(--text)] group-hover:underline line-clamp-2 md:text-lg">
                               {s.title}
                             </h3>
 
-                            <div className="mt-1 flex flex-col gap-1 text-xs leading-4 text-[var(--muted)]">
+                            <div className="mt-1 flex flex-col gap-1 text-xs leading-4 text-zinc-500 md:text-[var(--muted)]">
                               <div>{storySourceLabel(s)} · {timeAgoFromMs(storyRecencyMs(s))}</div>
                               <div className="uppercase tracking-wide">
                                 {topicLabel(s.topic ?? s.category ?? "overig")}
                               </div>
                             </div>
 
-                            <p className="mt-2 line-clamp-2 text-sm leading-5 text-[var(--muted)]">{s.summary}</p>
+                            <p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-600 md:text-sm md:leading-5 md:text-[var(--muted)]">
+                              {s.summary}
+                            </p>
                           </div>
                         </article>
                       </Link>
@@ -875,7 +884,7 @@ export default function Home() {
             {rest.length > 0 && (
               <section>
                 <div className="text-xs font-semibold tracking-wide text-zinc-500">Overige verhalen</div>
-                <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-6 grid grid-cols-1 gap-4 md:mt-8 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
                   {rest.map((s: any) => {
                     return (
                       <Link
@@ -884,7 +893,7 @@ export default function Home() {
                         className="group block cursor-pointer"
                         aria-label={s.title}
                       >
-                        <article className="flex flex-col overflow-hidden rounded-[4px] border border-[var(--card-border)] bg-[var(--card-bg)] transition-all duration-150 hover:bg-[var(--card-bg-hover)]">
+                        <article className="flex flex-col overflow-hidden rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] shadow-sm transition-all duration-150 hover:shadow-md active:scale-[0.99] md:rounded-[4px] md:shadow-none md:hover:bg-[var(--card-bg-hover)] md:hover:shadow-none md:active:scale-100">
                           <div className="aspect-[16/9] w-full overflow-hidden bg-zinc-100">
                             <img
                               src={
@@ -899,18 +908,20 @@ export default function Home() {
                           </div>
 
                           <div className="p-4">
-                            <h3 className="mt-0 font-sans text-lg font-semibold leading-snug tracking-tight text-[var(--text)] group-hover:underline line-clamp-2">
+                            <h3 className="mt-0 font-sans text-base font-semibold leading-snug tracking-tight text-[var(--text)] group-hover:underline line-clamp-2 md:text-lg">
                               {s.title}
                             </h3>
 
-                            <div className="mt-1 flex flex-col gap-1 text-xs leading-4 text-[var(--muted)]">
+                            <div className="mt-1 flex flex-col gap-1 text-xs leading-4 text-zinc-500 md:text-[var(--muted)]">
                               <div>{storySourceLabel(s)} · {timeAgoFromMs(storyRecencyMs(s))}</div>
                               <div className="uppercase tracking-wide">
                                 {topicLabel(s.topic ?? s.category ?? "overig")}
                               </div>
                             </div>
 
-                            <p className="mt-2 line-clamp-2 text-sm leading-5 text-[var(--muted)]">{s.summary}</p>
+                            <p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-600 md:text-sm md:leading-5 md:text-[var(--muted)]">
+                              {s.summary}
+                            </p>
                           </div>
                         </article>
                       </Link>
@@ -922,9 +933,9 @@ export default function Home() {
             <div ref={loadMoreRef} className="h-8" aria-hidden="true" />
             </div>
 
-            <aside className="col-span-4 pt-2">
+            <aside className="border-t border-[var(--border)] pt-6 md:col-span-4 md:border-t-0 md:pt-2">
               <div className="text-xs font-semibold tracking-wide text-zinc-500">Laatste nieuws</div>
-              <div className="mt-4 space-y-2.5">
+              <div className="mt-4 space-y-1 md:space-y-2.5">
                 {latestNews.map((s: any, idx: number) => {
                   const ms = storyRecencyMs(s);
                   const prominent = idx === 0;
@@ -932,10 +943,10 @@ export default function Home() {
                     <Link
                       key={s.slug}
                       href={`/story/${s.slug}`}
-                      className="group block cursor-pointer"
+                      className="group block cursor-pointer rounded-lg py-2 md:py-0"
                       aria-label={s.title}
                     >
-                      <article className="flex gap-3 rounded-lg transition-all duration-150 hover:-translate-y-0.5 hover:shadow-sm">
+                      <article className="flex gap-3 rounded-lg transition-all duration-150 md:hover:-translate-y-0.5 md:hover:shadow-sm">
                         <div className="relative mt-2 flex w-3 justify-center">
                           <span
                             className={

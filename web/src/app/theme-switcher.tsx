@@ -31,7 +31,9 @@ export function ThemeSwitcher() {
   useEffect(() => {
     const applyResolved = () => {
       const next = resolveTheme(mode);
-      document.documentElement.dataset.theme = next;
+      const el = document.documentElement;
+      el.classList.remove("light", "dark");
+      el.classList.add(next);
     };
 
     applyResolved();
