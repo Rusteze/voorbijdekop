@@ -1,0 +1,86 @@
+{
+  "category": "economie",
+  "topic": "economische machtsstrijd",
+  "shortHeadline": "Aandelen dalen na ultimatum van Trump aan Iran",
+  "summary": "Volgens de Financial Times daalden aandelenkoersen wereldwijd op 23 maart 2026 na een ultimatum van voormalig president Donald Trump aan Iran. De FT publiceerde dit nieuws zonder verdere kwantitatieve details over marktverliezen of de precieze inhoud van het ultimatum. Er is geen aanvullende informatie over betrokken markten, tijdstippen van dalingen, of reacties van andere politieke actoren beschikbaar in de bron.",
+  "narrative": "Op 23 maart 2026 berichtte de Financial Times (FT) dat aandelen wereldwijd zijn gedaald als gevolg van een ultimatum van Donald Trump aan Iran. Deze informatie komt uit een artikel van FT, met een hoge diepte en een neutrale journalistieke opzet, waardoor de claim redelijk betrouwbaar is binnen het beperkte kader van de bron.\n\nDe FT vermeldt expliciet dat het effect zich afspeelt binnen de aandelenmarkten, maar geeft geen specifieke cijfers over de omvang of duur van de daling. Noch het precieze moment waarop het ultimatum werd gesteld, noch de exacte inhoud of eisen van Trump aan Iran worden genoemd.\n\nEvenmin wordt in de bron uiteengezet welke aandelen of sectoren het zwaarst getroffen zijn. De bron spreekt slechts over een daling op hoofdniveau, zonder regionale of sectorale differentiatie.\n\nDaarnaast ontbreken uit de FT-artikel verdere details over reacties van Iraanse officials, andere staten, beleidsmakers, of marktspelers op deze specifieke gebeurtenis. Hierdoor blijft onduidelijk of het ultimatum tot verdere escalaties, maatregelen of onderhandelingen heeft geleid.\n\nDe bron sluit verder aan op andere informatie over internationale politiek en veiligheidsontwikkelingen, maar beperkt zich in deze nieuwsbrief tot het vermelden van het aandeleneffect.\n\nOpvallend is dat de FT alleen deze link legt tussen Trumps ultimatum en dalende aandelen, zonder aanvullende bronnen of analyses die de causaliteit sterker zouden onderbouwen.\n\nEr is geen contradictie met andere nieuwsbronnen, aangezien deze niet worden genoemd en daardoor ook geen afwijkende feiten of interpretaties getoond worden.\n\nDe beperkte informatie maakt het lastig om een gedetailleerd beeld te vormen van deze actuele ontwikkeling, en benadrukt het belang van meer gedetailleerde rapportages om de economische en politieke gevolgen exact te duiden.\n\nWat hier opvalt\n\nTen eerste ontbreekt in het enige beschikbare bericht een nadere specificatie van het ultimatum: er wordt niet uitgelegd wat de inhoud, voorwaarden of eisen van Trump aan Iran precies waren. Dit maakt het moeilijk om de mogelijke risico's en reacties te taxeren.\n\nTen tweede ontbreken concrete data over de daling van de aandelen; geen percentages, sectoren of regio's worden genoemd, waardoor het onduidelijk blijft hoe significant de marktbewegingen waren en wie de veroorzakers of slachtoffers van die beweging waren.\n\nDeze twee punten vormen cruciale hiaten voor het beoordelen van de situatie en kunnen leiden tot oversimplificaties of misinterpretaties van de daadwerkelijke impact op de markten en geopolitieke spanningen.",
+  "facts": [
+    "Op 23 maart 2026 publiceerde Financial Times dat aandelen daalden door een ultimatum van Donald Trump aan Iran.",
+    "De Financial Times vermeldt geen specifieke cijfers over de daling van aandelen.",
+    "De bron bevat geen informatie over de exacte inhoud van het ultimatum aan Iran.",
+    "De bron noemt geen reacties van andere politieke actoren op het ultimatum.",
+    "De bron is een nieuwsartikel met hoge diepte en neutrale inslag."
+  ],
+  "interpretations": [
+    "De aandelenmarkt reageerde negatief op politieke spanningen tussen Trump en Iran zoals gemeld door FT.",
+    "Het ontbreekt aan concrete details in de bron, wat het moeilijk maakt de precieze impact op de markten te beoordelen.",
+    "De FT presenteert de informatie neutraal zonder verdere analyse, wat interpreteert als een beperkte context van de gebeurtenis.",
+    "De afwezigheid van aanvullende bronnen maakt de claim over de impact op de aandelenmarkt minder sterk te onderbouwen."
+  ],
+  "unknowns": [
+    "De precieze inhoud en voorwaarden van Trumps ultimatum aan Iran zijn niet bekendgemaakt.",
+    "De omvang (in procenten of geldwaarde) van de aandelenmarktdaling ontbreekt in de beschikbare informatie.",
+    "Het blijft onduidelijk welke markten of sectoren het meest beïnvloed zijn door het ultimatum.",
+    "Reacties van Iraanse of andere internationale actoren op het ultimatum worden niet gerapporteerd.",
+    "Er is geen informatie over het tijdstip van het ultimatum of over de duur van de effecten op de aandelenmarkt."
+  ],
+  "comparisons": [
+    "Er is slechts één bron beschikbaar, FT, waardoor vergelijking of tegenstrijdigheden niet kunnen worden vastgesteld.",
+    "De framing in FT is zakelijk en neutraal; er zijn geen alternatieve bronnen die bijvoorbeeld spreken van \"aanval\" of \"dreiging\", dus geen verschillen in woordkeuze geconstateerd."
+  ],
+  "questions": [
+    "Wat waren de exacte eisen van het ultimatum van Donald Trump aan Iran?",
+    "Welke aandelen of sectoren werden het zwaarst getroffen door de marktdaling?",
+    "Hoe lang hield de aandelenmarkt de negatieve trend vast na het ultimatum?",
+    "Hoe reageerden Iraanse autoriteiten en andere betrokken landen op Trumps ultimatum?",
+    "Is er aanvullend economisch of politiek bewijs dat de aandelenbeweging direct aan dit ultimatum kan worden toegeschreven?"
+  ],
+  "investigations": [
+    {
+      "title": "Onderzoek naar de inhoud van het ultimatum van Trump aan Iran",
+      "what": "De precieze inhoud en voorwaarden van het ultimatum van Donald Trump aan Iran achterhalen.",
+      "why": "Dit is essentieel om de politieke en economische impact te begrijpen en te beoordelen of de aandelenbeweging gerechtvaardigd was.",
+      "steps": [
+        "Open ft.com en controleer het originele artikel van 23 maart 2026 op details over het ultimatum.",
+        "Zoek in latere artikelen of updates op ft.com naar nadere uitleg van het ultimatum.",
+        "Vergelijk de gevonden informatie met officiële verklaringen van de Amerikaanse overheid uit die periode."
+      ],
+      "tools": [
+        {
+          "label": "Doorzoek ft.com op 23 maart 2026 artikelen over Iran en Donald Trump"
+        },
+        {
+          "label": "Controleer officiële verklaringen van het Amerikaanse ministerie van Buitenlandse Zaken"
+        },
+        {
+          "label": "Analyseer economische rapporten over marktreacties rondom 23 maart 2026"
+        },
+        {
+          "label": "Vergelijk framing tussen ft.com en andere algemene nieuwsbronnen"
+        },
+        {
+          "label": "Zoek opinies van marktanalisten op ft.com en vergelijk met andere financiële media"
+        }
+      ],
+      "resourceLinks": [
+        {
+          "label": "Lees het originele FT-artikel over aandelen en Trump van 23 maart 2026",
+          "url": "https://www.ft.com/content/8b0e19de-071a-4b0d-a986-e0a7f4f80400",
+          "note": "Bevat broninformatie over ultimatum en aandelenreactie."
+        },
+        {
+          "label": "Officiële Amerikaanse ministerie Buitenlandse Zaken verklaringen maart 2026",
+          "url": "https://www.state.gov/",
+          "note": "Onderzoek naar officiële vermeldingen over Iran-ultimatum."
+        }
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Donald Trump gaf op 23 maart 2026 een ultimatum aan Iran waardoor aandelen daalden.",
+      "confidence": "gemiddeld",
+      "verification": "De claim is afkomstig van Financial Times (ft.com), een bron met hoge diepte en neutrale insteek, maar ontbreekt verdere kwantificering en detail van het ultimatum."
+    }
+  ]
+}
