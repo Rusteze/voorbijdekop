@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { getAllStories, getStoryBySlug } from "@/lib/generated";
 import { getFallbackImage } from "@/lib/fallbackImage";
-import { storyRecencyMs, timeAgoFromMs, storySourceLabel, topicLabel } from "@/lib/storyUtils";
+import {
+  getStoryLastUpdated,
+  formatRelativeStoryTime,
+  formatAbsoluteDateTimeNl,
+  storySourceLabel,
+  topicLabel,
+} from "@/lib/storyUtils";
 import { stripAiMarkup } from "@/lib/stripAiMarkup";
 import {
   StoryCriticalCarousel,
@@ -92,12 +98,6 @@ export function generateStaticParams() {
 export default function StoryPage({ params }: { params: { slug: string } }) {
   const story = getStoryBySlug(params.slug);
 
-  const safeFormatDateTimeNl = (value: unknown) => {
-    const d = new Date(typeof value === "string" ? value : "");
-    if (!Number.isFinite(d.getTime())) return "datum onbekend";
-    return d.toLocaleString("nl-NL");
-  };
-
   if (!story) {
     return (
       <div className="min-h-screen bg-[var(--bg)] text-gray-900 dark:text-gray-100">
@@ -127,9 +127,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
   const sources = Array.from(new Map(rawSources.map((s) => [s.domain, s])).values());
   const sourceCount = sources.length;
 
-  const buildAt = story.buildAt;
-  const buildAtDate = new Date(buildAt);
-  const referenceTimeMs = Number.isFinite(buildAtDate.getTime()) ? buildAtDate.getTime() : Date.now();
+  const lastUpdatedMs = getStoryLastUpdated(story);
 
   const ai = story.ai;
   const aiSucceeded =
@@ -158,7 +156,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
 
   const recencyMap = new Map<string, number>();
   for (const s of relatedCandidates) {
-    recencyMap.set(s.slug, storyRecencyMs(s));
+    recencyMap.set(s.slug, getStoryLastUpdated(s));
   }
 
   const sortStories = (a: any, b: any) => {
@@ -245,7 +243,10 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
             {story.summary}
           </p>
           <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">
-            {storySourceLabel(story)} · {timeAgoFromMs(storyRecencyMs(story), referenceTimeMs)}
+            {storySourceLabel(story)} · Laatst bijgewerkt: {formatRelativeStoryTime(lastUpdatedMs)}
+            {lastUpdatedMs > 0 ? (
+              <span className="hidden md:inline"> ({formatAbsoluteDateTimeNl(lastUpdatedMs)})</span>
+            ) : null}
           </p>
         </header>
 
@@ -369,10 +370,6 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
             Transparantie
           </h2>
           <div className="text-base leading-relaxed md:text-sm">
-            <div>
-              <span className="font-semibold text-gray-500 dark:text-gray-500">Build tijd:</span>{" "}
-              <span className="text-gray-900 dark:text-gray-100">{safeFormatDateTimeNl(buildAt)}</span>
-            </div>
             <div className="mt-2">
               <span className="font-semibold text-gray-500 dark:text-gray-500">Gebruikte bronnen:</span>{" "}
               <span className="text-gray-900 dark:text-gray-100">{sourceCount}</span>
@@ -389,7 +386,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
                   {s.domain}
                 </a>
                 <div className="mt-2 text-sm text-gray-500 dark:text-gray-500">
-                  {safeFormatDateTimeNl(s.publishedAt)} • {s.type} • {s.depth} • {s.bias}
+                  Publicatietijd bron: {formatAbsoluteDateTimeNl(s.publishedAt)} • {s.type} • {s.depth} • {s.bias}
                 </div>
                 <div className="mt-2 text-sm text-gray-800 dark:text-gray-300">{s.title}</div>
               </li>

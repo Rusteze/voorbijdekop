@@ -4,27 +4,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getAllStories } from "@/lib/generated";
 import { getFallbackImage } from "@/lib/fallbackImage";
+import { getStoryLastUpdated, formatRelativeStoryTime } from "@/lib/storyUtils";
 import { useVoorbijDekop } from "./voorbijdekop-state";
-
-function storyRecencyMs(s: any) {
-  return Math.max(
-    ...((s.articles ?? []).map((a: any) => new Date(a.publishedAt).getTime()).filter(Number.isFinite) as number[]),
-    0
-  );
-}
-
-function timeAgoFromMs(ms: number) {
-  if (!Number.isFinite(ms) || ms <= 0) return "onbekend";
-  const diff = Date.now() - ms;
-  if (diff < 0) return "net";
-  const sec = Math.floor(diff / 1000);
-  const min = Math.floor(sec / 60);
-  const hr = Math.floor(min / 60);
-  const day = Math.floor(hr / 24);
-  if (min < 60) return `${Math.max(1, min)} min geleden`;
-  if (hr < 24) return `${hr} uur geleden`;
-  return `${day} dagen geleden`;
-}
 
 function prettySourceDomain(domain: string) {
   const d = (domain ?? "").toLowerCase();
@@ -330,7 +311,7 @@ export default function Home() {
     const base = [...getAllStories()].sort((a, b) => {
       const imp = (b.importance ?? 0) - (a.importance ?? 0);
       if (imp !== 0) return imp;
-      return storyRecencyMs(b) - storyRecencyMs(a);
+      return getStoryLastUpdated(b) - getStoryLastUpdated(a);
     });
 
     const matchQuery = (s: any) => {
@@ -389,7 +370,7 @@ export default function Home() {
     const base = [...getAllStories()].sort((a, b) => {
       const imp = (b.importance ?? 0) - (a.importance ?? 0);
       if (imp !== 0) return imp;
-      return storyRecencyMs(b) - storyRecencyMs(a);
+      return getStoryLastUpdated(b) - getStoryLastUpdated(a);
     });
 
     if (topic === "alle" && !q) return base;
@@ -584,7 +565,7 @@ export default function Home() {
   const top = storiesOrdered[0] ?? null;
   const now = storiesOrdered.slice(1, 3);
   const rest = storiesOrdered.slice(3);
-  const latestNews = [...storiesOrdered].sort((a, b) => storyRecencyMs(b) - storyRecencyMs(a)).slice(0, 10);
+  const latestNews = [...storiesOrdered].sort((a, b) => getStoryLastUpdated(b) - getStoryLastUpdated(a)).slice(0, 10);
 
   return (
     <div className="min-h-screen bg-white text-zinc-950">
@@ -661,7 +642,7 @@ export default function Home() {
 
                         {(() => {
                           const sourceLabel = storySourceLabel(top);
-                          const timeAgo = timeAgoFromMs(storyRecencyMs(top));
+                          const timeAgo = formatRelativeStoryTime(getStoryLastUpdated(top));
                           const kicker = topicLabel(top.topic ?? top.category ?? "overig");
                           return (
                             <div className="hidden md:flex mt-1 mb-2 items-center justify-between gap-4 text-sm">
@@ -864,7 +845,7 @@ export default function Home() {
                             </h3>
 
                             <div className="hidden md:flex mt-1 flex-col gap-1 text-xs leading-4 text-zinc-500 md:text-[var(--muted)]">
-                              <div>{storySourceLabel(s)} · {timeAgoFromMs(storyRecencyMs(s))}</div>
+                              <div>{storySourceLabel(s)} · {formatRelativeStoryTime(getStoryLastUpdated(s))}</div>
                               <div className="uppercase tracking-wide">
                                 {topicLabel(s.topic ?? s.category ?? "overig")}
                               </div>
@@ -945,7 +926,7 @@ export default function Home() {
                             </h3>
 
                             <div className="mt-1 flex flex-col gap-1 text-xs leading-4 text-zinc-500 md:text-[var(--muted)]">
-                              <div>{storySourceLabel(s)} · {timeAgoFromMs(storyRecencyMs(s))}</div>
+                              <div>{storySourceLabel(s)} · {formatRelativeStoryTime(getStoryLastUpdated(s))}</div>
                               <div className="uppercase tracking-wide">
                                 {topicLabel(s.topic ?? s.category ?? "overig")}
                               </div>
@@ -969,7 +950,7 @@ export default function Home() {
               <div className="text-xs font-semibold tracking-wide text-zinc-500">Laatste nieuws</div>
               <div className="mt-4 space-y-1 md:space-y-2.5">
                 {latestNews.map((s: any, idx: number) => {
-                  const ms = storyRecencyMs(s);
+                  const ms = getStoryLastUpdated(s);
                   const prominent = idx === 0;
                   return (
                     <Link
@@ -1003,7 +984,7 @@ export default function Home() {
                             {s.title}
                           </span>
                           <div className="mt-1 flex items-center gap-x-2 text-xs text-zinc-500">
-                            <span>{timeAgoFromMs(ms)}</span>
+                            <span>{formatRelativeStoryTime(ms)}</span>
                             <span className="h-1.5 w-1.5 rounded-full bg-zinc-900/15" aria-hidden="true" />
                             <span>{categoryLabel(s.category ?? "overig")}</span>
                           </div>

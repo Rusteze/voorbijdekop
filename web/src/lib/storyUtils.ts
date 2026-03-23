@@ -1,4 +1,4 @@
-export function storyRecencyMs(story: any): number {
+export function getStoryLastUpdated(story: any): number {
   const articles = Array.isArray(story?.articles) ? (story.articles as any[]) : [];
   const times = articles
     .map((a) => {
@@ -10,14 +10,14 @@ export function storyRecencyMs(story: any): number {
   return times.length > 0 ? Math.max(...times) : 0;
 }
 
-export function timeAgoFromMs(ms: number, referenceTimeMs?: number): string {
+export function formatRelativeStoryTime(ms: number, referenceTimeMs?: number): string {
   const ref =
     referenceTimeMs !== undefined && Number.isFinite(referenceTimeMs) ? referenceTimeMs : Date.now();
 
-  if (!Number.isFinite(ms) || ms <= 0) return "datum onbekend";
+  if (!Number.isFinite(ms) || ms <= 0) return "Onbekend";
 
   const diff = ref - ms;
-  if (!Number.isFinite(diff)) return "datum onbekend";
+  if (!Number.isFinite(diff)) return "Onbekend";
   if (diff < 0) return "net";
 
   const sec = Math.floor(diff / 1000);
@@ -30,6 +30,22 @@ export function timeAgoFromMs(ms: number, referenceTimeMs?: number): string {
   if (hr < 24) return `${hr} uur geleden`;
   return `${day} dagen geleden`;
 }
+
+export function formatAbsoluteDateTimeNl(value: unknown): string {
+  const d = new Date(typeof value === "string" || typeof value === "number" ? value : "");
+  if (!Number.isFinite(d.getTime())) return "Onbekend";
+  return d.toLocaleString("nl-NL", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
+
+// Backward compatible aliases
+export const storyRecencyMs = getStoryLastUpdated;
+export const timeAgoFromMs = formatRelativeStoryTime;
 
 export function prettySourceDomain(domain: string) {
   const d = (domain ?? "").toLowerCase();
