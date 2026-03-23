@@ -511,7 +511,12 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
   if (toGenerate.length === 0) {
     console.log("[ai] no new stories, skipping");
   } else {
-    const AI_CONCURRENCY = 5;
+    const AI_CONCURRENCY = 3;
+    const MAX_AI_STORIES = 50;
+
+    if (toGenerate.length > MAX_AI_STORIES) {
+      toGenerate.splice(MAX_AI_STORIES);
+    }
 
     const generateForTask = async (task: CacheTask): Promise<Story> => {
       const { story, selected, cacheKey, cachePath } = task;
@@ -519,7 +524,7 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
 
       const sourcesPayload = selected.map((a) => ({
         title: a.title,
-        excerpt: a.excerpt.slice(0, 500),
+        excerpt: a.excerpt,
         publishedAt: a.publishedAt,
         url: a.url,
         sourceDomain: a.sourceDomain,
@@ -564,6 +569,23 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
         "- Gebruik waar mogelijk deze structuur:",
         "  'Volgens [bron X] gebeurt Y, terwijl [bron Z] dit anders of niet benoemt.'",
         "- Als meerdere bronnen hetzelfde zeggen: benoem dat expliciet als bevestiging.",
+        "",
+        "VOLLEDIGHEID (MUST):",
+        "- Haal ALLE concrete feiten uit de bronnen voordat je spreekt over ontbrekende informatie.",
+        "- Als de bron landen, cijfers, hoeveelheden of actoren noemt, MOET je deze expliciet opnemen in facts en narrative.",
+        "- Het is verboden om te zeggen dat informatie ontbreekt als deze wel degelijk in de bron staat.",
+        "- Controleer altijd de volledige tekst (niet alleen het begin) voordat je conclusies trekt.",
+        "",
+        "ANTI-HALLUCINATIE (MUST):",
+        "- Controleer expliciet of informatie die je als 'ontbrekend' benoemt niet elders in de bron wél wordt genoemd.",
+        "- Als een bron meerdere secties heeft (zoals explainers), moet je de volledige inhoud meenemen in je analyse.",
+        "- Maak NOOIT aannames over ontbrekende data zonder dit te verifiëren binnen de bron.",
+        "",
+        "WERKVOLGORDE (MUST):",
+        "- Stap 1: Extract alle concrete feiten uit de bronnen (wie, wat, waar, wanneer, cijfers).",
+        "- Stap 2: Controleer overlap en bevestiging tussen bronnen.",
+        "- Stap 3: Identificeer pas daarna eventuele ontbrekende informatie of onzekerheden.",
+        "- Het is verboden om analyse of onzekerheid te formuleren vóórdat alle beschikbare feiten zijn verwerkt.",
         "",
         "CONCRETISERING (MUST):",
         "- Vermijd algemene of abstracte zinnen.",
@@ -641,12 +663,11 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
         "- Geen interpretatie of conclusie.",
         "- Als de bron geen concreet feit geeft: NIET invullen — laat het weg of verplaats naar unknowns.",
         "",
-        "Verplichte minimale scherpte (MUST):",
-        "- Neem ALTIJD minstens één van deze drie op (kies wat het meest waarheidsgetrouw is op basis van de bronnen):",
-        "  1) een contradictie tussen bronnen, OF",
-        "  2) een onduidelijk/ontbrekend element, OF",
-        "  3) een spanning in framing/woordkeuze tussen bronnen.",
-        "- Als er echt geen contradicties zijn: benoem precies WAT ontbreekt om dat te kunnen toetsen (unknowns).",
+        "ANALYTISCHE SCHERPTE (MUST):",
+        "- Benoem alleen contradicties, ontbrekende elementen of framingverschillen als ze daadwerkelijk in de bronnen aanwezig zijn.",
+        "- Het is NIET toegestaan om kunstmatig onzekerheid of ontbrekende informatie te creëren.",
+        "- Als bronnen volledig en consistent zijn: benoem dit expliciet als sterke bevestiging.",
+        "- Analyse mag nooit ten koste gaan van feitelijke juistheid of volledigheid.",
         "",
         "Samengevoegd verhaal (`narrative`, string) — uitgebreid (MUST):",
         "- Schrijf een **vlotte, uitgebreide synthese** (geen opsomming van losse feiten alleen): minimaal **7 alinea's**, bij voorkeur **9–14** korte alinea's, tenzij de bronnen echt te weinig inhoud bieden.",
