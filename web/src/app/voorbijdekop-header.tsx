@@ -258,7 +258,7 @@ export function VoorbijDekopHeader() {
                   setRestStartIndex((cur) => Math.max(0, cur - stepPxVisibleCount))
                 }
                 aria-label="Vorige topics"
-                className="absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:h-9 md:w-9"
+                className="absolute left-0 top-1/2 z-20 pointer-events-auto flex h-11 w-11 -translate-y-1/2 translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:z-10 md:h-9 md:w-9"
               >
                 <svg
                   fill="currentColor"
@@ -288,7 +288,7 @@ export function VoorbijDekopHeader() {
                   )
                 }
                 aria-label="Volgende topics"
-                className="absolute right-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 -translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:h-9 md:w-9"
+                className="absolute right-0 top-1/2 z-20 pointer-events-auto flex h-11 w-11 -translate-y-1/2 -translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:z-10 md:h-9 md:w-9"
               >
                 <svg
                   fill="currentColor"

@@ -427,8 +427,9 @@ function fallbackAi(story: Story): AiStory {
 export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticlesPerStory?: number }) {
   const maxArticlesPerStory = opts?.maxArticlesPerStory ?? 8;
   const apiKey = process.env.OPENAI_API_KEY;
-  // NOTE: If schema or prompt changes, delete data/cache/ai to avoid stale outputs
-  const cacheDir = path.resolve("data/cache/ai");
+  // Persistente AI-cache: alleen nieuwe/gewijzigde stories draaien opnieuw AI.
+  // NOTE: If schema or prompt changes, delete data/ai to avoid stale outputs.
+  const cacheDir = path.resolve("data/ai");
   await fs.mkdir(cacheDir, { recursive: true });
 
   if (!apiKey) {
@@ -448,40 +449,50 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
   validateOpenAiObjectSchema(schemaObject as unknown, "story_analysis.schema");
 
   const out: Story[] = [];
+  const usedCacheKeys = new Set<string>();
   for (const story of stories) {
     const selected = pickTopArticlesForAi(story, maxArticlesPerStory);
     const selectedIds = selected.map((a) => a.id);
     const cacheKey = storyCacheKey(story, selectedIds);
     const cachePath = path.join(cacheDir, `${cacheKey}.json`);
+    usedCacheKeys.add(cacheKey);
 
     try {
       const cached = await fs.readFile(cachePath, "utf8").catch(() => null);
       if (cached) {
-        console.log(`[ai] AI cache hit ${story.slug} (${cacheKey})`);
-        const parsed = JSON.parse(cached) as AiResponse;
-        normalizeParsedAiStoryShape(parsed as unknown as Record<string, unknown>);
-        const { category, topic, shortHeadline, ...rawAi } = parsed;
-        const aiStory = sanitizeAiStory(rawAi as AiStory);
-        const cleaned: AiResponse = {
-          category: category ?? "overig",
-          topic: topic ?? "overig",
-          shortHeadline: shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
-          ...aiStory
-        };
-        await fs.writeFile(cachePath, JSON.stringify(cleaned, null, 2), "utf8");
-        out.push({
-          ...story,
-          category: cleaned.category,
-          topic: cleaned.topic,
-          shortHeadline: cleaned.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
-          ai: aiStory,
-          aiStatus: "ok",
-          aiCacheKey: cacheKey
-        });
-        continue;
+        try {
+          const parsed = JSON.parse(cached) as AiResponse;
+          normalizeParsedAiStoryShape(parsed as unknown as Record<string, unknown>);
+          const { category, topic, shortHeadline, ...rawAi } = parsed;
+          const aiStory = sanitizeAiStory(rawAi as AiStory);
+          const cleaned: AiResponse = {
+            category: category ?? "overig",
+            topic: topic ?? "overig",
+            shortHeadline: shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
+            ...aiStory
+          };
+          await fs.writeFile(cachePath, JSON.stringify(cleaned, null, 2), "utf8");
+          out.push({
+            ...story,
+            category: cleaned.category,
+            topic: cleaned.topic,
+            shortHeadline:
+              cleaned.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
+            ai: aiStory,
+            aiStatus: "ok",
+            aiCacheKey: cacheKey
+          });
+          console.log(`[ai] cache hit ${story.slug} (${cacheKey})`);
+          continue;
+        } catch (e) {
+          console.warn("[ai] cached JSON invalid; treating as cache miss", {
+            slug: story.slug,
+            cacheKey
+          });
+        }
       }
 
-      console.log(`[ai] AI generating ${story.slug} (${cacheKey}) sources=${selected.length}`);
+      console.log(`[ai] generating ${story.slug} (${cacheKey}) sources=${selected.length}`);
 
       const sourcesPayload = selected.map((a) => ({
         title: a.title,
@@ -761,6 +772,29 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
         aiCacheKey: cacheKey
       });
     }
+  }
+
+  // Prune cache: behoud alleen JSON bestanden waarvan de cacheKey in deze run gebruikt wordt.
+  try {
+    const entries = await fs.readdir(cacheDir).catch(() => []);
+    let pruned = 0;
+
+    for (const entry of entries) {
+      if (entry === ".gitkeep") continue;
+      if (!entry.endsWith(".json")) continue;
+
+      const base = entry.slice(0, -".json".length);
+      if (!usedCacheKeys.has(base)) {
+        await fs.rm(path.join(cacheDir, entry)).catch(() => null);
+        pruned += 1;
+      }
+    }
+
+    if (pruned > 0) {
+      console.log(`[ai] pruned ${pruned} old cache files`);
+    }
+  } catch (e) {
+    console.warn("[ai] pruning failed; continue without failing build");
   }
 
   return out;

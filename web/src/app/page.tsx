@@ -593,8 +593,8 @@ export default function Home() {
           <h1 className="mt-1 text-2xl font-semibold leading-tight tracking-tight text-zinc-950 md:mt-3 md:text-4xl">
             Het verhaal achter het nieuws
           </h1>
-          <div className="flex flex-wrap items-center gap-3 md:gap-2">
-            <p className="text-base leading-relaxed text-zinc-600 md:leading-7">
+          <div className="inline-flex items-center gap-1 whitespace-nowrap md:whitespace-normal md:flex md:flex-wrap md:gap-2">
+            <p className="text-sm leading-relaxed text-zinc-600 md:text-base md:leading-7">
               Analyse en context door AI op basis van meerdere betrouwbare bronnen
             </p>
             <button
@@ -603,7 +603,7 @@ export default function Home() {
               className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-zinc-600 transition hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)] md:h-5 md:w-5"
               aria-label="Uitleg AI-analyse"
             >
-              <span aria-hidden="true" className="text-sm font-semibold leading-none md:text-[11px]">
+              <span aria-hidden="true" className="text-xs font-semibold leading-none md:text-[11px]">
                 i
               </span>
             </button>
@@ -619,7 +619,8 @@ export default function Home() {
             <div className="space-y-8 md:col-span-8 md:space-y-14">
             {top && (
               <section aria-label="Must-read">
-                <article className="mt-2">
+                <Link href={`/story/${top.slug}`} className="mt-2 block" aria-label={top.title}>
+                <article>
                   <div className="relative overflow-hidden rounded-lg bg-zinc-100 ring-1 ring-zinc-900/10 md:rounded-2xl">
                     <div className="aspect-[16/9] w-full bg-gradient-to-br from-zinc-100 via-zinc-50 to-zinc-200">
                       <img
@@ -641,9 +642,8 @@ export default function Home() {
                           className="mt-0.5 mb-3.5 max-w-full font-semibold leading-[1.15] tracking-tight text-white drop-shadow-sm"
                           style={{ fontSize: "clamp(24px, 3vw, 40px)" }}
                         >
-                          <Link
-                            className="block text-white hover:underline line-clamp-2 md:line-clamp-3"
-                            href={`/story/${top.slug}`}
+                          <span
+                            className="block text-white line-clamp-2 md:line-clamp-3"
                             style={{
                               WebkitMaskImage:
                                 "linear-gradient(to bottom, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%)",
@@ -656,7 +656,7 @@ export default function Home() {
                             }}
                           >
                             {top.shortHeadline ?? top.title}
-                          </Link>
+                          </span>
                         </h2>
 
                         {(() => {
@@ -664,7 +664,7 @@ export default function Home() {
                           const timeAgo = timeAgoFromMs(storyRecencyMs(top));
                           const kicker = topicLabel(top.topic ?? top.category ?? "overig");
                           return (
-                            <div className="mt-1 mb-2 flex items-center justify-between gap-4 text-sm">
+                            <div className="hidden md:flex mt-1 mb-2 items-center justify-between gap-4 text-sm">
                               <div className="text-white/70">
                                 {sourceLabel} · {timeAgo}
                               </div>
@@ -673,12 +673,12 @@ export default function Home() {
                           );
                         })()}
 
-                        <p className="mt-2 max-w-3xl text-base leading-relaxed text-white/80 line-clamp-2 md:line-clamp-3 md:text-lg">
+                        <p className="hidden md:block mt-2 max-w-3xl text-base leading-relaxed text-white/80 line-clamp-2 md:line-clamp-3 md:text-lg">
                           {top.summary}
                         </p>
 
                         {extractInsightPreview(top) ? (
-                          <div className="mt-4 inline-flex max-w-3xl items-start gap-2 rounded-xl bg-white/10 px-4 py-2 ring-1 ring-white/15">
+                          <div className="hidden md:inline-flex mt-4 max-w-3xl items-start gap-2 rounded-xl bg-white/10 px-4 py-2 ring-1 ring-white/15">
                             <span className="shrink-0 text-sm font-medium text-white/95">Opvallend:</span>
                             <span className="text-sm leading-6 text-white/85">{extractInsightPreview(top)}</span>
                           </div>
@@ -687,6 +687,7 @@ export default function Home() {
                     </div>
                   </div>
                 </article>
+                </Link>
               </section>
             )}
 
@@ -707,7 +708,7 @@ export default function Home() {
                     type="button"
                     onClick={() => setSourceStartIndex((cur) => Math.max(0, cur - stepPxVisibleCount))}
                     aria-label="Vorige bronnen"
-                    className="absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:h-9 md:w-9"
+                    className="absolute left-0 top-1/2 z-20 pointer-events-auto flex h-11 w-11 -translate-y-1/2 translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:z-10 md:h-9 md:w-9"
                   >
                     <svg
                       fill="currentColor"
@@ -734,7 +735,7 @@ export default function Home() {
                       )
                     }
                     aria-label="Volgende bronnen"
-                    className="absolute right-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 -translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:h-9 md:w-9"
+                    className="absolute right-0 top-1/2 z-20 pointer-events-auto flex h-11 w-11 -translate-y-1/2 -translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:z-10 md:h-9 md:w-9"
                   >
                     <svg
                       fill="currentColor"
@@ -834,7 +835,7 @@ export default function Home() {
             {now.length > 0 && (
               <section>
                 <div className="text-xs font-semibold tracking-wide text-zinc-500">Wat speelt er nu</div>
-                <div className="mt-4 grid grid-cols-1 gap-4 md:mt-5 md:grid-cols-2 md:gap-6">
+                <div className="mt-4 grid grid-cols-2 gap-3 md:mt-5 md:grid-cols-2 md:gap-6">
                   {now.map((s: any) => {
                     return (
                       <Link
@@ -862,14 +863,14 @@ export default function Home() {
                               {s.title}
                             </h3>
 
-                            <div className="mt-1 flex flex-col gap-1 text-xs leading-4 text-zinc-500 md:text-[var(--muted)]">
+                            <div className="hidden md:flex mt-1 flex-col gap-1 text-xs leading-4 text-zinc-500 md:text-[var(--muted)]">
                               <div>{storySourceLabel(s)} · {timeAgoFromMs(storyRecencyMs(s))}</div>
                               <div className="uppercase tracking-wide">
                                 {topicLabel(s.topic ?? s.category ?? "overig")}
                               </div>
                             </div>
 
-                            <p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-600 md:text-sm md:leading-5 md:text-[var(--muted)]">
+                            <p className="hidden md:block mt-2 line-clamp-2 text-base leading-relaxed text-zinc-600 md:text-sm md:leading-5 md:text-[var(--muted)]">
                               {s.summary}
                             </p>
                           </div>
@@ -884,7 +885,38 @@ export default function Home() {
             {rest.length > 0 && (
               <section>
                 <div className="text-xs font-semibold tracking-wide text-zinc-500">Overige verhalen</div>
-                <div className="mt-6 grid grid-cols-1 gap-4 md:mt-8 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+                <div className="mt-4 space-y-4 md:hidden">
+                  {rest.map((s: any) => {
+                    return (
+                      <Link
+                        key={s.slug}
+                        href={`/story/${s.slug}`}
+                        className="group block cursor-pointer"
+                        aria-label={s.title}
+                      >
+                        <article className="flex items-center gap-3 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] px-3 py-2 shadow-sm transition-all duration-150 hover:shadow-md active:scale-[0.99]">
+                          <div className="relative h-16 w-20 shrink-0 overflow-hidden rounded-md bg-zinc-100">
+                            <img
+                              src={
+                                pickCipherPreferredImage(s) ||
+                                getFallbackImage(s.topic ?? s.category)
+                              }
+                              alt=""
+                              className="h-full w-full object-cover"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </div>
+                          <h3 className="min-w-0 flex-1 text-base font-semibold leading-snug tracking-tight text-[var(--text)] group-hover:underline line-clamp-2">
+                            {s.title}
+                          </h3>
+                        </article>
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                <div className="hidden md:grid md:mt-8 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
                   {rest.map((s: any) => {
                     return (
                       <Link

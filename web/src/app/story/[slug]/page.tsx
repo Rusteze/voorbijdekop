@@ -407,8 +407,10 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
               >
                 Relevante artikelen
               </h2>
-              <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-6">
-                {relatedFinal.map((s: any) => (
+
+              {/* Mobile: top 2 in 2 columns (image top, title below) */}
+              <div className="mt-4 grid grid-cols-2 gap-3 md:hidden">
+                {relatedFinal.slice(0, 2).map((s: any) => (
                   <Link
                     key={s.slug}
                     href={`/story/${s.slug}`}
@@ -425,20 +427,80 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
                           decoding="async"
                         />
                       </div>
-                      <div className="p-4 md:p-3">
-                        <h3 className="text-base font-semibold leading-snug text-gray-900 line-clamp-2 group-hover:text-black group-hover:underline dark:text-gray-100 dark:group-hover:text-white md:text-sm">
+                      <div className="p-3">
+                        <h3 className="text-base font-semibold leading-snug text-gray-900 line-clamp-2 group-hover:text-black group-hover:underline dark:text-gray-100 dark:group-hover:text-white">
                           {s.shortHeadline ?? s.title}
                         </h3>
-                        <div className="mt-2 flex flex-col gap-2 text-sm leading-relaxed text-gray-500 dark:text-gray-500">
-                          <span>
-                            {storySourceLabel(s)} · {timeAgoFromMs(storyRecencyMs(s), referenceTimeMs)}
-                          </span>
-                          <span className="uppercase tracking-wide">{topicLabel(s.topic ?? s.category ?? "overig")}</span>
-                        </div>
                       </div>
                     </article>
                   </Link>
                 ))}
+              </div>
+
+              {/* Mobile: remaining items as compact list (image left, title right) */}
+              {relatedFinal.length > 2 ? (
+                <div className="mt-4 space-y-4 md:hidden">
+                  {relatedFinal.slice(2).map((s: any) => (
+                    <Link
+                      key={s.slug}
+                      href={`/story/${s.slug}`}
+                      className="group block cursor-pointer"
+                      aria-label={s.title}
+                    >
+                      <article className="flex items-center gap-3 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] px-3 py-2 shadow-sm transition-all duration-150 hover:shadow-md active:scale-[0.99]">
+                        <div className="relative h-16 w-20 shrink-0 overflow-hidden rounded-md bg-[var(--card-bg)]">
+                          <img
+                            src={pickCipherPreferredImage(s) || getFallbackImage(s.topic ?? s.category)}
+                            alt=""
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                        <h3 className="min-w-0 flex-1 text-base font-semibold leading-snug tracking-tight text-gray-900 line-clamp-2 group-hover:text-black group-hover:underline dark:text-gray-100 dark:group-hover:text-white">
+                          {s.shortHeadline ?? s.title}
+                        </h3>
+                      </article>
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+
+              {/* Desktop: keep existing grid of cards */}
+              <div className="hidden md:block">
+                <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-6">
+                  {relatedFinal.map((s: any) => (
+                    <Link
+                      key={s.slug}
+                      href={`/story/${s.slug}`}
+                      className="group block cursor-pointer"
+                      aria-label={s.title}
+                    >
+                      <article className="flex flex-col overflow-hidden rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] shadow-sm transition-all duration-150 active:scale-[0.99] hover:shadow-md md:rounded-md md:shadow-none md:hover:bg-[var(--card-bg-hover)] md:hover:shadow-none md:active:scale-100">
+                        <div className="aspect-[16/9] w-full overflow-hidden bg-[var(--card-bg)]">
+                          <img
+                            src={pickCipherPreferredImage(s) || getFallbackImage(s.topic ?? s.category)}
+                            alt=""
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                        <div className="p-4 md:p-3">
+                          <h3 className="text-base font-semibold leading-snug text-gray-900 line-clamp-2 group-hover:text-black group-hover:underline dark:text-gray-100 dark:group-hover:text-white md:text-sm">
+                            {s.shortHeadline ?? s.title}
+                          </h3>
+                          <div className="mt-2 flex flex-col gap-2 text-sm leading-relaxed text-gray-500 dark:text-gray-500">
+                            <span>
+                              {storySourceLabel(s)} · {timeAgoFromMs(storyRecencyMs(s), referenceTimeMs)}
+                            </span>
+                            <span className="uppercase tracking-wide">{topicLabel(s.topic ?? s.category ?? "overig")}</span>
+                          </div>
+                        </div>
+                      </article>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </section>

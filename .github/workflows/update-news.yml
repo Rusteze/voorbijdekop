@@ -31,5 +31,8 @@ jobs:
           git add data/
           git commit -m "auto update news" || echo "no changes"
 
+      - name: Pull latest changes (rebase)
+        run: git pull --rebase origin main
+
       - name: Push
-        run: git push
+        run: git push origin main
