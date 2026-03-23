@@ -1,5 +1,290 @@
 [
   {
+    "id": "7ab6d3983dcc1a8c590ba1c37f7e66856742ec197160c5ef9290ee830405dd64",
+    "url": "https://www.france24.com/en/live-news/20260323-%F0%9F%94%B4-former-french-pm-lionel-jospin-dies-at-88",
+    "canonicalUrl": "https://france24.com/en/live-news/20260323-%F0%9F%94%B4-former-french-pm-lionel-jospin-dies-at-88",
+    "title": "🔴 Former French PM Lionel Jospin dies at 88",
+    "titleNl": "🔴 Voormalig Franse premier Lionel Jospin overleden op 88-jarige leeftijd",
+    "excerpt": "",
+    "summaryNl": "Lionel Jospin, de voormalige premier van Frankrijk, is overleden op 88-jarige leeftijd.",
+    "publishedAt": "2026-03-23T08:17:15.000Z",
+    "sourceDomain": "france24.com",
+    "source": {
+      "domain": "france24.com",
+      "type": "news",
+      "bias": "mixed",
+      "depth": "high",
+      "region": "intl"
+    },
+    "imageUrl": "https://s.france24.com/media/display/c7020fba-e2bc-11ee-a10d-005056a90284/w:1280/p:16x9/breaking_en_1920x1080.jpg",
+    "keywords": [
+      "voormalig",
+      "franse",
+      "premier",
+      "lionel",
+      "jospin",
+      "overleden",
+      "jarige",
+      "leeftijd",
+      "lionel",
+      "jospin",
+      "voormalige",
+      "premier",
+      "frankrijk",
+      "overleden",
+      "jarige",
+      "leeftijd"
+    ],
+    "entities": [
+      "Frankrijk",
+      "Voormalig Franse",
+      "Lionel Jospin"
+    ]
+  },
+  {
+    "id": "4975c1560569be7073b83a119023c200d53eedaf5fcf9a8bd4f7d7e2a577ebd1",
+    "url": "https://www.bbc.com/news/articles/czex56kwxxzo?at_medium=RSS&at_campaign=rss",
+    "canonicalUrl": "https://bbc.com/news/articles/czex56kwxxzo?at_medium=RSS&at_campaign=rss",
+    "title": "Asia stocks slide as US and Iran threaten to escalate war",
+    "titleNl": "Aziatische aandelen dalen door dreiging escalatie oorlog tussen VS en Iran",
+    "excerpt": "The International Energy Agency chief said the war could lead to the world's worst energy crisis in decades.",
+    "summaryNl": "Het hoofd van het Internationaal Energieagentschap waarschuwde dat de oorlog kan leiden tot de ernstigste energiecrisis in tientallen jaren.",
+    "publishedAt": "2026-03-23T08:11:01.000Z",
+    "sourceDomain": "bbc.com",
+    "source": {
+      "domain": "bbc.com",
+      "type": "news",
+      "bias": "neutral",
+      "depth": "high",
+      "region": "intl"
+    },
+    "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3270/live/4bbe7e40-265f-11f1-a935-2f8ae5ecc5e6.jpg",
+    "keywords": [
+      "aziatische",
+      "aandelen",
+      "dalen",
+      "dreiging",
+      "escalatie",
+      "oorlog",
+      "tussen",
+      "iran",
+      "hoofd",
+      "internationaal",
+      "energieagentschap",
+      "waarschuwde",
+      "oorlog",
+      "kan",
+      "leiden",
+      "tot",
+      "ernstigste",
+      "energiecrisis",
+      "tientallen",
+      "jaren"
+    ],
+    "entities": [
+      "Verenigde Staten",
+      "Iran",
+      "Aziatische",
+      "Iran Het",
+      "Internationaal Energieagentschap"
+    ]
+  },
+  {
+    "id": "8e57cd3021cef013aeaaaaba0eaa51190273eaef802c23d7f9f3a410918ebc6a",
+    "url": "https://www.theguardian.com/environment/2026/mar/23/predatory-feral-ferrets-removed-from-island-first-time-rathlin-island-northern-ireland",
+    "canonicalUrl": "https://theguardian.com/environment/2026/mar/23/predatory-feral-ferrets-removed-from-island-first-time-rathlin-island-northern-ireland",
+    "title": "Predatory feral ferrets removed from an island for the first time ever",
+    "titleNl": "Roofzuchtige verwilderde fretten voor het eerst van een eiland verwijderd",
+    "excerpt": "&lt;p&gt;Rathlin Island in Northern Ireland is ferret-free after £4.5m five-year partnership led by RSPB NI&lt;/p&gt;&lt;p&gt;Predatory feral ferrets have been removed from an island for the first time ever, in a boost for Northern Ireland’s largest seabird colony.&lt;/p&gt;&lt;p&gt;Rathlin Island is ferret-free after a £4.5m five-year partnership led by RSPB NI involving islanders, charities, volunteers and a red labrador called Woody.&lt;/p&gt; &lt;a href=\"https://www.theguardian.com/environme",
+    "summaryNl": "Rathlin Island in Noord-Ierland is frettenvrij na een partnerschap van vijf jaar en £4,5 miljoen onder leiding van RSPB NI, waarbij ook eilandbewoners, goede doelen, vrijwilligers en een rode labrador betrokken waren.",
+    "publishedAt": "2026-03-23T08:00:45.000Z",
+    "sourceDomain": "theguardian.com",
+    "source": {
+      "domain": "theguardian.com",
+      "type": "news",
+      "bias": "left",
+      "depth": "high",
+      "region": "intl"
+    },
+    "imageUrl": "https://i.guim.co.uk/img/media/21a450e695692e081ae45282516ec32008c15b38/779_0_3700_2961/master/3700.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=d69c4298205f3e416c67074ff05bc405",
+    "keywords": [
+      "roofzuchtige",
+      "verwilderde",
+      "fretten",
+      "eerst",
+      "eiland",
+      "verwijderd",
+      "rathlin",
+      "island",
+      "noord",
+      "ierland",
+      "frettenvrij",
+      "partnerschap",
+      "vijf",
+      "jaar",
+      "miljoen",
+      "onder",
+      "leiding",
+      "rspb",
+      "waarbij",
+      "ook",
+      "eilandbewoners",
+      "goede",
+      "doelen",
+      "vrijwilligers"
+    ],
+    "entities": [
+      "RSPB",
+      "NI",
+      "Roofzuchtige",
+      "Rathlin Island",
+      "Ierland",
+      "RSPB NI"
+    ]
+  },
+  {
+    "id": "5b8116dce77bb08170227a72ecd505f2b9cb95043d9c0a0ac0d0e3761529d49b",
+    "url": "https://www.bbc.com/news/articles/cy01g522ww4o?at_medium=RSS&at_campaign=rss",
+    "canonicalUrl": "https://bbc.com/news/articles/cy01g522ww4o?at_medium=RSS&at_campaign=rss",
+    "title": "Plane and ground vehicle collide at New York's LaGuardia Airport halting flights",
+    "titleNl": "Vliegtuig en grondvoertuig botsen op LaGuardia Airport in New York, vluchten stilgelegd",
+    "excerpt": "An Air Canada Express plane suffered significant damage after the collision.",
+    "summaryNl": "Een Air Canada Express-vliegtuig liep aanzienlijke schade op na de botsing.",
+    "publishedAt": "2026-03-23T07:53:53.000Z",
+    "sourceDomain": "bbc.com",
+    "source": {
+      "domain": "bbc.com",
+      "type": "news",
+      "bias": "neutral",
+      "depth": "high",
+      "region": "intl"
+    },
+    "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b500/live/620c2290-268e-11f1-b297-95b0a0a8331e.jpg",
+    "keywords": [
+      "vliegtuig",
+      "grondvoertuig",
+      "botsen",
+      "laguardia",
+      "airport",
+      "new",
+      "york",
+      "vluchten",
+      "stilgelegd",
+      "air",
+      "canada",
+      "express",
+      "vliegtuig",
+      "liep",
+      "aanzienlijke",
+      "schade",
+      "botsing"
+    ],
+    "entities": [
+      "Vliegtuig",
+      "LaGuardia Airport",
+      "New York",
+      "Een Air Canada",
+      "Express"
+    ]
+  },
+  {
+    "id": "815ee77da0d2e0582816034af22c7ced10ef795e7f1f8d9d9b21022d9f7e039c",
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/3/23/iea-chief-warns-of-very-severe-global-energy-crisis?traffic_source=rss",
+    "canonicalUrl": "https://aljazeera.com/video/newsfeed/2026/3/23/iea-chief-warns-of-very-severe-global-energy-crisis?traffic_source=rss",
+    "title": "IEA chief warns of ‘very severe’ global energy crisis",
+    "titleNl": "IEA-chef waarschuwt voor ‘zeer ernstige’ wereldwijde energiecrisis",
+    "excerpt": "IEA may release more oil as the Iran war hits supply, with chief Fatih Birol warning of a severe global energy crisis.",
+    "summaryNl": "De IEA kan meer olie vrijgeven omdat de oorlog in Iran de levering raakt, waarschuwt chef Fatih Birol voor een ernstige wereldwijde energiecrisis.",
+    "publishedAt": "2026-03-23T07:39:43.000Z",
+    "sourceDomain": "aljazeera.com",
+    "source": {
+      "domain": "aljazeera.com",
+      "type": "news",
+      "bias": "mixed",
+      "depth": "high",
+      "region": "intl"
+    },
+    "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/03/image-1774251574.jpg?resize=1920%2C1080&quality=80",
+    "keywords": [
+      "iea",
+      "chef",
+      "waarschuwt",
+      "zeer",
+      "ernstige",
+      "wereldwijde",
+      "energiecrisis",
+      "iea",
+      "kan",
+      "meer",
+      "olie",
+      "vrijgeven",
+      "omdat",
+      "oorlog",
+      "iran",
+      "levering",
+      "raakt",
+      "waarschuwt",
+      "chef",
+      "fatih",
+      "birol",
+      "ernstige",
+      "wereldwijde",
+      "energiecrisis"
+    ],
+    "entities": [
+      "Iran",
+      "IEA",
+      "De IEA",
+      "Fatih Birol"
+    ]
+  },
+  {
+    "id": "3806adf4876501074a43da089e374113e1df1fe56a939dbabbc6bb748c9ed315",
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/3/23/rescue-teams-brave-fire-in-suspected-attack-on-gaza-city-residential-area?traffic_source=rss",
+    "canonicalUrl": "https://aljazeera.com/video/newsfeed/2026/3/23/rescue-teams-brave-fire-in-suspected-attack-on-gaza-city-residential-area?traffic_source=rss",
+    "title": "Rescue teams brave fire in suspected attack on Gaza City residential area",
+    "titleNl": "Reddingsploegen trotseren brand bij vermoedelijke aanval in woonwijk Gaza-Stad",
+    "excerpt": "Rescue teams headed to the site of a suspected Israeli attack in Gaza City to control the blaze.",
+    "summaryNl": "Reddingsploegen gingen naar de vermoedelijke Israëlische aanval in Gaza-Stad om de brand onder controle te krijgen.",
+    "publishedAt": "2026-03-23T07:34:46.000Z",
+    "sourceDomain": "aljazeera.com",
+    "source": {
+      "domain": "aljazeera.com",
+      "type": "news",
+      "bias": "mixed",
+      "depth": "high",
+      "region": "intl"
+    },
+    "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/03/image-1774251051.jpg?resize=1920%2C1080&quality=80",
+    "keywords": [
+      "reddingsploegen",
+      "trotseren",
+      "brand",
+      "vermoedelijke",
+      "aanval",
+      "woonwijk",
+      "gaza",
+      "stad",
+      "reddingsploegen",
+      "gingen",
+      "vermoedelijke",
+      "israëlische",
+      "aanval",
+      "gaza",
+      "stad",
+      "brand",
+      "onder",
+      "controle",
+      "krijgen"
+    ],
+    "entities": [
+      "Gaza",
+      "Reddingsploegen",
+      "Stad Reddingsploegen",
+      "Israëlische"
+    ]
+  },
+  {
     "id": "11e4dc91dda989f6fc5f3bec5aa78f18f19390365234bcb657266ed49eae2d24",
     "url": "https://nos.nl/l/2607492",
     "canonicalUrl": "https://nos.nl/l/2607492",
@@ -51,6 +336,61 @@
       "Hapert",
       "Omroep Brabant",
       "Rijkswaterstaat"
+    ]
+  },
+  {
+    "id": "98036454e393d3126ef48e85fe3608d76108dde778a6839a70bb7f7a9c3e7c42",
+    "url": "https://www.theguardian.com/world/live/2026/mar/23/middle-east-crisis-live-iea-chief-says-iran-war-energy-crunch-worse-than-1970s-oil-crises-and-ukraine-war-combined",
+    "canonicalUrl": "https://theguardian.com/world/live/2026/mar/23/middle-east-crisis-live-iea-chief-says-iran-war-energy-crunch-worse-than-1970s-oil-crises-and-ukraine-war-combined",
+    "title": "Middle East crisis live: Starmer and Trump discuss ‘essential’ need to open strait of Hormuz as Israel warns war will continue for weeks",
+    "titleNl": "Midden-Oostencrisis live: Starmer en Trump bespreken 'essentiële' opening van de Straat van Hormuz terwijl Israël waarschuwt voor aanhoudende oorlog",
+    "excerpt": "&lt;p&gt;The British PM spoke with the US president overnight about the need to stabilise global energy markets after oil prices surged due to the war&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;a href=\"https://www.theguardian.com/world/2026/mar/22/iran-says-destroy-middle-east-infrastructure-us-energy-sites\"&gt;Iran vows to destroy Middle East water and energy facilities if US attacks power plants&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;British prime minister Keir Starmer ",
+    "summaryNl": "De Britse premier sprak 's nachts met de Amerikaanse president over de noodzaak om de wereldwijde energiemarkten te stabiliseren na stijgende olieprijzen door de oorlog.",
+    "publishedAt": "2026-03-23T07:31:38.000Z",
+    "sourceDomain": "theguardian.com",
+    "source": {
+      "domain": "theguardian.com",
+      "type": "news",
+      "bias": "left",
+      "depth": "high",
+      "region": "intl"
+    },
+    "imageUrl": "https://i.guim.co.uk/img/media/c37ddc792540af48102d4e2475d88630e5b76ec4/1143_516_3141_2514/master/3141.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctbGl2ZS5wbmc&enable=upscale&s=a6721a0b4884851da1acd447f1be7dfc",
+    "keywords": [
+      "midden",
+      "oostencrisis",
+      "live",
+      "starmer",
+      "trump",
+      "bespreken",
+      "essentiële",
+      "opening",
+      "straat",
+      "hormuz",
+      "terwijl",
+      "israël",
+      "waarschuwt",
+      "aanhoudende",
+      "oorlog",
+      "britse",
+      "premier",
+      "sprak",
+      "nachts",
+      "amerikaanse",
+      "president",
+      "noodzaak",
+      "wereldwijde",
+      "energiemarkten"
+    ],
+    "entities": [
+      "Israël",
+      "Midden",
+      "Oostencrisis",
+      "Starmer",
+      "Straat",
+      "Hormuz",
+      "De Britse",
+      "Amerikaanse"
     ]
   },
   {
@@ -106,14 +446,14 @@
     ]
   },
   {
-    "id": "f1f559e996373496afdef50c3afe0640b9d4c5b090b30974f95c207f586ae5d5",
-    "url": "https://www.bbc.com/news/articles/czex56kwxxzo?at_medium=RSS&at_campaign=rss",
-    "canonicalUrl": "https://bbc.com/news/articles/czex56kwxxzo?at_medium=RSS&at_campaign=rss",
-    "title": "Asia stocks slide as US and Iran threaten to escalate war",
-    "titleNl": "Aziatische aandelen dalen door dreiging escalatie oorlog tussen VS en Iran",
-    "excerpt": "The International Energy Agency chief said the war could lead to the world's worst energy crisis in decades.",
-    "summaryNl": "Het hoofd van het Internationaal Energieagentschap waarschuwde dat de oorlog kan leiden tot de ernstigste energiecrisis in tientallen jaren.",
-    "publishedAt": "2026-03-23T07:29:09.000Z",
+    "id": "081f4d4f08de50bc00111845ed4634f71a40c8087db56eb7016fa0be784fdbda",
+    "url": "https://www.bbc.com/sport/football/articles/c78x77wz6q7o?at_medium=RSS&at_campaign=rss",
+    "canonicalUrl": "https://bbc.com/sport/football/articles/c78x77wz6q7o?at_medium=RSS&at_campaign=rss",
+    "title": "'Players are fed up' - are autograph hunters going too far?",
+    "titleNl": "'Spelers zijn het zat' - gaan handtekeningenjagers te ver?",
+    "excerpt": "BBC Sport explores how footballers and managers feel about professional autograph hunters, after a series of controversial incidents.",
+    "summaryNl": "BBC Sport onderzoekt de mening van voetballers en managers over professionele handtekeningenjagers na verschillende controversiële incidenten.",
+    "publishedAt": "2026-03-23T07:27:56.000Z",
     "sourceDomain": "bbc.com",
     "source": {
       "domain": "bbc.com",
@@ -122,135 +462,29 @@
       "depth": "high",
       "region": "intl"
     },
-    "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3270/live/4bbe7e40-265f-11f1-a935-2f8ae5ecc5e6.jpg",
+    "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/a76e/live/ef2715a0-0e73-11f1-9acc-6bf6c7adf476.jpg",
     "keywords": [
-      "aziatische",
-      "aandelen",
-      "dalen",
-      "dreiging",
-      "escalatie",
-      "oorlog",
-      "tussen",
-      "iran",
-      "hoofd",
-      "internationaal",
-      "energieagentschap",
-      "waarschuwde",
-      "oorlog",
-      "kan",
-      "leiden",
-      "tot",
-      "ernstigste",
-      "energiecrisis",
-      "tientallen",
-      "jaren"
+      "spelers",
+      "zat",
+      "gaan",
+      "handtekeningenjagers",
+      "ver",
+      "bbc",
+      "sport",
+      "onderzoekt",
+      "mening",
+      "voetballers",
+      "managers",
+      "professionele",
+      "handtekeningenjagers",
+      "verschillende",
+      "controversiële",
+      "incidenten"
     ],
     "entities": [
-      "Verenigde Staten",
-      "Iran",
-      "Aziatische",
-      "Iran Het",
-      "Internationaal Energieagentschap"
-    ]
-  },
-  {
-    "id": "fe69709a7348e1e6e74c7b0d2dca11708e10ef3977dc28e1fcf5220db2ac240b",
-    "url": "https://www.bbc.com/news/articles/cy01g522ww4o?at_medium=RSS&at_campaign=rss",
-    "canonicalUrl": "https://bbc.com/news/articles/cy01g522ww4o?at_medium=RSS&at_campaign=rss",
-    "title": "Plane and ground vehicle collide at New York's LaGuardia Airport halting flights",
-    "titleNl": "Vliegtuig en grondvoertuig botsen op LaGuardia Airport in New York, vluchten stilgelegd",
-    "excerpt": "An Air Canada Express plane suffered significant damage after the collision.",
-    "summaryNl": "Een Air Canada Express-vliegtuig liep aanzienlijke schade op na de botsing.",
-    "publishedAt": "2026-03-23T07:27:20.000Z",
-    "sourceDomain": "bbc.com",
-    "source": {
-      "domain": "bbc.com",
-      "type": "news",
-      "bias": "neutral",
-      "depth": "high",
-      "region": "intl"
-    },
-    "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/de59/live/0088fb90-2681-11f1-a32b-91a6d5286fbb.jpg",
-    "keywords": [
-      "vliegtuig",
-      "grondvoertuig",
-      "botsen",
-      "laguardia",
-      "airport",
-      "new",
-      "york",
-      "vluchten",
-      "stilgelegd",
-      "air",
-      "canada",
-      "express",
-      "vliegtuig",
-      "liep",
-      "aanzienlijke",
-      "schade",
-      "botsing"
-    ],
-    "entities": [
-      "Vliegtuig",
-      "LaGuardia Airport",
-      "New York",
-      "Een Air Canada",
-      "Express"
-    ]
-  },
-  {
-    "id": "baca158271b65d901291cb322a3867494c9d7a93be0a1bc94dd29c6454d5a258",
-    "url": "https://www.theguardian.com/world/live/2026/mar/23/middle-east-crisis-live-iea-chief-says-iran-war-energy-crunch-worse-than-1970s-oil-crises-and-ukraine-war-combined",
-    "canonicalUrl": "https://theguardian.com/world/live/2026/mar/23/middle-east-crisis-live-iea-chief-says-iran-war-energy-crunch-worse-than-1970s-oil-crises-and-ukraine-war-combined",
-    "title": "Middle East crisis live: Starmer and Trump discuss ‘essential’ need to open strait of Hormuz as Israel warns war will continue for weeks",
-    "titleNl": "Midden-Oostencrisis live: Starmer en Trump bespreken 'essentiële' opening van de Straat van Hormuz terwijl Israël waarschuwt voor aanhoudende oorlog",
-    "excerpt": "&lt;p&gt;The British PM spoke with the US president overnight about the need to stabilise global energy markets after oil prices surged due to the war&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;a href=\"https://www.theguardian.com/world/2026/mar/22/iran-says-destroy-middle-east-infrastructure-us-energy-sites\"&gt;Iran vows to destroy Middle East water and energy facilities if US attacks power plants&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;British prime minister Keir Starmer ",
-    "summaryNl": "De Britse premier sprak 's nachts met de Amerikaanse president over de noodzaak om de wereldwijde energiemarkten te stabiliseren na stijgende olieprijzen door de oorlog.",
-    "publishedAt": "2026-03-23T07:23:34.000Z",
-    "sourceDomain": "theguardian.com",
-    "source": {
-      "domain": "theguardian.com",
-      "type": "news",
-      "bias": "left",
-      "depth": "high",
-      "region": "intl"
-    },
-    "imageUrl": "https://i.guim.co.uk/img/media/c37ddc792540af48102d4e2475d88630e5b76ec4/1143_516_3141_2514/master/3141.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctbGl2ZS5wbmc&enable=upscale&s=a6721a0b4884851da1acd447f1be7dfc",
-    "keywords": [
-      "midden",
-      "oostencrisis",
-      "live",
-      "starmer",
-      "trump",
-      "bespreken",
-      "essentiële",
-      "opening",
-      "straat",
-      "hormuz",
-      "terwijl",
-      "israël",
-      "waarschuwt",
-      "aanhoudende",
-      "oorlog",
-      "britse",
-      "premier",
-      "sprak",
-      "nachts",
-      "amerikaanse",
-      "president",
-      "noodzaak",
-      "wereldwijde",
-      "energiemarkten"
-    ],
-    "entities": [
-      "Israël",
-      "Midden",
-      "Oostencrisis",
-      "Starmer",
-      "Straat",
-      "Hormuz",
-      "De Britse",
-      "Amerikaanse"
+      "BBC",
+      "Spelers",
+      "BBC Sport"
     ]
   },
   {
@@ -451,9 +685,9 @@
     "url": "https://www.theguardian.com/politics/2026/mar/23/anyone-but-labour-or-anyone-but-reform-clash-of-animosities-likely-to-define-may-local-elections",
     "canonicalUrl": "https://theguardian.com/politics/2026/mar/23/anyone-but-labour-or-anyone-but-reform-clash-of-animosities-likely-to-define-may-local-elections",
     "title": "‘Anyone but Labour’ or ‘anyone but Reform’? Clash of animosities likely to define May local elections",
-    "titleNl": "‘Iedereen behalve Labour’ of ‘iedereen behalve Reform’? Botsing van tegenstellingen waarschijnlijk bepalend voor gemeenteraadsverkiezingen in mei",
-    "excerpt": "&lt;p&gt;While Labour braces for a rout that could see off Starmer, a rising drive to keep out Farage is complicating expectations&lt;/p&gt;&lt;p&gt;Local elections are often regarded as a referendum on the sitting government, with many previous administrations taking a bloody nose from the electorate but successfully fighting back by the next general election.&lt;/p&gt;&lt;p&gt;Senior Labour figures have taken to reeling off a list of midterm results – 1999, 2003, 2012 – to prove that point. “A",
-    "summaryNl": "Terwijl Labour zich voorbereidt op een zware nederlaag die Starmer kan kosten, bemoeilijkt een groeiende beweging om Farage buiten te houden de verwachtingen voor de lokale verkiezingen.",
+    "titleNl": "‘Iedereen behalve Labour’ of ‘iedereen behalve Reform’? Botsing van vijandigheden zal de lokale verkiezingen in mei bepalen",
+    "excerpt": "&lt;p&gt;While Labour braces for a rout that could see off Starmer, a rising drive to keep out Farage is complicating expectations&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;a href=\"https://www.theguardian.com/politics/2026/mar/23/uk-polls-less-volatile-than-they-seem-charts\"&gt;&lt;strong&gt;Small swings, high drama: why UK polls are less volatile than they seem – in charts&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Local elections are often regarded as a referendum on the ",
+    "summaryNl": "Voor Labour wordt een grote nederlaag verwacht die Starmer kan breken, terwijl het streven om Farage buiten te houden de verwachtingen bemoeilijkt.",
     "publishedAt": "2026-03-23T07:00:43.000Z",
     "sourceDomain": "theguardian.com",
     "source": {
@@ -472,30 +706,30 @@
       "behalve",
       "reform",
       "botsing",
-      "tegenstellingen",
-      "waarschijnlijk",
-      "bepalend",
-      "gemeenteraadsverkiezingen",
+      "vijandigheden",
+      "zal",
+      "lokale",
+      "verkiezingen",
       "mei",
-      "terwijl",
+      "bepalen",
       "labour",
-      "zich",
-      "voorbereidt",
-      "zware",
+      "grote",
       "nederlaag",
+      "verwacht",
       "starmer",
       "kan",
-      "kosten",
-      "bemoeilijkt",
-      "groeiende",
-      "beweging"
+      "breken",
+      "terwijl",
+      "streven",
+      "farage",
+      "buiten"
     ],
     "entities": [
       "Iedereen",
       "Labour",
       "Reform",
       "Botsing",
-      "Terwijl Labour",
+      "Voor Labour",
       "Starmer",
       "Farage"
     ]
@@ -505,9 +739,9 @@
     "url": "https://www.theguardian.com/politics/2026/mar/23/uk-polls-less-volatile-than-they-seem-charts",
     "canonicalUrl": "https://theguardian.com/politics/2026/mar/23/uk-polls-less-volatile-than-they-seem-charts",
     "title": "Small swings, high drama: why UK polls are less volatile than they seem – in charts",
-    "titleNl": "Kleine schommelingen, groot drama: waarom Britse peilingen minder grillig lijken – in grafieken",
-    "excerpt": "&lt;p&gt;In what is beginning to look like a fragmented five-party system, small swings carry outsized political consequences&lt;/p&gt;&lt;p&gt;Cabinet reshuffles, party infighting, policy reversals, byelections, defections and apparently huge swings in support – the UK’s political news cycle feels especially relentless at the moment.&lt;/p&gt;&lt;p&gt;But if you look closely at the polls since last year’s local elections, remarkably little has changed.&lt;/p&gt; &lt;a href=\"https://www.theguard",
-    "summaryNl": "Ondanks een fragmentair vijfpartijensysteem en schijnbaar grote veranderingen, zijn de peilingen sinds de lokale verkiezingen van vorig jaar opmerkelijk stabiel gebleven.",
+    "titleNl": "Kleine schommelingen, groot drama: waarom Britse peilingen minder volatiel lijken – in grafieken",
+    "excerpt": "&lt;p&gt;In what is beginning to look like a fragmented five-party system, small swings carry outsized political consequences&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;&lt;a href=\"https://www.theguardian.com/politics/2026/mar/23/anyone-but-labour-or-anyone-but-reform-clash-of-animosities-likely-to-define-may-local-elections\"&gt;&lt;strong&gt;‘Anyone but Labour’ or ‘anyone but Reform’? Clash of animosities likely to define May local elections&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&l",
+    "summaryNl": "In het steeds meer gefragmenteerde vijfpartijensysteem hebben kleine verschuivingen grote politieke gevolgen.",
     "publishedAt": "2026-03-23T07:00:43.000Z",
     "sourceDomain": "theguardian.com",
     "source": {
@@ -527,27 +761,23 @@
       "britse",
       "peilingen",
       "minder",
-      "grillig",
+      "volatiel",
       "lijken",
       "grafieken",
-      "ondanks",
-      "fragmentair",
+      "steeds",
+      "meer",
+      "gefragmenteerde",
       "vijfpartijensysteem",
-      "schijnbaar",
+      "hebben",
+      "kleine",
+      "verschuivingen",
       "grote",
-      "veranderingen",
-      "peilingen",
-      "sinds",
-      "lokale",
-      "verkiezingen",
-      "vorig",
-      "jaar",
-      "opmerkelijk"
+      "politieke",
+      "gevolgen"
     ],
     "entities": [
       "Kleine",
-      "Britse",
-      "Ondanks"
+      "Britse"
     ]
   },
   {
@@ -588,6 +818,55 @@
     "entities": [
       "Londonse",
       "Londen"
+    ]
+  },
+  {
+    "id": "5122908bb0390ace937cbef7523f27188f2d157c2af5e23ea0afd83a6f9c2863",
+    "url": "https://www.dw.com/en/pro-kremlin-blogger-turns-on-putin-sent-to-psychiatric-care/a-76457533?maca=en-rss-en-world-4025-xml-mrss",
+    "canonicalUrl": "https://dw.com/en/pro-kremlin-blogger-turns-on-putin-sent-to-psychiatric-care/a-76457533?maca=en-rss-en-world-4025-xml-mrss",
+    "title": "Pro-Kremlin blogger turns on Putin, sent to psychiatric care",
+    "titleNl": "Pro-Kremlin blogger keert zich tegen Poetin en wordt opgenomen in psychiatrische zorg",
+    "excerpt": "After seemingly switching sides, a pro-government blogger in Russia who criticized President Vladimir Putin has been admitted to psychiatric care in St. Petersburg. Did he go rogue?",
+    "summaryNl": "Een pro-regeringsblogger in Rusland die president Vladimir Poetin bekritiseerde, is opgenomen in psychiatrische zorg in Sint-Petersburg.",
+    "publishedAt": "2026-03-23T06:55:00.000Z",
+    "sourceDomain": "dw.com",
+    "source": {
+      "domain": "dw.com",
+      "type": "news",
+      "bias": "neutral",
+      "depth": "high",
+      "region": "intl"
+    },
+    "keywords": [
+      "pro",
+      "kremlin",
+      "blogger",
+      "keert",
+      "zich",
+      "tegen",
+      "poetin",
+      "opgenomen",
+      "psychiatrische",
+      "zorg",
+      "pro",
+      "regeringsblogger",
+      "rusland",
+      "president",
+      "vladimir",
+      "poetin",
+      "bekritiseerde",
+      "opgenomen",
+      "psychiatrische",
+      "zorg",
+      "sint",
+      "petersburg"
+    ],
+    "entities": [
+      "Rusland",
+      "Kremlin",
+      "Poetin",
+      "Vladimir Poetin",
+      "Petersburg"
     ]
   },
   {
@@ -788,13 +1067,13 @@
     ]
   },
   {
-    "id": "926787d1a795ba0708bbf7e0610892c4f776e7d81082224092ff1b8d5307e596",
+    "id": "66784277df7c5b328bf0a8b7b1a93cc835540572e7dcdf57d4b7198c751f1cf4",
     "url": "https://www.theguardian.com/australia-news/2026/mar/23/petrol-stations-australia-fuel-crisis",
     "canonicalUrl": "https://theguardian.com/australia-news/2026/mar/23/petrol-stations-australia-fuel-crisis",
-    "title": "Hundreds of petrol stations across Australia run out of fuel as Albanese inks supply deal with Singapore",
-    "titleNl": "Honderden tankstations in Australië zonder brandstof terwijl Albanese akkoord sluit over levering met Singapore",
+    "title": "Hundreds of petrol stations across Australia run out of fuel as Labor inks supply deal with Singapore",
+    "titleNl": "Honderden tankstations in Australië zonder brandstof na leveringsdeal van Labor met Singapore",
     "excerpt": "&lt;p&gt;Energy minister, Chris Bowen, says ‘we’re a long way’ from further action like fuel rationing despite shortages&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Get our &lt;a href=\"https://www.theguardian.com/email-newsletters?CMP=cvau_sfl\"&gt;breaking news email&lt;/a&gt;, &lt;a href=\"https://app.adjust.com/w4u7jx3\"&gt;free app&lt;/a&gt; or &lt;a href=\"https://www.theguardian.com/australia-news/series/full-story?CMP=cvau_sfl\"&gt;daily news podcast&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt",
-    "summaryNl": "Energie-minister Chris Bowen zegt dat er ondanks tekorten voorlopig geen brandstofrantsoenering zal komen.",
+    "summaryNl": "Energeminister Chris Bowen stelt dat het ondanks tekorten nog ver is van verdere maatregelen zoals brandstofrantsoenering.",
     "publishedAt": "2026-03-23T06:32:04.000Z",
     "sourceDomain": "theguardian.com",
     "source": {
@@ -811,31 +1090,26 @@
       "australië",
       "zonder",
       "brandstof",
-      "terwijl",
-      "albanese",
-      "akkoord",
-      "sluit",
-      "levering",
+      "leveringsdeal",
+      "labor",
       "singapore",
-      "energie",
-      "minister",
+      "energeminister",
       "chris",
       "bowen",
-      "zegt",
+      "stelt",
       "ondanks",
       "tekorten",
-      "voorlopig",
-      "geen",
-      "brandstofrantsoenering",
-      "zal",
-      "komen"
+      "nog",
+      "ver",
+      "verdere",
+      "maatregelen",
+      "zoals",
+      "brandstofrantsoenering"
     ],
     "entities": [
       "Honderden",
       "Australi",
-      "Albanese",
-      "Singapore Energie",
-      "Chris Bowen"
+      "Singapore Energeminister Chris"
     ]
   },
   {
@@ -1578,8 +1852,8 @@
     "canonicalUrl": "https://nos.nl/l/2607478",
     "title": "Vliegtuig botst op brandweerauto op luchthaven New York, 'piloten omgekomen'",
     "titleNl": "Vliegtuig botst op brandweerauto op luchthaven New York, 'piloten omgekomen'",
-    "excerpt": "Een vliegtuig van Air Canada Express heeft bij een landing op het LaGuardia-vliegveld in New York een brandweervoertuig geraakt. De gezagvoerder en co-piloot zijn daarbij volgens Amerikaanse media om het leven gekomen. Door het incident is de luchthaven gesloten.\n        Zender NBC meldde eerder op basis van bronnen dat vier mensen gewond waren geraakt bij het incident, onder wie de piloot en copiloot, die ernstig gewond zouden zijn. Later kwam de zender met het bericht dat zij beiden waren over",
-    "summaryNl": "Een vliegtuig van Air Canada Express heeft bij een landing op het LaGuardia-vliegveld in New York een brandweervoertuig geraakt. De gezagvoerder en co-piloot zijn daarbij volgens Amerikaanse media om het leven gekomen. Door het incident is de luchthaven gesloten.\n        Zender NBC meldde eerder op basis van bronnen dat vier mensen gewond waren geraakt bij het incident, onder wie de piloot en copiloot, die ernstig gewond zouden zijn. Later kwam de zender met het bericht dat zij beiden waren over",
+    "excerpt": "Een vliegtuig van Air Canada Express heeft bij een landing op het LaGuardia-vliegveld in New York een brandweervoertuig geraakt. De gezagvoerder en copiloot zijn daarbij volgens Amerikaanse media om het leven gekomen. Door het incident is de luchthaven gesloten.\n        Zender NBC meldde eerder op basis van bronnen dat vier mensen gewond waren geraakt bij het incident, onder wie de piloot en copiloot, die ernstig gewond zouden zijn. Later kwam de zender met het bericht dat zij beiden waren overl",
+    "summaryNl": "Een vliegtuig van Air Canada Express heeft bij een landing op het LaGuardia-vliegveld in New York een brandweervoertuig geraakt. De gezagvoerder en copiloot zijn daarbij volgens Amerikaanse media om het leven gekomen. Door het incident is de luchthaven gesloten.\n        Zender NBC meldde eerder op basis van bronnen dat vier mensen gewond waren geraakt bij het incident, onder wie de piloot en copiloot, die ernstig gewond zouden zijn. Later kwam de zender met het bericht dat zij beiden waren overl",
     "publishedAt": "2026-03-23T05:45:52.000Z",
     "sourceDomain": "nos.nl",
     "source": {
@@ -1589,7 +1863,7 @@
       "depth": "medium",
       "region": "nl"
     },
-    "imageUrl": "https://cdn.nos.nl/image/2026/03/23/1341011/1024x576a.jpg",
+    "imageUrl": "https://cdn.nos.nl/image/2026/03/23/1341027/1024x576a.jpg",
     "keywords": [
       "vliegtuig",
       "botst",
@@ -1612,7 +1886,7 @@
       "brandweervoertuig",
       "geraakt",
       "gezagvoerder",
-      "piloot",
+      "copiloot",
       "daarbij",
       "volgens"
     ],
@@ -1675,13 +1949,13 @@
     ]
   },
   {
-    "id": "44f17508b59314d0a333f3f5a5bfd74a4f7a779037e8f5f63239d05acc0d0fd4",
+    "id": "60ab30d2edf242250438aa8b9b77a264ceae7665beaeca71d478a8d106e9149c",
     "url": "https://www.volkskrant.nl/politiek/minister-karremans-zit-met-honderden-versleten-bruggen-en-sluizen-maar-heeft-geen-geld-om-ze-op-te-knappen~bda690c7/",
     "canonicalUrl": "https://volkskrant.nl/politiek/minister-karremans-zit-met-honderden-versleten-bruggen-en-sluizen-maar-heeft-geen-geld-om-ze-op-te-knappen~bda690c7",
-    "title": "Minister Karremans zit met honderden versleten bruggen en sluizen, maar heeft geen geld om ze op te knappen",
-    "titleNl": "Minister Karremans zit met honderden versleten bruggen en sluizen, maar heeft geen geld om ze op te knappen",
+    "title": "Karremans zit met hon­derden versleten bruggen en sluizen, maar heeft geen geld om ze op te knappen",
+    "titleNl": "Karremans zit met honderden versleten bruggen en sluizen, maar heeft geen geld om ze op te knappen",
     "excerpt": "",
-    "summaryNl": "Minister Karremans heeft te maken met honderden bruggen en sluizen die versleten zijn, maar er is geen geld beschikbaar voor onderhoud.",
+    "summaryNl": "Karremans beschikt over honderden bruggen en sluizen die versleten zijn, maar er is geen budget beschikbaar voor het herstel hiervan.",
     "publishedAt": "2026-03-23T05:35:00.000Z",
     "sourceDomain": "volkskrant.nl",
     "source": {
@@ -1693,7 +1967,6 @@
     },
     "imageUrl": "https://images0.persgroep.net/rcs/cafyakLY386uHwROCdmF2PoiVzE/diocontent/271423322/_crop/1872/0/4672/4672/_fill/320/320?appId=93a17a8fd81db0de025c8abd1cca1279&quality=0.85",
     "keywords": [
-      "minister",
       "karremans",
       "zit",
       "honderden",
@@ -1705,21 +1978,21 @@
       "geen",
       "geld",
       "knappen",
-      "minister",
       "karremans",
-      "heeft",
-      "maken",
+      "beschikt",
       "honderden",
       "bruggen",
       "sluizen",
       "versleten",
       "maar",
       "geen",
-      "geld",
-      "beschikbaar"
+      "budget",
+      "beschikbaar",
+      "herstel",
+      "hiervan"
     ],
     "entities": [
-      "Minister Karremans"
+      "Karremans"
     ]
   },
   {
@@ -1938,60 +2211,6 @@
     ]
   },
   {
-    "id": "8c35dfef553838cb50171cb3a769af50a40efa93f96ae712d108292e5a5c303e",
-    "url": "https://www.bbc.com/sport/football/articles/cy9g7vrj9qyo?at_medium=RSS&at_campaign=rss",
-    "canonicalUrl": "https://bbc.com/sport/football/articles/cy9g7vrj9qyo?at_medium=RSS&at_campaign=rss",
-    "title": "Inside the complex mind of Wales boss Bellamy",
-    "titleNl": "Binnen in de complexe geest van Wales-bondscoach Bellamy",
-    "excerpt": "Wales boss Craig Bellamy discusses everything from football to Balkan history - and playing Ken and Barbie - in an exclusive, in-depth interview with BBC Sport.",
-    "summaryNl": "Wales-bondscoach Craig Bellamy bespreekt in een exclusief interview met BBC Sport onderwerpen variërend van voetbal tot Balkan-geschiedenis en het spelen van Ken en Barbie.",
-    "publishedAt": "2026-03-23T05:04:15.000Z",
-    "sourceDomain": "bbc.com",
-    "source": {
-      "domain": "bbc.com",
-      "type": "news",
-      "bias": "neutral",
-      "depth": "high",
-      "region": "intl"
-    },
-    "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/6ccf/live/afd7b1a0-2207-11f1-934f-036468834728.jpg",
-    "keywords": [
-      "binnen",
-      "complexe",
-      "geest",
-      "wales",
-      "bondscoach",
-      "bellamy",
-      "wales",
-      "bondscoach",
-      "craig",
-      "bellamy",
-      "bespreekt",
-      "exclusief",
-      "interview",
-      "bbc",
-      "sport",
-      "onderwerpen",
-      "variërend",
-      "voetbal",
-      "tot",
-      "balkan",
-      "geschiedenis",
-      "spelen",
-      "ken",
-      "barbie"
-    ],
-    "entities": [
-      "BBC",
-      "Binnen",
-      "Bellamy Wales",
-      "Craig Bellamy",
-      "BBC Sport",
-      "Balkan",
-      "Barbie"
-    ]
-  },
-  {
     "id": "6342b2f2e51a6775576991d4c48a67f3c68735839f3dd7828d2a950961daa791",
     "url": "https://www.theguardian.com/world/2026/mar/23/iran-war-energy-crisis-1970s-oil-shocks-fatih-birol-iea",
     "canonicalUrl": "https://theguardian.com/world/2026/mar/23/iran-war-energy-crisis-1970s-oil-shocks-fatih-birol-iea",
@@ -2145,49 +2364,6 @@
     "entities": [
       "Iran",
       "Britse"
-    ]
-  },
-  {
-    "id": "896371da29358a15099c58b8ad71faec5a309fb693cf0e99ad00e9b1ce3d9828",
-    "url": "https://www.theguardian.com/uk-news/2026/mar/23/you-can-feel-it-south-yorkshire-revival-gathers-pace-as-new-industries-move-in",
-    "canonicalUrl": "https://theguardian.com/uk-news/2026/mar/23/you-can-feel-it-south-yorkshire-revival-gathers-pace-as-new-industries-move-in",
-    "title": "‘You can feel it’: South Yorkshire revival gathers pace as new industries move in",
-    "titleNl": "Je kunt het voelen: opleving in South Yorkshire versnelt door nieuwe industrieën",
-    "excerpt": "&lt;p&gt;From steel to screen, podcasts to defence, Sheffield’s economy is diversifying amid a wave of new investment&lt;/p&gt;&lt;p&gt;It has seen its fair share of Hollywood parties – albeit with a twist. Instead of champagne and caviar it is usually Guinness and scampi fries. Red carpet? There aren’t even cushions on the seats.&lt;/p&gt;&lt;p&gt;The tiny Sheffield pub, Fagan’s, has raised more than a few toasts in the last year as Adolescence, the Netflix hit made by two of its owners, scoope",
-    "summaryNl": "Sheffield’s economie diversifieert met nieuwe investeringen in sectoren als steel, media, podcasts en defensie.",
-    "publishedAt": "2026-03-23T05:00:40.000Z",
-    "sourceDomain": "theguardian.com",
-    "source": {
-      "domain": "theguardian.com",
-      "type": "news",
-      "bias": "left",
-      "depth": "high",
-      "region": "intl"
-    },
-    "imageUrl": "https://i.guim.co.uk/img/media/09a7b103ba5fa433a591041fba5f8093d2ce5ce1/0_0_5200_4160/master/5200.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=b546fd6ad8759716edee3e2d4f6872cb",
-    "keywords": [
-      "kunt",
-      "voelen",
-      "opleving",
-      "south",
-      "yorkshire",
-      "versnelt",
-      "nieuwe",
-      "industrieën",
-      "sheffield",
-      "economie",
-      "diversifieert",
-      "nieuwe",
-      "investeringen",
-      "sectoren",
-      "steel",
-      "media",
-      "podcasts",
-      "defensie"
-    ],
-    "entities": [
-      "South Yorkshire",
-      "Sheffield"
     ]
   },
   {
@@ -2882,43 +3058,6 @@
     ]
   },
   {
-    "id": "952e866682eaa61551d0d6311b25f6c6b39a7c9a81805485a8e5770bf5c23264",
-    "url": "https://www.ft.com/content/8ddb225f-260e-4212-a26d-621f6592b208",
-    "canonicalUrl": "https://ft.com/content/8ddb225f-260e-4212-a26d-621f6592b208",
-    "title": "Meet the TikTok realtors selling £20mn mansions on their socials",
-    "titleNl": "Ontmoet de TikTok-makelaars die huizen van £20 miljoen verkopen op hun socials",
-    "excerpt": "Take a ‘walk through’ with the superprime influencers",
-    "summaryNl": "Maak een 'wandeling' mee met de superluxe influencers.",
-    "publishedAt": "2026-03-23T05:00:15.000Z",
-    "sourceDomain": "ft.com",
-    "source": {
-      "domain": "ft.com",
-      "type": "news",
-      "bias": "center",
-      "depth": "high",
-      "region": "intl"
-    },
-    "keywords": [
-      "ontmoet",
-      "tiktok",
-      "makelaars",
-      "huizen",
-      "miljoen",
-      "verkopen",
-      "hun",
-      "socials",
-      "maak",
-      "wandeling",
-      "mee",
-      "superluxe",
-      "influencers"
-    ],
-    "entities": [
-      "Ontmoet",
-      "TikTok"
-    ]
-  },
-  {
     "id": "6cf9f69e785ceb72c525a7349d225639547883455c29f380324b947b025f30a6",
     "url": "https://www.ft.com/content/56e44d7b-4077-4785-87f6-5027a0beca66",
     "canonicalUrl": "https://ft.com/content/56e44d7b-4077-4785-87f6-5027a0beca66",
@@ -3288,13 +3427,13 @@
     ]
   },
   {
-    "id": "93ef10581409ade0ef0ca3c2143e3697dd84aa4ef095cd9d685d6ca44ec0d97a",
+    "id": "ba465ba030032aff82c6521efbfc54eec01551b18ca9b6c9140e0ad3d20d77d9",
     "url": "https://nos.nl/l/2607473",
     "canonicalUrl": "https://nos.nl/l/2607473",
-    "title": "Ambulances van joodse hulporganisatie in brand gestoken in Londen",
-    "titleNl": "Ambulances van joodse hulporganisatie in brand gestoken in Londen",
-    "excerpt": "In Londen zijn vannacht vier ambulances van een Joodse hulporganisatie in brand gestoken en uitgebrand. De politie spreekt van een antisemitische haatmisdaad.\n        De ambulances werden gebruikt door de organisatie Hatzola, een non-profitorganisatie die medische noodhulp verleent in de wijk Golders Green, waar veel joodse Britten wonen.\n        Op X zijn ongeverifieerde beelden te zien van gemaskerde mannen die een brandbare vloeistof over de voertuigen gieten. De politie neemt de zaak hoog op",
-    "summaryNl": "In Londen zijn vannacht vier ambulances van een Joodse hulporganisatie in brand gestoken en uitgebrand. De politie spreekt van een antisemitische haatmisdaad.\n        De ambulances werden gebruikt door de organisatie Hatzola, een non-profitorganisatie die medische noodhulp verleent in de wijk Golders Green, waar veel joodse Britten wonen.\n        Op X zijn ongeverifieerde beelden te zien van gemaskerde mannen die een brandbare vloeistof over de voertuigen gieten. De politie neemt de zaak hoog op",
+    "title": "Ambulances van Joodse hulporganisatie in brand gestoken in Londen",
+    "titleNl": "Ambulances van Joodse hulporganisatie in brand gestoken in Londen",
+    "excerpt": "In Londen zijn vannacht vier ambulances van een Joodse hulporganisatie in brand gestoken en uitgebrand. De politie spreekt van een antisemitische haatmisdaad.\n        De ambulances werden gebruikt door de organisatie Hatzola, een non-profitorganisatie die medische noodhulp verleent in de wijk Golders Green, waar veel Joodse Britten wonen.\n        Op X zijn ongeverifieerde beelden te zien van gemaskerde mannen die een brandbare vloeistof over de voertuigen gieten. De politie neemt de zaak hoog op",
+    "summaryNl": "In Londen zijn vannacht vier ambulances van een Joodse hulporganisatie in brand gestoken en uitgebrand. De politie spreekt van een antisemitische haatmisdaad.\n        De ambulances werden gebruikt door de organisatie Hatzola, een non-profitorganisatie die medische noodhulp verleent in de wijk Golders Green, waar veel Joodse Britten wonen.\n        Op X zijn ongeverifieerde beelden te zien van gemaskerde mannen die een brandbare vloeistof over de voertuigen gieten. De politie neemt de zaak hoog op",
     "publishedAt": "2026-03-23T04:52:48.000Z",
     "sourceDomain": "nos.nl",
     "source": {
@@ -3333,11 +3472,11 @@
     ],
     "entities": [
       "Ambulances",
-      "Londen In Londen",
       "Joodse",
+      "Londen In Londen",
       "Hatzola",
       "Golders Green",
-      "Britten"
+      "Joodse Britten"
     ]
   },
   {
@@ -3663,6 +3802,91 @@
       "Wereld Meteorologische Organisatie",
       "Wetenschappers",
       "Sommige"
+    ]
+  },
+  {
+    "id": "68af482fc11b930439cf5f9a85c373e738904cb18b86f6d426fad4f30839d674",
+    "url": "https://www.volkskrant.nl/buitenland/waar-haalt-de-finse-president-zijn-optimisme-over-oekraine-vandaan-van-deze-steun-kon-finland-alleen-maar-dromen~b7701e5e/",
+    "canonicalUrl": "https://volkskrant.nl/buitenland/waar-haalt-de-finse-president-zijn-optimisme-over-oekraine-vandaan-van-deze-steun-kon-finland-alleen-maar-dromen~b7701e5e",
+    "title": "Waar haalt de Finse president zijn optimisme over Oekraïne vandaan? ‘Van deze steun kon Finland alleen maar dromen’",
+    "titleNl": "Waar haalt de Finse president zijn optimisme over Oekraïne vandaan? ‘Van deze steun kon Finland alleen maar dromen’",
+    "excerpt": "",
+    "summaryNl": "De Finse president is optimistisch over Oekraïne vanwege de steun die het land ontvangt, steun waar Finland vroeger alleen van kon dromen.",
+    "publishedAt": "2026-03-23T04:00:00.000Z",
+    "sourceDomain": "volkskrant.nl",
+    "source": {
+      "domain": "volkskrant.nl",
+      "type": "news",
+      "bias": "slightly-left",
+      "depth": "high",
+      "region": "nl"
+    },
+    "imageUrl": "https://images0.persgroep.net/rcs/7VPTgTBztMP1xftKtRH-g2agFeE/diocontent/270379863/_crop/198/26/2417/2417/_fill/320/320?appId=93a17a8fd81db0de025c8abd1cca1279&quality=0.85",
+    "keywords": [
+      "waar",
+      "haalt",
+      "finse",
+      "president",
+      "optimisme",
+      "oekraïne",
+      "vandaan",
+      "deze",
+      "steun",
+      "kon",
+      "finland",
+      "alleen",
+      "maar",
+      "dromen",
+      "finse",
+      "president",
+      "optimistisch",
+      "oekraïne",
+      "vanwege",
+      "steun",
+      "land",
+      "ontvangt",
+      "steun",
+      "waar"
+    ],
+    "entities": [
+      "Oekraïne",
+      "Finland",
+      "De Finse"
+    ]
+  },
+  {
+    "id": "d2f8883b0b5cd6cda0ca51bfb0207313f0fd7b9c75e9e0ab5c2384d482086ed0",
+    "url": "https://www.volkskrant.nl/economie/truien-van-gerecyclede-petflessen-laten-vooral-zien-dat-de-kleding-industrie-nog-totaal-niet-duurzaam-is~b027c04d/",
+    "canonicalUrl": "https://volkskrant.nl/economie/truien-van-gerecyclede-petflessen-laten-vooral-zien-dat-de-kleding-industrie-nog-totaal-niet-duurzaam-is~b027c04d",
+    "title": "Truien van gerecyclede petflessen laten zien dat de kleding­industrie nog totaal niet duurzaam is",
+    "titleNl": "Truien van gerecyclede petflessen laten zien dat de kleding­industrie nog totaal niet duurzaam is",
+    "excerpt": "",
+    "summaryNl": "",
+    "publishedAt": "2026-03-23T04:00:00.000Z",
+    "sourceDomain": "volkskrant.nl",
+    "source": {
+      "domain": "volkskrant.nl",
+      "type": "news",
+      "bias": "slightly-left",
+      "depth": "high",
+      "region": "nl"
+    },
+    "imageUrl": "https://images0.persgroep.net/rcs/w1rzz5AphrbB_wbRnp5ggLiMM1Q/diocontent/271458690/_focus/0.5/0.5/_fill/320/320?appId=93a17a8fd81db0de025c8abd1cca1279&quality=0.85",
+    "keywords": [
+      "truien",
+      "gerecyclede",
+      "petflessen",
+      "laten",
+      "zien",
+      "kleding",
+      "industrie",
+      "nog",
+      "totaal",
+      "niet",
+      "duurzaam"
+    ],
+    "entities": [
+      "Truien"
     ]
   },
   {
@@ -4972,7 +5196,7 @@
       "depth": "high",
       "region": "intl"
     },
-    "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3729/live/c99fa820-2632-11f1-a403-5bd9c877f2f4.jpg",
+    "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f496/live/8e302be0-268a-11f1-934f-036468834728.png",
     "keywords": [
       "socialisten",
       "frankrijk",
@@ -5202,13 +5426,13 @@
     ]
   },
   {
-    "id": "2498cf10aab53d66b6e993129644f66384ee57a9d88dce3d446dcb7404133b0d",
+    "id": "6adc7586a549b3712216f23d60811f18b9f1557c546826165cb4ec77c74fc2e7",
     "url": "https://www.france24.com/en/middle-east/20260322-iran-gulf-water-energy-threat-trump-ultimatum",
     "canonicalUrl": "https://france24.com/en/middle-east/20260322-iran-gulf-water-energy-threat-trump-ultimatum",
-    "title": "Iran threatens to cripple Gulf water and energy systems after Trump ultimatum",
-    "titleNl": "Iran dreigt Golf water- en energiesystemen te saboteren na ultimatum Trump",
-    "excerpt": "Iran said on Sunday it would target Gulf energy and water infrastructure if U.S. President Donald Trump follows through on a threat to strike its power grid within 48 hours, escalating the conflict. Air raid sirens sounded across Israel after overnight Iranian missile attacks injured dozens in Arad and Dimona.",
-    "summaryNl": "Iran dreigt met aanvallen op energie- en waterinfrastructuur in de Golf als Trump zijn dreiging om het elektriciteitsnet binnen 48 uur aan te vallen uitvoert, terwijl luchtaanvalalarmen in Israël afgingen na Iraanse raketaanvallen die tientallen verwondden.",
+    "title": "Iran threatens to cripple Gulf water, energy systems after Trump ultimatum",
+    "titleNl": "Iran dreigt met sabotage van water- en energiesystemen in de Golf na ultimatum van Trump",
+    "excerpt": "Iran said on Sunday it would target Gulf energy and water infrastructure if US President Donald Trump follows through on a threat to strike its power grid within 48 hours, escalating the conflict. Air raid sirens sounded across Israel after overnight Iranian missile attacks injured dozens in Arad and Dimona.",
+    "summaryNl": "Iran verklaarde zondag dat het de water- en energie-infrastructuur in de Golf zal aanvallen als president Trump zijn dreiging om het elektriciteitsnet binnen 48 uur aan te vallen, uitvoert. Luchtradioalarmen klonken in Israël na Iraanse raketaanvallen waarbij tientallen gewonden vielen in Arad en Dimona.",
     "publishedAt": "2026-03-22T22:57:57.000Z",
     "sourceDomain": "france24.com",
     "source": {
@@ -5222,34 +5446,36 @@
     "keywords": [
       "iran",
       "dreigt",
-      "golf",
+      "sabotage",
       "water",
       "energiesystemen",
-      "saboteren",
+      "golf",
       "ultimatum",
       "trump",
       "iran",
-      "dreigt",
-      "aanvallen",
+      "verklaarde",
+      "zondag",
+      "water",
       "energie",
-      "waterinfrastructuur",
+      "infrastructuur",
       "golf",
+      "zal",
+      "aanvallen",
+      "president",
       "trump",
       "dreiging",
       "elektriciteitsnet",
       "binnen",
       "uur",
-      "vallen",
-      "uitvoert",
-      "terwijl",
-      "luchtaanvalalarmen",
-      "israël"
+      "vallen"
     ],
     "entities": [
       "Israël",
       "Iran",
       "Trump Iran",
-      "Iraanse"
+      "Luchtradioalarmen",
+      "Iraanse",
+      "Dimona"
     ]
   },
   {
@@ -5495,59 +5721,13 @@
     ]
   },
   {
-    "id": "a949559d0b0644a402048bc56b5c40c89c1db49a0a44e336a9402fb347938cff",
-    "url": "https://www.bbc.com/sport/football/articles/c0krjkl3kn0o?at_medium=RSS&at_campaign=rss",
-    "canonicalUrl": "https://bbc.com/sport/football/articles/c0krjkl3kn0o?at_medium=RSS&at_campaign=rss",
-    "title": "Who has made Troy's Premier League team of the week?",
-    "titleNl": "Wie heeft Troy's Premier League team van de week samengesteld?",
-    "excerpt": "After every round of Premier League matches this season, Troy Deeney gives us his team of the week. Do you agree with his choices?",
-    "summaryNl": "Na elke speelronde in de Premier League stelt Troy Deeney zijn team van de week samen. Ben je het eens met zijn keuzes?",
-    "publishedAt": "2026-03-22T22:08:51.000Z",
-    "sourceDomain": "bbc.com",
-    "source": {
-      "domain": "bbc.com",
-      "type": "news",
-      "bias": "neutral",
-      "depth": "high",
-      "region": "intl"
-    },
-    "imageUrl": "https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/cc45/live/60256500-263d-11f1-a67d-43e6bd403123.png",
-    "keywords": [
-      "wie",
-      "heeft",
-      "troys",
-      "premier",
-      "league",
-      "team",
-      "week",
-      "samengesteld",
-      "elke",
-      "speelronde",
-      "premier",
-      "league",
-      "stelt",
-      "troy",
-      "deeney",
-      "team",
-      "week",
-      "samen",
-      "ben",
-      "eens",
-      "keuzes"
-    ],
-    "entities": [
-      "Premier League",
-      "Troy Deeney"
-    ]
-  },
-  {
     "id": "314bba85eed679f5142f1e885a78e3c3973eb65b260fafbaace1c266ed844bbd",
     "url": "https://nos.nl/l/2607457",
     "canonicalUrl": "https://nos.nl/l/2607457",
     "title": "Energiebesparingsplan ingevoerd in Venezuela, interim-leider geeft schuld aan zonnestralen",
     "titleNl": "Energiebesparingsplan ingevoerd in Venezuela, interim-leider geeft schuld aan zonnestralen",
-    "excerpt": "De Venezolaanse interim-leider Delcy Rodríguez heeft een nationaal energiebesparingsplan aangekondigd. Als reden geeft ze aan extreme temperaturen en een toename in bosbranden te verwachten, wat weer gevolgen zou kunnen hebben voor het elektriciteitsnet. De maatregelen gaan per direct in.\n        Internationale media trekken de reden in twijfel. Volgens de Spaanse krant El Mundo is het het zoveelste excuses van het regime, \"opgevoerd om het falende energiebeleid te rechtvaardigen\". Ook de Latijn",
-    "summaryNl": "De Venezolaanse interim-leider Delcy Rodríguez heeft een nationaal energiebesparingsplan aangekondigd. Als reden geeft ze aan extreme temperaturen en een toename in bosbranden te verwachten, wat weer gevolgen zou kunnen hebben voor het elektriciteitsnet. De maatregelen gaan per direct in.\n        Internationale media trekken de reden in twijfel. Volgens de Spaanse krant El Mundo is het het zoveelste excuses van het regime, \"opgevoerd om het falende energiebeleid te rechtvaardigen\". Ook de Latijn",
+    "excerpt": "De Venezolaanse interim-leider Delcy Rodríguez heeft een nationaal energiebesparingsplan aangekondigd. Als reden geeft ze aan extreme temperaturen en een toename in bosbranden te verwachten, wat weer gevolgen zou kunnen hebben voor het elektriciteitsnet. De maatregelen gaan per direct in.\n        Internationale media trekken de reden in twijfel. Volgens de Spaanse krant El Mundo is het het zoveelste excuus van het regime, \"opgevoerd om het falende energiebeleid te rechtvaardigen\". Ook de Latijns",
+    "summaryNl": "De Venezolaanse interim-leider Delcy Rodríguez heeft een nationaal energiebesparingsplan aangekondigd. Als reden geeft ze aan extreme temperaturen en een toename in bosbranden te verwachten, wat weer gevolgen zou kunnen hebben voor het elektriciteitsnet. De maatregelen gaan per direct in.\n        Internationale media trekken de reden in twijfel. Volgens de Spaanse krant El Mundo is het het zoveelste excuus van het regime, \"opgevoerd om het falende energiebeleid te rechtvaardigen\". Ook de Latijns",
     "publishedAt": "2026-03-22T21:52:20.000Z",
     "sourceDomain": "nos.nl",
     "source": {
@@ -5593,7 +5773,7 @@
       "Volgens",
       "Spaanse",
       "El Mundo",
-      "Latijn"
+      "Latijns"
     ]
   },
   {
@@ -7594,98 +7774,6 @@
     ]
   },
   {
-    "id": "0519272dc03c051506e7f719f3bf78359c3b8d25ac56773c5303ce1531f64e33",
-    "url": "https://www.aljazeera.com/sports/liveblog/2026/3/22/live-real-madrid-vs-atletico-madrid-la-liga?traffic_source=rss",
-    "canonicalUrl": "https://aljazeera.com/sports/liveblog/2026/3/22/live-real-madrid-vs-atletico-madrid-la-liga?traffic_source=rss",
-    "title": "Real Madrid vs Atletico Madrid 3-2: La Liga – as it happened",
-    "titleNl": "Real Madrid vs Atletico Madrid 3-2: La Liga – het gebeurde live",
-    "excerpt": "All the updates as Real Madrid come from behind to beat Atletico and stay in touch with league leaders Barca.",
-    "summaryNl": "Real Madrid komt terug van een achterstand om Atletico te verslaan en blijft in contact met koploper Barca.",
-    "publishedAt": "2026-03-22T17:00:00.000Z",
-    "sourceDomain": "aljazeera.com",
-    "source": {
-      "domain": "aljazeera.com",
-      "type": "news",
-      "bias": "mixed",
-      "depth": "high",
-      "region": "intl"
-    },
-    "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/03/getty_69be88e7df-1774094567.jpg?resize=1920%2C1440",
-    "keywords": [
-      "real",
-      "madrid",
-      "atletico",
-      "madrid",
-      "liga",
-      "gebeurde",
-      "live",
-      "real",
-      "madrid",
-      "komt",
-      "terug",
-      "achterstand",
-      "atletico",
-      "verslaan",
-      "blijft",
-      "contact",
-      "koploper",
-      "barca"
-    ],
-    "entities": [
-      "Verenigde Staten",
-      "Real Madrid",
-      "Atletico Madrid",
-      "La Liga",
-      "Atletico"
-    ]
-  },
-  {
-    "id": "c9d4822357c9f2650f70a0e47ae34efa4eebfcebf035c9f33cbe030229d8f59d",
-    "url": "https://www.aljazeera.com/video/quotable/2026/3/22/risk-of-escalation-is-extremely-high-as-iran-shows-it-can?traffic_source=rss",
-    "canonicalUrl": "https://aljazeera.com/video/quotable/2026/3/22/risk-of-escalation-is-extremely-high-as-iran-shows-it-can?traffic_source=rss",
-    "title": "‘Risk of escalation is extremely high as Iran shows it can retaliate’",
-    "titleNl": "‘Risico op escalatie is extreem hoog nu Iran laat zien dat het kan terugslaan’",
-    "excerpt": "‘The Iranians are indeed retaliating against everything that the Israelis and Americans are hitting’",
-    "summaryNl": "De Iraniërs slaan inderdaad terug op alles wat de Israëliërs en Amerikanen treffen.",
-    "publishedAt": "2026-03-22T16:52:35.000Z",
-    "sourceDomain": "aljazeera.com",
-    "source": {
-      "domain": "aljazeera.com",
-      "type": "news",
-      "bias": "mixed",
-      "depth": "high",
-      "region": "intl"
-    },
-    "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/03/Elijah-horiz-thumb-1774198301.jpg?resize=1920%2C1080&quality=80",
-    "keywords": [
-      "risico",
-      "escalatie",
-      "extreem",
-      "hoog",
-      "iran",
-      "laat",
-      "zien",
-      "kan",
-      "terugslaan",
-      "iraniërs",
-      "slaan",
-      "inderdaad",
-      "terug",
-      "alles",
-      "wat",
-      "israëliërs",
-      "amerikanen",
-      "treffen"
-    ],
-    "entities": [
-      "Iran",
-      "Risico",
-      "De Iraniërs",
-      "Israëliërs",
-      "Amerikanen"
-    ]
-  },
-  {
     "id": "c3b59296a001348d88f050942f90ed27c400e8ad27fa62f3f6aa7226fd0514ae",
     "url": "https://www.france24.com/en/video/20260322-voter-turnout-reaches-48-1-at-5pm-in-second-round-of-municipal-elections",
     "canonicalUrl": "https://france24.com/en/video/20260322-voter-turnout-reaches-48-1-at-5pm-in-second-round-of-municipal-elections",
@@ -7940,39 +8028,6 @@
     ]
   },
   {
-    "id": "59bac4b0ee3e23bf0d9bf7094b3db6b3572a3af8978737903b0a4b536c7bb6d8",
-    "url": "https://www.volkskrant.nl/economie/puissant-rijk-europa-schiet-in-oude-reflexen-bij-hoge-energieprijs~ba6225a4/",
-    "canonicalUrl": "https://volkskrant.nl/economie/puissant-rijk-europa-schiet-in-oude-reflexen-bij-hoge-energieprijs~ba6225a4",
-    "title": "Puissant rijk Europa schiet in oude reflexen bij hoge energieprijs",
-    "titleNl": "Puissant rijk Europa schiet in oude reflexen bij hoge energieprijs",
-    "excerpt": "",
-    "summaryNl": "",
-    "publishedAt": "2026-03-22T16:36:00.000Z",
-    "sourceDomain": "volkskrant.nl",
-    "source": {
-      "domain": "volkskrant.nl",
-      "type": "news",
-      "bias": "slightly-left",
-      "depth": "high",
-      "region": "nl"
-    },
-    "imageUrl": "https://images0.persgroep.net/rcs/NR3PomN34goHDwMOfiN6eSoLwZ4/diocontent/271437851/_focus/0.5/0.5/_fill/320/320?appId=93a17a8fd81db0de025c8abd1cca1279&quality=0.85",
-    "keywords": [
-      "puissant",
-      "rijk",
-      "europa",
-      "schiet",
-      "oude",
-      "reflexen",
-      "hoge",
-      "energieprijs"
-    ],
-    "entities": [
-      "Europa",
-      "Puissant"
-    ]
-  },
-  {
     "id": "b2320728b70030adc5c368b281566fcab71f2792e1dd9aee56d22d33ac8a690a",
     "url": "https://nos.nl/l/2607395",
     "canonicalUrl": "https://nos.nl/l/2607395",
@@ -8067,52 +8122,6 @@
       "De Britse",
       "Amerikaanse"
     ]
-  },
-  {
-    "id": "f49ec04d33319f347c41bc7390b27d57296607eb41507c4a6fd0c1ef99ce708f",
-    "url": "https://www.volkskrant.nl/nieuws-achtergrond/de-ontevredenheid-over-nederland-is-groot-op-de-jaarlijkse-emigratiebeurs-in-utrecht~ba8b085d/",
-    "canonicalUrl": "https://volkskrant.nl/nieuws-achtergrond/de-ontevredenheid-over-nederland-is-groot-op-de-jaarlijkse-emigratiebeurs-in-utrecht~ba8b085d",
-    "title": "‘Ze versjouwen ons belastinggeld naar oorlogen waar wij niks mee te maken hebben’",
-    "titleNl": "Ze besteden ons belastinggeld aan oorlogen waar wij niets mee te maken hebben",
-    "excerpt": "",
-    "summaryNl": "Het artikel gaat over het fenomeen waarin belastinggeld wordt gebruikt voor buitenlandse oorlogen die voor de gewone bevolking geen directe relevantie hebben.",
-    "publishedAt": "2026-03-22T16:17:00.000Z",
-    "sourceDomain": "volkskrant.nl",
-    "source": {
-      "domain": "volkskrant.nl",
-      "type": "news",
-      "bias": "slightly-left",
-      "depth": "high",
-      "region": "nl"
-    },
-    "imageUrl": "https://images0.persgroep.net/rcs/1URgUtmMXBqSaS2dHSrCOjRu0_0/diocontent/271549471/_crop/337/0/2362/2362/_fill/320/320?appId=93a17a8fd81db0de025c8abd1cca1279&quality=0.85",
-    "keywords": [
-      "besteden",
-      "ons",
-      "belastinggeld",
-      "oorlogen",
-      "waar",
-      "wij",
-      "niets",
-      "mee",
-      "maken",
-      "hebben",
-      "artikel",
-      "gaat",
-      "fenomeen",
-      "waarin",
-      "belastinggeld",
-      "gebruikt",
-      "buitenlandse",
-      "oorlogen",
-      "gewone",
-      "bevolking",
-      "geen",
-      "directe",
-      "relevantie",
-      "hebben"
-    ],
-    "entities": []
   },
   {
     "id": "fb7bba3731e5842a60dbebb5bf36e9d7aa781c91d3406b1340389d7eaa84d57a",
@@ -9318,57 +9327,6 @@
       "Robert",
       "Mueller III",
       "Donald Trumps"
-    ]
-  },
-  {
-    "id": "903596b1c147bc7fc6d408d3dfff6938c95350f4819bf327c456b59bcde603c1",
-    "url": "https://www.france24.com/en/marseille-mayoral-race-narrows-after-hard-left-withdrawal",
-    "canonicalUrl": "https://france24.com/en/marseille-mayoral-race-narrows-after-hard-left-withdrawal",
-    "title": "Marseille mayoral race narrows after hard-left withdrawal",
-    "titleNl": "Burgemeestersverkiezing in Marseille versmalt na terugtrekking extreem-links",
-    "excerpt": "In France’s second city, Marseille, residents headed to polling stations to choose their new mayor among three candidates: incumbent left-wing Mayor Benoît Payan, far-right candidate Franck Allisio, and conservative Martine Vassal. Hard-left candidate Sébastien Delogu withdrew after scoring lower than expected, in an attempt to block the far right from winning. FRANCE 24's Clovis Casali reports from Marseille.",
-    "summaryNl": "In Marseille gingen inwoners stemmen op drie kandidaten na de terugtrekking van extreem-linkse Sébastien Delogu, die minder scoorde dan verwacht om te voorkomen dat extreemrechts wint.",
-    "publishedAt": "2026-03-22T12:42:57.000Z",
-    "sourceDomain": "france24.com",
-    "source": {
-      "domain": "france24.com",
-      "type": "news",
-      "bias": "mixed",
-      "depth": "high",
-      "region": "intl"
-    },
-    "imageUrl": "https://s.france24.com/media/display/40d6888e-25eb-11f1-9fd7-005056a97e36/w:1024/p:16x9/EN-20260322-131737-132138-CS.jpg",
-    "keywords": [
-      "burgemeestersverkiezing",
-      "marseille",
-      "versmalt",
-      "terugtrekking",
-      "extreem",
-      "links",
-      "marseille",
-      "gingen",
-      "inwoners",
-      "stemmen",
-      "drie",
-      "kandidaten",
-      "terugtrekking",
-      "extreem",
-      "linkse",
-      "sébastien",
-      "delogu",
-      "minder",
-      "scoorde",
-      "dan",
-      "verwacht",
-      "voorkomen",
-      "extreemrechts",
-      "wint"
-    ],
-    "entities": [
-      "Burgemeestersverkiezing",
-      "Marseille",
-      "In Marseille",
-      "Sébastien Delogu"
     ]
   },
   {
@@ -10640,54 +10598,6 @@
       "Valley",
       "Amerikaanse",
       "Veronderstel"
-    ]
-  },
-  {
-    "id": "0c52fe7f496a842899072a1460a390489d5b97223118f4095cc3d342afccaca3",
-    "url": "https://www.dw.com/en/czechs-plan-major-rally-as-mps-mull-foreign-agent-law/a-76429630?maca=en-rss-en-world-4025-xml-mrss",
-    "canonicalUrl": "https://dw.com/en/czechs-plan-major-rally-as-mps-mull-foreign-agent-law/a-76429630?maca=en-rss-en-world-4025-xml-mrss",
-    "title": "Czechs plan major rally as MPs mull &#039;foreign agent&#039; law",
-    "titleNl": "Tsjechen plannen grote demonstratie terwijl parlement 'buitenlandse agent'-wet bespreekt",
-    "excerpt": "Prague could see one of its largest demonstrations in recent years on Saturday. Many Czechs are preparing to protest what organizers of the rally describe as democratic backsliding under Prime Minister Andrej Babis.",
-    "summaryNl": "Praag verwacht zaterdag een van de grootste demonstraties van recente jaren tegen wat organisatoren zien als democratische achteruitgang onder premier Andrej Babis.",
-    "publishedAt": "2026-03-21T09:51:00.000Z",
-    "sourceDomain": "dw.com",
-    "source": {
-      "domain": "dw.com",
-      "type": "news",
-      "bias": "neutral",
-      "depth": "high",
-      "region": "intl"
-    },
-    "keywords": [
-      "tsjechen",
-      "plannen",
-      "grote",
-      "demonstratie",
-      "terwijl",
-      "parlement",
-      "buitenlandse",
-      "agent",
-      "wet",
-      "bespreekt",
-      "praag",
-      "verwacht",
-      "zaterdag",
-      "grootste",
-      "demonstraties",
-      "recente",
-      "jaren",
-      "tegen",
-      "wat",
-      "organisatoren",
-      "zien",
-      "democratische",
-      "achteruitgang",
-      "onder"
-    ],
-    "entities": [
-      "Tsjechen",
-      "Andrej Babis"
     ]
   },
   {
