@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import * as fsSync from "node:fs";
 import path from "node:path";
 import OpenAI from "openai";
 import type { AiStory, InvestigationToolPill, Story, StoryCategory, StoryTopic } from "./types.js";
@@ -448,50 +449,72 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
 
   validateOpenAiObjectSchema(schemaObject as unknown, "story_analysis.schema");
 
-  const out: Story[] = [];
+  type CacheTask = {
+    index: number;
+    story: Story;
+    selected: Story["articles"];
+    selectedIds: string[];
+    cacheKey: string;
+    cachePath: string;
+  };
+
+  const out: Story[] = new Array(stories.length);
   const usedCacheKeys = new Set<string>();
-  for (const story of stories) {
+  const toGenerate: CacheTask[] = [];
+
+  const chunkArray = <T,>(arr: T[], size: number): T[][] => {
+    const chunks: T[][] = [];
+    for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
+    return chunks;
+  };
+
+  for (let i = 0; i < stories.length; i++) {
+    const story = stories[i];
     const selected = pickTopArticlesForAi(story, maxArticlesPerStory);
     const selectedIds = selected.map((a) => a.id);
     const cacheKey = storyCacheKey(story, selectedIds);
     const cachePath = path.join(cacheDir, `${cacheKey}.json`);
     usedCacheKeys.add(cacheKey);
 
-    try {
+    if (fsSync.existsSync(cachePath)) {
       const cached = await fs.readFile(cachePath, "utf8").catch(() => null);
       if (cached) {
         try {
+          // Cache is written as cleaned AiResponse; trust it to avoid extra normalize/sanitize passes.
           const parsed = JSON.parse(cached) as AiResponse;
-          normalizeParsedAiStoryShape(parsed as unknown as Record<string, unknown>);
           const { category, topic, shortHeadline, ...rawAi } = parsed;
-          const aiStory = sanitizeAiStory(rawAi as AiStory);
-          const cleaned: AiResponse = {
+          const aiStory = rawAi as AiStory;
+
+          out[i] = {
+            ...story,
             category: category ?? "overig",
             topic: topic ?? "overig",
             shortHeadline: shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
-            ...aiStory
-          };
-          await fs.writeFile(cachePath, JSON.stringify(cleaned, null, 2), "utf8");
-          out.push({
-            ...story,
-            category: cleaned.category,
-            topic: cleaned.topic,
-            shortHeadline:
-              cleaned.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
             ai: aiStory,
             aiStatus: "ok",
             aiCacheKey: cacheKey
-          });
+          };
           console.log(`[ai] cache hit ${story.slug} (${cacheKey})`);
           continue;
-        } catch (e) {
+        } catch {
           console.warn("[ai] cached JSON invalid; treating as cache miss", {
             slug: story.slug,
             cacheKey
           });
         }
       }
+    }
 
+    toGenerate.push({ index: i, story, selected, selectedIds, cacheKey, cachePath });
+  }
+
+  if (toGenerate.length === 0) {
+    console.log("[ai] no new stories, skipping");
+  } else {
+    const AI_CONCURRENCY = 5;
+
+    const generateForTask = async (task: CacheTask): Promise<Story> => {
+      const { story, selected, cacheKey, cachePath } = task;
       console.log(`[ai] generating ${story.slug} (${cacheKey}) sources=${selected.length}`);
 
       const sourcesPayload = selected.map((a) => ({
@@ -712,65 +735,78 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
         }
       };
 
-      const resp = await openAiResponsesCreate(client as any, payload, {
-        name: `story_analysis:${story.slug}`,
-        context: {
-          selectedArticleIds: selected.map((a) => a.id).slice(0, 8),
-          selectedArticleCount: selected.length
+      try {
+        const resp = await openAiResponsesCreate(client as any, payload, {
+          name: `story_analysis:${story.slug}`,
+          context: {
+            selectedArticleIds: selected.map((a) => a.id).slice(0, 8),
+            selectedArticleCount: selected.length
+          }
+        });
+
+        const parsed = (resp as any)?.output_parsed as AiResponse | undefined;
+        if (!parsed) {
+          console.warn("[ai] No structured output; raw response follows");
+          console.warn(JSON.stringify(resp, null, 2));
+          throw new Error("OpenAI structured output missing");
         }
-      });
+        if (!parsed.category || !parsed.topic) {
+          console.warn("[ai] Invalid AI structure, fallback triggered");
+          throw new Error("Invalid AI structure");
+        }
 
-      const parsed = (resp as any)?.output_parsed as AiResponse | undefined;
+        normalizeParsedAiStoryShape(parsed as unknown as Record<string, unknown>);
 
-      if (!parsed) {
-        console.warn("[ai] No structured output; raw response follows");
-        console.warn(JSON.stringify(resp, null, 2));
-        throw new Error("OpenAI structured output missing");
+        const { category, topic, shortHeadline, ...rawAi } = parsed;
+        const aiStory = sanitizeAiStory(rawAi as AiStory);
+        const cleaned: AiResponse = {
+          category: category ?? "overig",
+          topic: topic ?? "overig",
+          shortHeadline: shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
+          ...aiStory
+        };
+
+        // Alleen bij AI-success cache schrijven.
+        await fs.writeFile(cachePath, JSON.stringify(cleaned, null, 2), "utf8");
+
+        return {
+          ...story,
+          category: cleaned.category,
+          topic: cleaned.topic,
+          shortHeadline: cleaned.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
+          ai: aiStory,
+          aiStatus: "ok",
+          aiCacheKey: cacheKey
+        };
+      } catch (err: unknown) {
+        console.error("AI generation failed:", err instanceof Error ? err.message : err);
+        console.error("AI generation context:", {
+          slug: story.slug,
+          storyId: story.storyId,
+          cacheKey
+        });
+        if (STRICT_AI) throw err;
+
+        return {
+          ...story,
+          category: story.category ?? "overig",
+          topic: story.topic ?? "overig",
+          shortHeadline: story.shortHeadline ?? fallbackShortHeadline(story),
+          ai: sanitizeAiStory(fallbackAi(story)),
+          aiStatus: "fallback" as const,
+          aiCacheKey: cacheKey
+        };
       }
+    };
 
-      if (!parsed.category || !parsed.topic) {
-        console.warn("[ai] Invalid AI structure, fallback triggered");
-        throw new Error("Invalid AI structure");
-      }
-
-      normalizeParsedAiStoryShape(parsed as unknown as Record<string, unknown>);
-
-      const { category, topic, shortHeadline, ...rawAi } = parsed;
-      const aiStory = sanitizeAiStory(rawAi as AiStory);
-      const cleaned: AiResponse = {
-        category: category ?? "overig",
-        topic: topic ?? "overig",
-        shortHeadline: shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
-        ...aiStory
-      };
-
-      await fs.writeFile(cachePath, JSON.stringify(cleaned, null, 2), "utf8");
-      out.push({
-        ...story,
-        category: cleaned.category,
-        topic: cleaned.topic,
-        shortHeadline: cleaned.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
-        ai: aiStory,
-        aiStatus: "ok",
-        aiCacheKey: cacheKey
-      });
-    } catch (err: unknown) {
-      console.error("AI generation failed:", err instanceof Error ? err.message : err);
-      console.error("AI generation context:", {
-        slug: story.slug,
-        storyId: story.storyId,
-        cacheKey
-      });
-      if (STRICT_AI) throw err;
-      out.push({
-        ...story,
-        category: story.category ?? "overig",
-        topic: story.topic ?? "overig",
-        shortHeadline: story.shortHeadline ?? fallbackShortHeadline(story),
-        ai: sanitizeAiStory(fallbackAi(story)),
-        aiStatus: "fallback" as const,
-        aiCacheKey: cacheKey
-      });
+    for (const chunk of chunkArray(toGenerate, AI_CONCURRENCY)) {
+      const results = await Promise.all(
+        chunk.map(async (t) => ({
+          index: t.index,
+          story: await generateForTask(t)
+        }))
+      );
+      for (const r of results) out[r.index] = r.story;
     }
   }
 

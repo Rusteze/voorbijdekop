@@ -1,10 +1,11 @@
 import "dotenv/config";
 import fs from "node:fs/promises";
+import * as fsSync from "node:fs";
 import path from "node:path";
 import { fetchRssArticles } from "./fetch-rss.js";
 import { clusterArticlesToStories } from "./cluster.js";
 import { enrichStoriesWithAi } from "./ai-enrich.js";
-import type { Article, Story } from "./types.js";
+import type { AiStory, Article, Story } from "./types.js";
 import { sha256Hex } from "./utils/hash.js";
 
 async function writeJson(filePath: string, data: unknown) {
@@ -136,6 +137,28 @@ function applyRijksoverheidImageRules(story: Story) {
   return { ...story, imageUrl: best.imageUrl };
 }
 
+function pickTopArticlesForAi(story: Story, max: number) {
+  const depthRank = (d: string) => (d === "very-high" ? 3 : d === "high" ? 2 : 1);
+  const typeRank = (t: string) => (t === "investigative" ? 3 : t === "analysis" ? 2 : 1);
+
+  return [...story.articles]
+    .sort((a, b) => {
+      const wa = depthRank(a.source.depth) * 10 + typeRank(a.source.type);
+      const wb = depthRank(b.source.depth) * 10 + typeRank(b.source.type);
+      return wb - wa || b.publishedAt.localeCompare(a.publishedAt);
+    })
+    .slice(0, max);
+}
+
+function storyCacheKey(story: Story, selectedIds: string[]) {
+  const payload = {
+    storyId: story.storyId,
+    ids: selectedIds,
+    titles: selectedIds.map((id) => story.articles.find((a) => a.id === id)?.title ?? "")
+  };
+  return sha256Hex(JSON.stringify(payload)).slice(0, 24);
+}
+
 async function main() {
   const buildAt = new Date().toISOString();
   console.log(`[build-data] start ${buildAt}`);
@@ -242,8 +265,97 @@ async function main() {
     }))
     .filter((s: any) => allowedTopics.has((s.topic ?? "overig") as string));
 
-  // AI enrichment (strict JSON + caching + article cap)
-  stories = await enrichStoriesWithAi(stories, { maxArticlesPerStory: 8 });
+  // AI enrichment: alleen voor nieuwe stories (bestaande cache = direct trust).
+  const maxArticlesPerStory = 8;
+  const cacheDir = path.resolve("data/ai");
+  await fs.mkdir(cacheDir, { recursive: true });
+
+  type CacheTask = { index: number; story: Story; cacheKey: string; cachePath: string };
+
+  const cachedSlots: (Story | undefined)[] = new Array(stories.length);
+  const cachedTasks: CacheTask[] = [];
+  const newStories: Story[] = [];
+  const newStoryIndices: number[] = [];
+
+  for (let i = 0; i < stories.length; i++) {
+    const story = stories[i];
+    const selected = pickTopArticlesForAi(story, maxArticlesPerStory);
+    const selectedIds = selected.map((a) => a.id);
+    const cacheKey = storyCacheKey(story, selectedIds);
+    const cachePath = path.join(cacheDir, `${cacheKey}.json`);
+
+    if (fsSync.existsSync(cachePath)) {
+      cachedTasks.push({ index: i, story, cacheKey, cachePath });
+    } else {
+      newStoryIndices.push(i);
+      newStories.push(story);
+    }
+  }
+
+  const chunkArray = <T,>(arr: T[], size: number): T[][] => {
+    const chunks: T[][] = [];
+    for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
+    return chunks;
+  };
+
+  const AI_CACHE_READ_CONCURRENCY = 20;
+
+  // 1) Cache lezen voor cachedTasks; bij parse-fout behandelen we als cache-miss.
+  const loadCached = async (task: CacheTask): Promise<{ index: number; ok: true; story: Story } | { index: number; ok: false; story: Story }> => {
+    try {
+      const cached = await fs.readFile(task.cachePath, "utf8");
+      const parsed = JSON.parse(cached) as { category?: string; topic?: string; shortHeadline?: string } & Partial<AiStory> & Record<string, unknown>;
+      const { category, topic, shortHeadline, ...rawAi } = parsed;
+      const aiStory = rawAi as AiStory;
+
+      return {
+        index: task.index,
+        ok: true,
+        story: {
+          ...task.story,
+          category: (category as any) ?? "overig",
+          topic: (topic as any) ?? "overig",
+          shortHeadline: shortHeadline ?? task.story.shortHeadline,
+          ai: aiStory,
+          aiStatus: "ok",
+          aiCacheKey: task.cacheKey
+        }
+      };
+    } catch {
+      return { index: task.index, ok: false, story: task.story };
+    }
+  };
+
+  if (cachedTasks.length > 0) {
+    for (const chunk of chunkArray(cachedTasks, AI_CACHE_READ_CONCURRENCY)) {
+      const results = await Promise.all(chunk.map((t) => loadCached(t)));
+      for (const r of results) {
+        if (r.ok) cachedSlots[r.index] = r.story;
+        else {
+          newStoryIndices.push(r.index);
+          newStories.push(r.story);
+        }
+      }
+    }
+  }
+
+  // 2) AI ONLY voor newStories
+  let enrichedNew: Story[] = [];
+  if (newStories.length === 0) {
+    console.log("[ai] no new stories at build level");
+  } else {
+    enrichedNew = await enrichStoriesWithAi(newStories, { maxArticlesPerStory });
+  }
+
+  // 3) Merge terug in input-volgorde
+  if (newStories.length > 0) {
+    for (let j = 0; j < enrichedNew.length; j++) {
+      const idx = newStoryIndices[j];
+      cachedSlots[idx] = enrichedNew[j];
+    }
+  }
+
+  stories = cachedSlots as Story[];
 
   // Transparantie: buildAt overal + defaults (AI kan topic/category overrulen)
   stories = stories
