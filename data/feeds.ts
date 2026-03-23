@@ -28,9 +28,7 @@ export const FEEDS: Feed[] = [
   { domain: "arstechnica.com", url: "https://feeds.arstechnica.com/arstechnica/index" },
 
   // --- uitbreiding: international / geopolitics overlap ---
-  { domain: "reuters.com", url: "https://feeds.reuters.com/Reuters/worldNews" },
   { domain: "bbc.co.uk", url: "http://feeds.bbci.co.uk/news/world/rss.xml" },
-  { domain: "apnews.com", url: "https://apnews.com/rss" },
   { domain: "ft.com", url: "https://www.ft.com/world?format=rss" },
   { domain: "dw.com", url: "https://rss.dw.com/xml/rss-en-world" },
   { domain: "france24.com", url: "https://www.france24.com/en/rss" },
