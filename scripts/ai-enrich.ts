@@ -7,10 +7,10 @@ import { openAiResponsesCreate } from "./utils/llm.js";
 import { sanitizeAiStory } from "./utils/stripAiMarkup.js";
 
 /**
- * Tijdens ontwikkeling: bij schema-/API-fouten direct falen i.p.v. stil naar fallback te gaan.
- * Zet op `false` voor robuuste productie-builds.
+ * Bij `true`: bij schema-/API-fouten direct falen i.p.v. stil naar fallback te gaan.
+ * `false`: robuuste productie — mislukte AI valt terug op fallback zonder crash.
  */
-const STRICT_AI = true;
+const STRICT_AI = false;
 
 const CATEGORIES: StoryCategory[] = [
   "geopolitiek",
@@ -709,20 +709,17 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
         }
       });
 
-      const rawText = (resp as any)?.output?.[0]?.content?.[0]?.text;
-      if (typeof rawText !== "string" || rawText.trim() === "") {
-        console.warn("[ai] empty/unknown response shape; raw response follows");
+      const parsed = (resp as any)?.output_parsed as AiResponse | undefined;
+
+      if (!parsed) {
+        console.warn("[ai] No structured output; raw response follows");
         console.warn(JSON.stringify(resp, null, 2));
-        throw new Error("OpenAI response missing output[0].content[0].text");
+        throw new Error("OpenAI structured output missing");
       }
 
-      let parsed: AiResponse;
-      try {
-        parsed = JSON.parse(rawText) as AiResponse;
-      } catch (e) {
-        console.warn("[ai] JSON.parse failed; raw text follows");
-        console.warn(rawText);
-        throw e;
+      if (!parsed.category || !parsed.topic) {
+        console.warn("[ai] Invalid AI structure, fallback triggered");
+        throw new Error("Invalid AI structure");
       }
 
       normalizeParsedAiStoryShape(parsed as unknown as Record<string, unknown>);

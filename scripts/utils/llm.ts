@@ -1,6 +1,8 @@
 type ResponsesClient = {
   responses: {
     create: (payload: any) => Promise<any>;
+    /** Structured outputs: vult `output_parsed` op de response (anders altijd null). */
+    parse: (payload: any) => Promise<any>;
   };
 };
 
@@ -275,6 +277,6 @@ export async function openAiResponsesCreate(
     }
   }
 
-  return client.responses.create(payload);
+  return client.responses.parse(payload);
 }
 
