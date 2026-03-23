@@ -10,9 +10,8 @@ export function getStoryLastUpdated(story: any): number {
   return times.length > 0 ? Math.max(...times) : 0;
 }
 
-export function formatRelativeStoryTime(ms: number, referenceTimeMs?: number): string {
-  const ref =
-    referenceTimeMs !== undefined && Number.isFinite(referenceTimeMs) ? referenceTimeMs : Date.now();
+export function formatRelativeStoryTime(ms: number, nowMs?: number): string {
+  const ref = nowMs !== undefined && Number.isFinite(nowMs) ? nowMs : Date.now();
 
   if (!Number.isFinite(ms) || ms <= 0) return "Onbekend";
 
@@ -42,10 +41,6 @@ export function formatAbsoluteDateTimeNl(value: unknown): string {
     minute: "2-digit"
   });
 }
-
-// Backward compatible aliases
-export const storyRecencyMs = getStoryLastUpdated;
-export const timeAgoFromMs = formatRelativeStoryTime;
 
 export function prettySourceDomain(domain: string) {
   const d = (domain ?? "").toLowerCase();

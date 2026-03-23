@@ -489,7 +489,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
                           </h3>
                           <div className="mt-2 flex flex-col gap-2 text-sm leading-relaxed text-gray-500 dark:text-gray-500">
                             <span>
-                              {storySourceLabel(s)} · {timeAgoFromMs(storyRecencyMs(s), referenceTimeMs)}
+                              {storySourceLabel(s)} · {formatRelativeStoryTime(getStoryLastUpdated(s))}
                             </span>
                             <span className="uppercase tracking-wide">{topicLabel(s.topic ?? s.category ?? "overig")}</span>
                           </div>
