@@ -1,0 +1,92 @@
+{
+  "category": "geopolitiek",
+  "topic": "militaire strategie",
+  "shortHeadline": "Japan bouwt dronesysteem voor kustverdediging vanaf 2026",
+  "summary": "Japan start in 2026 met de ontwikkeling van SHIELD, een nieuw kustverdedigingssysteem gebaseerd op duizenden drones met verschillende functies. Het ministerie van Defensie reserveerde ongeveer 100 miljard yen voor dit project. De drones moeten vijandelijke schepen aanvallen, inlichtingen verzamelen en radarinstallaties beschermen. Details ontbreken over specifieke locaties en precieze operationele concepten.",
+  "narrative": "Volgens defence-blog.com kondigde het Japanse ministerie van Defensie plannen aan om in het fiscale jaar 2026 te beginnen met de bouw van een nieuw kustverdedigingssysteem, genaamd SHIELD. Dit systeem zal bestaan uit duizenden drones verdeeld over meer dan tien typen, elk ontworpen voor specifieke taken.\n\nDe functies van deze drones omvatten het aanvallen van vijandelijke schepen, het verzamelen van inlichtingen en het beschermen van radarinstallaties. Het budget voor dit project bedraagt ongeveer 100 miljard yen (628,7 miljoen Amerikaanse dollar).\n\nDe bron geeft aan dat het systeem een breed scala aan drones omvat, maar noemt geen exacte aantallen per type. Ook worden geen specifieke locaties genoemd waar het systeem zal worden ingezet of ontwikkeld.\n\nEr is geen detail over de operationele strategie of over hoe deze drone-gebaseerde verdediging zich verhoudt tot bestaande vlootcapaciteiten of andere militaire verdedigingssystemen van Japan.\n\nDe enige beschikbare bron is defence-blog.com, een nieuwsbron van gemiddelde diepte en variërende betrouwbaarheid. Er zijn geen aanvullende bronnen of officiële verklaringen opgenomen die deze details bevestigen of aanvullen.\n\nEr is geen sprake van tegenstrijdige informatie omdat er slechts één bron beschikbaar is. Dit beperkt het inzicht in het onderwerp en betekent dat nadere verificatie nodig is.\n\nWat hier opvalt\n\nTen eerste ontbreekt in de beschikbare informatie een nadere toelichting op de operationele inzet en precieze specificaties van het SHIELD-systeem, ondanks het gepresenteerde budget van bijna 100 miljard yen. Dit roept vragen op over de schaal en effectiviteit van het systeem.\n\nTen tweede komt de informatie slechts uit één medium met middeldiepe analyse. Er is geen officiële bevestiging van het Japanse ministerie of onafhankelijke bron die deze aankondiging verder concretiseert. Dit maakt het moeilijk om de betrouwbaarheid en de impact van het project precies te beoordelen.\n\nDeze hiaten zijn belangrijk voor kritische analyse, zeker gezien de geopolitieke gevoeligheid van militaire innovaties in de regio. Zonder meer bronnen is het ook onzeker wanneer het systeem daadwerkelijk operationeel zal zijn en hoe het past binnen bredere Japanse defensieplannen.\n\nTenslotte ontbreekt een vergelijking met soortgelijke drone- of kustverdedigingsprogramma's in buurlanden zoals China of Zuid-Korea, waardoor de strategische relevantie van dit project in regionale context onduidelijk blijft.",
+  "facts": [
+    "Het Japanse ministerie van Defensie plant in het fiscale jaar 2026 een drone-gebaseerd kustverdedigingssysteem op te zetten.",
+    "Het systeem, genaamd SHIELD, omvat meer dan tien typen drones met verschillende functies.",
+    "Het budget voor het systeem bedraagt ongeveer 100 miljard yen (628,7 miljoen dollar).",
+    "De drones zijn bedoeld om vijandelijke schepen aan te vallen, inlichtingen te verzamelen en radarinstallaties te beschermen."
+  ],
+  "interpretations": [
+    "Het gebruik van duizenden drones wijst op een sterke nadruk op technologische innovatie in Japanse defensieplanning.",
+    "Het ontbreken van details over operationele concepten suggereert dat het project zich mogelijk nog in een vroege ontwikkelingsfase bevindt.",
+    "Dat het nieuws slechts uit een bron van gemiddelde betrouwbaarheid komt, duidt op een voorlopige status van deze informatie.",
+    "Het project kan een poging zijn om Japanse kustverdediging te moderniseren tegen toenemende regionale maritieme dreigingen."
+  ],
+  "unknowns": [
+    "Precieze locaties waar het SHIELD-systeem zal worden ingezet of ontwikkeld zijn niet genoemd.",
+    "De precieze aantallen drones per type en hun technische specificaties ontbreken.",
+    "Er is geen officiële bevestiging of aanvullende bron die het bericht ondersteunt.",
+    "De operationele tactieken en integratie met bestaande militaire systemen zijn niet beschreven.",
+    "Er ontbreekt vergelijking met defensie-initiatieven in regionale rivalen zoals China."
+  ],
+  "comparisons": [
+    "Er is slechts één bron beschikbaar; daardoor kan geen vergelijking tussen bronnen gemaakt worden.",
+    "De bron defence-blog.com gebruikt het woord 'plan' wat duidt op een aangekondigde intentie, geen gerealiseerd project."
+  ],
+  "questions": [
+    "Wanneer precies in het fiscale jaar 2026 begint de bouw van het SHIELD-systeem?",
+    "Zijn er bijkomende officiële Japanse overheidsdocumenten die de plannen bevestigen?",
+    "Wat zijn de technische specificaties van de verschillende drone-typen?",
+    "Hoe verhoudt dit systeem zich tot bestaande Japanse kustverdediging?",
+    "Wat is de strategische motivatie achter het inzetten van duizenden drones?"
+  ],
+  "investigations": [
+    {
+      "title": "Verificatie officiële bekendmaking Japanse ministerie van Defensie",
+      "what": "Nagaan of het Japanse ministerie van Defensie het SHIELD-project officieel heeft aangekondigd en met welke details.",
+      "why": "Om de authenticiteit en volledigheid van de plannen te bepalen.",
+      "steps": [
+        "Open de officiële website van het Japanse ministerie van Defensie.",
+        "Zoek naar persberichten of beleidsdocumenten over het SHIELD-systeem of drone-kustverdediging uit 2025 en 2026.",
+        "Controleer of het budget en de functies van het dronesysteem hierin bevestigd worden."
+      ],
+      "tools": [
+        {
+          "label": "Doorzoek de website mod.go.jp op 'SHIELD'"
+        },
+        {
+          "label": "Bekijk budgetrapporten 2026 op mod.go.jp"
+        },
+        {
+          "label": "Zoek persberichten in het Japans en vertaal indien nodig"
+        },
+        {
+          "label": "Controleer updates via defence-blog.com"
+        }
+      ],
+      "resourceLinks": [
+        {
+          "label": "Defence-blog bericht over SHIELD",
+          "url": "https://defence-blog.com/japan-to-build-drone-based-coastal-defense-system/",
+          "note": "Originele bron van de berichten over het systeem"
+        },
+        {
+          "label": "Officiële website Japan Ministry of Defense",
+          "url": "https://mod.go.jp/en/",
+          "note": "Controleren officiële defensieplanning en budgetten"
+        }
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Het Japanse ministerie van Defensie plant in het fiscale jaar 2026 de bouw van het SHIELD drone-kustverdedigingssysteem.",
+      "confidence": "middel",
+      "verification": "defence-blog.com"
+    },
+    {
+      "claim": "Het project krijgt een budget van ongeveer 100 miljard yen voor ontwikkeling.",
+      "confidence": "middel",
+      "verification": "defence-blog.com"
+    },
+    {
+      "claim": "Het systeem omvat meer dan tien typen drones voor aanval, inlichtingen en bescherming.",
+      "confidence": "middel",
+      "verification": "defence-blog.com"
+    }
+  ]
+}
