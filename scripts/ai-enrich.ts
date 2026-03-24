@@ -159,13 +159,47 @@ function ensureDutchBullets(items: string[]) {
     .map((x) => (looksEnglish(x) ? "Broninformatie is vertaald en samengevat in het verhaal." : x));
 }
 
+function normalizeText(input: string) {
+  return String(input ?? "")
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function tokenSimilarity(a: string, b: string) {
+  const ta = new Set(normalizeText(a).split(" ").filter(Boolean));
+  const tb = new Set(normalizeText(b).split(" ").filter(Boolean));
+  if (ta.size === 0 || tb.size === 0) return 0;
+  let inter = 0;
+  for (const t of ta) if (tb.has(t)) inter += 1;
+  const union = new Set([...ta, ...tb]).size;
+  return union === 0 ? 0 : inter / union;
+}
+
+function dedupeBullets(raw: string[], title: string, narrative: string) {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const bullet of raw) {
+    const b = normalizeText(bullet);
+    if (!b || seen.has(b)) continue;
+    const nearTitle = tokenSimilarity(bullet, title) > 0.8;
+    const nearNarrative = tokenSimilarity(bullet, narrative) > 0.8 || normalizeText(narrative).includes(b);
+    if (nearTitle || nearNarrative) continue;
+    seen.add(b);
+    out.push(bullet.trim());
+    if (out.length >= 5) break;
+  }
+  return out;
+}
+
 function toFullAiStoryFromLite(parsed: Partial<AiLiteResponse>, story: Story): AiStory {
   const narrative = String(parsed.narrative ?? "").trim();
   const summary = narrative
     ? narrative.split(/\n+/).map((p) => p.trim()).filter(Boolean)[0] ?? story.summary
     : story.summary;
   const facts = Array.isArray(parsed.bullets)
-    ? ensureDutchBullets(parsed.bullets).slice(0, 5)
+    ? dedupeBullets(ensureDutchBullets(parsed.bullets), story.title ?? "", narrative).slice(0, 5)
     : [];
 
   return sanitizeAiStory({
@@ -375,10 +409,13 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
             "- 2 tot 4 korte alinea's",
             "- volledig in het Nederlands",
             "- concreet en feitelijk, geen speculatie",
+            "- niet letterlijk de titel of eerste zin herhalen",
+            "- voeg context en samenhang toe",
             "",
             "BELANGRIJK:",
             "- Gebruik alleen informatie uit deze bron.",
             "- Vertaal broninhoud naar het Nederlands.",
+            "- Schrijf een vloeiend verhaal van meerdere alinea's. Herhaal niet letterlijk de titel of eerste zin. Voeg context en samenhang toe.",
             "- Geen extra tekst buiten JSON."
           ]
         : [
@@ -386,13 +423,12 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
             "Schrijf één helder, vloeiend verhaal op basis van meerdere nieuwsbronnen.",
             "",
             "NARRATIVE (BELANGRIJKSTE):",
-            "- 5 tot 8 korte alinea's",
-            "- 400-700 woorden",
+            "- 2 tot 4 korte alinea's",
             "- volledig in het Nederlands",
             "- combineer ALLE bronnen tot één logisch verhaal",
             "- begin met wat er gebeurt (wie/wat/waar)",
             "- daarna: context, verschillen, impact",
-            "- geen herhaling van de titel",
+            "- niet letterlijk de titel of eerste zin herhalen",
             "- geen opsomming",
             "- geen generieke zinnen",
             "",
@@ -401,6 +437,7 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
             "- Vertaal ALLES naar Nederlands (ook Engelse excerpts)",
             "- Combineer bronnen: geen losse samenvattingen",
             "- Vermijd herhaling tussen narrative en bullets",
+            "- Schrijf een vloeiend verhaal van meerdere alinea's. Herhaal niet letterlijk de titel of eerste zin. Voeg context en samenhang toe.",
             "",
             "STIJL:",
             "- rustig, analytisch",
@@ -474,9 +511,7 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
         const narrativeText = String(parsed.narrative ?? "").trim();
         const paragraphs = narrativeText.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
         const wordCount = narrativeText.split(/\s+/).filter(Boolean).length;
-        const invalidNarrativeShape = isSingleSource
-          ? paragraphs.length < 2 || paragraphs.length > 4 || wordCount < 120 || wordCount > 380
-          : paragraphs.length < 5 || paragraphs.length > 8 || wordCount < 400 || wordCount > 700;
+        const invalidNarrativeShape = paragraphs.length < 2 || paragraphs.length > 4 || wordCount < 120 || wordCount > 520;
         if (invalidNarrativeShape) {
           console.warn("[ai] narrative shape out of range, fallback triggered", {
             mode: isSingleSource ? "single-source" : "multi-source",
@@ -492,7 +527,7 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
           topic: parsed.topic ?? "overig",
           shortHeadline: parsed.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
           narrative: parsed.narrative,
-          bullets: ensureDutchBullets(parsed.bullets).slice(0, 5)
+          bullets: dedupeBullets(ensureDutchBullets(parsed.bullets), story.title ?? "", parsed.narrative ?? "").slice(0, 5)
         };
 
         // Alleen bij AI-success cache schrijven.

@@ -39,6 +39,11 @@ export function VoorbijDekopHeader() {
   const TOPICS_GAP_PX = 24; // gap-6
   const topicsViewportRef = useRef<HTMLDivElement | null>(null);
   const topicsMeasureRowRef = useRef<HTMLDivElement | null>(null);
+  const topicsDragRef = useRef<{ isDown: boolean; startX: number; startScrollLeft: number }>({
+    isDown: false,
+    startX: 0,
+    startScrollLeft: 0
+  });
   const [viewportWidthPx, setViewportWidthPx] = useState(0);
   const [topicWidths, setTopicWidths] = useState<Record<string, number>>({});
   const [restStartIndex, setRestStartIndex] = useState(0);
@@ -169,6 +174,25 @@ export function VoorbijDekopHeader() {
 
   const showLeftFade = !atStart;
   const showRightFade = !atEnd;
+
+  const onTopicsMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = topicsViewportRef.current;
+    if (!el) return;
+    topicsDragRef.current = {
+      isDown: true,
+      startX: e.clientX,
+      startScrollLeft: el.scrollLeft
+    };
+  };
+  const onTopicsMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = topicsViewportRef.current;
+    if (!el || !topicsDragRef.current.isDown) return;
+    const dx = e.clientX - topicsDragRef.current.startX;
+    el.scrollLeft = topicsDragRef.current.startScrollLeft - dx;
+  };
+  const onTopicsMouseUp = () => {
+    topicsDragRef.current.isDown = false;
+  };
 
   // Zorg dat de actieve topic in het zicht komt.
   useEffect(() => {
@@ -308,13 +332,17 @@ export function VoorbijDekopHeader() {
 
             <div
               ref={topicsViewportRef}
+              onMouseDown={onTopicsMouseDown}
+              onMouseMove={onTopicsMouseMove}
+              onMouseUp={onTopicsMouseUp}
+              onMouseLeave={onTopicsMouseUp}
               className={
-                "no-scrollbar overflow-hidden " +
+                "no-scrollbar cursor-grab active:cursor-grabbing overflow-x-auto " +
                 (showLeftFade ? "pl-4 md:pl-6 " : "") +
                 (showRightFade ? "pr-4 md:pr-6" : "")
               }
             >
-              <div className="flex items-center gap-4 md:gap-6">
+              <div className="flex items-center gap-2 overflow-x-auto scrollbar-none md:gap-6">
                 {visibleTopics.map(([id, label]) => {
                   const active = topic === id;
                   return (

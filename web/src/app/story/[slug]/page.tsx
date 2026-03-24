@@ -238,7 +238,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
         <div className="mb-10 space-y-8 md:mb-12">
           <section className="mt-6 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] p-4 md:mt-0 md:rounded-none md:border-0 md:bg-transparent md:p-0">
             <h2 className="mb-2 text-base font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
-              Bulletpoints
+              Belangrijkste punten
             </h2>
             <ul className="list-disc space-y-2.5 pl-5 text-[15px] leading-7 text-gray-900 marker:text-gray-600 dark:text-gray-100 dark:marker:text-gray-500 md:space-y-3 md:text-sm md:leading-relaxed">
               {visibleBullets.slice(0, 5).map((x: string, i: number) => (

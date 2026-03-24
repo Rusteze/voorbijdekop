@@ -293,6 +293,11 @@ export default function Home() {
 
   const sourcesViewportRef = useRef<HTMLDivElement | null>(null);
   const sourcesMeasureRowRef = useRef<HTMLDivElement | null>(null);
+  const sourcesDragRef = useRef<{ isDown: boolean; startX: number; startScrollLeft: number }>({
+    isDown: false,
+    startX: 0,
+    startScrollLeft: 0
+  });
   const [sourcesViewportWidthPx, setSourcesViewportWidthPx] = useState(0);
   const [sourceWidths, setSourceWidths] = useState<Record<string, number>>({});
   const [sourceStartIndex, setSourceStartIndex] = useState(0);
@@ -437,7 +442,7 @@ export default function Home() {
   }, [sourcesFilteredIdsKey]);
 
   const SOURCES_GAP_PX = 16;
-  const { visibleSources, atStart, atEnd, stepPxVisibleCount } = useMemo(() => {
+  const { atStart, atEnd, stepPxVisibleCount } = useMemo(() => {
     const list = sourcesFiltered;
     const len = list.length;
 
@@ -493,6 +498,25 @@ export default function Home() {
 
   const showLeftFade = !atStart;
   const showRightFade = !atEnd;
+
+  const onSourcesMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = sourcesViewportRef.current;
+    if (!el) return;
+    sourcesDragRef.current = {
+      isDown: true,
+      startX: e.clientX,
+      startScrollLeft: el.scrollLeft
+    };
+  };
+  const onSourcesMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = sourcesViewportRef.current;
+    if (!el || !sourcesDragRef.current.isDown) return;
+    const dx = e.clientX - sourcesDragRef.current.startX;
+    el.scrollLeft = sourcesDragRef.current.startScrollLeft - dx;
+  };
+  const onSourcesMouseUp = () => {
+    sourcesDragRef.current.isDown = false;
+  };
 
   // Zorg dat de actieve bron in het zicht komt.
   useEffect(() => {
@@ -574,8 +598,8 @@ export default function Home() {
           <h1 className="mt-1 text-2xl font-semibold leading-tight tracking-tight text-zinc-950 md:mt-3 md:text-4xl">
             Het verhaal achter het nieuws
           </h1>
-          <div className="inline-flex items-center gap-1 whitespace-nowrap md:whitespace-normal md:flex md:flex-wrap md:gap-2">
-            <p className="text-sm leading-relaxed text-zinc-600 md:text-base md:leading-7">
+          <div className="inline-flex min-w-0 items-center gap-1 md:flex md:flex-wrap md:gap-2">
+            <p className="min-w-0 truncate text-sm leading-relaxed text-zinc-600 md:whitespace-normal md:text-base md:leading-7">
               Analyse en context door AI op basis van meerdere betrouwbare bronnen
             </p>
             <button
@@ -640,30 +664,6 @@ export default function Home() {
                           </span>
                         </h2>
 
-                        {(() => {
-                          const sourceLabel = storySourceLabel(top);
-                          const timeAgo = formatRelativeStoryTime(getStoryLastUpdated(top));
-                          const kicker = topicLabel(top.topic ?? top.category ?? "overig");
-                          return (
-                            <div className="hidden md:flex mt-1 mb-2 items-center justify-between gap-4 text-sm">
-                              <div className="text-white/70">
-                                {sourceLabel} · {timeAgo}
-                              </div>
-                              <div className="uppercase tracking-wide text-white/70">{kicker}</div>
-                            </div>
-                          );
-                        })()}
-
-                        <p className="hidden md:block mt-2 max-w-3xl text-base leading-relaxed text-white/80 line-clamp-2 md:line-clamp-3 md:text-lg">
-                          {top.summary}
-                        </p>
-
-                        {extractInsightPreview(top) ? (
-                          <div className="hidden md:inline-flex mt-4 max-w-3xl items-start gap-2 rounded-xl bg-white/10 px-4 py-2 ring-1 ring-white/15">
-                            <span className="shrink-0 text-sm font-medium text-white/95">Opvallend:</span>
-                            <span className="text-sm leading-6 text-white/85">{extractInsightPreview(top)}</span>
-                          </div>
-                        ) : null}
                       </div>
                     </div>
                   </div>
@@ -736,14 +736,18 @@ export default function Home() {
 
                 <div
                   ref={sourcesViewportRef}
+                  onMouseDown={onSourcesMouseDown}
+                  onMouseMove={onSourcesMouseMove}
+                  onMouseUp={onSourcesMouseUp}
+                  onMouseLeave={onSourcesMouseUp}
                   className={
-                    "no-scrollbar overflow-hidden " +
+                    "no-scrollbar cursor-grab active:cursor-grabbing overflow-x-auto " +
                     (showLeftFade ? "pl-4 md:pl-6 " : "") +
                     (showRightFade ? "pr-4 md:pr-6" : "")
                   }
                 >
-                  <div className="flex items-center gap-4 py-1">
-                    {visibleSources.map(([id, label]) => {
+                  <div className="flex items-center gap-2 overflow-x-auto scrollbar-none py-1 md:gap-4">
+                    {sourcesFiltered.map(([id, label]) => {
                       const active = sourceFilter === id;
                       return (
                         <button
