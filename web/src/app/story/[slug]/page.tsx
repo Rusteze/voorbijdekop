@@ -9,12 +9,6 @@ import {
   topicLabel,
 } from "@/lib/storyUtils";
 import { stripAiMarkup } from "@/lib/stripAiMarkup";
-import {
-  StoryCriticalCarousel,
-  buildInvestigationSuggestions,
-  buildWhyParagraph,
-  resolveCriticalQuestions,
-} from "./research";
 
 function isNarrativeSubheading(paragraph: string) {
   const t = paragraph.trim();
@@ -135,13 +129,6 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
     ai &&
     typeof ai.narrative === "string" &&
     ai.narrative.trim().length > 0;
-
-  const investigations = (ai?.investigations ?? []) as any[];
-  const inv0 = investigations[0];
-  const inv1 = investigations[1];
-  const criticalQuestions = resolveCriticalQuestions((ai?.questions ?? []).map((q: string) => stripAiMarkup(q)));
-  const whyParagraph = buildWhyParagraph([inv0, inv1]);
-  const investigationSuggestions = buildInvestigationSuggestions([inv0, inv1]);
 
   const cipherImage = pickCipherPreferredImage(story);
   const fallbackTopic = story.topic ?? story.category ?? "overig";
@@ -272,99 +259,10 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
               )}
             </ul>
           </section>
-
-          <section className="mt-8 md:mt-0">
-            <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
-              Interpretaties
-            </h2>
-            <ul className="list-disc space-y-3 pl-5 text-base leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500 md:text-sm">
-              {(ai?.interpretations ?? []).slice(0, 16).map((x: string, i: number) => (
-                <li key={i} className="break-words">
-                  {stripAiMarkup(x)}
-                </li>
-              ))}
-              {(ai?.interpretations ?? []).length === 0 && (
-                <li className="text-sm text-gray-800 dark:text-gray-300">Geen (of niet automatisch afgeleid).</li>
-              )}
-            </ul>
-          </section>
-
-          <section className="mt-8 md:mt-0">
-            <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
-              Onbekend
-            </h2>
-            <ul className="list-disc space-y-3 pl-5 text-base leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500 md:text-sm">
-              {(ai?.unknowns ?? []).slice(0, 16).map((x: string, i: number) => (
-                <li key={i} className="break-words">
-                  {stripAiMarkup(x)}
-                </li>
-              ))}
-              {(ai?.unknowns ?? []).length === 0 && (
-                <li className="text-sm text-gray-800 dark:text-gray-300">Geen (of niet automatisch afgeleid).</li>
-              )}
-            </ul>
-          </section>
         </div>
-
-        <section className="mb-12 mt-10 md:mb-16 md:mt-0">
-          <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
-            Bronvergelijking
-          </h2>
-          <ul className="list-disc space-y-3 pl-5 text-base leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500 md:text-sm">
-            {(ai?.comparisons ?? []).slice(0, 12).map((x: string, i: number) => (
-              <li key={i} className="break-words">
-                {stripAiMarkup(x)}
-              </li>
-            ))}
-            {(ai?.comparisons ?? []).length === 0 && (
-              <li className="text-sm text-gray-800 dark:text-gray-300">Nog geen vergelijking beschikbaar.</li>
-            )}
-          </ul>
-        </section>
         </div>
-
-        <section
-          className="mb-10 bg-neutral-50 py-8 dark:bg-neutral-950/35 md:mb-12 md:py-12"
-          aria-labelledby="critical-reflection-heading"
-        >
-          <div className="mx-auto max-w-2xl px-4 md:px-6">
-            <h2
-              id="critical-reflection-heading"
-              className="mb-5 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-6 md:text-xl"
-            >
-              Kijk hier kritisch naar
-            </h2>
-            <StoryCriticalCarousel
-              questions={criticalQuestions}
-              whyText={whyParagraph}
-              suggestions={investigationSuggestions}
-            />
-          </div>
-        </section>
 
         <div className="mx-auto max-w-2xl px-4 pb-10 md:px-5 md:pb-12">
-        <section className="mb-10 md:mb-12">
-          <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
-            Verificatie (claims)
-          </h2>
-          <ol className="space-y-5 md:space-y-6">
-            {(ai?.claims ?? []).slice(0, 12).map((c: any, i: number) => (
-              <li key={i}>
-                <div className="text-base font-semibold leading-relaxed text-gray-900 dark:text-gray-100 md:text-sm">
-                  {i + 1}. {stripAiMarkup(String(c.claim ?? ""))}
-                </div>
-                <div className="mt-2 text-sm text-gray-500 dark:text-gray-500">Confidence: {c.confidence}</div>
-                <div className="mt-3 text-base leading-relaxed text-gray-900 dark:text-gray-100 md:text-sm">
-                  {stripAiMarkup(String(c.verification ?? ""))}
-                </div>
-              </li>
-            ))}
-            {(ai?.claims ?? []).length === 0 && (
-              <li className="text-sm text-gray-800 dark:text-gray-300">Nog geen claims beschikbaar.</li>
-            )}
-          </ol>
-        </section>
-
         <section className="mb-10 md:mb-12">
           <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
             Transparantie

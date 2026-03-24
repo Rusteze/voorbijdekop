@@ -48,6 +48,7 @@ const TOPICS: StoryTopic[] = [
   "machtsverschuiving",
   "overig"
 ];
+const MIN_AI_IMPORTANCE = 0;
 
 const schemaObject = {
   type: "object",
@@ -169,6 +170,7 @@ function toFullAiStoryFromLite(parsed: Partial<AiLiteResponse>, story: Story): A
 
 function fallbackAi(story: Story): AiStory {
   console.warn("Using fallback AI for story:", story.slug);
+  const uniqueDomains = new Set(story.articles.map((a) => a.sourceDomain));
   const titles = story.articles.slice(0, 4).map((a) => a.title).filter(Boolean);
   const facts = story.articles
     .slice(0, 4)
@@ -176,7 +178,11 @@ function fallbackAi(story: Story): AiStory {
     .map((x) => x.split(/[.!?]\s+/)[0])
     .filter(Boolean)
     .map((x) => x.slice(0, 200));
-  const summary = (titles.join(" • ").slice(0, 320) || story.summary || "Samenvatting tijdelijk niet beschikbaar.").trim();
+  const summary = (
+    uniqueDomains.size === 1
+      ? "Dit verhaal is gebaseerd op één bron. Lees de originele bron voor volledige context."
+      : titles.join(" • ").slice(0, 320) || story.summary || "Samenvatting tijdelijk niet beschikbaar."
+  ).trim();
   return sanitizeAiStory({
     summary,
     narrative: summary,
@@ -229,6 +235,8 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
   let cacheHits = 0;
   let generatedCount = 0;
   let fallbackCount = 0;
+  let skippedFewSources = 0;
+  let skippedLowImportance = 0;
 
   const toFallbackStory = (story: Story, cacheKey: string): Story => ({
     ...story,
@@ -237,6 +245,15 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
     shortHeadline: story.shortHeadline ?? fallbackShortHeadline(story),
     ai: sanitizeAiStory(fallbackAi(story)),
     aiStatus: "fallback" as const,
+    aiCacheKey: cacheKey
+  });
+  const toSkippedStory = (story: Story, cacheKey: string): Story => ({
+    ...story,
+    category: story.category ?? "overig",
+    topic: story.topic ?? "overig",
+    shortHeadline: story.shortHeadline ?? fallbackShortHeadline(story),
+    ai: sanitizeAiStory(fallbackAi(story)),
+    aiStatus: "skipped" as const,
     aiCacheKey: cacheKey
   });
 
@@ -299,6 +316,24 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
 
     const generateForTask = async (task: CacheTask): Promise<Story> => {
       const { story, selected, cacheKey, cachePath } = task;
+      console.log(`[ai-debug] ${story.slug} sources=${selected.length}`);
+
+      if (selected.length < 2) {
+        skippedFewSources += 1;
+        console.log(`[ai] skip (too few sources) ${story.slug}`);
+        return toSkippedStory(story, cacheKey);
+      }
+
+      if ((story.importance ?? 0) < MIN_AI_IMPORTANCE) {
+        skippedLowImportance += 1;
+        console.log(`[ai] skip (low importance) ${story.slug}`);
+        return toSkippedStory(story, cacheKey);
+      }
+
+      if (selected.length >= 2) {
+        // FORCE AI path for multi-source stories
+      }
+
       console.log(`[ai] generating ${story.slug} (${cacheKey}) sources=${selected.length}`);
 
       const sourcesPayload = selected.map((a) => ({
@@ -453,7 +488,13 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
     }
   }
 
-  console.log(`[ai] stats: hits=${cacheHits}, generated=${generatedCount}, fallback=${fallbackCount}`);
+  console.log(`[ai] stats:
+  cacheHits=${cacheHits}
+  generated=${generatedCount}
+  fallback=${fallbackCount}
+  skippedFewSources=${skippedFewSources}
+  skippedLowImportance=${skippedLowImportance}
+`);
 
   // TEMP: disable prune to prevent cache loss when enrichment runs on a subset.
 
