@@ -43,6 +43,7 @@ export const SOURCES: Source[] = [
   { domain: "aljazeera.com", type: "news", bias: "mixed", depth: "high", region: "intl" },
   { domain: "theguardian.com", type: "news", bias: "left", depth: "high", region: "intl" },
   { domain: "ft.com", type: "news", bias: "center", depth: "high", region: "intl" },
+  { domain: "politico.com", type: "news", bias: "center", depth: "high", region: "intl" },
   { domain: "dw.com", type: "news", bias: "neutral", depth: "high", region: "intl" },
   { domain: "france24.com", type: "news", bias: "mixed", depth: "high", region: "intl" },
 
