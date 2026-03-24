@@ -69,15 +69,23 @@ function sanitizeInvestigation(inv: Investigation): Investigation {
 
 export function sanitizeAiStory(ai: AiStory): AiStory {
   const strip = stripAiMarkup;
+  const summary = strip(ai.summary ?? "");
+  const narrative = strip(ai.narrative ?? summary) || summary;
+  const facts = (ai.facts ?? []).map(strip).filter(Boolean);
+  const interpretations = (ai.interpretations ?? []).map(strip).filter(Boolean);
+  const unknowns = (ai.unknowns ?? []).map(strip).filter(Boolean);
+  const comparisons = (ai.comparisons ?? []).map(strip).filter(Boolean);
+  const questions = (ai.questions ?? []).map(strip).filter(Boolean);
+
   return {
     ...ai,
-    summary: strip(ai.summary),
-    narrative: strip(ai.narrative),
-    facts: (ai.facts ?? []).map(strip),
-    interpretations: (ai.interpretations ?? []).map(strip),
-    unknowns: (ai.unknowns ?? []).map(strip),
-    comparisons: (ai.comparisons ?? []).map(strip),
-    questions: (ai.questions ?? []).map(strip),
+    summary,
+    narrative,
+    facts,
+    interpretations,
+    unknowns,
+    comparisons,
+    questions,
     investigations: (ai.investigations ?? []).map(sanitizeInvestigation),
     claims: (ai.claims ?? []).map((c) => ({
       ...c,

@@ -153,8 +153,7 @@ function pickTopArticlesForAi(story: Story, max: number) {
 function storyCacheKey(story: Story, selectedIds: string[]) {
   const payload = {
     storyId: story.storyId,
-    ids: selectedIds,
-    titles: selectedIds.map((id) => story.articles.find((a) => a.id === id)?.title ?? "")
+    ids: selectedIds
   };
   return sha256Hex(JSON.stringify(payload)).slice(0, 24);
 }
@@ -266,7 +265,7 @@ async function main() {
     .filter((s: any) => allowedTopics.has((s.topic ?? "overig") as string));
 
   // AI enrichment: alleen voor nieuwe stories (bestaande cache = direct trust).
-  const maxArticlesPerStory = 8;
+  const maxArticlesPerStory = 4;
   const cacheDir = path.resolve("data/ai");
   await fs.mkdir(cacheDir, { recursive: true });
 
@@ -358,14 +357,21 @@ async function main() {
   stories = cachedSlots as Story[];
 
   // Transparantie: buildAt overal + defaults (AI kan topic/category overrulen)
-  stories = stories
-    .map((s) => ({
-      ...s,
-      buildAt,
-      category: s.category ?? "overig",
-      topic: (s as any).topic ?? heuristicTopic(s)
-    }))
-    .filter((s: any) => allowedTopics.has((s.topic ?? "overig") as string));
+  stories = (stories as any[])
+    .map((s, index) => {
+      if (!s) {
+        console.error("[build-data] invalid story detected", { index });
+        return undefined;
+      }
+      return {
+        ...s,
+        buildAt,
+        category: s.category ?? "overig",
+        topic: (s as any).topic ?? heuristicTopic(s)
+      };
+    })
+    .filter(Boolean)
+    .filter((s: any) => allowedTopics.has((s.topic ?? "overig") as string)) as Story[];
 
   // Specifieke image voorkeur:
   // - Als `thecipherbrief.com` in de bronnen zit: gebruik een image van een andere bron waar mogelijk.
