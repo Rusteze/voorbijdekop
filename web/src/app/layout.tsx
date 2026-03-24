@@ -6,8 +6,7 @@ import { VoorbijDekopProvider } from "./voorbijdekop-state";
 import { ThemeSettingsOverlay } from "./theme-settings-overlay";
 import { SearchOverlay } from "./search-overlay";
 import { AiInfoOverlay } from "./ai-info-overlay";
-import fs from "node:fs";
-import path from "node:path";
+import { readStoriesJsonRaw } from "@/lib/readStoriesJson";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,8 +24,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const storiesPath = path.join(process.cwd(), "data/generated/stories.json");
-  const storiesRaw = fs.existsSync(storiesPath) ? fs.readFileSync(storiesPath, "utf8") : "[]";
+  const storiesRaw = readStoriesJsonRaw();
   const storiesJson = storiesRaw.replace(/</g, "\\u003c");
 
   return (

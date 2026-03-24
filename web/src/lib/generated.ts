@@ -26,15 +26,29 @@ function loadStoriesRuntime(): GeneratedStoryWithHeadline[] {
     return sortByGeneratedAtDesc(fromWindow as GeneratedStoryWithHeadline[]);
   }
 
-  // SSR pad voor client component pre-rendering zonder statische JSON import.
+  // SSR: zelfde paden als readStoriesJson (cwd is meestal web/ op Cloudflare).
   const req = (0, eval)("require") as NodeRequire;
   const fs = req("node:fs") as typeof import("node:fs");
   const path = req("node:path") as typeof import("node:path");
-  const filePath = path.join(process.cwd(), "data/generated/stories.json");
-  if (!fs.existsSync(filePath)) return [];
-  const raw = fs.readFileSync(filePath, "utf8");
-  const parsed = JSON.parse(raw) as GeneratedStoryWithHeadline[];
-  return sortByGeneratedAtDesc(parsed);
+  const candidates = [
+    path.join(process.cwd(), "public", "data", "stories.json"),
+    path.join(process.cwd(), "data", "generated", "stories.json"),
+    path.join(process.cwd(), "..", "data", "generated", "stories.json")
+  ];
+  let raw = "[]";
+  for (const p of candidates) {
+    if (fs.existsSync(p)) {
+      raw = fs.readFileSync(p, "utf8");
+      break;
+    }
+  }
+  let parsed: GeneratedStoryWithHeadline[];
+  try {
+    parsed = JSON.parse(raw) as GeneratedStoryWithHeadline[];
+  } catch {
+    return [];
+  }
+  return sortByGeneratedAtDesc(Array.isArray(parsed) ? parsed : []);
 }
 
 export function getAllStories() {

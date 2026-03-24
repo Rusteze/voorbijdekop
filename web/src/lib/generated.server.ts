@@ -1,5 +1,4 @@
-import fs from "node:fs";
-import path from "node:path";
+import { readStoriesJsonRaw } from "@/lib/readStoriesJson";
 
 export type GeneratedStory = {
   slug: string;
@@ -11,10 +10,15 @@ export type GeneratedStory = {
 export type GeneratedStoryWithHeadline = GeneratedStory & { shortHeadline?: string };
 
 function loadStoriesFromFs(): GeneratedStoryWithHeadline[] {
-  const filePath = path.join(process.cwd(), "data/generated/stories.json");
-  if (!fs.existsSync(filePath)) return [];
-  const raw = fs.readFileSync(filePath, "utf8");
-  const parsed = JSON.parse(raw) as GeneratedStoryWithHeadline[];
+  const raw = readStoriesJsonRaw().trim();
+  if (!raw) return [];
+  let parsed: GeneratedStoryWithHeadline[];
+  try {
+    parsed = JSON.parse(raw) as GeneratedStoryWithHeadline[];
+  } catch {
+    return [];
+  }
+  if (!Array.isArray(parsed)) return [];
   return [...parsed].sort(
     (a, b) => new Date(String(b.generatedAt ?? "")).getTime() - new Date(String(a.generatedAt ?? "")).getTime()
   );
