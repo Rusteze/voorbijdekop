@@ -64,7 +64,7 @@ const schemaObject = {
       maxItems: 5
     }
   },
-  required: ["category", "topic", "shortHeadline", "narrative"]
+  required: ["category", "topic", "shortHeadline", "narrative", "bullets"]
 } as const;
 
 type AiLiteResponse = {
@@ -72,7 +72,7 @@ type AiLiteResponse = {
   topic: string;
   shortHeadline: string;
   narrative: string;
-  bullets?: string[];
+  bullets: string[];
 };
 
 /**
@@ -414,7 +414,7 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
             "Geef JSON volgens schema.",
             "- shortHeadline: korte, concrete kop",
             "- narrative: 2-4 korte alinea's",
-            "- bullets: optioneel, max 3, korte concrete feiten",
+            "- bullets: verplicht, max 3, korte concrete feiten",
             "",
             "BELANGRIJK:",
             "- Schrijf alle velden in het Nederlands.",
@@ -426,7 +426,7 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
             "Geef JSON volgens schema.",
             "- shortHeadline: korte, concrete kop",
             "- narrative: 5-8 korte alinea's, 400-700 woorden",
-            "- bullets: optioneel, max 5, korte concrete feiten",
+            "- bullets: verplicht, max 5, korte concrete feiten",
             "",
             "BELANGRIJK:",
             "- Schrijf alle velden in het Nederlands.",
@@ -467,6 +467,10 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
           console.warn("[ai] Invalid AI structure, fallback triggered");
           throw new Error("Invalid AI structure");
         }
+        if (!parsed.bullets || parsed.bullets.length === 0) {
+          console.warn("[ai] Missing bullets, fallback triggered");
+          throw new Error("Missing bullets");
+        }
         const narrativeText = String(parsed.narrative ?? "").trim();
         const paragraphs = narrativeText.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
         const wordCount = narrativeText.split(/\s+/).filter(Boolean).length;
@@ -488,7 +492,7 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
           topic: parsed.topic ?? "overig",
           shortHeadline: parsed.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
           narrative: parsed.narrative,
-          ...(Array.isArray(parsed.bullets) ? { bullets: parsed.bullets.slice(0, 5) } : {})
+          bullets: ensureDutchBullets(parsed.bullets).slice(0, 5)
         };
 
         // Alleen bij AI-success cache schrijven.
