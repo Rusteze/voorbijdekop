@@ -341,6 +341,12 @@ export default function Home() {
   }, [query, topic, sourceFilter]);
 
   const stories = useMemo(() => storiesAllFiltered.slice(0, visibleCount), [storiesAllFiltered, visibleCount]);
+  const allStoriesLoaded = useMemo(() => getAllStories(), []);
+
+  useEffect(() => {
+    console.log("stories loaded:", allStoriesLoaded.length);
+    console.log("first story:", allStoriesLoaded[0]?.title);
+  }, [allStoriesLoaded]);
 
   const filteredCount = storiesAllFiltered.length;
 

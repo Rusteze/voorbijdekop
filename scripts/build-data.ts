@@ -185,8 +185,11 @@ async function main() {
     }));
 
   const generatedDir = path.resolve("data/generated");
+  const webPublicDataDir = path.resolve("web/public/data");
   await fs.mkdir(generatedDir, { recursive: true });
+  await fs.mkdir(webPublicDataDir, { recursive: true });
   await writeJson(path.join(generatedDir, "articles.json"), articlesOut);
+  await writeJson(path.join(webPublicDataDir, "articles.json"), articlesOut);
 
   // Output 2: stories.json (na clustering)
   // 72–96 uur window voor “zelfde event, andere woorden”
@@ -381,6 +384,7 @@ async function main() {
   stories = stories.map((s) => applyRijksoverheidImageRules(s));
 
   await writeJson(path.join(generatedDir, "stories.json"), stories);
+  await writeJson(path.join(webPublicDataDir, "stories.json"), stories);
 
   console.log(
     `[build-data] done: articles=${articlesOut.length} stories=${stories.length} multiSource=${stories.filter((s) => new Set(s.articles.map((a) => a.sourceDomain)).size >= 2).length}`

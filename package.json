@@ -5,7 +5,8 @@
   "scripts": {
     "build:data": "tsx scripts/build-data.ts",
     "dev:web": "npm --prefix web run dev",
-    "build:web": "npm --prefix web run build"
+    "build:web": "npm run build:data && npm --prefix web run build",
+    "build": "npm run build:web"
   },
   "devDependencies": {
     "@types/node": "^18.19.87",
