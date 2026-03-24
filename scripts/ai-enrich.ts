@@ -193,6 +193,73 @@ function dedupeBullets(raw: string[], title: string, narrative: string) {
   return out;
 }
 
+function normalizeNarrative(text: string): string {
+  const cleaned = String(text ?? "").replace(/\r\n/g, "\n").trim();
+  if (!cleaned) return "";
+
+  const toParagraphs = (input: string) =>
+    input
+      .split(/\n{2,}/)
+      .map((p) => p.replace(/\s+/g, " ").trim())
+      .filter(Boolean);
+
+  let paragraphs = toParagraphs(cleaned);
+
+  // A) 1 alinea -> slim opsplitsen op zinnen naar 2-3 alinea's
+  if (paragraphs.length <= 1) {
+    const sentences = cleaned
+      .split(/(?<=[.!?])\s+/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+    if (sentences.length >= 3) {
+      const targetParts = Math.min(3, Math.max(2, Math.ceil(sentences.length / 3)));
+      const chunkSize = Math.ceil(sentences.length / targetParts);
+      const out: string[] = [];
+      for (let i = 0; i < sentences.length; i += chunkSize) {
+        out.push(sentences.slice(i, i + chunkSize).join(" ").trim());
+      }
+      paragraphs = out.filter(Boolean).slice(0, 4);
+    }
+  }
+
+  // B) >4 alinea's -> korte alinea's samenvoegen tot 2-4
+  if (paragraphs.length > 4) {
+    const merged: string[] = [];
+    let buffer = "";
+    for (const p of paragraphs) {
+      const next = buffer ? `${buffer} ${p}` : p;
+      if (next.length < 220 && merged.length < 3) {
+        buffer = next;
+      } else {
+        if (buffer) merged.push(buffer.trim());
+        buffer = p;
+      }
+    }
+    if (buffer) merged.push(buffer.trim());
+    paragraphs = merged.filter(Boolean).slice(0, 4);
+  }
+
+  paragraphs = paragraphs.map((p) => p.trim()).filter(Boolean).slice(0, 4);
+  let normalized = paragraphs.join("\n\n").trim();
+
+  // D) >350 woorden -> inkorten op volledige zin rond 220-280 woorden
+  const words = normalized.split(/\s+/).filter(Boolean);
+  if (words.length > 350) {
+    const targetStart = 220;
+    const targetEnd = 280;
+    let slice = words.slice(0, targetEnd).join(" ");
+    const sentenceEnd = slice.lastIndexOf(".");
+    if (sentenceEnd >= targetStart) {
+      slice = slice.slice(0, sentenceEnd + 1);
+    }
+    normalized = slice.trim();
+    normalized = normalizeNarrative(normalized); // hernormaliseer paragrafen na truncate
+  }
+
+  // C) <80 woorden laten we staan (geen reject)
+  return normalized;
+}
+
 function toFullAiStoryFromLite(parsed: Partial<AiLiteResponse>, story: Story): AiStory {
   const narrative = String(parsed.narrative ?? "").trim();
   const summary = narrative
@@ -508,26 +575,33 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
           console.warn("[ai] Missing bullets, fallback triggered");
           throw new Error("Missing bullets");
         }
-        const narrativeText = String(parsed.narrative ?? "").trim();
-        const paragraphs = narrativeText.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
-        const wordCount = narrativeText.split(/\s+/).filter(Boolean).length;
-        const invalidNarrativeShape = paragraphs.length < 2 || paragraphs.length > 4 || wordCount < 120 || wordCount > 520;
-        if (invalidNarrativeShape) {
-          console.warn("[ai] narrative shape out of range, fallback triggered", {
-            mode: isSingleSource ? "single-source" : "multi-source",
-            paragraphs: paragraphs.length,
-            words: wordCount,
-          });
-          throw new Error("Invalid AI narrative shape");
-        }
+        const narrativeBefore = String(parsed.narrative ?? "").trim();
+        const paragraphsBefore = narrativeBefore.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean).length;
+        const wordsBefore = narrativeBefore.split(/\s+/).filter(Boolean).length;
+        const narrativeAfter = normalizeNarrative(narrativeBefore);
+        const paragraphsAfter = narrativeAfter.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean).length;
+        const wordsAfter = narrativeAfter.split(/\s+/).filter(Boolean).length;
+        console.log(
+          `[ai] narrative normalized: paragraphs ${paragraphsBefore} -> ${paragraphsAfter}, words ${wordsBefore} -> ${wordsAfter}`
+        );
 
-        const aiStory = toFullAiStoryFromLite(parsed, story);
+        const parsedNormalized: AiLiteResponse = {
+          ...parsed,
+          narrative: narrativeAfter,
+          bullets: parsed.bullets
+        };
+
+        const aiStory = toFullAiStoryFromLite(parsedNormalized, story);
         const cleaned: AiLiteResponse = {
-          category: parsed.category ?? "overig",
-          topic: parsed.topic ?? "overig",
-          shortHeadline: parsed.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
-          narrative: parsed.narrative,
-          bullets: dedupeBullets(ensureDutchBullets(parsed.bullets), story.title ?? "", parsed.narrative ?? "").slice(0, 5)
+          category: parsedNormalized.category ?? "overig",
+          topic: parsedNormalized.topic ?? "overig",
+          shortHeadline: parsedNormalized.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
+          narrative: parsedNormalized.narrative,
+          bullets: dedupeBullets(
+            ensureDutchBullets(parsedNormalized.bullets),
+            story.title ?? "",
+            parsedNormalized.narrative ?? ""
+          ).slice(0, 5)
         };
 
         // Alleen bij AI-success cache schrijven.
