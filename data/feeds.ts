@@ -23,6 +23,9 @@ export const FEEDS: Feed[] = [
   { domain: "theguardian.com", url: "https://www.theguardian.com/world/rss" },
   { domain: "aljazeera.com", url: "https://www.aljazeera.com/xml/rss/all.xml" },
   { domain: "ft.com", url: "https://www.ft.com/news-feed?format=rss" },
+  { domain: "politico.com", url: "https://rss.politico.com/economy.xml" },
+  { domain: "politico.com", url: "https://rss.politico.com/energy.xml" },
+  { domain: "politico.com", url: "https://rss.politico.com/politics-news.xml" },     
 
   // Tech
   { domain: "arstechnica.com", url: "https://feeds.arstechnica.com/arstechnica/index" },
@@ -38,6 +41,7 @@ export const FEEDS: Feed[] = [
   { domain: "warontherocks.com", url: "https://warontherocks.com/feed/" },
   { domain: "defence-blog.com", url: "https://defence-blog.com/feed/" },
   { domain: "globalissues.org", url: "https://www.globalissues.org/news/feed" },
+  { domain: "politico.com", url: "https://rss.politico.com/defense.xml" },
   // --- Reuters alternatief (publiek RSS) ---
   { domain: "reutersbest.com", url: "https://reutersbest.com/feed/" },
   // --- Rijksoverheid (publiek RSS) ---

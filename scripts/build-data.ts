@@ -265,7 +265,7 @@ async function main() {
     .filter((s: any) => allowedTopics.has((s.topic ?? "overig") as string));
 
   // AI enrichment: alleen voor nieuwe stories (bestaande cache = direct trust).
-  const maxArticlesPerStory = 4;
+  const maxArticlesPerStory = 3;
   const cacheDir = path.resolve("data/ai");
   await fs.mkdir(cacheDir, { recursive: true });
 

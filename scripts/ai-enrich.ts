@@ -57,25 +57,22 @@ const schemaObject = {
     category: { type: "string" },
     topic: { type: "string" },
     shortHeadline: { type: "string" },
-    summary: { type: "string" },
-    facts: {
+    narrative: { type: "string" },
+    bullets: {
       type: "array",
       items: { type: "string" },
-      minItems: 2,
-      maxItems: 6
-    },
-    nuance: { type: "string" }
+      maxItems: 5
+    }
   },
-  required: ["category", "topic", "shortHeadline", "summary", "facts"]
+  required: ["category", "topic", "shortHeadline", "narrative"]
 } as const;
 
 type AiLiteResponse = {
   category: string;
   topic: string;
   shortHeadline: string;
-  summary: string;
-  facts: string[];
-  nuance?: string;
+  narrative: string;
+  bullets?: string[];
 };
 
 /**
@@ -149,19 +146,35 @@ function storyCacheKey(story: Story, selectedIds: string[]) {
   return sha256Hex(JSON.stringify(payload)).slice(0, 24);
 }
 
+function looksEnglish(text: string) {
+  const t = ` ${text.toLowerCase()} `;
+  const hits = [" the ", " and ", " with ", " from ", " this ", " that ", " are ", " was "].filter((w) => t.includes(w)).length;
+  return hits >= 2;
+}
+
+function ensureDutchBullets(items: string[]) {
+  return items
+    .map((x) => String(x ?? "").trim())
+    .filter(Boolean)
+    .map((x) => (looksEnglish(x) ? "Broninformatie is vertaald en samengevat in het verhaal." : x));
+}
+
 function toFullAiStoryFromLite(parsed: Partial<AiLiteResponse>, story: Story): AiStory {
-  const summary = String(parsed.summary ?? story.summary ?? "").trim();
-  const shortNuance = String(parsed.nuance ?? "").trim();
-  const facts = Array.isArray(parsed.facts)
-    ? parsed.facts.map((x) => String(x ?? "").trim()).filter(Boolean).slice(0, 6)
+  const narrative = String(parsed.narrative ?? "").trim();
+  const summary = narrative
+    ? narrative.split(/\n+/).map((p) => p.trim()).filter(Boolean)[0] ?? story.summary
+    : story.summary;
+  const facts = Array.isArray(parsed.bullets)
+    ? ensureDutchBullets(parsed.bullets).slice(0, 5)
     : [];
+
   return sanitizeAiStory({
     summary: summary || story.summary,
-    narrative: summary || story.summary,
-    facts: facts.length > 0 ? facts : ["Samenvatting beschikbaar; controleer de bronlinks voor extra details."],
+    narrative: narrative || story.summary,
+    facts: facts.length > 0 ? facts : ["Controleer de bronlinks voor aanvullende details."],
     interpretations: [],
-    unknowns: shortNuance ? [shortNuance] : [],
-    comparisons: shortNuance ? [shortNuance] : [],
+    unknowns: [],
+    comparisons: [],
     questions: [],
     investigations: [],
     claims: []
@@ -178,6 +191,7 @@ function fallbackAi(story: Story): AiStory {
     .map((x) => x.split(/[.!?]\s+/)[0])
     .filter(Boolean)
     .map((x) => x.slice(0, 200));
+  const factsNl = ensureDutchBullets(facts);
   const summary = (
     uniqueDomains.size === 1
       ? "Dit verhaal is gebaseerd op één bron. Lees de originele bron voor volledige context."
@@ -186,7 +200,7 @@ function fallbackAi(story: Story): AiStory {
   return sanitizeAiStory({
     summary,
     narrative: summary,
-    facts: facts.length >= 2 ? facts.slice(0, 6) : [summary, "Controleer de bronlinks voor aanvullende details."],
+    facts: factsNl.length >= 2 ? factsNl.slice(0, 6) : [summary, "Controleer de bronlinks voor aanvullende details."],
     interpretations: [],
     unknowns: [],
     comparisons: [],
@@ -197,7 +211,7 @@ function fallbackAi(story: Story): AiStory {
 }
 
 export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticlesPerStory?: number }) {
-  const maxArticlesPerStory = opts?.maxArticlesPerStory ?? 4;
+  const maxArticlesPerStory = opts?.maxArticlesPerStory ?? 3;
   const apiKey = process.env.OPENAI_API_KEY;
   // Persistente AI-cache: alleen nieuwe/gewijzigde stories draaien opnieuw AI.
   // NOTE: If schema or prompt changes, delete data/ai to avoid stale outputs.
@@ -235,7 +249,8 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
   let cacheHits = 0;
   let generatedCount = 0;
   let fallbackCount = 0;
-  let skippedFewSources = 0;
+  let singleSourceCount = 0;
+  let multiSourceCount = 0;
   let skippedLowImportance = 0;
 
   const toFallbackStory = (story: Story, cacheKey: string): Story => ({
@@ -247,16 +262,6 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
     aiStatus: "fallback" as const,
     aiCacheKey: cacheKey
   });
-  const toSkippedStory = (story: Story, cacheKey: string): Story => ({
-    ...story,
-    category: story.category ?? "overig",
-    topic: story.topic ?? "overig",
-    shortHeadline: story.shortHeadline ?? fallbackShortHeadline(story),
-    ai: sanitizeAiStory(fallbackAi(story)),
-    aiStatus: "skipped" as const,
-    aiCacheKey: cacheKey
-  });
-
   const chunkArray = <T,>(arr: T[], size: number): T[][] => {
     const chunks: T[][] = [];
     for (let i = 0; i < arr.length; i += size) chunks.push(arr.slice(i, i + size));
@@ -318,20 +323,17 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
       const { story, selected, cacheKey, cachePath } = task;
       console.log(`[ai-debug] ${story.slug} sources=${selected.length}`);
 
-      if (selected.length < 2) {
-        skippedFewSources += 1;
-        console.log(`[ai] skip (too few sources) ${story.slug}`);
-        return toSkippedStory(story, cacheKey);
+      if (selected.length < 1) {
+        console.log(`[ai] skip (no sources) ${story.slug}`);
+        fallbackCount += 1;
+        return toFallbackStory(story, cacheKey);
       }
 
       if ((story.importance ?? 0) < MIN_AI_IMPORTANCE) {
         skippedLowImportance += 1;
-        console.log(`[ai] skip (low importance) ${story.slug}`);
-        return toSkippedStory(story, cacheKey);
-      }
-
-      if (selected.length >= 2) {
-        // FORCE AI path for multi-source stories
+        console.log(`[ai] fallback (low importance) ${story.slug}`);
+        fallbackCount += 1;
+        return toFallbackStory(story, cacheKey);
       }
 
       console.log(`[ai] generating ${story.slug} (${cacheKey}) sources=${selected.length}`);
@@ -360,29 +362,77 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
         ""
       ];
 
-      const instructionBlock = [
-        "INSTRUCTIE:",
-        "Vat de gebeurtenis samen op basis van de bronnen.",
-        "",
-        "Regels:",
-        "- Gebruik alleen informatie uit de bronnen.",
-        "- Wees concreet (wie, wat, waar, wanneer).",
-        "- Geen speculatie."
-      ];
+      const isSingleSource = selected.length === 1;
+      if (isSingleSource) singleSourceCount += 1;
+      else multiSourceCount += 1;
 
-      const outputFormatBlock = [
-        "OUTPUT:",
-        "Geef JSON volgens schema.",
-        "- shortHeadline: 8-12 woorden",
-        "- summary: 3-5 zinnen",
-        "- facts: 3-5 concrete feiten (elk 1 zin)",
-        "- nuance: optioneel, 1 zin over onzekerheid of bronverschil",
-        "",
-        "BELANGRIJK:",
-        "- Schrijf alle velden in het Nederlands.",
-        "- Gebruik alleen de broninformatie.",
-        "- Geen extra tekst buiten JSON."
-      ];
+      const instructionBlock = isSingleSource
+        ? [
+            "INSTRUCTIE:",
+            "Schrijf een heldere, korte samenvatting op basis van deze ene bron.",
+            "",
+            "NARRATIVE:",
+            "- 2 tot 4 korte alinea's",
+            "- volledig in het Nederlands",
+            "- concreet en feitelijk, geen speculatie",
+            "",
+            "BELANGRIJK:",
+            "- Gebruik alleen informatie uit deze bron.",
+            "- Vertaal broninhoud naar het Nederlands.",
+            "- Geen extra tekst buiten JSON."
+          ]
+        : [
+            "INSTRUCTIE:",
+            "Schrijf één helder, vloeiend verhaal op basis van meerdere nieuwsbronnen.",
+            "",
+            "NARRATIVE (BELANGRIJKSTE):",
+            "- 5 tot 8 korte alinea's",
+            "- 400-700 woorden",
+            "- volledig in het Nederlands",
+            "- combineer ALLE bronnen tot één logisch verhaal",
+            "- begin met wat er gebeurt (wie/wat/waar)",
+            "- daarna: context, verschillen, impact",
+            "- geen herhaling van de titel",
+            "- geen opsomming",
+            "- geen generieke zinnen",
+            "",
+            "BELANGRIJK:",
+            "- Gebruik ALLEEN info uit de bronnen",
+            "- Vertaal ALLES naar Nederlands (ook Engelse excerpts)",
+            "- Combineer bronnen: geen losse samenvattingen",
+            "- Vermijd herhaling tussen narrative en bullets",
+            "",
+            "STIJL:",
+            "- rustig, analytisch",
+            "- geen clickbait",
+            "- concreet en feitelijk"
+          ];
+
+      const outputFormatBlock = isSingleSource
+        ? [
+            "OUTPUT:",
+            "Geef JSON volgens schema.",
+            "- shortHeadline: korte, concrete kop",
+            "- narrative: 2-4 korte alinea's",
+            "- bullets: optioneel, max 3, korte concrete feiten",
+            "",
+            "BELANGRIJK:",
+            "- Schrijf alle velden in het Nederlands.",
+            "- Gebruik alleen de broninformatie.",
+            "- Geen extra tekst buiten JSON."
+          ]
+        : [
+            "OUTPUT:",
+            "Geef JSON volgens schema.",
+            "- shortHeadline: korte, concrete kop",
+            "- narrative: 5-8 korte alinea's, 400-700 woorden",
+            "- bullets: optioneel, max 5, korte concrete feiten",
+            "",
+            "BELANGRIJK:",
+            "- Schrijf alle velden in het Nederlands.",
+            "- Gebruik alleen de broninformatie.",
+            "- Geen extra tekst buiten JSON."
+          ];
 
       const prompt = [...toneBlock, ...contextBlock, ...instructionBlock, ...outputFormatBlock].join("\n");
 
@@ -413,13 +463,23 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
           console.warn(JSON.stringify(resp, null, 2));
           throw new Error("OpenAI structured output missing");
         }
-        if (!parsed.category || !parsed.topic || !parsed.shortHeadline || !parsed.summary) {
+        if (!parsed.category || !parsed.topic || !parsed.shortHeadline || !parsed.narrative) {
           console.warn("[ai] Invalid AI structure, fallback triggered");
           throw new Error("Invalid AI structure");
         }
-        if (!Array.isArray(parsed.facts) || parsed.facts.length < 2) {
-          console.warn("[ai] facts too short for lite mode, fallback triggered");
-          throw new Error("Invalid AI facts length");
+        const narrativeText = String(parsed.narrative ?? "").trim();
+        const paragraphs = narrativeText.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
+        const wordCount = narrativeText.split(/\s+/).filter(Boolean).length;
+        const invalidNarrativeShape = isSingleSource
+          ? paragraphs.length < 2 || paragraphs.length > 4 || wordCount < 120 || wordCount > 380
+          : paragraphs.length < 5 || paragraphs.length > 8 || wordCount < 400 || wordCount > 700;
+        if (invalidNarrativeShape) {
+          console.warn("[ai] narrative shape out of range, fallback triggered", {
+            mode: isSingleSource ? "single-source" : "multi-source",
+            paragraphs: paragraphs.length,
+            words: wordCount,
+          });
+          throw new Error("Invalid AI narrative shape");
         }
 
         const aiStory = toFullAiStoryFromLite(parsed, story);
@@ -427,9 +487,8 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
           category: parsed.category ?? "overig",
           topic: parsed.topic ?? "overig",
           shortHeadline: parsed.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story),
-          summary: parsed.summary ?? story.summary,
-          facts: parsed.facts.slice(0, 6),
-          ...(parsed.nuance ? { nuance: parsed.nuance } : {})
+          narrative: parsed.narrative,
+          ...(Array.isArray(parsed.bullets) ? { bullets: parsed.bullets.slice(0, 5) } : {})
         };
 
         // Alleen bij AI-success cache schrijven.
@@ -492,7 +551,8 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
   cacheHits=${cacheHits}
   generated=${generatedCount}
   fallback=${fallbackCount}
-  skippedFewSources=${skippedFewSources}
+  singleSource=${singleSourceCount}
+  multiSource=${multiSourceCount}
   skippedLowImportance=${skippedLowImportance}
 `);
 

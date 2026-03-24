@@ -34,10 +34,7 @@ function NarrativeLead({
       : [];
 
   return (
-    <section className="mb-10 md:mb-12" aria-labelledby="narrative-heading">
-      <p id="narrative-heading" className="text-sm text-gray-500 dark:text-gray-500">
-        Samengevoegd verhaal
-      </p>
+    <section className="mb-10 md:mb-12">
       <div className="mt-4 text-base leading-relaxed text-gray-900 dark:text-gray-100 md:text-lg">
         {aiSucceeded && blocks.length > 0 ? (
           <div className="space-y-4 md:space-y-6">
@@ -129,6 +126,11 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
     ai &&
     typeof ai.narrative === "string" &&
     ai.narrative.trim().length > 0;
+  const narrativeText = stripAiMarkup(ai?.narrative ?? "");
+  const bullets = (ai?.facts ?? []).map((x: string) => stripAiMarkup(x)).filter(Boolean);
+  const normalize = (txt: string) => txt.toLowerCase().replace(/\s+/g, " ").trim();
+  const isDuplicateBullet = (b: string) => normalize(narrativeText).includes(normalize(b));
+  const visibleBullets = bullets.filter((b) => !isDuplicateBullet(b));
 
   const cipherImage = pickCipherPreferredImage(story);
   const fallbackTopic = story.topic ?? story.category ?? "overig";
@@ -195,15 +197,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
     <div className="min-h-screen bg-[var(--bg)]">
       <main>
         <div className="mx-auto max-w-2xl px-5 pt-12">
-        <Link
-          className="text-sm font-medium text-gray-900 hover:text-black hover:underline dark:text-gray-300 dark:hover:text-white"
-          href="/"
-        >
-          ← terug
-        </Link>
-
         <header className="mt-6 mb-8">
-          <p className="text-sm text-gray-500 dark:text-gray-500">voorbijdekop</p>
           <div className="mt-6 overflow-hidden rounded-xl bg-[var(--card-bg)]">
             <div className="relative aspect-[16/9] w-full bg-[var(--card-bg)]">
               <img
@@ -226,9 +220,6 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
           <h1 className="mt-4 text-xl font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-2xl">
             {story.title}
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-gray-900 dark:text-gray-100 md:text-sm">
-            {story.summary}
-          </p>
           <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">
             {storySourceLabel(story)} · Laatst bijgewerkt: {formatRelativeStoryTime(lastUpdatedMs)}
             {lastUpdatedMs > 0 ? (
@@ -239,41 +230,40 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
 
         <NarrativeLead
           aiSucceeded={aiSucceeded}
-          narrative={stripAiMarkup(ai?.narrative ?? "")}
+          narrative={narrativeText}
           summaryFallback={story.summary}
         />
 
+        {visibleBullets.length > 0 ? (
         <div className="mb-10 space-y-8 md:mb-12">
-          <section className="mt-8 md:mt-0">
-            <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
-              Feiten
+          <section className="mt-6 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] p-4 md:mt-0 md:rounded-none md:border-0 md:bg-transparent md:p-0">
+            <h2 className="mb-2 text-base font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
+              Bulletpoints
             </h2>
-            <ul className="list-disc space-y-3 pl-5 text-base leading-relaxed text-gray-900 marker:text-gray-700 dark:text-gray-100 dark:marker:text-gray-500 md:text-sm">
-              {(ai?.facts ?? []).slice(0, 16).map((x: string, i: number) => (
-                <li key={i} className="break-words">
-                  {stripAiMarkup(x)}
+            <ul className="list-disc space-y-2.5 pl-5 text-[15px] leading-7 text-gray-900 marker:text-gray-600 dark:text-gray-100 dark:marker:text-gray-500 md:space-y-3 md:text-sm md:leading-relaxed">
+              {visibleBullets.slice(0, 5).map((x: string, i: number) => (
+                <li key={i} className="break-words tracking-[0.001em]">
+                  {x}
                 </li>
               ))}
-              {(ai?.facts ?? []).length === 0 && (
-                <li className="text-sm text-gray-800 dark:text-gray-300">Geen (of niet automatisch afgeleid).</li>
-              )}
             </ul>
           </section>
         </div>
+        ) : null}
         </div>
 
         <div className="mx-auto max-w-2xl px-4 pb-10 md:px-5 md:pb-12">
-        <section className="mb-10 md:mb-12">
-          <h2 className="mb-3 text-lg font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
+        <section className="mb-10 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] p-4 md:mb-12 md:rounded-none md:border-0 md:bg-transparent md:p-0">
+          <h2 className="mb-2 text-base font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
             Transparantie
           </h2>
-          <div className="text-base leading-relaxed md:text-sm">
-            <div className="mt-2">
+          <div className="text-[15px] leading-7 md:text-sm md:leading-relaxed">
+            <div className="mt-1 md:mt-2">
               <span className="font-semibold text-gray-500 dark:text-gray-500">Gebruikte bronnen:</span>{" "}
               <span className="text-gray-900 dark:text-gray-100">{sourceCount}</span>
             </div>
           </div>
-          <ul className="mt-6 space-y-4 text-base leading-relaxed text-gray-900 dark:text-gray-100 md:text-sm">
+          <ul className="mt-4 space-y-4 text-[15px] leading-7 text-gray-900 dark:text-gray-100 md:mt-6 md:text-sm md:leading-relaxed">
             {sources.map((s, i) => (
               <li key={i}>
                 <a
