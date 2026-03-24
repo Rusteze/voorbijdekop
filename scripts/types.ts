@@ -106,7 +106,8 @@ export type Story = {
   topic?: StoryTopic;
   importance: number;
   topics: string[];
-  buildAt: string; // ISO
+  generatedAt: string; // ISO (canonieke timestamp)
+  buildAt?: string; // legacy compat
   articles: Array<
     Pick<
       Article,

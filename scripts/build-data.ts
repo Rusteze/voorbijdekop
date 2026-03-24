@@ -57,6 +57,7 @@ function ensureAtLeastOneMultiSourceStory(stories: Story[]) {
     imageUrl: primary?.imageUrl,
     importance: 50,
     topics: [],
+    generatedAt: primary?.publishedAt ?? new Date().toISOString(),
     buildAt: new Date().toISOString(),
     articles: merged.map((a) => ({
       id: a.id,
@@ -158,9 +159,20 @@ function storyCacheKey(story: Story, selectedIds: string[]) {
   return sha256Hex(JSON.stringify(payload)).slice(0, 24);
 }
 
+function storyCanonicalGeneratedAt(story: Story, fallbackIso: string) {
+  const latestArticleMs = Math.max(
+    ...story.articles.map((a) => new Date(a.publishedAt).getTime()).filter((x) => Number.isFinite(x)),
+    0
+  );
+  if (latestArticleMs > 0) return new Date(latestArticleMs).toISOString();
+  const currentMs = new Date((story as any).generatedAt ?? "").getTime();
+  if (Number.isFinite(currentMs) && currentMs > 0) return new Date(currentMs).toISOString();
+  return fallbackIso;
+}
+
 async function main() {
-  const buildAt = new Date().toISOString();
-  console.log(`[build-data] start ${buildAt}`);
+  const generatedAt = new Date().toISOString();
+  console.log(`[build-data] start ${generatedAt}`);
 
   const raw = await fetchRssArticles({ maxPerFeed: 40 });
   const deduped = dedupeByCanonical(raw);
@@ -262,6 +274,7 @@ async function main() {
   stories = stories
     .map((s) => ({
       ...s,
+      generatedAt: storyCanonicalGeneratedAt(s as Story, generatedAt),
       category: s.category ?? "overig",
       topic: (s as any).topic ?? heuristicTopic(s)
     }))
@@ -359,7 +372,7 @@ async function main() {
 
   stories = cachedSlots as Story[];
 
-  // Transparantie: buildAt overal + defaults (AI kan topic/category overrulen)
+  // Transparantie: generatedAt overal + defaults (AI kan topic/category overrulen)
   stories = (stories as any[])
     .map((s, index) => {
       if (!s) {
@@ -368,7 +381,8 @@ async function main() {
       }
       return {
         ...s,
-        buildAt,
+        generatedAt: storyCanonicalGeneratedAt(s as Story, generatedAt),
+        buildAt: generatedAt,
         category: s.category ?? "overig",
         topic: (s as any).topic ?? heuristicTopic(s)
       };
@@ -382,6 +396,7 @@ async function main() {
   //   zodat de UI een category-based fallback image toont.
   stories = stories.map((s) => applyCipherbriefImageRules(s));
   stories = stories.map((s) => applyRijksoverheidImageRules(s));
+  stories.sort((a, b) => new Date(b.generatedAt).getTime() - new Date(a.generatedAt).getTime());
 
   await writeJson(path.join(generatedDir, "stories.json"), stories);
   await writeJson(path.join(webPublicDataDir, "stories.json"), stories);

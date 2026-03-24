@@ -1,13 +1,6 @@
 export function getStoryLastUpdated(story: any): number {
-  const articles = Array.isArray(story?.articles) ? (story.articles as any[]) : [];
-  const times = articles
-    .map((a) => {
-      const t = new Date(a?.publishedAt ?? "").getTime();
-      return Number.isFinite(t) ? t : null;
-    })
-    .filter((x): x is number => typeof x === "number");
-
-  return times.length > 0 ? Math.max(...times) : 0;
+  const generated = new Date(story?.generatedAt ?? "").getTime();
+  return Number.isFinite(generated) ? generated : 0;
 }
 
 export function formatRelativeStoryTime(ms: number, nowMs?: number): string {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllStories, getStoryBySlug } from "@/lib/generated";
+import { getAllStories, getStoryBySlug } from "@/lib/generated.server";
 import { getFallbackImage } from "@/lib/fallbackImage";
 import {
   getStoryLastUpdated,
@@ -9,6 +9,7 @@ import {
   topicLabel,
 } from "@/lib/storyUtils";
 import { stripAiMarkup } from "@/lib/stripAiMarkup";
+export const revalidate = 0;
 
 function isNarrativeSubheading(paragraph: string) {
   const t = paragraph.trim();
@@ -82,10 +83,6 @@ function pickCipherPreferredImage(story: any) {
   return best?.imageUrl;
 }
 
-export function generateStaticParams() {
-  return getAllStories().map((s) => ({ slug: s.slug }));
-}
-
 export default function StoryPage({ params }: { params: { slug: string } }) {
   const story = getStoryBySlug(params.slug);
 
@@ -115,7 +112,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
     bias: a.source.bias as string
   }));
 
-  const sources = Array.from(new Map(rawSources.map((s) => [s.domain, s])).values());
+  const sources = Array.from(new Map(rawSources.map((s: any) => [s.domain, s])).values()) as any[];
   const sourceCount = sources.length;
 
   const lastUpdatedMs = getStoryLastUpdated(story);
@@ -130,7 +127,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
   const bullets = (ai?.facts ?? []).map((x: string) => stripAiMarkup(x)).filter(Boolean);
   const normalize = (txt: string) => txt.toLowerCase().replace(/\s+/g, " ").trim();
   const isDuplicateBullet = (b: string) => normalize(narrativeText).includes(normalize(b));
-  const visibleBullets = bullets.filter((b) => !isDuplicateBullet(b));
+  const visibleBullets = bullets.filter((b: string) => !isDuplicateBullet(b));
 
   const cipherImage = pickCipherPreferredImage(story);
   const fallbackTopic = story.topic ?? story.category ?? "overig";

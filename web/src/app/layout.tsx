@@ -6,6 +6,8 @@ import { VoorbijDekopProvider } from "./voorbijdekop-state";
 import { ThemeSettingsOverlay } from "./theme-settings-overlay";
 import { SearchOverlay } from "./search-overlay";
 import { AiInfoOverlay } from "./ai-info-overlay";
+import fs from "node:fs";
+import path from "node:path";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -16,12 +18,17 @@ export const metadata: Metadata = {
   title: "voorbijdekop",
   description: "Statisch gebouwde, analytische nieuwsverhalen met onderzoekslaag.",
 };
+export const revalidate = 0;
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const storiesPath = path.join(process.cwd(), "data/generated/stories.json");
+  const storiesRaw = fs.existsSync(storiesPath) ? fs.readFileSync(storiesPath, "utf8") : "[]";
+  const storiesJson = storiesRaw.replace(/</g, "\\u003c");
+
   return (
     <html lang="nl" className="light" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
@@ -47,6 +54,11 @@ export default function RootLayout({
                 } catch (e) {}
               })();
             `
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__VOORBIJDEKOP_STORIES__ = ${storiesJson};`
           }}
         />
         <VoorbijDekopProvider>
