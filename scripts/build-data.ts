@@ -285,7 +285,12 @@ async function main() {
       category: s.category ?? "overig",
       topic: (s as any).topic ?? heuristicTopic(s)
     }))
-    .filter((s: any) => allowedTopics.has((s.topic ?? "overig") as string));
+    // Niet "weggooien": AI kan topics teruggeven die afwijken (t.o.v. heuristiek).
+    // We normaliseren naar "overig" i.p.v. verhalen te verwijderen, zodat aiStatus: "ok" niet verdwijnt.
+    .map((s: any) => {
+      const t = (s.topic ?? "overig") as string;
+      return { ...s, topic: allowedTopics.has(t) ? t : "overig" };
+    });
 
   // AI enrichment: alleen voor nieuwe stories (bestaande cache = direct trust).
   const maxArticlesPerStory = 3;
@@ -412,8 +417,10 @@ async function main() {
   const beforeTopicFilter = storiesWithDefaults as any[];
   console.log("[build-data] aiStatus before topic filter:", stats(beforeTopicFilter), "stories=", beforeTopicFilter.length);
 
-  stories = beforeTopicFilter
-    .filter((s: any) => allowedTopics.has((s.topic ?? "overig") as string)) as Story[];
+  stories = beforeTopicFilter.map((s: any) => {
+    const t = (s.topic ?? "overig") as string;
+    return { ...s, topic: allowedTopics.has(t) ? t : "overig" };
+  }) as Story[];
 
   console.log("[build-data] aiStatus after topic filter:", stats(stories as any[]), "stories=", stories.length);
 
