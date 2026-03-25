@@ -195,6 +195,8 @@ function categoryClass(cat: string) {
 
 function topicLabel(tp?: string | null) {
   switch (tp) {
+    case "overig":
+      return "Overig";
     case "geopolitiek":
       return "Geopolitiek";
     case "conflict":

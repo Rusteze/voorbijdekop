@@ -26,7 +26,12 @@ jobs:
       - name: Run script
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: npx tsx scripts/build-data.ts
+        run: |
+          if [ -z "${OPENAI_API_KEY}" ]; then
+            echo "OPENAI_API_KEY ontbreekt (GitHub secret). We stoppen om geen fallback content te committen."
+            exit 1
+          fi
+          npx tsx scripts/build-data.ts
 
       - name: Commit changes
         run: |

@@ -11,6 +11,7 @@ type TopicId = NonNullable<GeneratedStory["topic"]> | "alle";
 
 const TOPICS: Array<[TopicId, string]> = [
   ["alle", "Alle"],
+  ["overig", "Overig"],
   ["geopolitiek", "Geopolitiek"],
   ["conflict", "Conflict"],
   ["oorlog", "Oorlog"],

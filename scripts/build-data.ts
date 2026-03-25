@@ -227,7 +227,9 @@ async function main() {
     "beïnvloeding",
     "technologische macht",
     "politieke instabiliteit",
-    "machtsverschuiving"
+    "machtsverschuiving",
+    // Anders vallen alle niet-gematchte clusters weg → site voelt “stokoud” terwijl RSS wél loopt.
+    "overig"
   ]);
 
   function heuristicTopic(story: Story) {

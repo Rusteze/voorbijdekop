@@ -11,10 +11,12 @@ import { extractEntities, stripHtml, tokenizeNlLike } from "./utils/text.js";
 import { openAiResponsesCreate } from "./utils/llm.js";
 
 type RawRssItem = {
-  title?: string;
-  link?: string;
+  title?: string | { "#text"?: string };
+  link?: string | { "@_href"?: string } | Array<{ "@_href"?: string; "@_rel"?: string }>;
   guid?: string;
   pubDate?: string;
+  published?: string;
+  updated?: string;
   "content:encoded"?: string;
   description?: string;
   summary?: string;
@@ -22,6 +24,61 @@ type RawRssItem = {
   "media:thumbnail"?: { "@_url"?: string };
   "media:content"?: { "@_url"?: string };
 };
+
+function asItemArray(raw: unknown): RawRssItem[] {
+  if (!raw) return [];
+  if (Array.isArray(raw)) return raw as RawRssItem[];
+  return [raw as RawRssItem];
+}
+
+function extractItemTitle(item: RawRssItem): string {
+  const t = item.title;
+  if (typeof t === "string") return t;
+  if (t && typeof t === "object" && typeof (t as { "#text"?: string })["#text"] === "string") {
+    return (t as { "#text": string })["#text"];
+  }
+  return "";
+}
+
+function extractItemLink(item: RawRssItem): string {
+  const l = item.link as unknown;
+  if (typeof l === "string") return l.replace(/&amp;/g, "&").trim();
+  if (l && typeof l === "object" && !Array.isArray(l) && typeof (l as { "@_href"?: string })["@_href"] === "string") {
+    return String((l as { "@_href": string })["@_href"]).replace(/&amp;/g, "&").trim();
+  }
+  if (Array.isArray(l)) {
+    for (const x of l) {
+      if (x && typeof x === "object" && typeof (x as { "@_href"?: string })["@_href"] === "string") {
+        const rel = (x as { "@_rel"?: string })["@_rel"];
+        if (!rel || rel === "alternate") {
+          return String((x as { "@_href": string })["@_href"]).replace(/&amp;/g, "&").trim();
+        }
+      }
+    }
+    const first = l[0];
+    if (first && typeof first === "object" && typeof (first as { "@_href"?: string })["@_href"] === "string") {
+      return String((first as { "@_href": string })["@_href"]).replace(/&amp;/g, "&").trim();
+    }
+  }
+  return "";
+}
+
+function extractPublishedIso(item: RawRssItem): string | null {
+  for (const v of [item.pubDate, item.published, item.updated]) {
+    if (typeof v === "string" && v.trim()) {
+      const iso = toIsoDate(v);
+      if (iso) return iso;
+    }
+  }
+  return null;
+}
+
+function itemPublishedMs(item: RawRssItem): number {
+  const iso = extractPublishedIso(item);
+  if (!iso) return 0;
+  const ms = new Date(iso).getTime();
+  return Number.isFinite(ms) ? ms : 0;
+}
 
 function toIsoDate(input?: string) {
   if (!input) return null;
@@ -291,18 +348,16 @@ export async function fetchRssArticles(options?: { maxPerFeed?: number }) {
       continue;
     }
 
-    const channel = doc?.rss?.channel ?? doc?.feed ?? doc?.rdf?.RDF?.channel;
-    const items: RawRssItem[] =
-      (doc?.rss?.channel?.item as RawRssItem[]) ??
-      (doc?.feed?.entry as RawRssItem[]) ??
-      (doc?.rdf?.RDF?.item as RawRssItem[]) ??
-      [];
+    const rawItems =
+      doc?.rss?.channel?.item ?? doc?.feed?.entry ?? doc?.rdf?.RDF?.item ?? [];
 
-    const slice = Array.isArray(items) ? items.slice(0, maxPerFeed) : [];
+    const items = asItemArray(rawItems);
+    // Veel feeds leveren chronologisch oud→nieuw; zonder sorteren krijg je alleen oude items binnen maxPerFeed.
+    const slice = [...items].sort((a, b) => itemPublishedMs(b) - itemPublishedMs(a)).slice(0, maxPerFeed);
 
     for (const item of slice) {
-      const title = stripHtmlSimple(stripHtml(item.title ?? "")).slice(0, 220);
-      const linkRaw = (typeof item.link === "string" ? item.link : (item as any).link?.["@_href"]) ?? "";
+      const title = stripHtmlSimple(stripHtml(extractItemTitle(item))).slice(0, 220);
+      const linkRaw = extractItemLink(item);
       const link = linkRaw.replace(/&amp;/g, "&");
       const canonical = canonicalizeUrl(link);
       if (!canonical) continue;
@@ -315,7 +370,7 @@ export async function fetchRssArticles(options?: { maxPerFeed?: number }) {
       }
 
       const excerpt = pickExcerpt(item);
-      const publishedAt = toIsoDate(item.pubDate) ?? new Date().toISOString();
+      const publishedAt = extractPublishedIso(item) ?? new Date().toISOString();
       let imageUrl = pickImage(item, canonical.url);
       if (!imageUrl) {
         // OG fallback: alleen als we nog geen image hebben (performance!)
