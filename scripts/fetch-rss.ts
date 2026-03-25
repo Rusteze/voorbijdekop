@@ -80,6 +80,20 @@ function itemPublishedMs(item: RawRssItem): number {
   return Number.isFinite(ms) ? ms : 0;
 }
 
+async function fetchTextWithTimeout(url: string, timeoutMs: number, init?: RequestInit): Promise<string> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, { ...(init ?? {}), signal: controller.signal });
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status} for ${url}`);
+    }
+    return await res.text();
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 function toIsoDate(input?: string) {
   if (!input) return null;
   const d = new Date(input);
@@ -326,16 +340,17 @@ export async function fetchRssArticles(options?: { maxPerFeed?: number }) {
 
     let xml: string;
     try {
-      const res = await fetch(feed.url, {
-        headers: {
-          "user-agent": "voorbijdekop-bot/0.1 (build-time RSS ingest; contact: none)"
+      const timeoutMs = Number(process.env.RSS_FETCH_TIMEOUT_MS ?? 8000);
+      // Sommige feeds zijn traag/instabiel; zonder timeout kan build onnodig lang blijven hangen.
+      xml = await fetchTextWithTimeout(
+        feed.url,
+        timeoutMs,
+        {
+          headers: {
+            "user-agent": "voorbijdekop-bot/0.1 (build-time RSS ingest; contact: none)"
+          }
         }
-      });
-      if (!res.ok) {
-        console.warn(`[rss] fetch failed ${feed.url} -> ${res.status}`);
-        continue;
-      }
-      xml = await res.text();
+      );
     } catch (e) {
       console.warn(`[rss] fetch error ${feed.url}`, e);
       continue;
