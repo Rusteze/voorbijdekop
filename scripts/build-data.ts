@@ -208,16 +208,21 @@ async function main() {
   let stories = clusterArticlesToStories(deduped, { maxDaysWindow: 4 });
   stories = ensureAtLeastOneMultiSourceStory(stories);
 
-  const allowedTopics = new Set([
+  // Allowed topics moeten overeenkomen met `StoryTopic` (anders worden AI-ok verhalen alsnog gefilterd weg).
+  // Dit bepaalt ook welke verhalen überhaupt in `stories.json` terechtkomen.
+  const allowedTopics = new Set<string>([
     "geopolitiek",
     "conflict",
     "oorlog",
     "spionage",
     "inlichtingen",
     "diplomatie",
+    "internationale betrekkingen",
     "sancties",
     "handelsconflict",
     "energiepolitiek",
+    "grondstoffen",
+    "economische machtsstrijd",
     "defensie",
     "militaire strategie",
     "cyberoorlog",
@@ -226,9 +231,9 @@ async function main() {
     "desinformatie",
     "beïnvloeding",
     "technologische macht",
+    "surveillance",
     "politieke instabiliteit",
     "machtsverschuiving",
-    // Anders vallen alle niet-gematchte clusters weg → site voelt “stokoud” terwijl RSS wél loopt.
     "overig"
   ]);
 
@@ -375,7 +380,7 @@ async function main() {
   stories = cachedSlots as Story[];
 
   // Transparantie: generatedAt overal + defaults (AI kan topic/category overrulen)
-  stories = (stories as any[])
+  const storiesWithDefaults = (stories as any[])
     .map((s, index) => {
       if (!s) {
         console.error("[build-data] invalid story detected", { index });
@@ -390,7 +395,27 @@ async function main() {
       };
     })
     .filter(Boolean)
+    ;
+
+  const stats = (arr: any[]) => {
+    const counts: Record<string, number> = { ok: 0, fallback: 0, skipped: 0, other: 0 };
+    for (const s of arr) {
+      const st = s?.aiStatus;
+      if (st === "ok") counts.ok++;
+      else if (st === "fallback") counts.fallback++;
+      else if (st === "skipped") counts.skipped++;
+      else counts.other++;
+    }
+    return counts;
+  };
+
+  const beforeTopicFilter = storiesWithDefaults as any[];
+  console.log("[build-data] aiStatus before topic filter:", stats(beforeTopicFilter), "stories=", beforeTopicFilter.length);
+
+  stories = beforeTopicFilter
     .filter((s: any) => allowedTopics.has((s.topic ?? "overig") as string)) as Story[];
+
+  console.log("[build-data] aiStatus after topic filter:", stats(stories as any[]), "stories=", stories.length);
 
   // Specifieke image voorkeur:
   // - Als `thecipherbrief.com` in de bronnen zit: gebruik een image van een andere bron waar mogelijk.
