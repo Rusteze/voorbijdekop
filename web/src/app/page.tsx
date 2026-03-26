@@ -295,24 +295,6 @@ export default function Home() {
   const [autoHighlightTick, setAutoHighlightTick] = useState(0);
 
   const sourcesViewportRef = useRef<HTMLDivElement | null>(null);
-  const sourcesMeasureRowRef = useRef<HTMLDivElement | null>(null);
-  const sourcesDragRef = useRef<{ isDown: boolean; startX: number; startScrollLeft: number }>({
-    isDown: false,
-    startX: 0,
-    startScrollLeft: 0
-  });
-  const [sourcesViewportWidthPx, setSourcesViewportWidthPx] = useState(0);
-  const [sourceWidths, setSourceWidths] = useState<Record<string, number>>({});
-  const [sourceStartIndex, setSourceStartIndex] = useState(0);
-  const [navSidePadPx, setNavSidePadPx] = useState(24);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const sync = () => setNavSidePadPx(mq.matches ? 24 : 16);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
 
   // Robuust tegen verouderde HTML-cache: laad altijd de actuele dataset na mount.
   useEffect(() => {
@@ -432,132 +414,12 @@ export default function Home() {
 
   const sourcesFilteredIdsKey = useMemo(() => sourcesFiltered.map(([id]) => id).join("|"), [sourcesFiltered]);
 
-  // Zet window terug bij datasetwijzigingen.
-  useEffect(() => {
-    setSourceStartIndex(0);
-  }, [sourcesFilteredIdsKey]);
-
   // Active bron moet blijven bestaan binnen de huidige dataset.
   useEffect(() => {
     if (sourceFilter === "alle") return;
     const exists = sourcesFiltered.some(([id]) => id === sourceFilter);
     if (!exists) setSourceFilter("alle");
   }, [sourcesFilteredIdsKey, sourceFilter, sourcesFiltered]);
-
-  // Meet viewportbreedte voor "windowed" weergave.
-  useEffect(() => {
-    const el = sourcesViewportRef.current;
-    if (!el) return;
-    const update = () => setSourcesViewportWidthPx(el.clientWidth);
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, [sourcesFilteredIdsKey]);
-
-  // Meet individuele knopbreedtes om exact te kunnen fitten.
-  useEffect(() => {
-    const row = sourcesMeasureRowRef.current;
-    if (!row) return;
-    const nodes = Array.from(row.querySelectorAll<HTMLElement>("[data-source-id]"));
-    const next: Record<string, number> = {};
-    for (const n of nodes) {
-      const id = n.getAttribute("data-source-id");
-      if (!id) continue;
-      next[id] = n.getBoundingClientRect().width;
-    }
-    setSourceWidths(next);
-  }, [sourcesFilteredIdsKey]);
-
-  const SOURCES_GAP_PX = 16;
-  const { atStart, atEnd, stepPxVisibleCount } = useMemo(() => {
-    const list = sourcesFiltered;
-    const len = list.length;
-
-    if (len === 0) {
-      return {
-        visibleSources: [] as Array<readonly [string, string]>,
-        atStart: true,
-        atEnd: true,
-        stepPxVisibleCount: 1
-      };
-    }
-
-    const start = Math.min(Math.max(0, sourceStartIndex), Math.max(0, len - 1));
-    const available = Math.max(0, sourcesViewportWidthPx - 2 * navSidePadPx);
-
-    if (sourcesViewportWidthPx <= 0) {
-      const fallbackSlice = list.slice(start, start + 1);
-      return {
-        visibleSources: fallbackSlice,
-        atStart: start <= 0,
-        atEnd: start + fallbackSlice.length >= len,
-        stepPxVisibleCount: Math.max(1, fallbackSlice.length)
-      };
-    }
-
-    let total = 0;
-    const visible: Array<readonly [string, string]> = [];
-    for (let i = start; i < len; i++) {
-      const [id] = list[i];
-      const w = sourceWidths[id] ?? 0;
-      const gap = visible.length === 0 ? 0 : SOURCES_GAP_PX;
-
-      if (total + gap + w > available && visible.length > 0) break;
-      if (total + gap + w > available && visible.length === 0) {
-        visible.push(list[i]);
-        total += gap + w;
-        break;
-      }
-      visible.push(list[i]);
-      total += gap + w;
-    }
-
-    if (visible.length === 0) visible.push(list[start]);
-    const step = visible.length;
-
-    return {
-      visibleSources: visible,
-      atStart: start <= 0,
-      atEnd: start + step >= len,
-      stepPxVisibleCount: Math.max(1, step)
-    };
-  }, [SOURCES_GAP_PX, navSidePadPx, sourcesFiltered, sourceWidths, sourceStartIndex, sourcesViewportWidthPx]);
-
-  const showLeftFade = !atStart;
-  const showRightFade = !atEnd;
-
-  const onSourcesMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = sourcesViewportRef.current;
-    if (!el) return;
-    sourcesDragRef.current = {
-      isDown: true,
-      startX: e.clientX,
-      startScrollLeft: el.scrollLeft
-    };
-  };
-  const onSourcesMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = sourcesViewportRef.current;
-    if (!el || !sourcesDragRef.current.isDown) return;
-    const dx = e.clientX - sourcesDragRef.current.startX;
-    el.scrollLeft = sourcesDragRef.current.startScrollLeft - dx;
-  };
-  const onSourcesMouseUp = () => {
-    sourcesDragRef.current.isDown = false;
-  };
-
-  // Zorg dat de actieve bron in het zicht komt.
-  useEffect(() => {
-    const activeIdx = sourcesFiltered.findIndex(([id]) => id === sourceFilter);
-    if (activeIdx < 0) return;
-
-    if (activeIdx < sourceStartIndex) {
-      setSourceStartIndex(activeIdx);
-      return;
-    }
-    if (activeIdx >= sourceStartIndex + stepPxVisibleCount) {
-      setSourceStartIndex(Math.max(0, activeIdx - stepPxVisibleCount + 1));
-    }
-  }, [sourceFilter, sourcesFiltered, sourceStartIndex, stepPxVisibleCount]);
 
   const todayKey = new Date().toISOString().slice(0, 10);
   const HIGHLIGHT_CANDIDATE_SET_SIZE = 5;
@@ -717,144 +579,42 @@ export default function Home() {
             <div>
               <div className="text-xs font-semibold tracking-wide text-zinc-500">Bronnen</div>
 
-              <div className="relative mt-4">
-                {showLeftFade ? (
-                  <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-[var(--nav-fade-bg)] to-transparent" />
-                ) : null}
-                {showRightFade ? (
-                  <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[var(--nav-fade-bg)] to-transparent" />
-                ) : null}
-
-                {showLeftFade ? (
-                  <button
-                    type="button"
-                    onClick={() => setSourceStartIndex((cur) => Math.max(0, cur - stepPxVisibleCount))}
-                    aria-label="Vorige bronnen"
-                    className="absolute left-0 top-1/2 z-20 pointer-events-auto flex h-11 w-11 -translate-y-1/2 translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:z-10 md:h-9 md:w-9"
-                  >
-                    <svg
-                      fill="currentColor"
-                      width="14"
-                      height="14"
-                      viewBox="0 0 15 15"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                      className="block -rotate-180 transform"
-                    >
-                      <path
-                        d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z"
-                      />
-                    </svg>
-                  </button>
-                ) : null}
-
-                {showRightFade ? (
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setSourceStartIndex((cur) =>
-                        Math.min(Math.max(0, sourcesFiltered.length - stepPxVisibleCount), cur + stepPxVisibleCount)
-                      )
-                    }
-                    aria-label="Volgende bronnen"
-                    className="absolute right-0 top-1/2 z-20 pointer-events-auto flex h-11 w-11 -translate-y-1/2 -translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:z-10 md:h-9 md:w-9"
-                  >
-                    <svg
-                      fill="currentColor"
-                      width="14"
-                      height="14"
-                      viewBox="0 0 15 15"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                      className="block"
-                    >
-                      <path
-                        d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z"
-                      />
-                    </svg>
-                  </button>
-                ) : null}
-
-                <div
-                  ref={sourcesViewportRef}
-                  onMouseDown={onSourcesMouseDown}
-                  onMouseMove={onSourcesMouseMove}
-                  onMouseUp={onSourcesMouseUp}
-                  onMouseLeave={onSourcesMouseUp}
-                  className={
-                    "no-scrollbar cursor-grab active:cursor-grabbing overflow-x-auto " +
-                    (showLeftFade ? "pl-4 md:pl-6 " : "") +
-                    (showRightFade ? "pr-4 md:pr-6" : "")
-                  }
-                >
-                  <div className="flex items-center gap-2 overflow-x-auto scrollbar-none py-1 md:gap-4">
+              <div className="mt-4 flex items-center gap-3">
+                <div ref={sourcesViewportRef} className="no-scrollbar flex-1 overflow-x-auto">
+                  <div className="flex items-center gap-2 snap-x snap-mandatory pr-2 md:gap-3">
                     {sourcesFiltered.map(([id, label]) => {
                       const active = sourceFilter === id;
                       return (
                         <button
                           key={id}
                           type="button"
-                          data-source-id={id}
                           title={label}
                           onClick={() => setSourceFilter(id)}
                           aria-current={active ? "page" : undefined}
                           className={
-                            "relative flex min-h-11 min-w-11 items-center justify-center rounded-full px-3 transition-colors md:h-9 md:min-h-0 md:min-w-0 md:px-2 " +
+                            "snap-start whitespace-nowrap rounded-full border px-3 py-2 text-sm font-semibold transition-colors md:py-1.5 " +
                             (active
-                              ? "text-[var(--text)] ring-1 ring-[var(--border)]"
-                              : "text-[var(--muted)] hover:text-[var(--text)]")
+                              ? "border-zinc-900/20 bg-zinc-900/5 text-zinc-900"
+                              : "border-[var(--border)] bg-white/60 text-[var(--muted)] hover:text-[var(--text)]")
                           }
                         >
-                          {id === "alle" ? (
-                            <span className={"text-xs font-semibold " + (active ? "text-[var(--text)]" : "")}>
-                              {label}
-                            </span>
-                          ) : (
-                            <SourceLogoMark
-                              src={sourceLogoUrl(id)}
-                              label={label}
-                              selected={active}
-                            />
-                          )}
+                          {id === "alle" ? label : prettySourceDomain(id)}
                         </button>
                       );
                     })}
                   </div>
                 </div>
 
-                {/* Hidden measurement row (voor exact fitten zonder cut-off) */}
-                <div ref={sourcesMeasureRowRef} className="pointer-events-none absolute left-0 top-0 opacity-0">
-                  <div className="flex items-center gap-4 whitespace-nowrap">
-                    {sourcesFiltered.map(([id, label]) => {
-                      const active = sourceFilter === id;
-                      return (
-                        <button
-                          key={id}
-                          type="button"
-                          data-source-id={id}
-                          title={label}
-                          onClick={() => setSourceFilter(id)}
-                          tabIndex={-1}
-                          aria-hidden="true"
-                          className={
-                            "relative flex min-h-11 min-w-11 items-center justify-center rounded-full px-3 transition-colors md:h-9 md:min-h-0 md:min-w-0 md:px-2 " +
-                            (active
-                              ? "text-[var(--text)] ring-1 ring-[var(--border)]"
-                              : "text-[var(--muted)]")
-                          }
-                        >
-                          {id === "alle" ? (
-                            <span className={"text-xs font-semibold " + (active ? "text-[var(--text)]" : "")}>
-                              {label}
-                            </span>
-                          ) : (
-                            <SourceLogoMark src={sourceLogoUrl(id)} label={label} selected={active} />
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
+                {sourceFilter !== "alle" ? (
+                  <button
+                    type="button"
+                    onClick={() => setSourceFilter("alle")}
+                    className="shrink-0 rounded-full border border-[var(--border)] bg-white px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 md:py-1.5"
+                    aria-label="Reset bron filter"
+                  >
+                    Reset
+                  </button>
+                ) : null}
               </div>
             </div>
 
