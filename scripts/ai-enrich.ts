@@ -75,6 +75,45 @@ type AiLiteResponse = {
   bullets: string[];
 };
 
+type AiClassifyResponse = {
+  category: string;
+  topic: string;
+  shortHeadline: string;
+};
+
+const classifySchemaObject = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    category: { type: "string" },
+    topic: { type: "string" },
+    shortHeadline: { type: "string" }
+  },
+  required: ["category", "topic", "shortHeadline"]
+} as const;
+
+function normalizeTopic(input: unknown): StoryTopic {
+  const t = String(input ?? "").trim().toLowerCase();
+  if ((TOPICS as unknown as string[]).includes(t)) return t as StoryTopic;
+  return "overig";
+}
+
+function normalizeCategory(input: unknown): StoryCategory {
+  const c = String(input ?? "").trim().toLowerCase();
+  if ((CATEGORIES as unknown as string[]).includes(c)) return c as StoryCategory;
+  return "overig";
+}
+
+function pickNarrativeCandidates(tasks: Array<{ story: Story; index: number }>, max: number) {
+  return [...tasks]
+    .sort((a, b) => {
+      const imp = (b.story.importance ?? 0) - (a.story.importance ?? 0);
+      if (imp !== 0) return imp;
+      return String(b.story.generatedAt ?? "").localeCompare(String(a.story.generatedAt ?? ""));
+    })
+    .slice(0, max);
+}
+
 /**
  * Valideert object-schema's recursief: `required` moet een array zijn en elke sleutel in `required`
  * moet in `properties` voorkomen. Optionele velden (alleen in properties, niet in required) zijn toegestaan.
@@ -318,6 +357,8 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
   // NOTE: If schema or prompt changes, delete data/ai to avoid stale outputs.
   const cacheDir = path.resolve("data/ai");
   await fs.mkdir(cacheDir, { recursive: true });
+  const classifyCacheDir = path.resolve("data/ai-classify");
+  await fs.mkdir(classifyCacheDir, { recursive: true });
 
   if (!apiKey) {
     console.warn("[ai] OPENAI_API_KEY ontbreekt; fallback mode.");
@@ -334,6 +375,7 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
   const client = new OpenAI({ apiKey });
 
   validateOpenAiObjectSchema(schemaObject as unknown, "story_analysis.schema");
+  validateOpenAiObjectSchema(classifySchemaObject as unknown, "story_classify.schema");
 
   type CacheTask = {
     index: number;
@@ -346,6 +388,14 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
 
   const out: Story[] = new Array(stories.length);
   const toGenerate: CacheTask[] = [];
+  const toClassify: Array<{
+    index: number;
+    story: Story;
+    selected: Story["articles"];
+    selectedIds: string[];
+    classifyKey: string;
+    classifyPath: string;
+  }> = [];
 
   let cacheHits = 0;
   let generatedCount = 0;
@@ -353,6 +403,8 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
   let singleSourceCount = 0;
   let multiSourceCount = 0;
   let skippedLowImportance = 0;
+  let classifyCacheHits = 0;
+  let classifyGenerated = 0;
 
   const toFallbackStory = (story: Story, cacheKey: string): Story => ({
     ...story,
@@ -376,6 +428,9 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
     const cacheKey = storyCacheKey(story, selectedIds);
     const cachePath = path.join(cacheDir, `${cacheKey}.json`);
 
+    const classifyKey = sha256Hex(`classify|${cacheKey}`).slice(0, 24);
+    const classifyPath = path.join(classifyCacheDir, `${classifyKey}.json`);
+
     if (fsSync.existsSync(cachePath)) {
       const cached = await fs.readFile(cachePath, "utf8").catch(() => null);
       if (cached) {
@@ -385,8 +440,8 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
 
           out[i] = {
             ...story,
-            category: String(parsed.category ?? "overig") as StoryCategory,
-            topic: String(parsed.topic ?? "overig") as StoryTopic,
+            category: normalizeCategory(parsed.category),
+            topic: normalizeTopic(parsed.topic),
             shortHeadline:
               String(parsed.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story)),
             ai: aiStory,
@@ -405,20 +460,134 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
       }
     }
 
-    toGenerate.push({ index: i, story, selected, selectedIds, cacheKey, cachePath });
+    // Stap 1: goedkope classificatie voor (bijna) alle stories (topic/category/headline).
+    if (fsSync.existsSync(classifyPath)) {
+      const cachedClassify = await fs.readFile(classifyPath, "utf8").catch(() => null);
+      if (cachedClassify) {
+        try {
+          const parsed = JSON.parse(cachedClassify) as Partial<AiClassifyResponse> & Record<string, unknown>;
+          const cat = normalizeCategory(parsed.category);
+          const tp = normalizeTopic(parsed.topic);
+          const sh = String(parsed.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story));
+          stories[i] = { ...story, category: cat, topic: tp, shortHeadline: sh };
+          classifyCacheHits += 1;
+        } catch {
+          // treat as miss
+          toClassify.push({ index: i, story, selected, selectedIds, classifyKey, classifyPath });
+        }
+      } else {
+        toClassify.push({ index: i, story, selected, selectedIds, classifyKey, classifyPath });
+      }
+    } else {
+      toClassify.push({ index: i, story, selected, selectedIds, classifyKey, classifyPath });
+    }
+
+    // Stap 2: narrative (duurder) alleen voor top N stories.
+    toGenerate.push({ index: i, story: stories[i], selected, selectedIds, cacheKey, cachePath });
+  }
+
+  // 1) Classificatie-run (goedkoop) voor veel stories
+  const CLASSIFY_CONCURRENCY = 10;
+  const AI_CLASSIFY_MAX_STORIES = Number(process.env.AI_CLASSIFY_MAX_STORIES ?? 500);
+  const classifyTasks = toClassify.slice(0, Math.max(0, AI_CLASSIFY_MAX_STORIES));
+
+  const classifyOne = async (task: (typeof classifyTasks)[number]) => {
+    const { story, selected, classifyPath } = task;
+    const sourcesPayload = selected.map((a) => ({
+      title: a.title,
+      excerpt: a.excerpt.slice(0, 220),
+      publishedAt: a.publishedAt,
+      sourceDomain: a.sourceDomain
+    }));
+
+    const prompt = [
+      "SYSTEM:",
+      "Je classificeert nieuwsverhalen voor een nieuwsapp. Schrijf in het Nederlands. Sensatie vermijden.",
+      "",
+      "CONTEXT:",
+      `Titel: ${story.title}`,
+      `Samenvatting: ${(story.summary ?? "").slice(0, 260)}`,
+      "Bronnen (gestructureerd):",
+      JSON.stringify(sourcesPayload, null, 2),
+      "",
+      "INSTRUCTIE:",
+      "- Kies precies één category en één topic uit de toegestane lijst.",
+      "- shortHeadline: korte, concrete kop (8–12 woorden) in het Nederlands.",
+      "",
+      "TOEGESTAAN:",
+      `- category: ${CATEGORIES.join(", ")}`,
+      `- topic: ${TOPICS.join(", ")}`,
+      "",
+      "OUTPUT:",
+      "Geef alleen JSON volgens schema. Geen extra tekst."
+    ].join("\n");
+
+    const payload = {
+      model: "gpt-4.1-mini",
+      input: prompt,
+      text: {
+        format: {
+          type: "json_schema",
+          name: "story_classify",
+          schema: classifySchemaObject
+        }
+      }
+    };
+
+    const resp = await openAiResponsesCreate(client as any, payload, {
+      name: `story_classify:${story.slug}`,
+      context: { selectedArticleCount: selected.length }
+    });
+
+    const parsed = (resp as any)?.output_parsed as AiClassifyResponse | undefined;
+    if (!parsed) throw new Error("OpenAI structured output missing (classify)");
+
+    const cleaned: AiClassifyResponse = {
+      category: normalizeCategory(parsed.category),
+      topic: normalizeTopic(parsed.topic),
+      shortHeadline: String(parsed.shortHeadline ?? story.shortHeadline ?? fallbackShortHeadline(story))
+    };
+
+    await fs.writeFile(classifyPath, JSON.stringify(cleaned, null, 2), "utf8");
+    return cleaned;
+  };
+
+  if (classifyTasks.length > 0) {
+    for (const chunk of chunkArray(classifyTasks, CLASSIFY_CONCURRENCY)) {
+      const results = await Promise.allSettled(chunk.map((t) => classifyOne(t)));
+      for (let k = 0; k < results.length; k++) {
+        const r = results[k];
+        const task = chunk[k];
+        if (r.status === "fulfilled") {
+          const c = r.value;
+          stories[task.index] = {
+            ...stories[task.index],
+            category: normalizeCategory(c.category),
+            topic: normalizeTopic(c.topic),
+            shortHeadline: String(c.shortHeadline ?? stories[task.index].shortHeadline ?? fallbackShortHeadline(stories[task.index]))
+          };
+          classifyGenerated += 1;
+        } else {
+          // geen classificatie: laat heuristiek/overig staan
+        }
+      }
+    }
   }
 
   if (toGenerate.length === 0) {
     console.log("[ai] no new stories, skipping");
   } else {
     const AI_CONCURRENCY = 5;
-    const MAX_AI_STORIES = 50;
+    const MAX_AI_STORIES = Number(process.env.AI_NARRATIVE_MAX_STORIES ?? 50);
 
-    const skippedByCap: CacheTask[] = [];
-    if (toGenerate.length > MAX_AI_STORIES) {
-      skippedByCap.push(...toGenerate.slice(MAX_AI_STORIES));
-      toGenerate.splice(MAX_AI_STORIES);
-    }
+    // Narrative alleen voor top N op importance/recency; de rest krijgt wel classificatie (topic/category).
+    const pick = pickNarrativeCandidates(
+      toGenerate.map((t) => ({ story: t.story, index: t.index })),
+      MAX_AI_STORIES
+    );
+    const pickedIdx = new Set(pick.map((x) => x.index));
+    const skippedByCap: CacheTask[] = toGenerate.filter((t) => !pickedIdx.has(t.index));
+    const narrativeTasks: CacheTask[] = toGenerate.filter((t) => pickedIdx.has(t.index));
 
     const generateForTask = async (task: CacheTask): Promise<Story> => {
       const { story, selected, cacheKey, cachePath } = task;
@@ -631,7 +800,7 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
       }
     };
 
-    for (const chunk of chunkArray(toGenerate, AI_CONCURRENCY)) {
+    for (const chunk of chunkArray(narrativeTasks, AI_CONCURRENCY)) {
       const results = await Promise.all(
         chunk.map(async (t) => ({
           index: t.index,
@@ -642,7 +811,17 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
     }
 
     for (const task of skippedByCap) {
-      out[task.index] = toFallbackStory(task.story, task.cacheKey);
+      // Behoud classificatie (topic/category/headline) maar geen lange narrative.
+      const classified = stories[task.index] ?? task.story;
+      out[task.index] = {
+        ...classified,
+        category: classified.category ?? "overig",
+        topic: classified.topic ?? "overig",
+        shortHeadline: classified.shortHeadline ?? fallbackShortHeadline(classified),
+        ai: sanitizeAiStory(fallbackAi(classified)),
+        aiStatus: "fallback" as const,
+        aiCacheKey: task.cacheKey
+      };
       fallbackCount += 1;
     }
   }
@@ -662,6 +841,8 @@ export async function enrichStoriesWithAi(stories: Story[], opts?: { maxArticles
 
   console.log(`[ai] stats:
   cacheHits=${cacheHits}
+  classifyCacheHits=${classifyCacheHits}
+  classifyGenerated=${classifyGenerated}
   generated=${generatedCount}
   fallback=${fallbackCount}
   singleSource=${singleSourceCount}
