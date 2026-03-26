@@ -2,22 +2,20 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 
-type ThemeMode = "system" | "light" | "dark";
+type ThemeMode = "light" | "dark";
 
 const STORAGE_KEY = "theme";
 
 function resolveTheme(mode: ThemeMode) {
   if (mode === "light") return "light";
-  if (mode === "dark") return "dark";
-  const mql = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
-  return mql && mql.matches ? "dark" : "light";
+  return "dark";
 }
 
 function getInitialMode(): ThemeMode {
-  if (typeof window === "undefined") return "system";
+  if (typeof window === "undefined") return "light";
   const raw = window.localStorage.getItem(STORAGE_KEY);
-  if (raw === "light" || raw === "dark" || raw === "system") return raw;
-  return "system";
+  if (raw === "dark") return "dark";
+  return "light";
 }
 
 export function ThemeSwitcher() {
@@ -37,23 +35,15 @@ export function ThemeSwitcher() {
     };
 
     applyResolved();
-
-    if (mode !== "system") return;
-    const mql = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
-    if (!mql) return;
-
-    const onChange = () => applyResolved();
-    // Safari fallback
-    if (typeof mql.addEventListener === "function") {
-      mql.addEventListener("change", onChange);
-      return () => mql.removeEventListener("change", onChange);
-    }
-    (mql as any).addListener(onChange);
-    return () => (mql as any).removeListener(onChange);
   }, [mode]);
 
   useEffect(() => {
     try {
+      // Migreer oude "system" waarde naar "light" zodat OS-thema niet meer leidend is.
+      const raw = window.localStorage.getItem(STORAGE_KEY);
+      if (raw === "system") {
+        window.localStorage.setItem(STORAGE_KEY, "light");
+      }
       window.localStorage.setItem(STORAGE_KEY, mode);
     } catch {
       // ignore
@@ -105,7 +95,6 @@ export function ThemeSwitcher() {
     <div>
       <div className="text-sm font-semibold text-[var(--text)]">Weergave</div>
       <div className="mt-3 space-y-2">
-        {option("system", "Automatisch", "Volgt systeeminstellingen")}
         {option("light", "Licht")}
         {option("dark", "Donker")}
       </div>

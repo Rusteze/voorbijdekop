@@ -146,8 +146,8 @@ export function VoorbijDekopHeader() {
                     className={
                       "snap-start whitespace-nowrap rounded-full border px-3 py-2 text-sm font-semibold transition-colors md:py-1.5 " +
                       (active
-                        ? "border-red-900/30 bg-red-900/10 text-red-900"
-                        : "border-[var(--border)] bg-white/60 text-[var(--muted)] hover:text-[var(--text)]")
+                        ? "border-red-900/30 bg-red-900/10 text-red-900 dark:border-red-200/30 dark:bg-red-200/10 dark:text-red-100"
+                        : "border-[var(--border)] bg-white/60 text-[var(--muted)] hover:text-[var(--text)] dark:bg-zinc-900/40 dark:text-zinc-300 dark:hover:text-zinc-100")
                     }
                     aria-current={active ? "page" : undefined}
                   >
@@ -162,7 +162,7 @@ export function VoorbijDekopHeader() {
             <button
               type="button"
               onClick={() => setTopic("alle")}
-              className="shrink-0 rounded-full border border-[var(--border)] bg-white px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 md:py-1.5"
+              className="shrink-0 rounded-full border border-[var(--border)] bg-white px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900 md:py-1.5"
               aria-label="Reset topic filter"
             >
               Reset

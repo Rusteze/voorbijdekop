@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment variables
+
+Copy `.env.example` to `.env.local` and fill in:
+
+- `NEXT_PUBLIC_SITE_URL`: canonical site URL (used for metadata/sitemap/robots)
+- `NEXT_PUBLIC_DIGEST_ENDPOINT`: optional POST endpoint for digest signups
+- `NEXT_PUBLIC_FEEDBACK_ENDPOINT`: optional POST endpoint for story feedback
+
+If the endpoint variables are empty or unreachable, the app automatically falls back to localStorage so the UI keeps working.
+
 ## Getting Started
 
 First, run the development server:

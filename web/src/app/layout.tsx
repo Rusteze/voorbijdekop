@@ -14,8 +14,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://voorbijdekop.pages.dev"),
   title: "voorbijdekop",
   description: "Statisch gebouwde, analytische nieuwsverhalen met onderzoekslaag.",
+  openGraph: {
+    title: "voorbijdekop",
+    description: "Statisch gebouwde, analytische nieuwsverhalen met onderzoekslaag.",
+    type: "website"
+  }
 };
 // Let op: `revalidate = 0` markeert routes als "dynamic" en breekt static export.
 
@@ -31,24 +37,23 @@ export default function RootLayout({
     <html lang="nl" className="light" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
         <script
-          // Voorkom flash: class op <html> (Tailwind darkMode: class + CSS-variabelen). Systeem alleen als modus "system".
+          // Voorkom flash: class op <html> (Tailwind darkMode: class + CSS-variabelen).
+          // De site-keuze is leidend (licht/donker), niet de OS-instelling.
           dangerouslySetInnerHTML={{
             __html: `
               (function () {
                 try {
                   var key = "theme";
                   var saved = localStorage.getItem(key);
-                  var mode = saved || "system";
-                  var mql = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
-                  function resolve() {
-                    if (mode === "dark") return "dark";
-                    if (mode === "light") return "light";
-                    return mql && mql.matches ? "dark" : "light";
+                  // Oude waarde "system" migreren naar "light" zodat mobiel OS-thema niet override.
+                  if (saved === "system") {
+                    saved = "light";
+                    localStorage.setItem(key, "light");
                   }
-                  var r = resolve();
+                  var mode = saved === "dark" ? "dark" : "light";
                   var el = document.documentElement;
                   el.classList.remove("light", "dark");
-                  el.classList.add(r);
+                  el.classList.add(mode);
                 } catch (e) {}
               })();
             `

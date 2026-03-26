@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { getAllStories } from "@/lib/generated";
 import { getFallbackImage } from "@/lib/fallbackImage";
 import { getStoryLastUpdated, formatRelativeStoryTime } from "@/lib/storyUtils";
+import { submitWithFallback } from "@/lib/submissions";
 import { useVoorbijDekop } from "./voorbijdekop-state";
 
 function prettySourceDomain(domain: string) {
@@ -287,10 +288,15 @@ function firstSentence(text?: string | null) {
 }
 
 export default function Home() {
+  const DIGEST_ENDPOINT = process.env.NEXT_PUBLIC_DIGEST_ENDPOINT;
   const { query, topic, setTopic, openAiInfo } = useVoorbijDekop();
   const [sourceFilter, setSourceFilter] = useState<string>("alle");
   const [visibleCount, setVisibleCount] = useState(20);
   const [storiesRuntime, setStoriesRuntime] = useState<any[]>(() => getAllStories());
+  const [followedTopics, setFollowedTopics] = useState<string[]>([]);
+  const [digestEmail, setDigestEmail] = useState("");
+  const [digestSaved, setDigestSaved] = useState(false);
+  const [digestSaveMode, setDigestSaveMode] = useState<"remote" | "local" | null>(null);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const [autoHighlightTick, setAutoHighlightTick] = useState(0);
 
@@ -313,6 +319,25 @@ export default function Home() {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem("followed-topics-v1");
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) setFollowedTopics(parsed.filter((x) => typeof x === "string"));
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem("followed-topics-v1", JSON.stringify(followedTopics));
+    } catch {
+      // ignore
+    }
+  }, [followedTopics]);
 
   const storiesAllFiltered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -479,6 +504,7 @@ export default function Home() {
   const now = storiesOrdered.slice(1, 3);
   const rest = storiesOrdered.slice(3);
   const latestNews = [...storiesOrdered].sort((a, b) => getStoryLastUpdated(b) - getStoryLastUpdated(a)).slice(0, 10);
+  const isCurrentTopicFollowed = topic !== "alle" && followedTopics.includes(topic);
 
   return (
     <div className="min-h-screen bg-white text-zinc-950">
@@ -514,6 +540,36 @@ export default function Home() {
               >
                 Reset filters
               </button>
+            </div>
+          ) : null}
+          {topic !== "alle" ? (
+            <div className="mt-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setFollowedTopics((cur) =>
+                    cur.includes(topic) ? cur.filter((t) => t !== topic) : [...cur, topic]
+                  );
+                }}
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-white px-3 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
+              >
+                {isCurrentTopicFollowed ? "Ontvolg topic" : "Volg topic"}
+              </button>
+            </div>
+          ) : null}
+          {followedTopics.length > 0 ? (
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <span className="text-xs font-semibold text-zinc-500">Gevolgde topics:</span>
+              {followedTopics.map((tp) => (
+                <button
+                  key={tp}
+                  type="button"
+                  onClick={() => setTopic(tp as any)}
+                  className="rounded-full border border-[var(--border)] bg-white px-2.5 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
+                >
+                  {topicLabel(tp)}
+                </button>
+              ))}
             </div>
           ) : null}
         </div>
@@ -594,8 +650,8 @@ export default function Home() {
                           className={
                             "snap-start whitespace-nowrap rounded-full border px-3 py-2 text-sm font-semibold transition-colors md:py-1.5 " +
                             (active
-                              ? "border-zinc-900/20 bg-zinc-900/5 text-zinc-900"
-                              : "border-[var(--border)] bg-white/60 text-[var(--muted)] hover:text-[var(--text)]")
+                              ? "border-zinc-900/20 bg-zinc-900/5 text-zinc-900 dark:border-zinc-100/20 dark:bg-zinc-100/10 dark:text-zinc-100"
+                              : "border-[var(--border)] bg-white/60 text-[var(--muted)] hover:text-[var(--text)] dark:bg-zinc-900/40 dark:text-zinc-300 dark:hover:text-zinc-100")
                           }
                         >
                           {id === "alle" ? label : prettySourceDomain(id)}
@@ -609,7 +665,7 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={() => setSourceFilter("alle")}
-                    className="shrink-0 rounded-full border border-[var(--border)] bg-white px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 md:py-1.5"
+                    className="shrink-0 rounded-full border border-[var(--border)] bg-white px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900 md:py-1.5"
                     aria-label="Reset bron filter"
                   >
                     Reset
@@ -752,6 +808,58 @@ export default function Home() {
             </div>
 
             <aside className="border-t border-[var(--border)] pt-6 md:col-span-4 md:border-t-0 md:pt-2">
+              <div className="mb-5 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] p-3">
+                <div className="text-xs font-semibold tracking-wide text-zinc-500">Dagelijkse digest</div>
+                <p className="mt-2 text-xs text-zinc-600 dark:text-zinc-300">
+                  Ontvang dagelijks een korte update per e-mail.
+                </p>
+                <form
+                  className="mt-3 flex gap-2"
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    if (!digestEmail.trim()) return;
+                    try {
+                      const result = await submitWithFallback({
+                        endpoint: DIGEST_ENDPOINT,
+                        storageKey: "digest-signups-v1",
+                        payload: {
+                          email: digestEmail.trim().toLowerCase(),
+                          createdAt: new Date().toISOString(),
+                          topic: topic === "alle" ? null : topic
+                        }
+                      });
+                      setDigestSaveMode(result.persisted);
+                      setDigestSaved(true);
+                      setDigestEmail("");
+                    } catch {
+                      // ignore
+                    }
+                  }}
+                >
+                  <input
+                    type="email"
+                    value={digestEmail}
+                    onChange={(e) => {
+                      setDigestEmail(e.target.value);
+                      setDigestSaved(false);
+                      setDigestSaveMode(null);
+                    }}
+                    placeholder="jij@voorbeeld.nl"
+                    className="min-w-0 flex-1 rounded-md border border-[var(--border)] bg-white px-2 py-1.5 text-xs text-zinc-800 outline-none focus:ring-1 focus:ring-zinc-400 dark:bg-zinc-950 dark:text-zinc-100"
+                  />
+                  <button
+                    type="submit"
+                    className="rounded-md border border-[var(--border)] bg-white px-2.5 py-1.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
+                  >
+                    Aanmelden
+                  </button>
+                </form>
+                {digestSaved ? (
+                  <div className="mt-2 text-xs text-emerald-700 dark:text-emerald-300">
+                    {digestSaveMode === "remote" ? "Online opgeslagen." : "Lokaal opgeslagen."}
+                  </div>
+                ) : null}
+              </div>
               <div className="text-xs font-semibold tracking-wide text-zinc-500">Laatste nieuws</div>
               <div className="mt-4 space-y-1 md:space-y-2.5">
                 {latestNews.map((s: any, idx: number) => {

@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllStories, getStoryBySlug } from "@/lib/generated.server";
 import { getFallbackImage } from "@/lib/fallbackImage";
+import { StoryFeedback } from "@/app/story-feedback";
 import {
   getStoryLastUpdated,
   formatRelativeStoryTime,
@@ -14,6 +16,37 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getAllStories().map((s: any) => ({ slug: s.slug }));
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const story = getStoryBySlug(params.slug);
+  if (!story) {
+    return {
+      title: "Story niet gevonden | voorbijdekop",
+      description: "Dit verhaal kon niet worden gevonden."
+    };
+  }
+
+  const title = `${story.shortHeadline ?? story.title} | voorbijdekop`;
+  const description = (story.summary ?? "").toString().slice(0, 180);
+  const image = story.imageUrl || getFallbackImage(story.topic ?? story.category ?? "overig");
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      images: image ? [{ url: image }] : undefined
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: image ? [image] : undefined
+    }
+  };
 }
 
 function isNarrativeSubheading(paragraph: string) {
@@ -201,28 +234,31 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
         <div className="mx-auto max-w-2xl px-4 pt-8 md:px-5 md:pt-12">
         <header className="mt-4 mb-6 md:mt-6 md:mb-8">
           <div className="mt-4 overflow-hidden rounded-xl bg-[var(--card-bg)] md:mt-6">
-            <div className="relative aspect-[16/9] w-full bg-[var(--card-bg)]">
+            <div className="relative aspect-[4/3] w-full bg-[var(--card-bg)] md:aspect-[16/9]">
               <img
                 src={heroSrc}
                 alt=""
                 className="h-full w-full object-cover"
+                width={1600}
+                height={900}
                 loading="eager"
                 decoding="async"
+                fetchPriority="high"
               />
               {usedFallback ? (
-                <span className="pointer-events-none absolute right-3 top-3 rounded-md bg-[var(--card-bg)] px-2 py-2 text-sm text-gray-500 dark:text-gray-500">
+                <span className="pointer-events-none absolute right-3 top-3 rounded-md bg-[var(--card-bg)] px-2 py-2 text-sm text-gray-500 dark:text-gray-300">
                   Ter illustratie
                 </span>
               ) : null}
             </div>
           </div>
-          <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">
+          <p className="mt-4 text-sm text-gray-500 dark:text-gray-300">
             {(story.topic ?? story.category ?? "overig").toString()}
           </p>
           <h1 className="mt-3 text-2xl font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mt-4 md:text-3xl">
             {story.title}
           </h1>
-          <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">
+          <p className="mt-4 text-sm text-gray-500 dark:text-gray-300">
             {storySourceLabel(story)} · Laatst bijgewerkt: {formatRelativeStoryTime(lastUpdatedMs)}
             {lastUpdatedMs > 0 ? (
               <span className="hidden md:inline"> ({formatAbsoluteDateTimeNl(lastUpdatedMs)})</span>
@@ -255,6 +291,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
         </div>
 
         <div className="mx-auto max-w-2xl px-4 pb-10 md:px-5 md:pb-12">
+        <StoryFeedback slug={story.slug} />
         <section className="mb-10 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] p-4 md:mb-12 md:rounded-none md:border-0 md:bg-transparent md:p-0">
           <h2 className="mb-2 text-base font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
             Transparantie
@@ -278,7 +315,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
                 <div className="mt-2 text-sm text-gray-500 dark:text-gray-500">
                   Publicatietijd bron: {formatAbsoluteDateTimeNl(s.publishedAt)} • {s.type} • {s.depth} • {s.bias}
                 </div>
-                <div className="mt-2 text-sm text-gray-800 dark:text-gray-300">{s.title}</div>
+                <div className="mt-2 text-sm text-gray-800 dark:text-gray-200">{s.title}</div>
               </li>
             ))}
           </ul>
@@ -310,6 +347,8 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
                           src={pickCipherPreferredImage(s) || getFallbackImage(s.topic ?? s.category)}
                           alt=""
                           className="h-full w-full object-cover"
+                          width={800}
+                          height={450}
                           loading="lazy"
                           decoding="async"
                         />
@@ -340,6 +379,8 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
                             src={pickCipherPreferredImage(s) || getFallbackImage(s.topic ?? s.category)}
                             alt=""
                             className="h-full w-full object-cover"
+                            width={320}
+                            height={180}
                             loading="lazy"
                             decoding="async"
                           />
@@ -369,6 +410,8 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
                             src={pickCipherPreferredImage(s) || getFallbackImage(s.topic ?? s.category)}
                             alt=""
                             className="h-full w-full object-cover"
+                            width={800}
+                            height={450}
                             loading="lazy"
                             decoding="async"
                           />
