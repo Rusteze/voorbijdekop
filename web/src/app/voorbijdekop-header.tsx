@@ -49,7 +49,23 @@ export function VoorbijDekopHeader() {
   const [topicWidths, setTopicWidths] = useState<Record<string, number>>({});
   const [restStartIndex, setRestStartIndex] = useState(0);
 
-  const allStories = useMemo(() => getAllStories(), []);
+  const [allStories, setAllStories] = useState<GeneratedStory[]>(() => getAllStories());
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/data/stories.json", { cache: "no-store" });
+        if (!res.ok) return;
+        const parsed = (await res.json()) as GeneratedStory[];
+        if (!cancelled && Array.isArray(parsed)) setAllStories(parsed);
+      } catch {
+        // val terug op inline bootstrap-data
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const topicSet = useMemo(() => {
     const s = new Set<string>();
     for (const st of allStories) {

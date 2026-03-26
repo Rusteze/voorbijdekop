@@ -290,6 +290,7 @@ export default function Home() {
   const { query, topic, openAiInfo } = useVoorbijDekop();
   const [sourceFilter, setSourceFilter] = useState<string>("alle");
   const [visibleCount, setVisibleCount] = useState(20);
+  const [storiesRuntime, setStoriesRuntime] = useState<any[]>(() => getAllStories());
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const [autoHighlightTick, setAutoHighlightTick] = useState(0);
 
@@ -313,9 +314,27 @@ export default function Home() {
     return () => mq.removeEventListener("change", sync);
   }, []);
 
+  // Robuust tegen verouderde HTML-cache: laad altijd de actuele dataset na mount.
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/data/stories.json", { cache: "no-store" });
+        if (!res.ok) return;
+        const parsed = (await res.json()) as any[];
+        if (!cancelled && Array.isArray(parsed)) setStoriesRuntime(parsed);
+      } catch {
+        // stil falen; gebruik dan de inline bootstrap-data uit layout
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const storiesAllFiltered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const base = [...getAllStories()].sort((a, b) => {
+    const base = [...storiesRuntime].sort((a, b) => {
       const imp = (b.importance ?? 0) - (a.importance ?? 0);
       if (imp !== 0) return imp;
       return getStoryLastUpdated(b) - getStoryLastUpdated(a);
@@ -340,10 +359,10 @@ export default function Home() {
       if (!matchSource(s)) return false;
       return true;
     });
-  }, [query, topic, sourceFilter]);
+  }, [query, topic, sourceFilter, storiesRuntime]);
 
   const stories = useMemo(() => storiesAllFiltered.slice(0, visibleCount), [storiesAllFiltered, visibleCount]);
-  const allStoriesLoaded = useMemo(() => getAllStories(), []);
+  const allStoriesLoaded = useMemo(() => storiesRuntime, [storiesRuntime]);
 
   useEffect(() => {
     console.log("stories loaded:", allStoriesLoaded.length);
@@ -380,7 +399,7 @@ export default function Home() {
   // Bron-logos filter: toont alleen bronnen die passen bij query+topic
   const storiesForSourceLogos = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const base = [...getAllStories()].sort((a, b) => {
+    const base = [...storiesRuntime].sort((a, b) => {
       const imp = (b.importance ?? 0) - (a.importance ?? 0);
       if (imp !== 0) return imp;
       return getStoryLastUpdated(b) - getStoryLastUpdated(a);
@@ -394,7 +413,7 @@ export default function Home() {
       const hay = [s.title ?? "", s.summary ?? "", s.ai?.narrative ?? ""].join("\n").toLowerCase();
       return hay.includes(q);
     });
-  }, [query, topic]);
+  }, [query, topic, storiesRuntime]);
 
   const sourcesFiltered = useMemo(() => {
     const used = new Set<string>();
