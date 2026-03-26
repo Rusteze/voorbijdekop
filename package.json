@@ -6,7 +6,7 @@
     "build:data": "tsx scripts/build-data.ts",
     "dev:web": "npm --prefix web run dev",
     "build:web": "npm run build:data && npm --prefix web run build",
-    "build:web:site-only": "npm --prefix web run build",
+    "build:web:site-only": "rm -rf \"web/.next\" \"web/out\" && npm --prefix web run build",
     "build": "npm run build:web"
   },
   "devDependencies": {
