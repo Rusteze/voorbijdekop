@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "voorbijdekop",
   description: "Statisch gebouwde, analytische nieuwsverhalen met onderzoekslaag.",
 };
-export const revalidate = 0;
+// Let op: `revalidate = 0` markeert routes als "dynamic" en breekt static export.
 
 export default function RootLayout({
   children,

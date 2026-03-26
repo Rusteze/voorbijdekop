@@ -26,29 +26,9 @@ function loadStoriesRuntime(): GeneratedStoryWithHeadline[] {
     return sortByGeneratedAtDesc(fromWindow as GeneratedStoryWithHeadline[]);
   }
 
-  // SSR: zelfde paden als readStoriesJson (cwd is meestal web/ op Cloudflare).
-  const req = (0, eval)("require") as NodeRequire;
-  const fs = req("node:fs") as typeof import("node:fs");
-  const path = req("node:path") as typeof import("node:path");
-  const candidates = [
-    path.join(process.cwd(), "public", "data", "stories.json"),
-    path.join(process.cwd(), "data", "generated", "stories.json"),
-    path.join(process.cwd(), "..", "data", "generated", "stories.json")
-  ];
-  let raw = "[]";
-  for (const p of candidates) {
-    if (fs.existsSync(p)) {
-      raw = fs.readFileSync(p, "utf8");
-      break;
-    }
-  }
-  let parsed: GeneratedStoryWithHeadline[];
-  try {
-    parsed = JSON.parse(raw) as GeneratedStoryWithHeadline[];
-  } catch {
-    return [];
-  }
-  return sortByGeneratedAtDesc(Array.isArray(parsed) ? parsed : []);
+  // Tijdens static export/prerender is `require` niet beschikbaar (Edge-achtige runtime).
+  // Client pages krijgen hun data via `window.__VOORBIJDEKOP_STORIES__` of runtime fetch.
+  return [];
 }
 
 export function getAllStories() {

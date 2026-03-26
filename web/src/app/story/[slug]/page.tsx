@@ -9,7 +9,12 @@ import {
   topicLabel,
 } from "@/lib/storyUtils";
 import { stripAiMarkup } from "@/lib/stripAiMarkup";
-export const revalidate = 0;
+// Static export: genereer alle story routes op build-time.
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return getAllStories().map((s: any) => ({ slug: s.slug }));
+}
 
 function isNarrativeSubheading(paragraph: string) {
   const t = paragraph.trim();
