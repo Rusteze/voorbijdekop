@@ -41,7 +41,7 @@ function NarrativeLead({
 
   return (
     <section className="mb-10 md:mb-12">
-      <div className="mt-4 text-base leading-relaxed text-gray-900 dark:text-gray-100 md:text-lg">
+      <div className="mt-4 text-[17px] leading-7 text-gray-900 dark:text-gray-100 md:text-lg md:leading-8">
         {aiSucceeded && blocks.length > 0 ? (
           <div className="space-y-4 md:space-y-6">
             {blocks.map((p, i) =>
@@ -60,7 +60,7 @@ function NarrativeLead({
             )}
           </div>
         ) : (
-          <p className="text-base leading-relaxed text-gray-900 dark:text-gray-100 md:text-lg">{summaryFallback}</p>
+          <p className="text-[17px] leading-7 text-gray-900 dark:text-gray-100 md:text-lg md:leading-8">{summaryFallback}</p>
         )}
       </div>
     </section>
@@ -198,9 +198,9 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
   return (
     <div className="min-h-screen bg-[var(--bg)]">
       <main>
-        <div className="mx-auto max-w-2xl px-5 pt-12">
-        <header className="mt-6 mb-8">
-          <div className="mt-6 overflow-hidden rounded-xl bg-[var(--card-bg)]">
+        <div className="mx-auto max-w-2xl px-4 pt-8 md:px-5 md:pt-12">
+        <header className="mt-4 mb-6 md:mt-6 md:mb-8">
+          <div className="mt-4 overflow-hidden rounded-xl bg-[var(--card-bg)] md:mt-6">
             <div className="relative aspect-[16/9] w-full bg-[var(--card-bg)]">
               <img
                 src={heroSrc}
@@ -219,7 +219,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
           <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">
             {(story.topic ?? story.category ?? "overig").toString()}
           </p>
-          <h1 className="mt-4 text-xl font-semibold leading-tight text-gray-900 dark:text-gray-100 md:text-2xl">
+          <h1 className="mt-3 text-2xl font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mt-4 md:text-3xl">
             {story.title}
           </h1>
           <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">

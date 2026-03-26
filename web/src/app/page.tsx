@@ -287,7 +287,7 @@ function firstSentence(text?: string | null) {
 }
 
 export default function Home() {
-  const { query, topic, openAiInfo } = useVoorbijDekop();
+  const { query, topic, setTopic, openAiInfo } = useVoorbijDekop();
   const [sourceFilter, setSourceFilter] = useState<string>("alle");
   const [visibleCount, setVisibleCount] = useState(20);
   const [storiesRuntime, setStoriesRuntime] = useState<any[]>(() => getAllStories());
@@ -626,7 +626,7 @@ export default function Home() {
             Het verhaal achter het nieuws
           </h1>
           <div className="inline-flex min-w-0 items-center gap-1 md:flex md:flex-wrap md:gap-2">
-            <p className="min-w-0 truncate text-sm leading-relaxed text-zinc-600 md:whitespace-normal md:text-base md:leading-7">
+            <p className="min-w-0 text-sm leading-relaxed text-zinc-600 line-clamp-1 md:line-clamp-none md:whitespace-normal md:text-base md:leading-7">
               Analyse en context door AI op basis van meerdere betrouwbare bronnen
             </p>
             <button
@@ -640,6 +640,20 @@ export default function Home() {
               </span>
             </button>
           </div>
+          {topic !== "alle" || sourceFilter !== "alle" ? (
+            <div className="mt-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setTopic("alle");
+                  setSourceFilter("alle");
+                }}
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-white px-3 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50"
+              >
+                Reset filters
+              </button>
+            </div>
+          ) : null}
         </div>
 
         {stories.length === 0 ? (

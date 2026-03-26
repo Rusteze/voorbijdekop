@@ -37,17 +37,7 @@ export function VoorbijDekopHeader() {
   const { topic, setTopic, settingsOpen, openSettings, closeSettings, searchOpen, openSearch, closeSearch } =
     useVoorbijDekop();
 
-  const TOPICS_GAP_PX = 24; // gap-6
   const topicsViewportRef = useRef<HTMLDivElement | null>(null);
-  const topicsMeasureRowRef = useRef<HTMLDivElement | null>(null);
-  const topicsDragRef = useRef<{ isDown: boolean; startX: number; startScrollLeft: number }>({
-    isDown: false,
-    startX: 0,
-    startScrollLeft: 0
-  });
-  const [viewportWidthPx, setViewportWidthPx] = useState(0);
-  const [topicWidths, setTopicWidths] = useState<Record<string, number>>({});
-  const [restStartIndex, setRestStartIndex] = useState(0);
 
   const [allStories, setAllStories] = useState<GeneratedStory[]>(() => getAllStories());
   useEffect(() => {
@@ -80,151 +70,11 @@ export function VoorbijDekopHeader() {
     return TOPICS.filter(([id]) => id === "alle" || topicSet.has(id));
   }, [topicSet]);
 
-  // Zet navigatie terug naar het begin bij datasetwijzigingen.
-  useEffect(() => {
-    setRestStartIndex(0);
-  }, [topicsFiltered]);
-
   useEffect(() => {
     if (topic === "alle") return;
     if (!topicSet.has(topic)) setTopic("alle");
   }, [topic, topicSet, setTopic]);
 
-  const topicsFilteredIdsKey = useMemo(() => topicsFiltered.map(([id]) => id).join("|"), [topicsFiltered]);
-
-  // Meet viewportbreedte voor het "windowed" navigatiebereik.
-  useEffect(() => {
-    const el = topicsViewportRef.current;
-    if (!el) return;
-
-    const update = () => setViewportWidthPx(el.clientWidth);
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, [topicsFilteredIdsKey]);
-
-  // Meet individuele topic-knoppen zodat we exact kunnen bepalen wat past.
-  useEffect(() => {
-    const row = topicsMeasureRowRef.current;
-    if (!row) return;
-
-    const nodes = Array.from(row.querySelectorAll<HTMLElement>("[data-topic-id]"));
-    const next: Record<string, number> = {};
-    for (const n of nodes) {
-      const id = n.getAttribute("data-topic-id");
-      if (!id) continue;
-      next[id] = n.getBoundingClientRect().width;
-    }
-    setTopicWidths(next);
-  }, [topicsFilteredIdsKey]);
-
-  const [navSidePadPx, setNavSidePadPx] = useState(24);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const sync = () => setNavSidePadPx(mq.matches ? 24 : 16);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
-
-  const { visibleTopics, atStart, atEnd, stepPxVisibleCount } = useMemo(() => {
-    const list = topicsFiltered;
-    const len = list.length;
-
-    if (len === 0) {
-      return {
-        visibleTopics: [] as Array<[TopicId, string]>,
-        atStart: true,
-        atEnd: true,
-        stepPxVisibleCount: 1
-      };
-    }
-
-    const start = Math.min(Math.max(0, restStartIndex), Math.max(0, len - 1));
-
-    // beschikbare ruimte (gecompenseerd voor de zijkant padding op het scherm)
-    const available = Math.max(0, viewportWidthPx - 2 * navSidePadPx);
-
-    // Fallback als we nog geen viewport/meting hebben
-    if (viewportWidthPx <= 0) {
-      const fallbackSlice = list.slice(start, start + 1);
-      return {
-        visibleTopics: fallbackSlice,
-        atStart: start <= 0,
-        atEnd: start + fallbackSlice.length >= len,
-        stepPxVisibleCount: Math.max(1, fallbackSlice.length)
-      };
-    }
-
-    let total = 0;
-    const visible: Array<[TopicId, string]> = [];
-    for (let i = start; i < len; i++) {
-      const [id, label] = list[i];
-      const w = topicWidths[id] ?? 0;
-      const gap = visible.length === 0 ? 0 : TOPICS_GAP_PX;
-
-      if (total + gap + w > available && visible.length > 0) break;
-
-      if (total + gap + w > available && visible.length === 0) {
-        // als een enkel item niet past, maar we tonen nog niets: toon toch 1 item
-        visible.push([id, label]);
-        total += gap + w;
-        break;
-      }
-
-      visible.push([id, label]);
-      total += gap + w;
-    }
-
-    // Zorg dat we altijd minstens 1 item tonen
-    if (visible.length === 0) visible.push(list[start]);
-
-    const step = visible.length;
-    return {
-      visibleTopics: visible,
-      atStart: start <= 0,
-      atEnd: start + step >= len,
-      stepPxVisibleCount: Math.max(1, step)
-    };
-  }, [TOPICS_GAP_PX, navSidePadPx, topicsFiltered, restStartIndex, topicWidths, viewportWidthPx]);
-
-  const showLeftFade = !atStart;
-  const showRightFade = !atEnd;
-
-  const onTopicsMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = topicsViewportRef.current;
-    if (!el) return;
-    topicsDragRef.current = {
-      isDown: true,
-      startX: e.clientX,
-      startScrollLeft: el.scrollLeft
-    };
-  };
-  const onTopicsMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = topicsViewportRef.current;
-    if (!el || !topicsDragRef.current.isDown) return;
-    const dx = e.clientX - topicsDragRef.current.startX;
-    el.scrollLeft = topicsDragRef.current.startScrollLeft - dx;
-  };
-  const onTopicsMouseUp = () => {
-    topicsDragRef.current.isDown = false;
-  };
-
-  // Zorg dat de actieve topic in het zicht komt.
-  useEffect(() => {
-    const activeIdx = topicsFiltered.findIndex(([id]) => id === topic);
-    if (activeIdx < 0) return;
-
-    if (activeIdx < restStartIndex) {
-      setRestStartIndex(activeIdx);
-      return;
-    }
-
-    if (activeIdx >= restStartIndex + stepPxVisibleCount) {
-      setRestStartIndex(Math.max(0, activeIdx - stepPxVisibleCount + 1));
-    }
-  }, [topic, topicsFiltered, restStartIndex, stepPxVisibleCount]);
 
   const activeTopicLabel = useMemo(() => {
     const hit = TOPICS.find(([id]) => id === topic);
@@ -282,129 +132,42 @@ export function VoorbijDekopHeader() {
           </div>
         </div>
 
-        {/* Row 2: Topic navigation (windowed pagination, NOS-like) */}
-        <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 pb-3 md:gap-6 md:px-6">
-          <div className="relative flex-1">
-            {showLeftFade ? (
-              <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-[var(--nav-fade-bg)] to-transparent" />
-            ) : null}
-            {showRightFade ? (
-              <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[var(--nav-fade-bg)] to-transparent" />
-            ) : null}
-
-            {showLeftFade ? (
-              <button
-                type="button"
-                onClick={() =>
-                  setRestStartIndex((cur) => Math.max(0, cur - stepPxVisibleCount))
-                }
-                aria-label="Vorige topics"
-                className="absolute left-0 top-1/2 z-20 pointer-events-auto flex h-11 w-11 -translate-y-1/2 translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:z-10 md:h-9 md:w-9"
-              >
-                <svg
-                  fill="currentColor"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 15 15"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                  className="block -rotate-180 transform"
-                >
-                  <path
-                    d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z"
-                  />
-                </svg>
-              </button>
-            ) : null}
-
-            {showRightFade ? (
-              <button
-                type="button"
-                onClick={() =>
-                  setRestStartIndex((cur) =>
-                    Math.min(
-                      Math.max(0, topicsFiltered.length - stepPxVisibleCount),
-                      cur + stepPxVisibleCount
-                    )
-                  )
-                }
-                aria-label="Volgende topics"
-                className="absolute right-0 top-1/2 z-20 pointer-events-auto flex h-11 w-11 -translate-y-1/2 -translate-x-1 items-center justify-center rounded-full border border-[var(--nav-arrow-border)] bg-[var(--nav-arrow-bg)] text-[var(--nav-arrow-fg)] transition-colors hover:bg-[var(--nav-arrow-bg-hover)] md:z-10 md:h-9 md:w-9"
-              >
-                <svg
-                  fill="currentColor"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 15 15"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                  className="block"
-                >
-                  <path
-                    d="M8.29289 2.29289C8.68342 1.90237 9.31658 1.90237 9.70711 2.29289L14.2071 6.79289C14.5976 7.18342 14.5976 7.81658 14.2071 8.20711L9.70711 12.7071C9.31658 13.0976 8.68342 13.0976 8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929L11 8.5H1.5C0.947715 8.5 0.5 8.05228 0.5 7.5C0.5 6.94772 0.947715 6.5 1.5 6.5H11L8.29289 3.70711C7.90237 3.31658 7.90237 2.68342 8.29289 2.29289Z"
-                  />
-                </svg>
-              </button>
-            ) : null}
-
-            <div
-              ref={topicsViewportRef}
-              onMouseDown={onTopicsMouseDown}
-              onMouseMove={onTopicsMouseMove}
-              onMouseUp={onTopicsMouseUp}
-              onMouseLeave={onTopicsMouseUp}
-              className={
-                "no-scrollbar cursor-grab active:cursor-grabbing overflow-x-auto " +
-                (showLeftFade ? "pl-4 md:pl-6 " : "") +
-                (showRightFade ? "pr-4 md:pr-6" : "")
-              }
-            >
-              <div className="flex items-center gap-2 overflow-x-auto scrollbar-none md:gap-6">
-                {visibleTopics.map(([id, label]) => {
-                  const active = topic === id;
-                  return (
-                    <button
-                      key={id}
-                      type="button"
-                      onClick={() => setTopic(id)}
-                      className={
-                        "relative min-h-11 shrink-0 whitespace-nowrap py-2 text-base font-medium leading-[1.375] font-['Helvetica Neue',Helvetica,Arial,sans-serif] transition-colors md:min-h-0 md:py-0 md:pb-1 " +
-                        (active ? "text-[var(--text)]" : "text-[var(--muted)] hover:text-[var(--text)]") +
-                        " after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-red-900/80 after:transition-transform after:duration-200 " +
-                        (active ? "after:scale-x-100" : "hover:after:scale-x-100")
-                      }
-                      aria-current={active ? "page" : undefined}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
-              </div>
+        {/* Row 2: Topics als chips (snap scroll) */}
+        <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 pb-3 md:gap-4 md:px-6">
+          <div ref={topicsViewportRef} className="no-scrollbar flex-1 overflow-x-auto">
+            <div className="flex items-center gap-2 snap-x snap-mandatory pr-2 md:gap-3">
+              {topicsFiltered.map(([id, label]) => {
+                const active = topic === id;
+                return (
+                  <button
+                    key={id}
+                    type="button"
+                    onClick={() => setTopic(id)}
+                    className={
+                      "snap-start whitespace-nowrap rounded-full border px-3 py-2 text-sm font-semibold transition-colors md:py-1.5 " +
+                      (active
+                        ? "border-red-900/30 bg-red-900/10 text-red-900"
+                        : "border-[var(--border)] bg-white/60 text-[var(--muted)] hover:text-[var(--text)]")
+                    }
+                    aria-current={active ? "page" : undefined}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
             </div>
           </div>
-        </div>
 
-        {/* Hidden measurement row (voor exact fitten zonder cut-off) */}
-        <div ref={topicsMeasureRowRef} className="pointer-events-none absolute left-0 top-0 opacity-0">
-          <div className="flex items-center gap-4 whitespace-nowrap md:gap-6">
-            {topicsFiltered.map(([id, label]) => {
-              const active = topic === id;
-              return (
-                <button
-                  key={id}
-                  type="button"
-                  data-topic-id={id}
-                  onClick={() => setTopic(id)}
-                  className={
-                    "relative min-h-11 shrink-0 whitespace-nowrap py-2 text-base font-medium leading-[1.375] font-['Helvetica Neue',Helvetica,Arial,sans-serif] transition-colors md:min-h-0 md:py-0 md:pb-1 " +
-                    (active ? "text-[var(--text)]" : "text-[var(--muted)]")
-                  }
-                >
-                  {label}
-                </button>
-              );
-            })}
-          </div>
+          {topic !== "alle" ? (
+            <button
+              type="button"
+              onClick={() => setTopic("alle")}
+              className="shrink-0 rounded-full border border-[var(--border)] bg-white px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 md:py-1.5"
+              aria-label="Reset topic filter"
+            >
+              Reset
+            </button>
+          ) : null}
         </div>
       </div>
     </header>
