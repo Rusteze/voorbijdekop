@@ -161,41 +161,6 @@ function storySourceLabel(s: any) {
   return `${domains.length} bronnen`;
 }
 
-function categoryLabel(cat: string) {
-  switch (cat) {
-    case "geopolitiek":
-      return "Geopolitiek";
-    case "economie":
-      return "Economie";
-    case "technologie":
-      return "Technologie";
-    case "samenleving":
-      return "Samenleving";
-    case "sport":
-      return "Sport";
-    default:
-      return "Overig";
-  }
-}
-
-function categoryClass(cat: string) {
-  // subtiele accentkleur per categorie
-  switch (cat) {
-    case "geopolitiek":
-      return "bg-blue-50 text-blue-800 ring-blue-900/10";
-    case "economie":
-      return "bg-emerald-50 text-emerald-800 ring-emerald-900/10";
-    case "technologie":
-      return "bg-violet-50 text-violet-800 ring-violet-900/10";
-    case "samenleving":
-      return "bg-amber-50 text-amber-900 ring-amber-900/10";
-    case "sport":
-      return "bg-rose-50 text-rose-800 ring-rose-900/10";
-    default:
-      return "bg-zinc-50 text-zinc-700 ring-zinc-900/10";
-  }
-}
-
 function extractInsightPreview(s: any) {
   const narrative = (s?.ai?.narrative ?? "").toString();
   if (!narrative) return null;
@@ -876,7 +841,7 @@ export default function Home() {
                           <div className="mt-1 flex items-center gap-x-2 text-xs text-zinc-500">
                             <span>{formatRelativeStoryTime(ms)}</span>
                             <span className="h-1.5 w-1.5 rounded-full bg-zinc-900/15" aria-hidden="true" />
-                            <span>{categoryLabel(s.category ?? "overig")}</span>
+                            <span>{topicLabel(s.topic ?? s.category ?? "overig")}</span>
                           </div>
                         </div>
                       </article>
