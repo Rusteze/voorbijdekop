@@ -2,28 +2,132 @@
 
 Dagelijkse digest per e-mail (Resend), aanmeldingen met dubbele opt-in, story-feedback in D1, rate limiting via KV, optionele webhooks.
 
-## Snelstart
+## Wat je nodig hebt
+
+- **Node.js 20 of hoger** (Wrangler 4 eist dit). Met [nvm](https://github.com/nvm-sh/nvm): `nvm install 20 && nvm use` (in `workers/` staat een `.nvmrc` met `20`). Of via [nodejs.org](https://nodejs.org/) LTS installeren.
+- Een [Cloudflare](https://dash.cloudflare.com)-account (gratis tier volstaat).
+- Een [Resend](https://resend.com)-account + API key; voor productie een **geverifieerd domein** (of tijdelijk Resend’s test-afzender gebruiken — zie Resend-docs).
+- Je **live site-URL** waar `stories.json` publiek staat (meestal `https://jouwdomein.nl/data/stories.json`).
+
+---
+
+## Stappenplan (productie)
+
+Voer dit **in deze volgorde** uit in je terminal.
+
+### 1. Worker-map en dependencies
 
 ```bash
 cd workers
 npm install
-wrangler login
-wrangler d1 create voorbijdekop-db
-wrangler kv namespace create RATE_LIMIT
 ```
 
-Vul in `wrangler.toml` de `database_id` en KV `id` in (output van de commands hierboven). Zet `SITE_URL` en `STORIES_JSON_URL` naar je productie-URL (waar `/data/stories.json` statisch wordt gehost).
+### 2. Inloggen bij Cloudflare
 
 ```bash
-npm run d1:local
-wrangler secret put RESEND_API_KEY
-wrangler secret put RESEND_FROM
-wrangler secret put CRON_SECRET
-npm run deploy
+npx wrangler login
+```
+
+### 3. D1-database aanmaken
+
+```bash
+npx wrangler d1 create voorbijdekop-db
+```
+
+In de output staat een **`database_id`** (UUID). Kopieer die.
+
+### 4. KV-namespace voor rate limiting
+
+```bash
+npx wrangler kv namespace create RATE_LIMIT
+```
+
+Kopieer het **`id`** uit de output.
+
+### 5. `wrangler.toml` invullen
+
+Open `workers/wrangler.toml` en:
+
+- Zet `database_id` bij `[[d1_databases]]` (vervang `REPLACE_WITH_D1_DATABASE_ID`).
+- Zet `id` bij `[[kv_namespaces]]` (vervang `REPLACE_WITH_KV_NAMESPACE_ID`).
+- Pas `[vars]` aan:
+  - **`SITE_URL`** — basis-URL van je site (zonder slash aan het eind), voor links in e-mails.
+  - **`STORIES_JSON_URL`** — volledige URL naar je `stories.json` (moet in de browser te openen zijn).
+
+### 6. Migraties op **remote** D1 toepassen
+
+Dit maakt de tabellen op Cloudflare **voordat** de worker ze gebruikt:
+
+```bash
 npm run d1:remote
 ```
 
-Lokaal: kopieer `.dev.vars.example` naar `.dev.vars` en vul secrets in. `wrangler dev` start de worker op `http://localhost:8787`.
+(Of: `npx wrangler d1 migrations apply voorbijdekop-db --remote`.)
+
+### 7. Secrets zetten (Resend + beveiliging)
+
+```bash
+npx wrangler secret put RESEND_API_KEY
+npx wrangler secret put RESEND_FROM
+npx wrangler secret put CRON_SECRET
+```
+
+- **RESEND_API_KEY** — begint meestal met `re_`.
+- **RESEND_FROM** — bijv. `Voorbijdekop <digest@jouwdomein.nl>` (moet overeenkomen met wat Resend toestaat).
+- **CRON_SECRET** — kies een lange willekeurige string; die gebruik je voor `/v1/cron/digest?secret=…` en `/v1/admin/summary?secret=…`.
+
+Optioneel later:
+
+```bash
+npx wrangler secret put WEBHOOK_SECRET
+```
+
+### 8. Deploy
+
+```bash
+npm run deploy
+```
+
+Noteer de worker-URL (bijv. `https://voorbijdekop-api.<subdomain>.workers.dev`).
+
+### 9. Web-app koppelen
+
+In `web/.env.local` (of je hosting-env):
+
+```bash
+NEXT_PUBLIC_DIGEST_ENDPOINT=https://<jouw-worker-host>/v1/digest
+NEXT_PUBLIC_FEEDBACK_ENDPOINT=https://<jouw-worker-host>/v1/feedback
+```
+
+Daarna opnieuw **build/export** van de Next-site zodat de variabelen in de statische bundle zitten.
+
+### 10. Testen
+
+1. **Digest:** op de site e-mail invullen → je zou een **bevestigingsmail** moeten krijgen (Resend) → link openen → status wordt `confirmed`.
+2. Zonder mail testen (alleen dev): in Cloudflare D1 SQL o.i.d.:
+   `UPDATE digest_subscribers SET status = 'confirmed' WHERE email = 'jij@voorbeeld.nl';`
+3. **Handmatige digest-run:** in de browser (of curl):
+   `GET https://<worker>/v1/cron/digest?secret=<CRON_SECRET>`
+4. **Feedback:** op een storypagina feedback sturen; check met:
+   `GET https://<worker>/v1/admin/summary?secret=<CRON_SECRET>`
+
+---
+
+## Lokaal ontwikkelen
+
+```bash
+cd workers
+cp .dev.vars.example .dev.vars
+# Vul .dev.vars met RESEND_* en CRON_SECRET (zelfde namen als secrets)
+npm run d1:local
+npx wrangler dev
+```
+
+Worker draait op `http://localhost:8787`. Zet in de web-app tijdelijk:
+
+`NEXT_PUBLIC_DIGEST_ENDPOINT=http://localhost:8787/v1/digest` (alleen op je machine; CORS staat open).
+
+**Let op:** lokale D1 is gescheiden van productie; `d1:local` vs `d1:remote` niet door elkaar halen.
 
 ## Endpoints
 
@@ -48,6 +152,45 @@ Zet in `.env.local`:
 NEXT_PUBLIC_DIGEST_ENDPOINT=https://<jouw-worker>.workers.dev/v1/digest
 NEXT_PUBLIC_FEEDBACK_ENDPOINT=https://<jouw-worker>.workers.dev/v1/feedback
 ```
+
+## Twee D1-databases?
+
+De Worker gebruikt **alleen** de `database_id` uit `wrangler.toml`. Een tweede database in het dashboard is meestal **per ongeluk** aangemaakt; je kunt die **leeg laten of verwijderen** als er geen data in staat die je nodig hebt.
+
+Als je **elders** (dashboard/SQL) extra kolommen had, bv. `confirmed_at`, en de “actieve” DB uit de repo-migraties **niet**: voer de **nieuwste migraties** op remote uit (`npm run d1:remote`). Migratie `0002` voegt o.a. **`confirmed_at`** toe en de worker vult die bij bevestigen. Daarna opnieuw **`npm run deploy`**.
+
+Als `confirmed_at` op je actieve DB **al** bestond, kan `0002` falen (“duplicate column”) — dan hoeft die migratie niet meer; deploy alleen de bijgewerkte worker-code.
+
+Heb je **nog meer** kolommen in de andere database die je wilt behouden? Voeg ze toe met een nieuwe migratie (`0003_…sql`) of kopieer handmatig `ALTER TABLE` naar de actieve DB, en pas `src/index.ts` aan als je die velden ook wilt schrijven.
+
+### Uitdraai van de **oude** D1 (schema + tabellen) doorgeven
+
+In de map `workers/` (Node 20+, `npx wrangler login`):
+
+```bash
+./scripts/d1-export-voor-migratie.sh <database-naam-in-dashboard>
+```
+
+- **`<database-naam-in-dashboard>`** = de **naam** van de database in Cloudflare (D1-overzicht), niet de UUID. Bijv. `voorbijdekop-db` of hoe je die tweede ook hebt genoemd.
+
+Alleen **structuur** (geen rijen — handiger om te delen, geen e-mails in het bestand):
+
+```bash
+./scripts/d1-export-voor-migratie.sh <database-naam> schema
+```
+
+Het `.sql`-bestand komt in `workers/scripts/exports/` (die map staat in `.gitignore` voor `*.sql` — niet committen).
+
+**Handmatig (zelfde effect als export):**
+
+```bash
+cd workers
+npx wrangler d1 export <database-naam> --remote --output ./scripts/exports/oud.sql
+# alleen schema:
+npx wrangler d1 export <database-naam> --remote --output ./scripts/exports/oud-schema.sql --no-data
+```
+
+Die `.sql` of de inhoud ervan kun je doorsturen om migraties naar de **actieve** DB af te stemmen.
 
 ## Nog open / logische vervolgstappen
 

@@ -72,10 +72,11 @@ export default {
       if (path === "/v1/confirm" && request.method === "GET") {
         const token = url.searchParams.get("token") ?? "";
         if (!token) return json({ error: "token ontbreekt" }, 400, origin);
+        const now = new Date().toISOString();
         const r = await env.DB.prepare(
-          "UPDATE digest_subscribers SET status = 'confirmed', updated_at = ? WHERE confirm_token = ? AND status = 'pending'"
+          "UPDATE digest_subscribers SET status = 'confirmed', updated_at = ?, confirmed_at = ? WHERE confirm_token = ? AND status = 'pending'"
         )
-          .bind(new Date().toISOString(), token)
+          .bind(now, now, token)
           .run();
         if (!r.success || (r.meta.changes ?? 0) === 0) {
           return new Response(
@@ -215,8 +216,15 @@ export default {
           return json({ error: "unauthorized" }, 401, origin);
         }
         const subs = await env.DB.prepare(
-          "SELECT id, email, status, created_at FROM digest_subscribers ORDER BY id DESC LIMIT 500"
-        ).all<{ id: number; email: string; status: string; created_at: string }>();
+          "SELECT id, email, status, created_at, confirmed_at, updated_at FROM digest_subscribers ORDER BY id DESC LIMIT 500"
+        ).all<{
+          id: number;
+          email: string;
+          status: string;
+          created_at: string;
+          confirmed_at: string | null;
+          updated_at: string | null;
+        }>();
         const fb = await env.DB.prepare(
           "SELECT id, slug, feedback_type, created_at FROM feedback_entries ORDER BY id DESC LIMIT 500"
         ).all<{ id: number; slug: string; feedback_type: string; created_at: string }>();
