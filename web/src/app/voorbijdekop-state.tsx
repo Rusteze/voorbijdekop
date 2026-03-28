@@ -1,7 +1,8 @@
 /* Client-side state shared between header and pages */
 "use client";
 
-import React, { createContext, useContext, useMemo, useState } from "react";
+import { usePathname } from "next/navigation";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { GeneratedStory } from "@/lib/generated";
 
 type TopicId = NonNullable<GeneratedStory["topic"]> | "alle";
@@ -25,6 +26,7 @@ type VoorbijDekopState = {
 const Ctx = createContext<VoorbijDekopState | null>(null);
 
 export function VoorbijDekopProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const [query, setQuery] = useState("");
   const [topic, setTopic] = useState<TopicId>("alle");
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -34,7 +36,16 @@ export function VoorbijDekopProvider({ children }: { children: React.ReactNode }
 
   const [searchOpen, setSearchOpen] = useState(false);
   const openSearch = () => setSearchOpen(true);
-  const closeSearch = () => setSearchOpen(false);
+  /** Sluit overlay en wist zoekterm: filter hoort bij de voorpagina / “klaar met zoeken”. */
+  const closeSearch = useCallback(() => {
+    setSearchOpen(false);
+    setQuery("");
+  }, []);
+
+  // Zoekterm is bedoeld voor de story-lijst op `/`; op detailpagina’s niet laten hangen.
+  useEffect(() => {
+    if (pathname !== "/") setQuery("");
+  }, [pathname]);
 
   const [aiInfoOpen, setAiInfoOpen] = useState(false);
   const openAiInfo = () => setAiInfoOpen(true);
@@ -56,7 +67,7 @@ export function VoorbijDekopProvider({ children }: { children: React.ReactNode }
       openAiInfo,
       closeAiInfo,
     }),
-    [query, topic, settingsOpen, searchOpen, aiInfoOpen]
+    [query, topic, settingsOpen, searchOpen, aiInfoOpen, closeSearch]
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
