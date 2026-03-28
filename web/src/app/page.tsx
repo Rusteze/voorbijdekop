@@ -7,6 +7,7 @@ import { getFallbackImage } from "@/lib/fallbackImage";
 import { getStoryLastUpdated, formatRelativeStoryTime } from "@/lib/storyUtils";
 import { submitWithFallback } from "@/lib/submissions";
 import { useVoorbijDekop } from "./voorbijdekop-state";
+import { usePointerDragScroll } from "@/lib/usePointerDragScroll";
 
 function prettySourceDomain(domain: string) {
   const d = (domain ?? "").toLowerCase();
@@ -301,6 +302,7 @@ export default function Home() {
   const [autoHighlightTick, setAutoHighlightTick] = useState(0);
 
   const sourcesViewportRef = useRef<HTMLDivElement | null>(null);
+  usePointerDragScroll(sourcesViewportRef);
 
   // Robuust tegen verouderde HTML-cache: laad altijd de actuele dataset na mount.
   useEffect(() => {
@@ -636,7 +638,10 @@ export default function Home() {
               <div className="text-xs font-semibold tracking-wide text-zinc-500">Bronnen</div>
 
               <div className="mt-4 flex items-center gap-3">
-                <div ref={sourcesViewportRef} className="no-scrollbar flex-1 overflow-x-auto">
+                <div
+                  ref={sourcesViewportRef}
+                  className="no-scrollbar flex-1 overflow-x-auto md:cursor-grab"
+                >
                   <div className="flex items-center gap-2 snap-x snap-mandatory pr-2 md:gap-3">
                     {sourcesFiltered.map(([id, label]) => {
                       const active = sourceFilter === id;

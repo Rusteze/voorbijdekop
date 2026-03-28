@@ -6,6 +6,7 @@ import Link from "next/link";
 import type { GeneratedStory } from "@/lib/generated";
 import { getAllStories } from "@/lib/generated";
 import { useVoorbijDekop } from "./voorbijdekop-state";
+import { usePointerDragScroll } from "@/lib/usePointerDragScroll";
 
 type TopicId = NonNullable<GeneratedStory["topic"]> | "alle";
 
@@ -38,6 +39,7 @@ export function VoorbijDekopHeader() {
     useVoorbijDekop();
 
   const topicsViewportRef = useRef<HTMLDivElement | null>(null);
+  usePointerDragScroll(topicsViewportRef);
 
   const [allStories, setAllStories] = useState<GeneratedStory[]>(() => getAllStories());
   useEffect(() => {
@@ -134,7 +136,10 @@ export function VoorbijDekopHeader() {
 
         {/* Row 2: Topics als chips (snap scroll) */}
         <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 pb-3 md:gap-4 md:px-6">
-          <div ref={topicsViewportRef} className="no-scrollbar flex-1 overflow-x-auto">
+          <div
+            ref={topicsViewportRef}
+            className="no-scrollbar flex-1 overflow-x-auto md:cursor-grab"
+          >
             <div className="flex items-center gap-2 snap-x snap-mandatory pr-2 md:gap-3">
               {topicsFiltered.map(([id, label]) => {
                 const active = topic === id;
