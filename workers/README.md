@@ -192,6 +192,25 @@ npx wrangler d1 export <database-naam> --remote --output ./scripts/exports/oud-s
 
 Die `.sql` of de inhoud ervan kun je doorsturen om migraties naar de **actieve** DB af te stemmen.
 
+### Oude DB (`voorbijdekop_db`) vs actieve worker-tabellen
+
+| Oud (`digest_signups`) | Nieuw (`digest_subscribers`) |
+|------------------------|------------------------------|
+| `email` | `email` |
+| `topic` (enkelvoud) | `topic` + `topics_json` (array als JSON) |
+| `status`, `created_at`, `confirmed_at`, `unsubscribed_at` | zelfde |
+| `confirm_token`, `unsubscribe_token` | zelfde |
+| `ip_hash`, `user_agent`, `source` | zelfde (migratie `0003` voegt kolommen toe) |
+
+| Oud (`story_feedback`) | Nieuw (`feedback_entries`) |
+|------------------------|------------------------------|
+| `slug`, `type` | `slug`, `feedback_type` |
+| `created_at`, `ip_hash`, `user_agent`, `source` | zelfde (`0003`) + `raw_json` extra |
+
+Na **`npm run d1:remote`** op de actieve DB (`voorbijdekop-db`) zijn deze kolommen beschikbaar. Daarna **`npm run deploy`**.
+
+**Rijen uit de oude DB overzetten:** export uit `voorbijdekop_db` met **data** (zonder `--no-data`), zet handmatig `INSERT INTO digest_subscribers (...)` regels om naar de nieuwe kolomnamen, of gebruik een tijdelijk script. Twee D1’s kunnen niet in één SQL-query joinen — export/import via bestand is de weg.
+
 ## Nog open / logische vervolgstappen
 
 1. **Afmelden (unsubscribe)** — link in elke digest-mail + kolom `status = unsubscribed` + endpoint `GET /v1/unsubscribe?token=…`.

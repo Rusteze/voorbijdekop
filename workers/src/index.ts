@@ -116,15 +116,18 @@ export default {
               ? [body.topic]
               : [];
         const topicsJson = topicsArr.length ? JSON.stringify(topicsArr) : null;
+        const topicSingle = topicsArr[0] ?? null;
         const token = randomToken();
+        const unsubscribeToken = randomToken();
         const now = new Date().toISOString();
+        const userAgent = (request.headers.get("User-Agent") ?? "").slice(0, 512);
 
         try {
           await env.DB.prepare(
-            `INSERT INTO digest_subscribers (email, status, topics_json, confirm_token, created_at, ip_hash)
-             VALUES (?, 'pending', ?, ?, ?, ?)`
+            `INSERT INTO digest_subscribers (email, status, topics_json, confirm_token, created_at, ip_hash, source, user_agent, topic, unsubscribe_token)
+             VALUES (?, 'pending', ?, ?, ?, ?, 'web', ?, ?, ?)`
           )
-            .bind(email, topicsJson, token, now, ipHash)
+            .bind(email, topicsJson, token, now, ipHash, userAgent || null, topicSingle, unsubscribeToken)
             .run();
         } catch (e: unknown) {
           const msg = e instanceof Error ? e.message : String(e);
@@ -172,10 +175,11 @@ export default {
 
         const createdAt = body.createdAt ?? new Date().toISOString();
         const rawJson = JSON.stringify(body);
+        const userAgent = (request.headers.get("User-Agent") ?? "").slice(0, 512);
         await env.DB.prepare(
-          `INSERT INTO feedback_entries (slug, feedback_type, created_at, ip_hash, raw_json) VALUES (?, ?, ?, ?, ?)`
+          `INSERT INTO feedback_entries (slug, feedback_type, created_at, ip_hash, raw_json, source, user_agent) VALUES (?, ?, ?, ?, ?, 'web', ?)`
         )
-          .bind(slug, type, createdAt, ipHash, rawJson)
+          .bind(slug, type, createdAt, ipHash, rawJson, userAgent || null)
           .run();
 
         return json({ ok: true }, 200, origin);
@@ -216,18 +220,11 @@ export default {
           return json({ error: "unauthorized" }, 401, origin);
         }
         const subs = await env.DB.prepare(
-          "SELECT id, email, status, created_at, confirmed_at, updated_at FROM digest_subscribers ORDER BY id DESC LIMIT 500"
-        ).all<{
-          id: number;
-          email: string;
-          status: string;
-          created_at: string;
-          confirmed_at: string | null;
-          updated_at: string | null;
-        }>();
+          "SELECT id, email, status, topics_json, topic, source, created_at, confirmed_at, updated_at, unsubscribed_at, ip_hash, user_agent, confirm_token, unsubscribe_token FROM digest_subscribers ORDER BY id DESC LIMIT 500"
+        ).all<Record<string, unknown>>();
         const fb = await env.DB.prepare(
-          "SELECT id, slug, feedback_type, created_at FROM feedback_entries ORDER BY id DESC LIMIT 500"
-        ).all<{ id: number; slug: string; feedback_type: string; created_at: string }>();
+          "SELECT id, slug, feedback_type, source, created_at, ip_hash, user_agent, raw_json FROM feedback_entries ORDER BY id DESC LIMIT 500"
+        ).all<Record<string, unknown>>();
         return json({ digest_subscribers: subs.results ?? [], feedback: fb.results ?? [] }, 200, origin);
       }
 
@@ -262,7 +259,9 @@ async function runDailyDigest(env: Env): Promise<void> {
   const top = pickTopStories(stories, n);
   const siteUrl = env.SITE_URL.replace(/\/$/, "");
 
-  const rows = await env.DB.prepare("SELECT email FROM digest_subscribers WHERE status = 'confirmed'").all<{
+  const rows = await env.DB.prepare(
+    "SELECT email FROM digest_subscribers WHERE status = 'confirmed' AND unsubscribed_at IS NULL"
+  ).all<{
     email: string;
   }>();
   const emails = (rows.results ?? []).map((r) => r.email).filter(Boolean);
