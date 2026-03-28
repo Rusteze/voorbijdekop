@@ -1,0 +1,5 @@
+# Kopieer naar .dev.vars voor lokaal testen met `wrangler dev`
+RESEND_API_KEY=
+RESEND_FROM=Voorbijdekop <onboarding@resend.dev>
+CRON_SECRET=
+WEBHOOK_SECRET=

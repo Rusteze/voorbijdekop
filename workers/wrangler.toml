@@ -1,0 +1,35 @@
+# Cloudflare Worker: digest-cron, aanmeldingen, feedback, rate limits.
+# Na eerste deploy: vul database_id en kv id's in, of laat `wrangler d1 create` / `wrangler kv namespace create` uitvoeren.
+
+name = "voorbijdekop-api"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+
+[triggers]
+# Dagelijks 06:00 UTC — pas aan naar gewenste lokale tijd
+crons = ["0 6 * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "voorbijdekop-db"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+# Publieke site-URL (links in mails)
+SITE_URL = "https://voorbijdekop.nl"
+# Volledige URL naar stories.json van de statische site
+STORIES_JSON_URL = "https://voorbijdekop.nl/data/stories.json"
+DIGEST_TOP_N = "10"
+# Max POSTs per IP per uur (per route)
+RATE_LIMIT_DIGEST = "20"
+RATE_LIMIT_FEEDBACK = "40"
+
+# Secrets via: wrangler secret put RESEND_API_KEY
+# - RESEND_API_KEY
+# - RESEND_FROM  (bijv. "Voorbijdekop <digest@voorbijdekop.nl>")
+# - CRON_SECRET  (optioneel: beveiligt handmatige cron-trigger)
+# - WEBHOOK_SECRET (optioneel: Resend webhooks)

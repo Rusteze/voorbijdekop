@@ -781,7 +781,8 @@ export default function Home() {
               <div className="mb-5 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] p-3">
                 <div className="text-xs font-semibold tracking-wide text-zinc-500">Dagelijkse digest</div>
                 <p className="mt-2 text-xs text-zinc-600 dark:text-zinc-300">
-                  Ontvang dagelijks een korte update per e-mail.
+                  Ontvang dagelijks een korte update per e-mail. Je ontvangt eerst een bevestigingslink; daarna wordt je
+                  adres alleen gebruikt voor de digest.
                 </p>
                 <form
                   className="mt-3 flex gap-2"
@@ -795,7 +796,13 @@ export default function Home() {
                         payload: {
                           email: digestEmail.trim().toLowerCase(),
                           createdAt: new Date().toISOString(),
-                          topic: topic === "alle" ? null : topic
+                          topic: topic === "alle" ? null : topic,
+                          topics:
+                            followedTopics.length > 0
+                              ? followedTopics
+                              : topic !== "alle"
+                                ? [topic]
+                                : []
                         }
                       });
                       setDigestSaveMode(result.persisted);

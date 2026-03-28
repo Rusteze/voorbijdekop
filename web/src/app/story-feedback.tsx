@@ -46,7 +46,8 @@ export function StoryFeedback({ slug }: { slug: string }) {
     <section className="mb-10 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] p-4 md:mb-12">
       <h2 className="text-base font-semibold leading-tight text-gray-900 dark:text-gray-100">Feedback op dit verhaal</h2>
       <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
-        Zie je een probleem? Jouw feedback helpt om de analyse te verbeteren.
+        Zie je een probleem? Jouw feedback helpt om de analyse te verbeteren. Alleen jouw keuze en het verhaal worden
+        opgeslagen (lokaal of op de server als die is ingesteld).
       </p>
       <div className="mt-3 flex flex-wrap gap-2">
         {options.map((o) => {
