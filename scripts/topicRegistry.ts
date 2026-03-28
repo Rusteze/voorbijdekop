@@ -155,8 +155,107 @@ const TOPIC_ALIASES: Record<string, (typeof CANONICAL_STORY_TOPICS)[number]> = {
   cyber: "cyberoorlog",
   hybrid: "hybride oorlog",
   disinfo: "desinformatie",
-  tech: "technologische macht"
+  tech: "technologische macht",
+  // Veelvoorkomende model-output die anders naar overig valt
+  "middle east": "geopolitiek",
+  "midden-oosten": "geopolitiek",
+  "midden oosten": "geopolitiek",
+  "regional conflict": "conflict",
+  "armed conflict": "oorlog",
+  "military conflict": "conflict",
+  "security situation": "geopolitiek",
+  "international security": "geopolitiek",
+  yemen: "conflict",
+  jemen: "conflict",
+  houthi: "conflict",
+  houthis: "conflict",
+  israel: "geopolitiek",
+  palestine: "geopolitiek",
+  gaza: "conflict",
+  hamas: "conflict",
+  hezbollah: "conflict",
+  iran: "geopolitiek",
+  syria: "geopolitiek",
+  lebanon: "geopolitiek",
+  ukraine: "geopolitiek",
+  oekraine: "geopolitiek",
+  missile: "oorlog",
+  missiles: "oorlog",
+  rocket: "oorlog",
+  rockets: "oorlog",
+  airstrike: "oorlog",
+  "air strike": "oorlog",
+  terrorism: "conflict",
+  terrorist: "conflict",
+  insurgency: "conflict",
+  "civil war": "oorlog",
+  "state violence": "conflict",
+  censorship: "propaganda",
+  "media restrictions": "propaganda"
 };
+
+/**
+ * Heuristiek op titel + samenvatting + brontekst (+ eventueel narrative) als AI "overig" teruggeeft
+ * of onbekende labels. Gebruikt genormaliseerde kleine letters zonder diakriten voor robuustere match.
+ */
+export function inferTopicFromText(raw: string): string {
+  const text = raw
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "");
+
+  const has = (re: RegExp) => re.test(text);
+
+  if (has(/\b(spionage|spion|agent|mossad|cia|fsb|gru|mi6)\b/)) return "spionage";
+  if (has(/\b(inlichtingen|inlichtingsdienst|aivd|mivd)\b/)) return "inlichtingen";
+  if (has(/\b(cyber|hack|ransomware|ddos|malware|phishing|zero[- ]?day)\b/)) return "cyberoorlog";
+  if (has(/\b(desinformatie|misinformatie)\b/)) return "desinformatie";
+  if (has(/\bpropaganda\b/)) return "propaganda";
+  if (has(/\b(beinvloeding|inmenging|troll|botnet|influence)\b/)) return "beïnvloeding";
+  if (has(/\b(sanctie|sancties|embargo)\b/)) return "sancties";
+  if (has(/\b(handelsconflict|tarief|importheffing|exportverbod|trade war)\b/)) return "handelsconflict";
+  if (has(/\b(energie|gas|olie|lng|pijplijn|opec)\b/)) return "energiepolitiek";
+  if (has(/\b(grondstof|grondstoffen|commodit|mining|erts)\b/)) return "grondstoffen";
+  if (has(/\b(economische machtsstrijd|rivaliteit|tariefoorlog)\b/)) return "economische machtsstrijd";
+
+  // Midden-Oosten / regionale actoren (vóór brede defensie-match)
+  if (
+    has(
+      /\b(houthi|houthis|houthie|jemen|yemen|jemenitis|gaza|hamas|hezbollah|hisbollah|libanon|syrie|irak|iran|israel|palestin|west[- ]?bank|midden[- ]oosten|middle east|golfstaat|golflanden|saoe?di|qatar|emiraten|jeruzalem|tel aviv)\b/
+    )
+  ) {
+    if (has(/\b(raket|missile|rocket|ballistic|raketaanval|luchtaanval|bombardement|vuurgevecht|invasie|oorlog)\b/))
+      return "oorlog";
+    if (has(/\b(conflict|escalatie|gevecht|clash| spanning)\b/)) return "conflict";
+    return "geopolitiek";
+  }
+
+  if (has(/\b(defensie|leger|nato|navo|wapen|wapenlevering|munitie|drone|navo)\b/)) return "defensie";
+  if (has(/\b(militaire strategie|grondoffensief|frontlinie|luchtmacht|zeemacht)\b/)) return "militaire strategie";
+  if (has(/\b(hybride oorlog|sabotage|ondermijning|hybrid warfare)\b/)) return "hybride oorlog";
+  // Samengestelde woorden: "raket" in raketaanval/raketten
+  if (has(/\b(raketaanval|raketten|ballistic|missiel|missiles?|rockets?|luchtaanval|bombardement)\b/)) return "oorlog";
+  if (has(/\b(oorlog|invasie|aanval|schietpartij)\b/)) return "oorlog";
+  if (has(/\b(conflict|gevecht|clash|escalatie)\b/)) return "conflict";
+  if (has(/\b(diplomatie|gezant|ambassade|topoverleg|onderhandeling|vredesgesprek)\b/)) return "diplomatie";
+  if (has(/\b(internationale betrekkingen|buitenlandse politiek|foreign policy)\b/)) return "internationale betrekkingen";
+  if (has(/\b(instabiliteit|staatsgreep|protest|onrust|regime)\b/)) return "politieke instabiliteit";
+  if (has(/\b(machtsverschuiving|machtspolitiek|invloedssfeer)\b/)) return "machtsverschuiving";
+  if (has(/\b(technologische macht|chips|semiconductor|exportcontrole tech)\b/)) return "technologische macht";
+  if (has(/\b(surveillance|afsluister|monitoring massaal)\b/)) return "surveillance";
+
+  if (has(/\b(rusland|oekraine|china|iran|israel|isra[e]l|eu|navo|verenigde staten|washington|brussel|moskou|peking)\b/))
+    return "geopolitiek";
+
+  return "overig";
+}
+
+/** Eerst AI-label normaliseren; alleen bij 'overig' de tekst-heuristiek toepassen. */
+export function resolveTopicWithTextFallback(aiTopic: unknown, combinedText: string): string {
+  const fromAi = resolveTopicFromAi(aiTopic);
+  if (fromAi !== "overig") return fromAi;
+  return inferTopicFromText(combinedText);
+}
 
 export function resolveTopicFromAi(input: unknown): string {
   const raw = String(input ?? "").trim();

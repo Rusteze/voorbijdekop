@@ -6,7 +6,7 @@ import { fetchRssArticles } from "./fetch-rss.js";
 import { clusterArticlesToStories } from "./cluster.js";
 import { enrichStoriesWithAi } from "./ai-enrich.js";
 import type { AiStory, Article, Story, StoryTopic } from "./types.js";
-import { resolveTopicFromAi } from "./topicRegistry.js";
+import { resolveTopicWithTextFallback } from "./topicRegistry.js";
 import { sha256Hex } from "./utils/hash.js";
 
 async function writeJson(filePath: string, data: unknown) {
@@ -209,44 +209,31 @@ async function main() {
   let stories = clusterArticlesToStories(deduped, { maxDaysWindow: 4 });
   stories = ensureAtLeastOneMultiSourceStory(stories);
 
-  function heuristicTopic(story: Story) {
-    const text = (
-      story.title +
+  function storyTextForTopic(s: Story) {
+    return (
+      s.title +
       "\n" +
-      story.summary +
+      s.summary +
       "\n" +
-      story.articles
+      s.articles
         .slice(0, 6)
         .map((a: any) => `${a.titleNl ?? a.title}\n${a.summaryNl ?? a.excerpt}`)
         .join("\n")
-    ).toLowerCase();
+    );
+  }
 
-    const has = (re: RegExp) => re.test(text);
-
-    if (has(/\b(spionage|spion|agent|mossad|cia|fsi|mi6|fsb|gru)\b/)) return "spionage";
-    if (has(/\b(inlichtingen|inlichtingsdienst|aivd|mivd|intelligence)\b/)) return "inlichtingen";
-    if (has(/\b(cyber|hack|ransomware|ddos|malware|phishing|zero-?day)\b/)) return "cyberoorlog";
-    if (has(/\b(desinformatie|misinformatie|propaganda|beïnvloeding|inmenging|troll|botnet)\b/)) {
-      if (has(/\bdesinformatie|misinformatie\b/)) return "desinformatie";
-      if (has(/\bpropaganda\b/)) return "propaganda";
-      return "beïnvloeding";
-    }
-    if (has(/\b(sanctie|sancties|embargo)\b/)) return "sancties";
-    if (has(/\b(handelsconflict|tarief|importheffing|exportverbod|trade war)\b/)) return "handelsconflict";
-    if (has(/\b(energie|gas|olie|lng|pijplijn|opec)\b/)) return "energiepolitiek";
-    if (has(/\b(defensie|leger|nato|navo|wapen|wapenlevering|munitie|raket|drone)\b/)) return "defensie";
-    if (has(/\b(militaire strategie|grondoffensief|frontlinie|luchtmacht|zeemacht)\b/)) return "militaire strategie";
-    if (has(/\b(hybride oorlog|sabotage|ondermijning)\b/)) return "hybride oorlog";
-    if (has(/\b(oorlog|invasie|aanval|bombardement|vuurwapen|raketaanval)\b/)) return "oorlog";
-    if (has(/\b(conflict|gevecht|clash|escalatie)\b/)) return "conflict";
-    if (has(/\b(diplomatie|gezant|ambassade|topoverleg|onderhandeling|vredesgesprek)\b/)) return "diplomatie";
-    if (has(/\b(instabiliteit|staatsgreep|protest|onrust|regime)\b/)) return "politieke instabiliteit";
-    if (has(/\b(machtsverschuiving|machtspolitiek|invloedssfeer)\b/)) return "machtsverschuiving";
-
-    // Default: geopolitiek als het over staten/allianties gaat
-    if (has(/\b(rusland|oekra[iï]ne|china|iran|isra[eë]l|eu|navo|verenigde staten|vs)\b/)) return "geopolitiek";
-
-    return "overig";
+  /** Inclusief AI-narrative/bullets voor betere fallback na verrijking. */
+  function storyTopicContextFull(s: any) {
+    const base = storyTextForTopic(s as Story);
+    const ai = s.ai;
+    const extra = [
+      s.shortHeadline,
+      typeof ai?.narrative === "string" ? ai.narrative : "",
+      Array.isArray(ai?.bullets) ? ai.bullets.join("\n") : ""
+    ]
+      .filter((x) => typeof x === "string" && x.trim().length > 0)
+      .join("\n");
+    return extra ? `${base}\n${extra}` : base;
   }
 
   // Pre-classify & pre-filter BEFORE AI to reduce cost.
@@ -254,7 +241,7 @@ async function main() {
     ...s,
     generatedAt: storyCanonicalGeneratedAt(s as Story, generatedAt),
     category: s.category ?? "overig",
-    topic: resolveTopicFromAi(((s as any).topic ?? heuristicTopic(s)) as string) as StoryTopic
+    topic: resolveTopicWithTextFallback((s as any).topic, storyTextForTopic(s)) as StoryTopic
   }));
 
   // AI enrichment: alleen voor nieuwe stories (bestaande cache = direct trust).
@@ -361,7 +348,7 @@ async function main() {
         generatedAt: storyCanonicalGeneratedAt(s as Story, generatedAt),
         buildAt: generatedAt,
         category: s.category ?? "overig",
-        topic: (s as any).topic ?? heuristicTopic(s)
+        topic: resolveTopicWithTextFallback((s as any).topic, storyTopicContextFull(s)) as StoryTopic
       };
     })
     .filter(Boolean)
@@ -384,7 +371,7 @@ async function main() {
 
   stories = beforeTopicFilter.map((s: any) => ({
     ...s,
-    topic: resolveTopicFromAi(s.topic) as StoryTopic
+    topic: resolveTopicWithTextFallback(s.topic, storyTopicContextFull(s)) as StoryTopic
   })) as Story[];
 
   console.log("[build-data] aiStatus after topic filter:", stats(stories as any[]), "stories=", stories.length);
