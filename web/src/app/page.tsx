@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getAllStories } from "@/lib/generated";
 import { getFallbackImage } from "@/lib/fallbackImage";
-import { getStoryLastUpdated, formatRelativeStoryTime } from "@/lib/storyUtils";
+import { getStoryLastUpdated, formatRelativeStoryTime, topicLabel } from "@/lib/storyUtils";
 import { submitWithFallback } from "@/lib/submissions";
 import { useVoorbijDekop } from "./voorbijdekop-state";
 import { usePointerDragScroll } from "@/lib/usePointerDragScroll";
@@ -192,53 +192,6 @@ function categoryClass(cat: string) {
       return "bg-rose-50 text-rose-800 ring-rose-900/10";
     default:
       return "bg-zinc-50 text-zinc-700 ring-zinc-900/10";
-  }
-}
-
-function topicLabel(tp?: string | null) {
-  switch (tp) {
-    case "overig":
-      return "Overig";
-    case "geopolitiek":
-      return "Geopolitiek";
-    case "conflict":
-      return "Conflict";
-    case "oorlog":
-      return "Oorlog";
-    case "spionage":
-      return "Spionage";
-    case "inlichtingen":
-      return "Inlichtingen";
-    case "diplomatie":
-      return "Diplomatie";
-    case "sancties":
-      return "Sancties";
-    case "handelsconflict":
-      return "Handelsconflict";
-    case "energiepolitiek":
-      return "Energiepolitiek";
-    case "defensie":
-      return "Defensie";
-    case "militaire strategie":
-      return "Militaire strategie";
-    case "cyberoorlog":
-      return "Cyberoorlog";
-    case "hybride oorlog":
-      return "Hybride oorlog";
-    case "propaganda":
-      return "Propaganda";
-    case "desinformatie":
-      return "Desinformatie";
-    case "beïnvloeding":
-      return "Beïnvloeding";
-    case "technologische macht":
-      return "Technologische macht";
-    case "politieke instabiliteit":
-      return "Politieke instabiliteit";
-    case "machtsverschuiving":
-      return "Machtsverschuiving";
-    default:
-      return "Overig";
   }
 }
 

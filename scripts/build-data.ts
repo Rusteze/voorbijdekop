@@ -5,7 +5,8 @@ import path from "node:path";
 import { fetchRssArticles } from "./fetch-rss.js";
 import { clusterArticlesToStories } from "./cluster.js";
 import { enrichStoriesWithAi } from "./ai-enrich.js";
-import type { AiStory, Article, Story } from "./types.js";
+import type { AiStory, Article, Story, StoryTopic } from "./types.js";
+import { resolveTopicFromAi } from "./topicRegistry.js";
 import { sha256Hex } from "./utils/hash.js";
 
 async function writeJson(filePath: string, data: unknown) {
@@ -208,35 +209,6 @@ async function main() {
   let stories = clusterArticlesToStories(deduped, { maxDaysWindow: 4 });
   stories = ensureAtLeastOneMultiSourceStory(stories);
 
-  // Allowed topics moeten overeenkomen met `StoryTopic` (anders worden AI-ok verhalen alsnog gefilterd weg).
-  // Dit bepaalt ook welke verhalen überhaupt in `stories.json` terechtkomen.
-  const allowedTopics = new Set<string>([
-    "geopolitiek",
-    "conflict",
-    "oorlog",
-    "spionage",
-    "inlichtingen",
-    "diplomatie",
-    "internationale betrekkingen",
-    "sancties",
-    "handelsconflict",
-    "energiepolitiek",
-    "grondstoffen",
-    "economische machtsstrijd",
-    "defensie",
-    "militaire strategie",
-    "cyberoorlog",
-    "hybride oorlog",
-    "propaganda",
-    "desinformatie",
-    "beïnvloeding",
-    "technologische macht",
-    "surveillance",
-    "politieke instabiliteit",
-    "machtsverschuiving",
-    "overig"
-  ]);
-
   function heuristicTopic(story: Story) {
     const text = (
       story.title +
@@ -278,19 +250,12 @@ async function main() {
   }
 
   // Pre-classify & pre-filter BEFORE AI to reduce cost.
-  stories = stories
-    .map((s) => ({
-      ...s,
-      generatedAt: storyCanonicalGeneratedAt(s as Story, generatedAt),
-      category: s.category ?? "overig",
-      topic: (s as any).topic ?? heuristicTopic(s)
-    }))
-    // Niet "weggooien": AI kan topics teruggeven die afwijken (t.o.v. heuristiek).
-    // We normaliseren naar "overig" i.p.v. verhalen te verwijderen, zodat aiStatus: "ok" niet verdwijnt.
-    .map((s: any) => {
-      const t = (s.topic ?? "overig") as string;
-      return { ...s, topic: allowedTopics.has(t) ? t : "overig" };
-    });
+  stories = stories.map((s) => ({
+    ...s,
+    generatedAt: storyCanonicalGeneratedAt(s as Story, generatedAt),
+    category: s.category ?? "overig",
+    topic: resolveTopicFromAi(((s as any).topic ?? heuristicTopic(s)) as string) as StoryTopic
+  }));
 
   // AI enrichment: alleen voor nieuwe stories (bestaande cache = direct trust).
   const maxArticlesPerStory = 3;
@@ -417,10 +382,10 @@ async function main() {
   const beforeTopicFilter = storiesWithDefaults as any[];
   console.log("[build-data] aiStatus before topic filter:", stats(beforeTopicFilter), "stories=", beforeTopicFilter.length);
 
-  stories = beforeTopicFilter.map((s: any) => {
-    const t = (s.topic ?? "overig") as string;
-    return { ...s, topic: allowedTopics.has(t) ? t : "overig" };
-  }) as Story[];
+  stories = beforeTopicFilter.map((s: any) => ({
+    ...s,
+    topic: resolveTopicFromAi(s.topic) as StoryTopic
+  })) as Story[];
 
   console.log("[build-data] aiStatus after topic filter:", stats(stories as any[]), "stories=", stories.length);
 

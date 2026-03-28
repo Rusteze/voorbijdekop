@@ -3,6 +3,7 @@ import * as fsSync from "node:fs";
 import path from "node:path";
 import OpenAI from "openai";
 import type { AiStory, Story, StoryCategory, StoryTopic } from "./types.js";
+import { CANONICAL_STORY_TOPICS, resolveTopicFromAi as resolveTopicString } from "./topicRegistry.js";
 import { sha256Hex } from "./utils/hash.js";
 import { openAiResponsesCreate } from "./utils/llm.js";
 import { sanitizeAiStory } from "./utils/stripAiMarkup.js";
@@ -22,32 +23,7 @@ const CATEGORIES: StoryCategory[] = [
   "overig"
 ];
 
-const TOPICS: StoryTopic[] = [
-  "geopolitiek",
-  "conflict",
-  "oorlog",
-  "spionage",
-  "inlichtingen",
-  "diplomatie",
-  "internationale betrekkingen",
-  "sancties",
-  "handelsconflict",
-  "energiepolitiek",
-  "grondstoffen",
-  "economische machtsstrijd",
-  "defensie",
-  "militaire strategie",
-  "cyberoorlog",
-  "hybride oorlog",
-  "propaganda",
-  "desinformatie",
-  "beïnvloeding",
-  "technologische macht",
-  "surveillance",
-  "politieke instabiliteit",
-  "machtsverschuiving",
-  "overig"
-];
+const TOPICS: StoryTopic[] = [...CANONICAL_STORY_TOPICS] as StoryTopic[];
 const MIN_AI_IMPORTANCE = 0;
 
 const schemaObject = {
@@ -93,9 +69,7 @@ const classifySchemaObject = {
 } as const;
 
 function normalizeTopic(input: unknown): StoryTopic {
-  const t = String(input ?? "").trim().toLowerCase();
-  if ((TOPICS as unknown as string[]).includes(t)) return t as StoryTopic;
-  return "overig";
+  return resolveTopicString(input) as StoryTopic;
 }
 
 function normalizeCategory(input: unknown): StoryCategory {

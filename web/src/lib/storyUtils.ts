@@ -1,3 +1,5 @@
+import { getTopicDisplayLabel } from "@/lib/storyTopicsRegistry";
+
 export function getStoryLastUpdated(story: any): number {
   const generated = new Date(story?.generatedAt ?? "").getTime();
   if (Number.isFinite(generated) && generated > 0) return generated;
@@ -71,47 +73,6 @@ export function storySourceLabel(story: any): string {
 }
 
 export function topicLabel(tp?: string | null) {
-  switch (tp) {
-    case "geopolitiek":
-      return "Geopolitiek";
-    case "conflict":
-      return "Conflict";
-    case "oorlog":
-      return "Oorlog";
-    case "spionage":
-      return "Spionage";
-    case "inlichtingen":
-      return "Inlichtingen";
-    case "diplomatie":
-      return "Diplomatie";
-    case "sancties":
-      return "Sancties";
-    case "handelsconflict":
-      return "Handelsconflict";
-    case "energiepolitiek":
-      return "Energiepolitiek";
-    case "defensie":
-      return "Defensie";
-    case "militaire strategie":
-      return "Militaire strategie";
-    case "cyberoorlog":
-      return "Cyberoorlog";
-    case "hybride oorlog":
-      return "Hybride oorlog";
-    case "propaganda":
-      return "Propaganda";
-    case "desinformatie":
-      return "Desinformatie";
-    case "beïnvloeding":
-      return "Beïnvloeding";
-    case "technologische macht":
-      return "Technologische macht";
-    case "politieke instabiliteit":
-      return "Politieke instabiliteit";
-    case "machtsverschuiving":
-      return "Machtsverschuiving";
-    default:
-      return "Overig";
-  }
+  return getTopicDisplayLabel(tp ?? "overig");
 }
 

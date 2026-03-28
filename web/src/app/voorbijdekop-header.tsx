@@ -7,32 +7,9 @@ import type { GeneratedStory } from "@/lib/generated";
 import { getAllStories } from "@/lib/generated";
 import { useVoorbijDekop } from "./voorbijdekop-state";
 import { usePointerDragScroll } from "@/lib/usePointerDragScroll";
+import { TOPIC_NAV_CHIPS } from "@/lib/storyTopicsRegistry";
 
 type TopicId = NonNullable<GeneratedStory["topic"]> | "alle";
-
-const TOPICS: Array<[TopicId, string]> = [
-  ["alle", "Alle"],
-  ["overig", "Overig"],
-  ["geopolitiek", "Geopolitiek"],
-  ["conflict", "Conflict"],
-  ["oorlog", "Oorlog"],
-  ["spionage", "Spionage"],
-  ["inlichtingen", "Inlichtingen"],
-  ["diplomatie", "Diplomatie"],
-  ["sancties", "Sancties"],
-  ["handelsconflict", "Handelsconflict"],
-  ["energiepolitiek", "Energiepolitiek"],
-  ["defensie", "Defensie"],
-  ["militaire strategie", "Militaire strategie"],
-  ["cyberoorlog", "Cyberoorlog"],
-  ["hybride oorlog", "Hybride oorlog"],
-  ["propaganda", "Propaganda"],
-  ["desinformatie", "Desinformatie"],
-  ["beïnvloeding", "Beïnvloeding"],
-  ["technologische macht", "Technologische macht"],
-  ["politieke instabiliteit", "Politieke instabiliteit"],
-  ["machtsverschuiving", "Machtsverschuiving"]
-];
 
 export function VoorbijDekopHeader() {
   const { topic, setTopic, settingsOpen, openSettings, closeSettings, searchOpen, openSearch, closeSearch } =
@@ -69,7 +46,7 @@ export function VoorbijDekopHeader() {
   // Toon alleen topics die voorkomen in de huidige dataset.
   // Alle onderwerpen (incl. "Alle") vallen onder dezelfde windowed weergave.
   const topicsFiltered = useMemo(() => {
-    return TOPICS.filter(([id]) => id === "alle" || topicSet.has(id));
+    return TOPIC_NAV_CHIPS.filter(([id]) => id === "alle" || topicSet.has(id));
   }, [topicSet]);
 
   useEffect(() => {
@@ -79,7 +56,7 @@ export function VoorbijDekopHeader() {
 
 
   const activeTopicLabel = useMemo(() => {
-    const hit = TOPICS.find(([id]) => id === topic);
+    const hit = TOPIC_NAV_CHIPS.find(([id]) => id === topic);
     return hit?.[1] ?? "Alle";
   }, [topic]);
 
