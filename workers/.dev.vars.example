@@ -3,3 +3,5 @@ RESEND_API_KEY=
 RESEND_FROM=Voorbijdekop <onboarding@resend.dev>
 CRON_SECRET=
 WEBHOOK_SECRET=
+# Optioneel lokaal; in wrangler.toml staat [vars] PUBLIC_API_URL
+# PUBLIC_API_URL=http://localhost:8787

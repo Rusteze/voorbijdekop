@@ -71,6 +71,12 @@ export function VoorbijDekopHeader() {
           </Link>
 
           <div className="flex items-center gap-2 md:gap-4">
+            <Link
+              href="/privacy"
+              className="min-h-11 shrink-0 rounded-md px-2 text-xs font-semibold text-[var(--muted)] hover:text-[var(--text)] hover:underline hover:underline-offset-4 md:min-h-0"
+            >
+              Privacy
+            </Link>
             {searchOpen ? (
               <span
                 className="min-h-11 px-1 text-base font-medium leading-[1.375] text-[var(--muted)] font-['Helvetica Neue',Helvetica,Arial,sans-serif] md:min-h-0 md:px-0"

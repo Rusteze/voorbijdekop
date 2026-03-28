@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { submitWithFallback } from "@/lib/submissions";
 
@@ -47,7 +48,10 @@ export function StoryFeedback({ slug }: { slug: string }) {
       <h2 className="text-base font-semibold leading-tight text-gray-900 dark:text-gray-100">Feedback op dit verhaal</h2>
       <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
         Zie je een probleem? Jouw feedback helpt om de analyse te verbeteren. Alleen jouw keuze en het verhaal worden
-        opgeslagen (lokaal of op de server als die is ingesteld).
+        opgeslagen (lokaal of op de server als die is ingesteld).{" "}
+        <Link href="/privacy" className="font-medium text-red-900 underline underline-offset-2 dark:text-red-200">
+          Privacy &amp; cookies
+        </Link>
       </p>
       <div className="mt-3 flex flex-wrap gap-2">
         {options.map((o) => {

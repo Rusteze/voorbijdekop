@@ -52,6 +52,7 @@ Open `workers/wrangler.toml` en:
 - Zet `id` bij `[[kv_namespaces]]` (vervang `REPLACE_WITH_KV_NAMESPACE_ID`).
 - Pas `[vars]` aan:
   - **`SITE_URL`** — basis-URL van je site (zonder slash aan het eind), voor links in e-mails.
+  - **`PUBLIC_API_URL`** — basis-URL van deze Worker (digest-/feedback-/afmelden), zonder slash, bijv. `https://api.voorbijdekop.nl`. Gebruikt in digest-mails voor de afmeldlink.
   - **`STORIES_JSON_URL`** — volledige URL naar je `stories.json` (moet in de browser te openen zijn).
 
 ### 6. Migraties op **remote** D1 toepassen
@@ -135,6 +136,7 @@ Worker draait op `http://localhost:8787`. Zet in de web-app tijdelijk:
 |--------|-----|------|
 | `POST` | `/v1/digest` | Aanmelden; status `pending`, bevestigingsmail (als Resend gezet is) |
 | `GET` | `/v1/confirm?token=…` | Zet status op `confirmed` |
+| `GET` | `/v1/unsubscribe?token=…` | Afmelden digest (`unsubscribe_token`); zet `unsubscribed_at` + status |
 | `POST` | `/v1/feedback` | Body: `{ slug, type, createdAt? }` (zelfde als frontend) |
 | `GET` | `/v1/cron/digest?secret=…` | Handmatig digest-run (zelfde als cron) |
 | `POST` | `/v1/webhooks/resend` | Optioneel: `Authorization: Bearer WEBHOOK_SECRET` — zet `bounced` / `complained` |

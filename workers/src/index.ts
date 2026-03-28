@@ -6,6 +6,8 @@ export interface Env {
   DB: D1Database;
   RATE_LIMIT: KVNamespace;
   SITE_URL: string;
+  /** Publieke URL van de Worker-API (digest-/feedback-endpoints, afmelden), zonder slash aan het eind. */
+  PUBLIC_API_URL?: string;
   STORIES_JSON_URL: string;
   DIGEST_TOP_N: string;
   RATE_LIMIT_DIGEST: string;
@@ -86,6 +88,34 @@ export default {
         }
         return new Response(
           "<!DOCTYPE html><html><body><p>Je bent aangemeld voor de digest.</p></body></html>",
+          { status: 200, headers: { "content-type": "text/html; charset=utf-8" } }
+        );
+      }
+
+      // --- Afmelden digest (unsubscribe_token) ---
+      if (path === "/v1/unsubscribe" && request.method === "GET") {
+        const token = url.searchParams.get("token") ?? "";
+        const site = env.SITE_URL.replace(/\/$/, "");
+        if (!token) {
+          return new Response(
+            `<!DOCTYPE html><html><body style="font-family:system-ui;padding:16px;"><p>Token ontbreekt.</p><p><a href="${site}/privacy">Privacy</a></p></body></html>`,
+            { status: 400, headers: { "content-type": "text/html; charset=utf-8" } }
+          );
+        }
+        const now = new Date().toISOString();
+        const r = await env.DB.prepare(
+          `UPDATE digest_subscribers SET unsubscribed_at = COALESCE(unsubscribed_at, ?), status = 'unsubscribed', updated_at = ? WHERE unsubscribe_token = ?`
+        )
+          .bind(now, now, token)
+          .run();
+        if (!r.success || (r.meta.changes ?? 0) === 0) {
+          return new Response(
+            `<!DOCTYPE html><html><body style="font-family:system-ui;padding:16px;"><p>Link ongeldig of verlopen.</p><p><a href="${site}/privacy">Privacy</a></p></body></html>`,
+            { status: 404, headers: { "content-type": "text/html; charset=utf-8" } }
+          );
+        }
+        return new Response(
+          `<!DOCTYPE html><html><body style="font-family:system-ui;padding:16px;"><p>Je bent afgemeld van de digest.</p><p><a href="${site}/">Naar voorbijdekop</a> · <a href="${site}/privacy">Privacy &amp; cookies</a></p></body></html>`,
           { status: 200, headers: { "content-type": "text/html; charset=utf-8" } }
         );
       }
@@ -260,20 +290,28 @@ async function runDailyDigest(env: Env): Promise<void> {
   const siteUrl = env.SITE_URL.replace(/\/$/, "");
 
   const rows = await env.DB.prepare(
-    "SELECT email FROM digest_subscribers WHERE status = 'confirmed' AND unsubscribed_at IS NULL"
+    "SELECT email, unsubscribe_token FROM digest_subscribers WHERE status = 'confirmed' AND unsubscribed_at IS NULL"
   ).all<{
     email: string;
+    unsubscribe_token: string | null;
   }>();
-  const emails = (rows.results ?? []).map((r) => r.email).filter(Boolean);
-  console.log(`[digest] versturen naar ${emails.length} abonnees, ${top.length} verhalen`);
+  const apiBase = (env.PUBLIC_API_URL ?? "").replace(/\/$/, "");
+  console.log(`[digest] versturen naar ${(rows.results ?? []).length} abonnees, ${top.length} verhalen`);
 
-  for (const to of emails) {
+  for (const row of rows.results ?? []) {
+    const to = row.email;
+    if (!to) continue;
+    const unsub =
+      apiBase && row.unsubscribe_token
+        ? `${apiBase}/v1/unsubscribe?token=${encodeURIComponent(row.unsubscribe_token)}`
+        : null;
     const r = await sendDailyDigestToSubscriber({
       apiKey: env.RESEND_API_KEY,
       from: env.RESEND_FROM,
       to,
       siteUrl,
-      stories: top
+      stories: top,
+      unsubscribeUrl: unsub
     });
     if (!r.ok) console.error(`[digest] mislukt voor ${to}`, r.error);
     await new Promise((r) => setTimeout(r, 150));

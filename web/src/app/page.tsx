@@ -747,7 +747,11 @@ export default function Home() {
                 <div className="text-xs font-semibold tracking-wide text-zinc-500">Dagelijkse digest</div>
                 <p className="mt-2 text-xs text-zinc-600 dark:text-zinc-300">
                   Ontvang dagelijks een korte update per e-mail. Je ontvangt eerst een bevestigingslink; daarna wordt je
-                  adres alleen gebruikt voor de digest.
+                  adres alleen gebruikt voor de digest. Zie{" "}
+                  <Link href="/privacy" className="font-medium text-red-900 underline underline-offset-2 dark:text-red-200">
+                    privacy &amp; cookies
+                  </Link>{" "}
+                  voor gegevensverwerking en afmelden.
                 </p>
                 <form
                   className="mt-3 flex gap-2"

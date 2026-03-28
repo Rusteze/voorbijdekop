@@ -26,8 +26,10 @@ export function pickTopStories(stories: StoryJson[], n: number): StoryJson[] {
 export function htmlDigestEmail(params: {
   siteUrl: string;
   stories: StoryJson[];
+  unsubscribeUrl?: string | null;
 }): string {
   const base = params.siteUrl.replace(/\/$/, "");
+  const privacyUrl = `${base}/privacy`;
   const items = params.stories
     .map((s) => {
       const sum = (s.summary ?? "").toString().slice(0, 180);
@@ -35,10 +37,15 @@ export function htmlDigestEmail(params: {
       return `<li style="margin-bottom:12px;"><a href="${href}" style="color:#1a1a1a;font-weight:600;">${escapeHtml(s.title)}</a><br/><span style="color:#555;font-size:14px;">${escapeHtml(sum)}${sum.length >= 180 ? "…" : ""}</span></li>`;
     })
     .join("");
+  const unsubBlock =
+    params.unsubscribeUrl && params.unsubscribeUrl.length > 0
+      ? `<p style="font-size:13px;color:#888;margin-top:24px;">Afmelden voor deze digest: <a href="${escapeHtml(params.unsubscribeUrl)}">klik hier</a>.</p>`
+      : `<p style="font-size:13px;color:#888;margin-top:24px;">Afmelden: gebruik de link in een volgende mail of zie <a href="${escapeHtml(privacyUrl)}">privacy &amp; cookies</a>.</p>`;
   return `<!DOCTYPE html><html><body style="font-family:system-ui,sans-serif;max-width:560px;margin:0 auto;padding:16px;">
 <p style="font-size:15px;color:#333;">Dagelijkse selectie van voorbijdekop.</p>
 <ul style="padding-left:18px;">${items}</ul>
-<p style="font-size:13px;color:#888;margin-top:24px;">Je ontvangt dit omdat je je hebt aangemeld. Afmelden kan later via een link in de mail (TODO) of door contact op te nemen.</p>
+${unsubBlock}
+<p style="font-size:12px;color:#aaa;margin-top:16px;">Privacy: <a href="${escapeHtml(privacyUrl)}">${escapeHtml(privacyUrl)}</a></p>
 </body></html>`;
 }
 
@@ -56,8 +63,13 @@ export async function sendDailyDigestToSubscriber(params: {
   to: string;
   siteUrl: string;
   stories: StoryJson[];
+  unsubscribeUrl?: string | null;
 }): Promise<{ ok: boolean; error?: string }> {
-  const html = htmlDigestEmail({ siteUrl: params.siteUrl, stories: params.stories });
+  const html = htmlDigestEmail({
+    siteUrl: params.siteUrl,
+    stories: params.stories,
+    unsubscribeUrl: params.unsubscribeUrl
+  });
   return sendEmail({
     apiKey: params.apiKey,
     from: params.from,

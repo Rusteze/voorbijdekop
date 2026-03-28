@@ -5,6 +5,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 Copy `.env.example` to `.env.local` and fill in:
 
 - `NEXT_PUBLIC_SITE_URL`: canonical site URL (used for metadata/sitemap/robots)
+- `NEXT_PUBLIC_CONTACT_EMAIL` (optioneel): getoond op `/privacy` als contact voor privacyverzoeken
 - `NEXT_PUBLIC_DIGEST_ENDPOINT`: optional POST endpoint for digest signups (bijv. `https://<worker>.workers.dev/v1/digest` — zie `workers/README.md`)
 - `NEXT_PUBLIC_FEEDBACK_ENDPOINT`: optional POST endpoint for story feedback (bijv. `…/v1/feedback`)
 
