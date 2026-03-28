@@ -40,9 +40,7 @@ export default function PrivacyPage() {
                 </a>
                 .
               </>
-            ) : (
-              <> Vul voor productie bij voorkeur <code className="text-xs">NEXT_PUBLIC_CONTACT_EMAIL</code> in.</>
-            )}
+            ) : null}
           </p>
         </section>
 
@@ -146,7 +144,10 @@ export default function PrivacyPage() {
             <a href="https://autoriteitpersoonsgegevens.nl" className="underline underline-offset-2" target="_blank" rel="noreferrer">
               autoriteitpersoonsgegevens.nl
             </a>
-            ). Verzoeken kun je richten aan het contact hierboven.
+            ).{" "}
+            {CONTACT
+              ? "Verzoeken kun je richten aan het contact hierboven."
+              : "Verzoeken kun je richten aan de exploitant van voorbijdekop via de contactinformatie op deze website."}
           </p>
         </section>
 

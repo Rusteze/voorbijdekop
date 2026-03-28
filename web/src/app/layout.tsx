@@ -6,6 +6,7 @@ import { VoorbijDekopProvider } from "./voorbijdekop-state";
 import { ThemeSettingsOverlay } from "./theme-settings-overlay";
 import { SearchOverlay } from "./search-overlay";
 import { AiInfoOverlay } from "./ai-info-overlay";
+import { StorySwipeNav } from "./story-swipe-nav";
 import { readStoriesJsonRaw } from "@/lib/readStoriesJson";
 
 const inter = Inter({
@@ -69,6 +70,7 @@ export default function RootLayout({
           <ThemeSettingsOverlay />
           <SearchOverlay />
           <AiInfoOverlay />
+          <StorySwipeNav />
           {children}
         </VoorbijDekopProvider>
       </body>

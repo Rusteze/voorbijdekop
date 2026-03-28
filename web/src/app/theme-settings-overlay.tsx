@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Link from "next/link";
 import { ThemeSwitcher } from "./theme-switcher";
 import { useVoorbijDekop } from "./voorbijdekop-state";
 
@@ -78,6 +79,24 @@ export function ThemeSettingsOverlay() {
         <div className="px-6 pb-6">
           <ThemeSwitcher />
         </div>
+
+        <nav
+          className="border-t border-[var(--settings-panel-border)] px-6 pb-8 pt-2"
+          aria-label="Juridisch en informatie"
+        >
+          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">Meer</p>
+          <ul className="mt-3 space-y-2 text-sm">
+            <li>
+              <Link
+                href="/privacy"
+                className="font-medium text-[var(--text)] underline underline-offset-4 decoration-[var(--muted)] hover:decoration-red-900 dark:hover:decoration-red-200"
+                onClick={closeSettings}
+              >
+                Privacy &amp; cookies
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
     </>
   );
