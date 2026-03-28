@@ -6,6 +6,7 @@ import { getAllStories } from "@/lib/generated";
 import { getFallbackImage } from "@/lib/fallbackImage";
 import { getStoryLastUpdated, formatRelativeStoryTime, topicLabel } from "@/lib/storyUtils";
 import { submitWithFallback } from "@/lib/submissions";
+import { resolveTopicFromAi } from "@/lib/storyTopicsRegistry";
 import { useVoorbijDekop } from "./voorbijdekop-state";
 import { usePointerDragScroll } from "@/lib/usePointerDragScroll";
 
@@ -244,6 +245,17 @@ function firstSentence(text?: string | null) {
 export default function Home() {
   const DIGEST_ENDPOINT = process.env.NEXT_PUBLIC_DIGEST_ENDPOINT;
   const { query, topic, setTopic, openAiInfo } = useVoorbijDekop();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const t = new URLSearchParams(window.location.search).get("topic");
+    if (t === null || t === "") return;
+    if (t === "alle") {
+      setTopic("alle");
+      return;
+    }
+    setTopic(resolveTopicFromAi(t));
+  }, [setTopic]);
   const [sourceFilter, setSourceFilter] = useState<string>("alle");
   const [visibleCount, setVisibleCount] = useState(20);
   const [storiesRuntime, setStoriesRuntime] = useState<any[]>(() => getAllStories());

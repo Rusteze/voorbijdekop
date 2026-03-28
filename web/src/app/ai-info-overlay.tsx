@@ -34,7 +34,6 @@ export function AiInfoOverlay() {
       style={{ backgroundColor: "var(--overlay-bg)" }}
       onPointerDown={(e) => {
         if (!aiInfoOpen) return;
-        // sluit bij click op de overlay zelf
         if (e.target === e.currentTarget) closeAiInfo();
       }}
       role="dialog"
@@ -49,7 +48,7 @@ export function AiInfoOverlay() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">Uitleg</div>
-            <div className="mt-2 text-lg font-semibold text-[var(--text)]">Wat AI hier (build-time) doet</div>
+            <div className="mt-2 text-lg font-semibold text-[var(--text)]">Hoe AI dit gebruikt</div>
           </div>
           <button
             type="button"
@@ -66,17 +65,21 @@ export function AiInfoOverlay() {
 
         <div className="mt-4 space-y-3 text-[13px] leading-6 text-[var(--muted)]">
           <p>
-            Voor elke story gebruikt de AI de geselecteerde berichten als basis en zet dit om naar een gestructureerde analyse met duidelijke labels:
-            <span className="font-medium text-[var(--text)]"> feiten</span>,
-            <span className="font-medium text-[var(--text)]"> interpretaties</span> en
-            <span className="font-medium text-[var(--text)]"> onbekend</span>.
+            Voor elk verhaal leest de AI de geselecteerde nieuwsberichten en zet die om naar één{" "}
+            <span className="font-medium text-[var(--text)]">doorlopend verhaal</span> met{" "}
+            <span className="font-medium text-[var(--text)]">belangrijkste punten</span> (waar beschikbaar). Onderaan
+            zie je welke bronnen zijn gebruikt en wanneer die gepubliceerd zijn.
           </p>
           <p>
-            Waar informatie ontbreekt of onzeker is, wordt dat expliciet aangegeven. Dit is bedoeld als startpunt: je kunt en moet altijd zelf de originele bronnen raadplegen voor verificatie.
+            Het onderwerp (bijvoorbeeld geopolitiek of defensie) is een <span className="font-medium text-[var(--text)]">classificatie</span>{" "}
+            om vergelijkbare verhalen te groeperen en te filteren op de voorpagina — geen oordeel over waarheid of mening.
+          </p>
+          <p>
+            Dit is bedoeld als overzicht en startpunt: controleer altijd zelf de originele bronnen, vooral bij gevoelige of
+            snel veranderende situaties.
           </p>
         </div>
       </div>
     </div>
   );
 }
-

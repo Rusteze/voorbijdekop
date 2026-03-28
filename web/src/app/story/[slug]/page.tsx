@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getAllStories, getStoryBySlug } from "@/lib/generated.server";
 import { getFallbackImage } from "@/lib/fallbackImage";
 import { StoryFeedback } from "@/app/story-feedback";
+import { StoryTopicLink } from "@/app/story-topic-link";
 import {
   getStoryLastUpdated,
   formatRelativeStoryTime,
@@ -252,9 +253,7 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
               ) : null}
             </div>
           </div>
-          <p className="mt-4 text-sm text-gray-500 dark:text-gray-300">
-            {(story.topic ?? story.category ?? "overig").toString()}
-          </p>
+          <StoryTopicLink topic={story.topic} category={story.category} />
           <h1 className="mt-3 text-2xl font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mt-4 md:text-3xl">
             {story.title}
           </h1>
