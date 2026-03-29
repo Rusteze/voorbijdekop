@@ -1,14 +1,14 @@
 {
   "kind": "topic",
   "question": "Welk onderwerp past het best bij het meest prominente verhaal van deze editie?",
-  "contextLine": "VS-protesten tegen Trump en gevolgen voor Franse wijnexport",
+  "contextLine": "Protest in VS tegen Trump en zorgen onder Franse wijnbouwers",
   "options": [
-    "Grondstoffen",
-    "Surveillance",
+    "Economische machtsstrijd",
     "Politieke instabiliteit",
-    "Conflict"
+    "Propaganda",
+    "Beïnvloeding"
   ],
-  "correctIndex": 2,
-  "sourceSlug": "amerikaans-protest-tegen-trump-en-franse-wijnbouwers-662d84",
-  "generatedAt": "2026-03-29T21:06:26.682Z"
+  "correctIndex": 1,
+  "sourceSlug": "amerikaans-protest-tegen-trump-en-franse-wijnboeren-2cf978",
+  "generatedAt": "2026-03-29T22:04:44.964Z"
 }
