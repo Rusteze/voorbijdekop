@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { getAllStories } from "@/lib/generated";
 import { getFallbackImage } from "@/lib/fallbackImage";
 import { getStoryLastUpdated, formatRelativeStoryTime, topicLabel } from "@/lib/storyUtils";
@@ -435,6 +435,13 @@ export default function Home() {
   const latestNews = [...storiesOrdered].sort((a, b) => getStoryLastUpdated(b) - getStoryLastUpdated(a)).slice(0, 10);
   const isCurrentTopicFollowed = topic !== "alle" && followedTopics.includes(topic);
 
+  /** Mobiel: AI-subtitel + i-knop na het 3e overige verhaal (of na het laatste als er minder dan 3 zijn). */
+  const showMobileAiBlurbAfter = (restLen: number, index: number) => {
+    if (restLen === 0) return false;
+    if (restLen >= 3) return index === 2;
+    return index === restLen - 1;
+  };
+
   return (
     <div className="min-h-screen bg-white text-zinc-950">
       <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-14">
@@ -442,14 +449,14 @@ export default function Home() {
           <h1 className="sr-only md:not-sr-only mt-1 text-2xl font-semibold leading-tight tracking-tight text-zinc-950 md:mt-3 md:text-4xl">
             Het verhaal achter het nieuws
           </h1>
-          <div className="inline-flex min-w-0 items-center gap-1 md:flex md:flex-wrap md:gap-2">
+          <div className="hidden min-w-0 items-center gap-1 md:flex md:flex-wrap md:gap-2">
             <p className="min-w-0 text-sm leading-relaxed text-zinc-600 line-clamp-1 md:line-clamp-none md:whitespace-normal md:text-base md:leading-7">
               Analyse en context door AI op basis van meerdere betrouwbare bronnen
             </p>
             <button
               type="button"
               onClick={openAiInfo}
-              className="hidden md:inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-zinc-600 transition hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)]"
+              className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-zinc-600 transition hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)]"
               aria-label="Uitleg AI-analyse"
             >
               <span aria-hidden="true" className="text-xs font-semibold leading-none md:text-[11px]">
@@ -656,14 +663,41 @@ export default function Home() {
               </section>
             )}
 
+            {rest.length === 0 && stories.length > 0 ? (
+              <section className="md:hidden">
+                <article className="flex items-center gap-3 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] px-3 py-2 shadow-sm">
+                  <div
+                    className="relative flex h-16 w-20 shrink-0 items-center justify-center overflow-hidden rounded-md bg-zinc-100"
+                    aria-hidden
+                  >
+                    <span className="text-[10px] font-semibold uppercase tracking-wide text-zinc-400">AI</span>
+                  </div>
+                  <div className="flex min-w-0 flex-1 items-center gap-2">
+                    <p className="min-w-0 flex-1 text-sm font-normal leading-snug text-zinc-600">
+                      Analyse en context door AI op basis van meerdere betrouwbare bronnen
+                    </p>
+                    <button
+                      type="button"
+                      onClick={openAiInfo}
+                      className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-zinc-600 transition hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)]"
+                      aria-label="Uitleg AI-analyse"
+                    >
+                      <span aria-hidden="true" className="text-xs font-semibold leading-none">
+                        i
+                      </span>
+                    </button>
+                  </div>
+                </article>
+              </section>
+            ) : null}
+
             {rest.length > 0 && (
               <section>
                 <div className="text-xs font-semibold tracking-wide text-zinc-500">Overige verhalen</div>
                 <div className="mt-4 space-y-4 md:hidden">
-                  {rest.map((s: any) => {
-                    return (
+                  {rest.map((s: any, index: number) => (
+                    <Fragment key={s.slug}>
                       <Link
-                        key={s.slug}
                         href={`/story/${s.slug}`}
                         className="group block cursor-pointer"
                         aria-label={s.title}
@@ -686,8 +720,33 @@ export default function Home() {
                           </h3>
                         </article>
                       </Link>
-                    );
-                  })}
+                      {showMobileAiBlurbAfter(rest.length, index) ? (
+                        <article className="flex items-center gap-3 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] px-3 py-2 shadow-sm">
+                          <div
+                            className="relative flex h-16 w-20 shrink-0 items-center justify-center overflow-hidden rounded-md bg-zinc-100"
+                            aria-hidden
+                          >
+                            <span className="text-[10px] font-semibold uppercase tracking-wide text-zinc-400">AI</span>
+                          </div>
+                          <div className="flex min-w-0 flex-1 items-center gap-2">
+                            <p className="min-w-0 flex-1 text-sm font-normal leading-snug text-zinc-600">
+                              Analyse en context door AI op basis van meerdere betrouwbare bronnen
+                            </p>
+                            <button
+                              type="button"
+                              onClick={openAiInfo}
+                              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-zinc-600 transition hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)]"
+                              aria-label="Uitleg AI-analyse"
+                            >
+                              <span aria-hidden="true" className="text-xs font-semibold leading-none">
+                                i
+                              </span>
+                            </button>
+                          </div>
+                        </article>
+                      ) : null}
+                    </Fragment>
+                  ))}
                 </div>
 
                 <div className="hidden md:grid md:mt-8 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
