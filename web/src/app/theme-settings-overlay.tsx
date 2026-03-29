@@ -6,7 +6,7 @@ import { ThemeSwitcher } from "./theme-switcher";
 import { useVoorbijDekop } from "./voorbijdekop-state";
 
 export function ThemeSettingsOverlay() {
-  const { settingsOpen, closeSettings } = useVoorbijDekop();
+  const { settingsOpen, closeSettings, openAiInfo } = useVoorbijDekop();
   const panelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -82,10 +82,22 @@ export function ThemeSettingsOverlay() {
 
         <nav
           className="border-t border-[var(--settings-panel-border)] px-6 pb-8 pt-2"
-          aria-label="Juridisch en informatie"
+          aria-label="Informatie"
         >
           <p className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">Meer</p>
           <ul className="mt-3 space-y-2 text-sm">
+            <li>
+              <button
+                type="button"
+                className="text-left font-medium text-[var(--text)] underline underline-offset-4 decoration-[var(--muted)] hover:decoration-red-900 dark:hover:decoration-red-200"
+                onClick={() => {
+                  closeSettings();
+                  openAiInfo();
+                }}
+              >
+                Over AI-analyse
+              </button>
+            </li>
             <li>
               <Link
                 href="/privacy"

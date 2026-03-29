@@ -439,7 +439,7 @@ export default function Home() {
     <div className="min-h-screen bg-white text-zinc-950">
       <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-14">
         <div className="mb-8 space-y-4 md:mb-10 md:space-y-0">
-          <h1 className="mt-1 text-2xl font-semibold leading-tight tracking-tight text-zinc-950 md:mt-3 md:text-4xl">
+          <h1 className="sr-only md:not-sr-only mt-1 text-2xl font-semibold leading-tight tracking-tight text-zinc-950 md:mt-3 md:text-4xl">
             Het verhaal achter het nieuws
           </h1>
           <div className="inline-flex min-w-0 items-center gap-1 md:flex md:flex-wrap md:gap-2">
@@ -449,7 +449,7 @@ export default function Home() {
             <button
               type="button"
               onClick={openAiInfo}
-              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-zinc-600 transition hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)] md:h-5 md:w-5"
+              className="hidden md:inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[var(--border)] text-zinc-600 transition hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)]"
               aria-label="Uitleg AI-analyse"
             >
               <span aria-hidden="true" className="text-xs font-semibold leading-none md:text-[11px]">
