@@ -444,8 +444,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white text-zinc-950">
-      <main className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-14">
-        <div className="mb-8 space-y-4 md:mb-10 md:space-y-0">
+      <main className="mx-auto max-w-7xl px-4 pt-3 pb-8 md:px-6 md:py-14">
+        <div className="mb-3 space-y-4 md:mb-10 md:space-y-0">
           <h1 className="sr-only md:not-sr-only mt-1 text-2xl font-semibold leading-tight tracking-tight text-zinc-950 md:mt-3 md:text-4xl">
             Het verhaal achter het nieuws
           </h1>
@@ -519,10 +519,10 @@ export default function Home() {
             <div className="space-y-8 md:col-span-8 md:space-y-14">
             {top && (
               <section aria-label="Must-read">
-                <Link href={`/story/${top.slug}`} className="mt-2 block" aria-label={top.title}>
+                <Link href={`/story/${top.slug}`} className="mt-0 block md:mt-2" aria-label={top.title}>
                 <article>
-                  <div className="relative overflow-hidden rounded-lg bg-zinc-100 ring-1 ring-zinc-900/10 md:rounded-2xl">
-                    <div className="aspect-[16/9] w-full bg-gradient-to-br from-zinc-100 via-zinc-50 to-zinc-200">
+                  <div className="relative overflow-hidden rounded-xl bg-zinc-100 ring-1 ring-zinc-900/10 max-md:-mx-4 max-md:rounded-t-none max-md:rounded-b-2xl md:rounded-2xl">
+                    <div className="aspect-[4/3] w-full bg-gradient-to-br from-zinc-100 via-zinc-50 to-zinc-200 md:aspect-[16/9]">
                       <img
                         src={
                           pickCipherPreferredImage(top) ||
