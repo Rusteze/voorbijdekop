@@ -5,9 +5,9 @@ import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { getAllStories } from "@/lib/generated";
 import { getFallbackImage } from "@/lib/fallbackImage";
 import { getStoryLastUpdated, formatRelativeStoryTime, topicLabel } from "@/lib/storyUtils";
-import { submitWithFallback } from "@/lib/submissions";
 import { resolveTopicFromAi } from "@/lib/storyTopicsRegistry";
 import { useVoorbijDekop } from "./voorbijdekop-state";
+import { DigestSignupCard } from "./digest-signup-card";
 import { FeedInsertCard } from "./feed-insert-card";
 import { getMobileInsertsAfterStory } from "@/lib/homeFeedInserts";
 import { AI_TAGLINE } from "@/lib/siteCopy";
@@ -208,7 +208,6 @@ function firstSentence(text?: string | null) {
 }
 
 export default function Home() {
-  const DIGEST_ENDPOINT = process.env.NEXT_PUBLIC_DIGEST_ENDPOINT;
   const { query, topic, setTopic, openAiInfo } = useVoorbijDekop();
 
   useEffect(() => {
@@ -225,9 +224,6 @@ export default function Home() {
   const [visibleCount, setVisibleCount] = useState(20);
   const [storiesRuntime, setStoriesRuntime] = useState<any[]>(() => getAllStories());
   const [followedTopics, setFollowedTopics] = useState<string[]>([]);
-  const [digestEmail, setDigestEmail] = useState("");
-  const [digestSaved, setDigestSaved] = useState(false);
-  const [digestSaveMode, setDigestSaveMode] = useState<"remote" | "local" | null>(null);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const [autoHighlightTick, setAutoHighlightTick] = useState(0);
 
@@ -732,68 +728,8 @@ export default function Home() {
             </div>
 
             <aside className="border-t border-[var(--border)] pt-6 md:col-span-4 md:border-t-0 md:pt-2">
-              <div className="mb-5 rounded-lg border border-[var(--card-border)] bg-[var(--card-bg)] p-3">
-                <div className="text-xs font-semibold tracking-wide text-zinc-500">Dagelijkse digest</div>
-                <p className="mt-2 text-xs text-zinc-600 dark:text-zinc-300">
-                  Ontvang dagelijks een korte update per e-mail. Je ontvangt eerst een bevestigingslink; daarna wordt je
-                  adres alleen gebruikt voor de digest. Zie{" "}
-                  <Link href="/privacy" className="font-medium text-red-900 underline underline-offset-2 dark:text-red-200">
-                    privacy &amp; cookies
-                  </Link>{" "}
-                  voor gegevensverwerking en afmelden.
-                </p>
-                <form
-                  className="mt-3 flex gap-2"
-                  onSubmit={async (e) => {
-                    e.preventDefault();
-                    if (!digestEmail.trim()) return;
-                    try {
-                      const result = await submitWithFallback({
-                        endpoint: DIGEST_ENDPOINT,
-                        storageKey: "digest-signups-v1",
-                        payload: {
-                          email: digestEmail.trim().toLowerCase(),
-                          createdAt: new Date().toISOString(),
-                          topic: topic === "alle" ? null : topic,
-                          topics:
-                            followedTopics.length > 0
-                              ? followedTopics
-                              : topic !== "alle"
-                                ? [topic]
-                                : []
-                        }
-                      });
-                      setDigestSaveMode(result.persisted);
-                      setDigestSaved(true);
-                      setDigestEmail("");
-                    } catch {
-                      // ignore
-                    }
-                  }}
-                >
-                  <input
-                    type="email"
-                    value={digestEmail}
-                    onChange={(e) => {
-                      setDigestEmail(e.target.value);
-                      setDigestSaved(false);
-                      setDigestSaveMode(null);
-                    }}
-                    placeholder="jij@voorbeeld.nl"
-                    className="min-w-0 flex-1 rounded-md border border-[var(--border)] bg-white px-2 py-1.5 text-xs text-zinc-800 outline-none focus:ring-1 focus:ring-zinc-400 dark:bg-zinc-950 dark:text-zinc-100"
-                  />
-                  <button
-                    type="submit"
-                    className="rounded-md border border-[var(--border)] bg-white px-2.5 py-1.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
-                  >
-                    Aanmelden
-                  </button>
-                </form>
-                {digestSaved ? (
-                  <div className="mt-2 text-xs text-emerald-700 dark:text-emerald-300">
-                    {digestSaveMode === "remote" ? "Online opgeslagen." : "Lokaal opgeslagen."}
-                  </div>
-                ) : null}
+              <div className="hidden md:block">
+                <DigestSignupCard variant="sidebar" />
               </div>
               <div className="text-xs font-semibold tracking-wide text-zinc-500">Laatste nieuws</div>
               <div className="mt-4 space-y-1 md:space-y-2.5">

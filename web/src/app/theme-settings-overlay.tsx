@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
+import { DigestSignupCard } from "./digest-signup-card";
 import { ThemeSwitcher } from "./theme-switcher";
 import { useVoorbijDekop } from "./voorbijdekop-state";
 
@@ -78,6 +79,10 @@ export function ThemeSettingsOverlay() {
 
         <div className="px-6 pb-6">
           <ThemeSwitcher />
+        </div>
+
+        <div className="border-t border-[var(--settings-panel-border)] px-6 pb-6 md:hidden">
+          <DigestSignupCard variant="menu" />
         </div>
 
         <nav
