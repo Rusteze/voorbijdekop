@@ -55,7 +55,9 @@ Open `workers/wrangler.toml` en:
   - **`PUBLIC_API_URL`** — basis-URL van deze Worker (digest-/feedback-/afmelden), zonder slash, bijv. `https://api.voorbijdekop.nl`. Gebruikt in digest-mails voor de afmeldlink.
   - **`STORIES_JSON_URL`** — volledige URL naar je `stories.json` (moet in de browser te openen zijn).
   - **`DIGEST_TOP_N`** — maximaal aantal verhalen in de digest (string, bijv. `"10"`).
-  - **`DIGEST_SKIP_IDENTICAL`** (optioneel) — standaard gedrag = overslaan als de top-slugs gelijk zijn aan de vorige succesvolle mail voor die abonnee; zet op `false` of `0` om dat uit te zetten.
+  - **`DIGEST_SKIP_IDENTICAL`** (optioneel) — standaard gedrag = overslaan als de top-slugs gelijk zijn aan de vorige succesvolle mail voor die abonnee; zet op `false` of `0` om dat uit te zetten (handig om elke cron-run te testen zonder `stories.json` te wijzigen; combineer eventueel met hoge **`DIGEST_MAX_PER_DAY`**).
+  - **`DIGEST_MAX_PER_DAY`** (optioneel, default `1`) — maximaal zoveel **succesvolle** digests per kalenderdag (Europe/Amsterdam) per abonnee. Zet op `0` om de daglimiet uit te zetten.
+  - **`DIGEST_MAX_PER_WEEK`** (optioneel, default `7`) — maximaal zoveel succesvolle digests in een **rol van 7 dagen** per abonnee. Zet op `0` om de weeklimiet uit te zetten.
 
 ### 6. Migraties op **remote** D1 toepassen
 
@@ -149,13 +151,18 @@ Worker draait op `http://localhost:8787`. Zet in de web-app tijdelijk:
 `wrangler.toml` bevat `crons = ["0 6 * * *"]` (06:00 UTC). Alleen rijen met `status = 'confirmed'` krijgen mail. De job haalt `STORIES_JSON_URL` op en stuurt tot **N** (`DIGEST_TOP_N`) verhalen op importance en recency.
 
 - **Per topic:** als `topics_json` bij de abonnee gevuld is (zoals bij aanmelden vanaf de site), worden alleen verhalen met dat topic meegenomen (met terugval naar alle verhalen als er geen match is).
-- **Geen identieke digest (standaard aan):** na een succesvolle mail wordt een fingerprint van de gekozen top-**slugs** per abonnee in **KV** gezet (`digest:lastfp:…` in dezelfde namespace als `RATE_LIMIT`). Is de volgende run **identiek** aan die vorige send, dan wordt die abonnee overgeslagen (geen dubbele spam bij ongewijzigde `stories.json`). Eerste run na deploy of zonder KV-waarde mailt wél. Zet optioneel **`DIGEST_SKIP_IDENTICAL`** op `false` of `0` in `[vars]` om dit uit te zetten (handig voor tests).
+- **Geen identieke digest (standaard aan):** na een succesvolle mail wordt per abonnee in **KV** o.a. een fingerprint van de gekozen top-**slugs** opgeslagen (`digest:state:…` in dezelfde namespace als `RATE_LIMIT`; oude installs met alleen `digest:lastfp:…` worden bij lezen automatisch meegenomen). Is de volgende run **inhoudelijk identiek** aan die vorige send, dan wordt die abonnee overgeslagen. Eerste succesvolle send na deploy of zonder KV-waarde mailt wél (mits quota hieronder het toelaat). Zet optioneel **`DIGEST_SKIP_IDENTICAL`** op `false` of `0` om identieke-inhoud-skip uit te zetten.
+- **Max. frequentie:** standaard **hoogstens 1 succesvolle digest per dag** (kalenderdag Europe/Amsterdam) en **hoogstens 7 per rol van 7 dagen** — configureerbaar met **`DIGEST_MAX_PER_DAY`** en **`DIGEST_MAX_PER_WEEK`**. Zo voorkom je dubbele mail op dezelfde dag (bijv. handmatige cron + geplande cron) en kun je een strakkere weekcap instellen.
 - **Resend:** bij tijdelijke fouten (5xx, 429) worden e-mails **beperkt opnieuw** geprobeerd met backoff; geen “één fout en volgende adres”.
 - **Onderwerpregel:** `Voorbijdekop — [datum in Europe/Amsterdam]`.
 - **Preheader + platte tekst + `List-Unsubscribe` + `List-Unsubscribe-Post`** (als `PUBLIC_API_URL` en `unsubscribe_token` gezet zijn; POST ondersteunt one-click afmelden bij grote providers).
 - **Afzender:** zie **RESEND_FROM** hierboven (weergavenaam Voorbijdekop).
 - **HTML:** miniaturen (`imageUrl` uit `stories.json` indien aanwezig), titel voorkeur `shortHeadline`, knop “Lees verder”, footer met echte afmeldlink en korte AI-transparantiezin.
-- **Monitoring (logs):** bij mislukte fetch van `STORIES_JSON_URL`, lege storylijst of geen bevestigde abonnees verschijnt een regel **`[digest] ALERT:`**. Aan het einde van elke run: **`[digest] samenvatting:`** met verzonden, mislukt, overgeslagen wegens identieke inhoud, overgeslagen leeg, en totaal abonnees — handig voor alerts in Logpush/Workers Analytics.
+- **Monitoring (logs):** bij mislukte fetch van `STORIES_JSON_URL`, lege storylijst of geen bevestigde abonnees verschijnt een regel **`[digest] ALERT:`**. Aan het einde van elke run: **`[digest] samenvatting:`** met o.a. verzonden, mislukt, overgeslagen wegens identieke inhoud, leeg, al verstuurd vandaag, weeklimiet, en totaal abonnees.
+
+### Logpush / alerts (optioneel, in Cloudflare)
+
+Dit hoort **niet** in de repo-code: in het Cloudflare-dashboard kun je **Workers Logs** naar een bestemming sturen (**Logpush**) of **Notifications** koppelen aan voorwaarden (bijv. op basis van logregels of fouten). Dat is **geen verplichting** om de digest te laten werken; het **kan** wel helpen om `STORIES_JSON_URL`-storingen of lege runs te merken zonder het dashboard te bekijken. Gebruik daarbij de **`[digest] ALERT:`**- of **`samenvatting:`**-regels als signaal.
 
 ## Frontend (statische Next-export)
 
@@ -226,11 +233,10 @@ Na **`npm run d1:remote`** op de actieve DB (`voorbijdekop-db`) zijn deze kolomm
 
 ## Nog open / logische vervolgstappen
 
-1. **Frequentie-cap** — optioneel maximaal **X** digest-mails per week per abonnee (nu: dagelijkse cron + overslaan bij identieke inhoud).
-2. **Onderwerpen beheren** — abonnees laten wijzigen welke topics ze in de digest willen (nu: ingesteld bij aanmelding).
-3. **Resend-webhooks** — payload kan afwijken; pas `/v1/webhooks/resend` aan op [Resend webhook docs](https://resend.com/docs/dashboard/webhooks) en zet webhook-URL in Resend-dashboard.
-4. **Juridisch** — korte privacytekst bij digest- en feedbackformulier in de web-app + bewaartermijn documenteren.
-5. **Admin** — CSV-export of betere auth i.p.v. alleen `?secret=`.
+1. **Onderwerpen beheren** — abonnees laten wijzigen welke topics ze in de digest willen (nu: ingesteld bij aanmelding).
+2. **Resend-webhooks** — payload kan afwijken; pas `/v1/webhooks/resend` aan op [Resend webhook docs](https://resend.com/docs/dashboard/webhooks) en zet webhook-URL in Resend-dashboard.
+3. **Juridisch** — korte privacytekst bij digest- en feedbackformulier in de web-app + bewaartermijn documenteren.
+4. **Admin** — CSV-export of betere auth i.p.v. alleen `?secret=`.
 
 ## Rate limits
 

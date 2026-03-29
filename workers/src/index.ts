@@ -1,5 +1,11 @@
 import { checkRateLimit, hashIp } from "./rateLimit";
-import { digestSubscriberKvKey, storyListFingerprint } from "./digestFingerprint.js";
+import { storyListFingerprint } from "./digestFingerprint.js";
+import {
+  amsterdamDateString,
+  loadDigestSubscriberState,
+  persistAfterSuccessfulSend,
+  pruneWeekSendTimes
+} from "./digestState.js";
 import { formatResendFrom } from "./digestFrom.js";
 import { pickTopStoriesForSubscriber, sendDailyDigestToSubscriber, type StoryJson } from "./digestSend";
 import { sendEmail } from "./resend";
@@ -14,6 +20,10 @@ export interface Env {
   DIGEST_TOP_N: string;
   /** Zet op `false` om altijd te mailen (test); default: zelfde inhoud als vorige run wordt overgeslagen. */
   DIGEST_SKIP_IDENTICAL?: string;
+  /** Max. succesvolle digests per kalenderdag (Europe/Amsterdam); default `1`. */
+  DIGEST_MAX_PER_DAY?: string;
+  /** Max. succesvolle digests in een rol van 7 dagen; default `7`. */
+  DIGEST_MAX_PER_WEEK?: string;
   RATE_LIMIT_DIGEST: string;
   RATE_LIMIT_FEEDBACK: string;
   RESEND_API_KEY: string;
@@ -307,6 +317,11 @@ async function runDailyDigest(env: Env): Promise<void> {
   const skipIdentical =
     env.DIGEST_SKIP_IDENTICAL !== "false" && env.DIGEST_SKIP_IDENTICAL !== "0";
 
+  const maxPerDay = Math.max(0, parseInt(env.DIGEST_MAX_PER_DAY ?? "1", 10) || 1);
+  const maxPerWeek = Math.max(0, parseInt(env.DIGEST_MAX_PER_WEEK ?? "7", 10) || 7);
+  const todayAmsterdam = amsterdamDateString();
+  const nowMs = Date.now();
+
   const siteUrl = env.SITE_URL.replace(/\/$/, "");
   const from = formatResendFrom(env.RESEND_FROM);
 
@@ -320,7 +335,7 @@ async function runDailyDigest(env: Env): Promise<void> {
   const apiBase = (env.PUBLIC_API_URL ?? "").replace(/\/$/, "");
   const totalSubscribers = (rows.results ?? []).length;
   console.log(
-    `[digest] start run: ${totalSubscribers} abonnees, max ${n} verhalen, identieke inhoud overslaan=${skipIdentical}`
+    `[digest] start run: ${totalSubscribers} abonnees, max ${n} verhalen, identieke inhoud overslaan=${skipIdentical}, max_per_dag=${maxPerDay}, max_per_7d=${maxPerWeek}, vandaag_Amsterdam=${todayAmsterdam}`
   );
 
   if (totalSubscribers === 0) {
@@ -332,6 +347,8 @@ async function runDailyDigest(env: Env): Promise<void> {
   let failed = 0;
   let skippedIdentical = 0;
   let skippedEmpty = 0;
+  let skippedAlreadyToday = 0;
+  let skippedWeeklyCap = 0;
 
   for (const row of rows.results ?? []) {
     const to = row.email;
@@ -344,17 +361,28 @@ async function runDailyDigest(env: Env): Promise<void> {
 
     const fp = storyListFingerprint(top);
 
-    if (skipIdentical) {
-      try {
-        const kvKey = await digestSubscriberKvKey(to);
-        const prev = await env.RATE_LIMIT.get(kvKey);
-        if (prev === fp) {
-          skippedIdentical++;
-          continue;
-        }
-      } catch (e) {
-        console.warn(`[digest] KV fingerprint read mislukt voor ${to}, mail alsnog versturen`, e);
-      }
+    let state;
+    try {
+      state = await loadDigestSubscriberState(env.RATE_LIMIT, to);
+    } catch (e) {
+      console.warn(`[digest] KV state read mislukt voor ${to}, mail alsnog proberen`, e);
+      state = {};
+    }
+
+    if (skipIdentical && state.fp === fp) {
+      skippedIdentical++;
+      continue;
+    }
+
+    if (maxPerDay > 0 && state.lastSentDay === todayAmsterdam) {
+      skippedAlreadyToday++;
+      continue;
+    }
+
+    const weekCount = pruneWeekSendTimes(state.weekSendTimes, nowMs).length;
+    if (maxPerWeek > 0 && weekCount >= maxPerWeek) {
+      skippedWeeklyCap++;
+      continue;
     }
 
     const unsub =
@@ -372,13 +400,10 @@ async function runDailyDigest(env: Env): Promise<void> {
 
     if (r.ok) {
       sent++;
-      if (skipIdentical) {
-        try {
-          const kvKey = await digestSubscriberKvKey(to);
-          await env.RATE_LIMIT.put(kvKey, fp);
-        } catch (e) {
-          console.warn(`[digest] KV fingerprint opslaan mislukt voor ${to}`, e);
-        }
+      try {
+        await persistAfterSuccessfulSend(env.RATE_LIMIT, to, top, nowMs, state);
+      } catch (e) {
+        console.warn(`[digest] KV state opslaan mislukt voor ${to}`, e);
       }
     } else {
       failed++;
@@ -388,6 +413,6 @@ async function runDailyDigest(env: Env): Promise<void> {
   }
 
   console.log(
-    `[digest] samenvatting: verzonden=${sent} mislukt=${failed} overgeslagen_identieke_inhoud=${skippedIdentical} overgeslagen_leeg=${skippedEmpty} (abonnees=${totalSubscribers})`
+    `[digest] samenvatting: verzonden=${sent} mislukt=${failed} overgeslagen_identieke_inhoud=${skippedIdentical} overgeslagen_leeg=${skippedEmpty} overgeslagen_al_verstuurd_vandaag=${skippedAlreadyToday} overgeslagen_weeklimiet=${skippedWeeklyCap} (abonnees=${totalSubscribers})`
   );
 }
