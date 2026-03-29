@@ -1,14 +1,14 @@
 {
   "kind": "topic",
   "question": "Welk onderwerp past het best bij het meest prominente verhaal van deze editie?",
-  "contextLine": "Israëlische politie verhindert Latijnse patriarch bij Palmzondagviering in Jeruzalem",
+  "contextLine": "Israël verhindert katholieke kardinaal Heilig Graf te betreden tijdens Palmpasen",
   "options": [
-    "Handelsconflict",
-    "Cyberoorlog",
+    "Energiepolitiek",
     "Geopolitiek",
-    "Energiepolitiek"
+    "Beïnvloeding",
+    "Oorlog"
   ],
-  "correctIndex": 2,
-  "sourceSlug": "israelische-politie-blokkeert-latijnse-patriarch-bij-palmzondagmis-in-jeruzalem-38860f",
-  "generatedAt": "2026-03-29T17:07:02.942Z"
+  "correctIndex": 3,
+  "sourceSlug": "israel-blokkeert-katholieke-kardinaal-de-toegang-tot-het-heilig-graf-op-palmpase-17db6a",
+  "generatedAt": "2026-03-29T18:05:40.550Z"
 }
