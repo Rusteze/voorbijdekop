@@ -9,7 +9,6 @@ import { submitWithFallback } from "@/lib/submissions";
 import { resolveTopicFromAi } from "@/lib/storyTopicsRegistry";
 import { useVoorbijDekop } from "./voorbijdekop-state";
 import { usePointerDragScroll } from "@/lib/usePointerDragScroll";
-import { buildStoryFeed, canonicalizeSourceDomain } from "@/lib/storyFeed";
 
 function prettySourceDomain(domain: string) {
   const d = (domain ?? "").toLowerCase();
@@ -32,6 +31,17 @@ function prettySourceDomain(domain: string) {
   if (d === "defence-blog.com") return "Defence Blog";
   if (d === "globalissues.org") return "Global Issues";
   return domain;
+}
+
+function canonicalizeSourceDomain(domain: string) {
+  const d = (domain ?? "").toLowerCase().trim();
+  if (!d) return d;
+  if (d === "ipad.nrc.nl" || d === "vorige.nrc.nl") return "nrc.nl";
+  if (d.endsWith(".nrc.nl")) return "nrc.nl";
+  if (d === "reutersbest.com") return "reuters.com";
+  if (d === "bbc.com") return "bbc.co.uk";
+  if (d === "feeds.rijksoverheid.nl") return "rijksoverheid.nl";
+  return d;
 }
 
 function isDutchSourceDomain(domain: string) {
@@ -258,15 +268,34 @@ export default function Home() {
     }
   }, [followedTopics]);
 
-  const storiesAllFiltered = useMemo(
-    () =>
-      buildStoryFeed(storiesRuntime, {
-        topic,
-        query,
-        sourceFilter,
-      }),
-    [query, topic, sourceFilter, storiesRuntime]
-  );
+  const storiesAllFiltered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    const base = [...storiesRuntime].sort((a, b) => {
+      const imp = (b.importance ?? 0) - (a.importance ?? 0);
+      if (imp !== 0) return imp;
+      return getStoryLastUpdated(b) - getStoryLastUpdated(a);
+    });
+
+    const matchQuery = (s: any) => {
+      if (!q) return true;
+      const hay = [s.title ?? "", s.summary ?? "", s.ai?.narrative ?? ""].join("\n").toLowerCase();
+      return hay.includes(q);
+    };
+
+    const matchSource = (s: any) => {
+      if (sourceFilter === "alle") return true;
+      const canon = sourceFilter;
+      const arts: any[] = Array.isArray(s?.articles) ? s.articles : [];
+      return arts.some((a) => canonicalizeSourceDomain(a?.sourceDomain ?? "") === canon);
+    };
+
+    return base.filter((s: any) => {
+      if (topic !== "alle" && (s.topic ?? "overig") !== topic) return false;
+      if (!matchQuery(s)) return false;
+      if (!matchSource(s)) return false;
+      return true;
+    });
+  }, [query, topic, sourceFilter, storiesRuntime]);
 
   const stories = useMemo(() => storiesAllFiltered.slice(0, visibleCount), [storiesAllFiltered, visibleCount]);
   const allStoriesLoaded = useMemo(() => storiesRuntime, [storiesRuntime]);
@@ -281,14 +310,6 @@ export default function Home() {
   useEffect(() => {
     setVisibleCount(20);
   }, [query, topic, sourceFilter]);
-
-  useEffect(() => {
-    try {
-      sessionStorage.setItem("vdk-source-filter", sourceFilter);
-    } catch {
-      // ignore
-    }
-  }, [sourceFilter]);
 
   useEffect(() => {
     if (!loadMoreRef.current) return;
