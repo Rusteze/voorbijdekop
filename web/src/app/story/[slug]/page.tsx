@@ -307,7 +307,8 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
                 <a
                   className="font-semibold text-gray-900 underline-offset-4 hover:text-black hover:underline dark:text-gray-100 dark:hover:text-white"
                   href={s.url}
-                  rel="noreferrer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {s.domain}
                 </a>
