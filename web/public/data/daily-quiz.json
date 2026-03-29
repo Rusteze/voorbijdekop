@@ -1,14 +1,14 @@
 {
   "kind": "topic",
   "question": "Welk onderwerp past het best bij het meest prominente verhaal van deze editie?",
-  "contextLine": "Designkenmerken en mindset in de jaren negentig",
+  "contextLine": "Designoptimisme kenmerkt de jaren negentig",
   "options": [
-    "Conflict",
-    "Beïnvloeding",
-    "Energiepolitiek",
-    "Machtsverschuiving"
+    "Overig",
+    "Defensie",
+    "Cyberoorlog",
+    "Geopolitiek"
   ],
-  "correctIndex": 2,
+  "correctIndex": 0,
   "sourceSlug": "de-jaren-negentig-het-decennium-van-het-designoptimisme-ca5335",
-  "generatedAt": "2026-03-29T15:06:25.280Z"
+  "generatedAt": "2026-03-29T16:05:25.434Z"
 }
