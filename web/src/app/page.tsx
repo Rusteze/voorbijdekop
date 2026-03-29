@@ -433,8 +433,6 @@ export default function Home() {
   const now = storiesOrdered.slice(1, 3);
   const rest = storiesOrdered.slice(3);
   const latestNews = [...storiesOrdered].sort((a, b) => getStoryLastUpdated(b) - getStoryLastUpdated(a)).slice(0, 10);
-  const isCurrentTopicFollowed = topic !== "alle" && followedTopics.includes(topic);
-
   /** Mobiel: AI-subtitel + i-knop na het 3e overige verhaal (of na het laatste als er minder dan 3 zijn). */
   const showMobileAiBlurbAfter = (restLen: number, index: number) => {
     if (restLen === 0) return false;
@@ -442,61 +440,27 @@ export default function Home() {
     return index === restLen - 1;
   };
 
-  const showDigestFilterActions =
-    topic !== "alle" || sourceFilter !== "alle" || followedTopics.length > 0;
+  const showFollowedTopicsRow = followedTopics.length > 0;
 
-  const digestFilterActions = (
-    <>
-      {topic !== "alle" || sourceFilter !== "alle" ? (
-        <div>
-          <button
-            type="button"
-            onClick={() => {
-              setTopic("alle");
-              setSourceFilter("alle");
-            }}
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-white px-3 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50"
-          >
-            Reset filters
-          </button>
-        </div>
-      ) : null}
-      {topic !== "alle" ? (
-        <div>
-          <button
-            type="button"
-            onClick={() => {
-              setFollowedTopics((cur) =>
-                cur.includes(topic) ? cur.filter((t) => t !== topic) : [...cur, topic]
-              );
-            }}
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-white px-3 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
-          >
-            {isCurrentTopicFollowed ? "Ontvolg topic" : "Volg topic"}
-          </button>
-        </div>
-      ) : null}
-      {followedTopics.length > 0 ? (
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-semibold text-zinc-500">Gevolgde topics:</span>
-          {followedTopics.map((tp) => (
-            <button
-              key={tp}
-              type="button"
-              onClick={() => setTopic(tp as any)}
-              className="rounded-full border border-[var(--border)] bg-white px-2.5 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
-            >
-              {topicLabel(tp)}
-            </button>
-          ))}
-        </div>
-      ) : null}
-    </>
+  const followedTopicsChips = (
+    <div className="flex flex-wrap items-center gap-2">
+      <span className="text-xs font-semibold text-zinc-500">Gevolgde topics:</span>
+      {followedTopics.map((tp) => (
+        <button
+          key={tp}
+          type="button"
+          onClick={() => setTopic(tp as any)}
+          className="rounded-full border border-[var(--border)] bg-white px-2.5 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
+        >
+          {topicLabel(tp)}
+        </button>
+      ))}
+    </div>
   );
 
   return (
     <div className="min-h-screen bg-white text-zinc-950">
-      <main className="mx-auto max-w-7xl px-4 pt-0 pb-8 md:px-6 md:py-14">
+      <main className="mx-auto max-w-7xl px-4 pt-2 pb-8 md:px-6 md:py-14">
         <h1 className="sr-only md:not-sr-only mt-3 text-2xl font-semibold leading-tight tracking-tight text-zinc-950 md:text-4xl">
           Het verhaal achter het nieuws
         </h1>
@@ -516,7 +480,7 @@ export default function Home() {
               </span>
             </button>
           </div>
-          <div className="space-y-3">{digestFilterActions}</div>
+          {showFollowedTopicsRow ? <div className="space-y-3">{followedTopicsChips}</div> : null}
         </div>
 
         {stories.length === 0 ? (
@@ -576,12 +540,12 @@ export default function Home() {
               </section>
             )}
 
-            {showDigestFilterActions ? (
+            {showFollowedTopicsRow ? (
               <div
-                className="mb-4 space-y-2 border-t border-zinc-200/90 pt-4 md:hidden dark:border-zinc-700/60"
-                aria-label="Filters en volgen"
+                className="mb-4 border-t border-zinc-200/90 pt-4 md:hidden dark:border-zinc-700/60"
+                aria-label="Gevolgde topics"
               >
-                {digestFilterActions}
+                {followedTopicsChips}
               </div>
             ) : null}
 
