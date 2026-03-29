@@ -1,14 +1,14 @@
 {
   "kind": "topic",
   "question": "Welk onderwerp past het best bij het meest prominente verhaal van deze editie?",
-  "contextLine": "Israël verhindert katholieke kardinaal Heilig Graf te betreden tijdens Palmpasen",
+  "contextLine": "Designoptimisme kenmerkte de jaren negentig",
   "options": [
-    "Energiepolitiek",
-    "Geopolitiek",
+    "Desinformatie",
     "Beïnvloeding",
-    "Oorlog"
+    "Machtsverschuiving",
+    "Overig"
   ],
   "correctIndex": 3,
-  "sourceSlug": "israel-blokkeert-katholieke-kardinaal-de-toegang-tot-het-heilig-graf-op-palmpase-17db6a",
-  "generatedAt": "2026-03-29T18:05:40.550Z"
+  "sourceSlug": "de-jaren-negentig-het-decennium-van-het-designoptimisme-ca5335",
+  "generatedAt": "2026-03-29T19:11:13.352Z"
 }
