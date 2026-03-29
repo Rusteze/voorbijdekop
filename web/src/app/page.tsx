@@ -442,15 +442,67 @@ export default function Home() {
     return index === restLen - 1;
   };
 
+  const showDigestFilterActions =
+    topic !== "alle" || sourceFilter !== "alle" || followedTopics.length > 0;
+
+  const digestFilterActions = (
+    <>
+      {topic !== "alle" || sourceFilter !== "alle" ? (
+        <div>
+          <button
+            type="button"
+            onClick={() => {
+              setTopic("alle");
+              setSourceFilter("alle");
+            }}
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-white px-3 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50"
+          >
+            Reset filters
+          </button>
+        </div>
+      ) : null}
+      {topic !== "alle" ? (
+        <div>
+          <button
+            type="button"
+            onClick={() => {
+              setFollowedTopics((cur) =>
+                cur.includes(topic) ? cur.filter((t) => t !== topic) : [...cur, topic]
+              );
+            }}
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-white px-3 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
+          >
+            {isCurrentTopicFollowed ? "Ontvolg topic" : "Volg topic"}
+          </button>
+        </div>
+      ) : null}
+      {followedTopics.length > 0 ? (
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs font-semibold text-zinc-500">Gevolgde topics:</span>
+          {followedTopics.map((tp) => (
+            <button
+              key={tp}
+              type="button"
+              onClick={() => setTopic(tp as any)}
+              className="rounded-full border border-[var(--border)] bg-white px-2.5 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
+            >
+              {topicLabel(tp)}
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </>
+  );
+
   return (
     <div className="min-h-screen bg-white text-zinc-950">
-      <main className="mx-auto max-w-7xl px-4 pt-3 pb-8 md:px-6 md:py-14">
-        <div className="mb-3 space-y-4 md:mb-10 md:space-y-0">
-          <h1 className="sr-only md:not-sr-only mt-1 text-2xl font-semibold leading-tight tracking-tight text-zinc-950 md:mt-3 md:text-4xl">
-            Het verhaal achter het nieuws
-          </h1>
-          <div className="hidden min-w-0 items-center gap-1 md:flex md:flex-wrap md:gap-2">
-            <p className="min-w-0 text-sm leading-relaxed text-zinc-600 line-clamp-1 md:line-clamp-none md:whitespace-normal md:text-base md:leading-7">
+      <main className="mx-auto max-w-7xl px-4 pt-0 pb-8 md:px-6 md:py-14">
+        <h1 className="sr-only md:not-sr-only mt-3 text-2xl font-semibold leading-tight tracking-tight text-zinc-950 md:text-4xl">
+          Het verhaal achter het nieuws
+        </h1>
+        <div className="mb-0 hidden space-y-4 md:mb-10 md:block">
+          <div className="flex min-w-0 flex-wrap items-center gap-2">
+            <p className="min-w-0 text-sm leading-relaxed text-zinc-600 md:text-base md:leading-7">
               Analyse en context door AI op basis van meerdere betrouwbare bronnen
             </p>
             <button
@@ -464,50 +516,7 @@ export default function Home() {
               </span>
             </button>
           </div>
-          {topic !== "alle" || sourceFilter !== "alle" ? (
-            <div className="mt-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setTopic("alle");
-                  setSourceFilter("alle");
-                }}
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-white px-3 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50"
-              >
-                Reset filters
-              </button>
-            </div>
-          ) : null}
-          {topic !== "alle" ? (
-            <div className="mt-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setFollowedTopics((cur) =>
-                    cur.includes(topic) ? cur.filter((t) => t !== topic) : [...cur, topic]
-                  );
-                }}
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-white px-3 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
-              >
-                {isCurrentTopicFollowed ? "Ontvolg topic" : "Volg topic"}
-              </button>
-            </div>
-          ) : null}
-          {followedTopics.length > 0 ? (
-            <div className="mt-3 flex flex-wrap items-center gap-2">
-              <span className="text-xs font-semibold text-zinc-500">Gevolgde topics:</span>
-              {followedTopics.map((tp) => (
-                <button
-                  key={tp}
-                  type="button"
-                  onClick={() => setTopic(tp as any)}
-                  className="rounded-full border border-[var(--border)] bg-white px-2.5 py-1 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900"
-                >
-                  {topicLabel(tp)}
-                </button>
-              ))}
-            </div>
-          ) : null}
+          <div className="space-y-3">{digestFilterActions}</div>
         </div>
 
         {stories.length === 0 ? (
@@ -521,7 +530,7 @@ export default function Home() {
               <section aria-label="Must-read">
                 <Link href={`/story/${top.slug}`} className="mt-0 block md:mt-2" aria-label={top.title}>
                 <article>
-                  <div className="relative overflow-hidden rounded-xl bg-zinc-100 ring-1 ring-zinc-900/10 max-md:-mx-4 max-md:rounded-t-none max-md:rounded-b-2xl md:rounded-2xl">
+                  <div className="relative overflow-hidden rounded-lg bg-zinc-100 ring-1 ring-zinc-900/10 md:rounded-2xl">
                     <div className="aspect-[4/3] w-full bg-gradient-to-br from-zinc-100 via-zinc-50 to-zinc-200 md:aspect-[16/9]">
                       <img
                         src={
@@ -566,6 +575,15 @@ export default function Home() {
                 </Link>
               </section>
             )}
+
+            {showDigestFilterActions ? (
+              <div
+                className="mb-4 space-y-2 border-t border-zinc-200/90 pt-4 md:hidden dark:border-zinc-700/60"
+                aria-label="Filters en volgen"
+              >
+                {digestFilterActions}
+              </div>
+            ) : null}
 
             {/* Bron-logos filter (windowed, NOS-like) */}
             <div>
