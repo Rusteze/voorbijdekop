@@ -16,9 +16,9 @@ De Cloudflare Worker in `/workers` verzorgt dubbele opt-in, D1-opslag, rate limi
 ## Aanrader & quiz (homepage)
 
 - **`data/editorial-pick.json`** (repo-root): redactionele **Aanrader** — zet `enabled` op `true` en vul `title`, `dek`, `kind` (`book` \| `film` \| `podcast` \| `series` \| `link`), `href` (intern `/…` of externe URL). Optioneel `imageUrl`, `label`, `updatedAt`. `npm run build:data` valideert en schrijft naar `web/public/data/editorial-pick.json`.
-- **`daily-quiz.json`**: wordt **automatisch** gegenereerd bij `build:data` op basis van `stories.json` (topic-quiz als er ≥4 verschillende topics zijn, anders kop-quiz). Staat na de build in `web/public/data/`. Bij te weinig verhalen of unieke koppen: `{ "skipped": true, … }` — dan toont de site geen quiz.
+- **`daily-quiz.json`**: wordt **automatisch** gegenereerd bij `build:data` op basis van `stories.json` (topic-quiz als er ≥4 verschillende topics zijn, anders kop-quiz). Staat na de build in `web/public/data/`. Bij te weinig verhalen of unieke koppen: `{ "skipped": true, … }` — dan toont de site geen quiz. Op de homepage staat de quiz **tussen de overige verhalen** (na het 2e item in die lijst, of na het enige item als er maar één is), niet meer direct onder de uitlichting. Knop **Minder tonen** onthoudt dat per browser tot de volgende kalenderdag (Europe/Amsterdam) of tot de quiz opnieuw wordt gebouwd (`generatedAt`).
 
-Ankers: `#aanrader`, `#quiz-van-de-dag` (voor eventuele promolinks in de feed).
+Ankers: `#aanrader`, `#quiz-van-de-dag` (verdwijnt zolang de quiz verborgen is).
 
 ## Getting Started
 

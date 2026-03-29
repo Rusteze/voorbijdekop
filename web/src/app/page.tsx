@@ -457,11 +457,11 @@ export default function Home() {
   const latestNews = [...storiesOrdered].sort((a, b) => getStoryLastUpdated(b) - getStoryLastUpdated(a)).slice(0, 10);
   const showFollowedTopicsRow = followedTopics.length > 0;
 
-  const showEditorialQuizRow =
-    stories.length > 0 &&
-    editorialPick !== null &&
-    dailyQuizFile !== null &&
-    (editorialPick.enabled === true || isActiveDailyQuiz(dailyQuizFile));
+  const activeQuiz =
+    dailyQuizFile !== null && isActiveDailyQuiz(dailyQuizFile) ? dailyQuizFile : null;
+  /** Na het 2e overige verhaal (of na het enige als er maar één is). */
+  const quizAfterRestIndex = rest.length >= 2 ? 1 : 0;
+  const showQuizInFeed = Boolean(activeQuiz && rest.length > 0);
 
   const followedTopicsChips = (
     <div className="flex flex-wrap items-center gap-2">
@@ -569,23 +569,7 @@ export default function Home() {
               </div>
             ) : null}
 
-            {showEditorialQuizRow ? (
-              <div
-                className={
-                  "grid gap-4 " +
-                  (editorialPick?.enabled === true &&
-                  dailyQuizFile !== null &&
-                  isActiveDailyQuiz(dailyQuizFile)
-                    ? "md:grid-cols-2"
-                    : "md:grid-cols-1")
-                }
-              >
-                {editorialPick?.enabled === true ? <EditorialPickCard data={editorialPick} /> : null}
-                {dailyQuizFile !== null && isActiveDailyQuiz(dailyQuizFile) ? (
-                  <DailyQuizCard data={dailyQuizFile} />
-                ) : null}
-              </div>
-            ) : null}
+            {editorialPick?.enabled === true ? <EditorialPickCard data={editorialPick} /> : null}
 
             {/* Bron-logos filter (windowed, NOS-like) */}
             <div>
@@ -718,6 +702,9 @@ export default function Home() {
                           </h3>
                         </article>
                       </Link>
+                      {showQuizInFeed && index === quizAfterRestIndex && activeQuiz ? (
+                        <DailyQuizCard data={activeQuiz} stories={storiesRuntime} placement="feed" />
+                      ) : null}
                       {getMobileInsertsAfterStory(rest.length, index).map((insert) => (
                         <FeedInsertCard key={`${insert.id}-${index}`} insert={insert} />
                       ))}
@@ -726,8 +713,8 @@ export default function Home() {
                 </div>
 
                 <div className="hidden md:grid md:mt-8 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
-                  {rest.map((s: any) => {
-                    return (
+                  {rest.flatMap((s: any, index: number) => {
+                    const storyLink = (
                       <Link
                         key={s.slug}
                         href={`/story/${s.slug}`}
@@ -767,6 +754,19 @@ export default function Home() {
                         </article>
                       </Link>
                     );
+
+                    if (showQuizInFeed && index === quizAfterRestIndex && activeQuiz) {
+                      return [
+                        storyLink,
+                        <div
+                          key={`quiz-${s.slug}`}
+                          className="md:col-span-2 lg:col-span-3"
+                        >
+                          <DailyQuizCard data={activeQuiz} stories={storiesRuntime} placement="feed" />
+                        </div>
+                      ];
+                    }
+                    return [storyLink];
                   })}
                 </div>
               </section>
