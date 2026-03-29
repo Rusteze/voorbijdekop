@@ -8,6 +8,8 @@ import { enrichStoriesWithAi } from "./ai-enrich.js";
 import type { AiStory, Article, Story, StoryTopic } from "./types.js";
 import { resolveTopicWithTextFallback } from "./topicRegistry.js";
 import { sha256Hex } from "./utils/hash.js";
+import { readEditorialPickFromRepo } from "./editorial-pick.js";
+import { generateDailyQuiz } from "./daily-quiz.js";
 
 async function writeJson(filePath: string, data: unknown) {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
@@ -386,6 +388,25 @@ async function main() {
 
   await writeJson(path.join(generatedDir, "stories.json"), stories);
   await writeJson(path.join(webPublicDataDir, "stories.json"), stories);
+
+  const repoRoot = path.resolve(".");
+  try {
+    const editorial = await readEditorialPickFromRepo(repoRoot);
+    await writeJson(path.join(generatedDir, "editorial-pick.json"), editorial);
+    await writeJson(path.join(webPublicDataDir, "editorial-pick.json"), editorial);
+  } catch (e) {
+    console.error("[build-data] editorial-pick mislukt", e);
+    throw e;
+  }
+
+  const quiz = generateDailyQuiz(stories, generatedAt);
+  const quizOut =
+    quiz ?? ({ skipped: true as const, generatedAt, reason: "insufficient_stories_or_headlines" } as const);
+  await writeJson(path.join(generatedDir, "daily-quiz.json"), quizOut);
+  await writeJson(path.join(webPublicDataDir, "daily-quiz.json"), quizOut);
+  if (!quiz) {
+    console.warn("[daily-quiz] geen quiz geschreven (skipped) — zie logs hierboven");
+  }
 
   console.log(
     `[build-data] done: articles=${articlesOut.length} stories=${stories.length} multiSource=${stories.filter((s) => new Set(s.articles.map((a) => a.sourceDomain)).size >= 2).length}`

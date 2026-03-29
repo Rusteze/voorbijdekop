@@ -33,6 +33,18 @@ export const mobileRestFeedInserts: { afterRestIndex: number; insert: FeedInsert
   //     external: false,
   //   },
   // },
+  // {
+  //   afterRestIndex: 4,
+  //   insert: {
+  //     id: "quiz-teaser",
+  //     kind: "promo",
+  //     title: "Quiz van de dag",
+  //     body: "Test je kennis op basis van de verhalen in deze editie.",
+  //     cta: "Naar de quiz",
+  //     href: "/#quiz-van-de-dag",
+  //     external: false,
+  //   },
+  // },
 ];
 
 /** Zelfde regels als voorheen: na 3e item, of na laatste als er < 3 items zijn. */

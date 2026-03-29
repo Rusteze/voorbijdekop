@@ -1,0 +1,11 @@
+{
+  "enabled": false,
+  "title": "Een titel voor je aanrader",
+  "dek": "Korte toelichting waarom dit de moeite waard is.",
+  "kind": "podcast",
+  "label": "",
+  "href": "https://example.com",
+  "imageUrl": "",
+  "updatedAt": "",
+  "external": true
+}

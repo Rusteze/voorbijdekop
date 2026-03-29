@@ -9,7 +9,12 @@ import { resolveTopicFromAi } from "@/lib/storyTopicsRegistry";
 import { useVoorbijDekop } from "./voorbijdekop-state";
 import { DigestSignupCard } from "./digest-signup-card";
 import { FeedInsertCard } from "./feed-insert-card";
+import { EditorialPickCard } from "./editorial-pick-card";
+import { DailyQuizCard } from "./daily-quiz-card";
 import { getMobileInsertsAfterStory } from "@/lib/homeFeedInserts";
+import { isActiveDailyQuiz } from "@/lib/dailyQuiz";
+import type { DailyQuizFile } from "@/lib/dailyQuiz";
+import type { EditorialPickFile } from "@/lib/editorialPick";
 import { AI_TAGLINE } from "@/lib/siteCopy";
 import { usePointerDragScroll } from "@/lib/usePointerDragScroll";
 
@@ -223,6 +228,8 @@ export default function Home() {
   const [sourceFilter, setSourceFilter] = useState<string>("alle");
   const [visibleCount, setVisibleCount] = useState(20);
   const [storiesRuntime, setStoriesRuntime] = useState<any[]>(() => getAllStories());
+  const [editorialPick, setEditorialPick] = useState<EditorialPickFile | null>(null);
+  const [dailyQuizFile, setDailyQuizFile] = useState<DailyQuizFile | null>(null);
   const [followedTopics, setFollowedTopics] = useState<string[]>([]);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
   const [autoHighlightTick, setAutoHighlightTick] = useState(0);
@@ -235,12 +242,28 @@ export default function Home() {
     let cancelled = false;
     (async () => {
       try {
-        const res = await fetch("/data/stories.json", { cache: "no-store" });
-        if (!res.ok) return;
-        const parsed = (await res.json()) as any[];
-        if (!cancelled && Array.isArray(parsed)) setStoriesRuntime(parsed);
+        const [storiesRes, editorialRes, quizRes] = await Promise.all([
+          fetch("/data/stories.json", { cache: "no-store" }),
+          fetch("/data/editorial-pick.json", { cache: "no-store" }),
+          fetch("/data/daily-quiz.json", { cache: "no-store" })
+        ]);
+        if (!cancelled && storiesRes.ok) {
+          const parsed = (await storiesRes.json()) as any[];
+          if (Array.isArray(parsed)) setStoriesRuntime(parsed);
+        }
+        if (!cancelled) {
+          if (editorialRes.ok) setEditorialPick((await editorialRes.json()) as EditorialPickFile);
+          else setEditorialPick({ enabled: false });
+        }
+        if (!cancelled) {
+          if (quizRes.ok) setDailyQuizFile((await quizRes.json()) as DailyQuizFile);
+          else setDailyQuizFile({ skipped: true });
+        }
       } catch {
-        // stil falen; gebruik dan de inline bootstrap-data uit layout
+        if (!cancelled) {
+          setEditorialPick({ enabled: false });
+          setDailyQuizFile({ skipped: true });
+        }
       }
     })();
     return () => {
@@ -434,6 +457,12 @@ export default function Home() {
   const latestNews = [...storiesOrdered].sort((a, b) => getStoryLastUpdated(b) - getStoryLastUpdated(a)).slice(0, 10);
   const showFollowedTopicsRow = followedTopics.length > 0;
 
+  const showEditorialQuizRow =
+    stories.length > 0 &&
+    editorialPick !== null &&
+    dailyQuizFile !== null &&
+    (editorialPick.enabled === true || isActiveDailyQuiz(dailyQuizFile));
+
   const followedTopicsChips = (
     <div className="flex flex-wrap items-center gap-2">
       <span className="text-xs font-semibold text-zinc-500">Gevolgde topics:</span>
@@ -537,6 +566,24 @@ export default function Home() {
                 aria-label="Gevolgde topics"
               >
                 {followedTopicsChips}
+              </div>
+            ) : null}
+
+            {showEditorialQuizRow ? (
+              <div
+                className={
+                  "grid gap-4 " +
+                  (editorialPick?.enabled === true &&
+                  dailyQuizFile !== null &&
+                  isActiveDailyQuiz(dailyQuizFile)
+                    ? "md:grid-cols-2"
+                    : "md:grid-cols-1")
+                }
+              >
+                {editorialPick?.enabled === true ? <EditorialPickCard data={editorialPick} /> : null}
+                {dailyQuizFile !== null && isActiveDailyQuiz(dailyQuizFile) ? (
+                  <DailyQuizCard data={dailyQuizFile} />
+                ) : null}
               </div>
             ) : null}
 

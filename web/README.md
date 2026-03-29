@@ -13,6 +13,13 @@ If the endpoint variables are empty or unreachable, the app automatically falls 
 
 De Cloudflare Worker in `/workers` verzorgt dubbele opt-in, D1-opslag, rate limits en de dagelijkse digest-cron (Resend).
 
+## Aanrader & quiz (homepage)
+
+- **`data/editorial-pick.json`** (repo-root): redactionele **Aanrader** — zet `enabled` op `true` en vul `title`, `dek`, `kind` (`book` \| `film` \| `podcast` \| `series` \| `link`), `href` (intern `/…` of externe URL). Optioneel `imageUrl`, `label`, `updatedAt`. `npm run build:data` valideert en schrijft naar `web/public/data/editorial-pick.json`.
+- **`daily-quiz.json`**: wordt **automatisch** gegenereerd bij `build:data` op basis van `stories.json` (topic-quiz als er ≥4 verschillende topics zijn, anders kop-quiz). Staat na de build in `web/public/data/`. Bij te weinig verhalen of unieke koppen: `{ "skipped": true, … }` — dan toont de site geen quiz.
+
+Ankers: `#aanrader`, `#quiz-van-de-dag` (voor eventuele promolinks in de feed).
+
 ## Getting Started
 
 First, run the development server:
