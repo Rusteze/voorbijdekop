@@ -74,7 +74,7 @@ npx wrangler secret put CRON_SECRET
 ```
 
 - **RESEND_API_KEY** — begint meestal met `re_`.
-- **RESEND_FROM** — bijv. `Voorbijdekop <digest@jouwdomein.nl>` (moet overeenkomen met wat Resend toestaat).
+- **RESEND_FROM** — mag alleen het adres zijn, bijv. `digest@mail.voorbijdekop.nl`; de Worker zet automatisch de weergavenaam **Voorbijdekop** ervoor (`Voorbijdekop <…>`). Je kunt ook zelf het volledige veld zetten: `Voorbijdekop <digest@…>`.
 - **CRON_SECRET** — kies een lange willekeurige string; die gebruik je voor `/v1/cron/digest?secret=…` en `/v1/admin/summary?secret=…`.
 
 Optioneel later:
@@ -142,9 +142,15 @@ Worker draait op `http://localhost:8787`. Zet in de web-app tijdelijk:
 | `POST` | `/v1/webhooks/resend` | Optioneel: `Authorization: Bearer WEBHOOK_SECRET` — zet `bounced` / `complained` |
 | `GET` | `/v1/admin/summary?secret=…` | JSON-export (zelfde secret als `CRON_SECRET`) |
 
-## Cron
+## Cron / dagelijkse digest
 
-`wrangler.toml` bevat `crons = ["0 6 * * *"]` (06:00 UTC). Alleen rijen met `status = 'confirmed'` krijgen mail. De job haalt `STORIES_JSON_URL` op en stuurt de top **N** ( `DIGEST_TOP_N` ) verhalen gesorteerd op importance en recency.
+`wrangler.toml` bevat `crons = ["0 6 * * *"]` (06:00 UTC). Alleen rijen met `status = 'confirmed'` krijgen mail. De job haalt `STORIES_JSON_URL` op en stuurt tot **N** (`DIGEST_TOP_N`) verhalen op importance en recency.
+
+- **Per topic:** als `topics_json` bij de abonnee gevuld is (zoals bij aanmelden vanaf de site), worden alleen verhalen met dat topic meegenomen (met terugval naar alle verhalen als er geen match is).
+- **Onderwerpregel:** `Voorbijdekop — [datum in Europe/Amsterdam]`.
+- **Preheader + platte tekst + List-Unsubscribe-header** (als `PUBLIC_API_URL` en `unsubscribe_token` gezet zijn).
+- **Afzender:** zie **RESEND_FROM** hierboven (weergavenaam Voorbijdekop).
+- **HTML:** miniaturen (`imageUrl` uit `stories.json` indien aanwezig), titel voorkeur `shortHeadline`, knop “Lees verder”, footer met echte afmeldlink en korte AI-transparantiezin.
 
 ## Frontend (statische Next-export)
 

@@ -1,5 +1,6 @@
 import { checkRateLimit, hashIp } from "./rateLimit";
-import { pickTopStories, sendDailyDigestToSubscriber, type StoryJson } from "./digestSend";
+import { formatResendFrom } from "./digestFrom.js";
+import { pickTopStoriesForSubscriber, sendDailyDigestToSubscriber, type StoryJson } from "./digestSend";
 import { sendEmail } from "./resend";
 
 export interface Env {
@@ -175,9 +176,9 @@ export default {
 </body></html>`;
           await sendEmail({
             apiKey: env.RESEND_API_KEY,
-            from: env.RESEND_FROM,
+            from: formatResendFrom(env.RESEND_FROM),
             to: email,
-            subject: "Bevestig je aanmelding — voorbijdekop",
+            subject: "Bevestig je aanmelding — Voorbijdekop",
             html
           });
         }
@@ -286,28 +287,36 @@ async function runDailyDigest(env: Env): Promise<void> {
   }
 
   const n = parseInt(env.DIGEST_TOP_N ?? "10", 10) || 10;
-  const top = pickTopStories(stories, n);
+  if (stories.length === 0) {
+    console.warn("[digest] stories.json is leeg — overslaan");
+    return;
+  }
+
   const siteUrl = env.SITE_URL.replace(/\/$/, "");
+  const from = formatResendFrom(env.RESEND_FROM);
 
   const rows = await env.DB.prepare(
-    "SELECT email, unsubscribe_token FROM digest_subscribers WHERE status = 'confirmed' AND unsubscribed_at IS NULL"
+    "SELECT email, unsubscribe_token, topics_json FROM digest_subscribers WHERE status = 'confirmed' AND unsubscribed_at IS NULL"
   ).all<{
     email: string;
     unsubscribe_token: string | null;
+    topics_json: string | null;
   }>();
   const apiBase = (env.PUBLIC_API_URL ?? "").replace(/\/$/, "");
-  console.log(`[digest] versturen naar ${(rows.results ?? []).length} abonnees, ${top.length} verhalen`);
+  console.log(`[digest] versturen naar ${(rows.results ?? []).length} abonnees (max ${n} verhalen per mail)`);
 
   for (const row of rows.results ?? []) {
     const to = row.email;
     if (!to) continue;
+    const top = pickTopStoriesForSubscriber(stories, row.topics_json, n);
+    if (top.length === 0) continue;
     const unsub =
       apiBase && row.unsubscribe_token
         ? `${apiBase}/v1/unsubscribe?token=${encodeURIComponent(row.unsubscribe_token)}`
         : null;
     const r = await sendDailyDigestToSubscriber({
       apiKey: env.RESEND_API_KEY,
-      from: env.RESEND_FROM,
+      from,
       to,
       siteUrl,
       stories: top,
