@@ -1,4 +1,4 @@
-import { sendEmail } from "./resend.js";
+import { sendEmailWithRetry } from "./resend.js";
 
 export type StoryJson = {
   slug: string;
@@ -211,9 +211,10 @@ export async function sendDailyDigestToSubscriber(params: {
   const u = params.unsubscribeUrl?.trim();
   if (u) {
     headers["List-Unsubscribe"] = `<${u}>`;
+    headers["List-Unsubscribe-Post"] = "List-Unsubscribe=One-Click";
   }
 
-  return sendEmail({
+  return sendEmailWithRetry({
     apiKey: params.apiKey,
     from: params.from,
     to: params.to,

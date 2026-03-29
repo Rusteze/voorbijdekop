@@ -1,4 +1,5 @@
 import { checkRateLimit, hashIp } from "./rateLimit";
+import { digestSubscriberKvKey, storyListFingerprint } from "./digestFingerprint.js";
 import { formatResendFrom } from "./digestFrom.js";
 import { pickTopStoriesForSubscriber, sendDailyDigestToSubscriber, type StoryJson } from "./digestSend";
 import { sendEmail } from "./resend";
@@ -11,6 +12,8 @@ export interface Env {
   PUBLIC_API_URL?: string;
   STORIES_JSON_URL: string;
   DIGEST_TOP_N: string;
+  /** Zet op `false` om altijd te mailen (test); default: zelfde inhoud als vorige run wordt overgeslagen. */
+  DIGEST_SKIP_IDENTICAL?: string;
   RATE_LIMIT_DIGEST: string;
   RATE_LIMIT_FEEDBACK: string;
   RESEND_API_KEY: string;
@@ -48,6 +51,38 @@ async function fetchStories(url: string): Promise<StoryJson[]> {
   const data = (await res.json()) as unknown;
   if (!Array.isArray(data)) throw new Error("stories.json is geen array");
   return data as StoryJson[];
+}
+
+async function handleUnsubscribe(request: Request, env: Env): Promise<Response> {
+  const url = new URL(request.url);
+  const token = url.searchParams.get("token") ?? "";
+  const site = env.SITE_URL.replace(/\/$/, "");
+  if (!token) {
+    return new Response(
+      `<!DOCTYPE html><html><body style="font-family:system-ui;padding:16px;"><p>Token ontbreekt.</p><p><a href="${site}/privacy">Privacy</a></p></body></html>`,
+      { status: 400, headers: { "content-type": "text/html; charset=utf-8" } }
+    );
+  }
+  const now = new Date().toISOString();
+  const r = await env.DB.prepare(
+    `UPDATE digest_subscribers SET unsubscribed_at = COALESCE(unsubscribed_at, ?), status = 'unsubscribed', updated_at = ? WHERE unsubscribe_token = ?`
+  )
+    .bind(now, now, token)
+    .run();
+  if (!r.success || (r.meta.changes ?? 0) === 0) {
+    return new Response(
+      `<!DOCTYPE html><html><body style="font-family:system-ui;padding:16px;"><p>Link ongeldig of verlopen.</p><p><a href="${site}/privacy">Privacy</a></p></body></html>`,
+      { status: 404, headers: { "content-type": "text/html; charset=utf-8" } }
+    );
+  }
+  const html = `<!DOCTYPE html><html><body style="font-family:system-ui;padding:16px;"><p>Je bent afgemeld van de digest.</p><p><a href="${site}/">Naar voorbijdekop</a> · <a href="${site}/privacy">Privacy &amp; cookies</a></p></body></html>`;
+  return new Response(html, {
+    status: 200,
+    headers: {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "no-store"
+    }
+  });
 }
 
 export default {
@@ -93,32 +128,9 @@ export default {
         );
       }
 
-      // --- Afmelden digest (unsubscribe_token) ---
-      if (path === "/v1/unsubscribe" && request.method === "GET") {
-        const token = url.searchParams.get("token") ?? "";
-        const site = env.SITE_URL.replace(/\/$/, "");
-        if (!token) {
-          return new Response(
-            `<!DOCTYPE html><html><body style="font-family:system-ui;padding:16px;"><p>Token ontbreekt.</p><p><a href="${site}/privacy">Privacy</a></p></body></html>`,
-            { status: 400, headers: { "content-type": "text/html; charset=utf-8" } }
-          );
-        }
-        const now = new Date().toISOString();
-        const r = await env.DB.prepare(
-          `UPDATE digest_subscribers SET unsubscribed_at = COALESCE(unsubscribed_at, ?), status = 'unsubscribed', updated_at = ? WHERE unsubscribe_token = ?`
-        )
-          .bind(now, now, token)
-          .run();
-        if (!r.success || (r.meta.changes ?? 0) === 0) {
-          return new Response(
-            `<!DOCTYPE html><html><body style="font-family:system-ui;padding:16px;"><p>Link ongeldig of verlopen.</p><p><a href="${site}/privacy">Privacy</a></p></body></html>`,
-            { status: 404, headers: { "content-type": "text/html; charset=utf-8" } }
-          );
-        }
-        return new Response(
-          `<!DOCTYPE html><html><body style="font-family:system-ui;padding:16px;"><p>Je bent afgemeld van de digest.</p><p><a href="${site}/">Naar voorbijdekop</a> · <a href="${site}/privacy">Privacy &amp; cookies</a></p></body></html>`,
-          { status: 200, headers: { "content-type": "text/html; charset=utf-8" } }
-        );
+      // --- Afmelden digest (GET link + POST one-click, RFC 8058) ---
+      if (path === "/v1/unsubscribe" && (request.method === "GET" || request.method === "POST")) {
+        return handleUnsubscribe(request, env);
       }
 
       // --- Digest aanmelden ---
@@ -282,15 +294,18 @@ async function runDailyDigest(env: Env): Promise<void> {
   try {
     stories = await fetchStories(env.STORIES_JSON_URL);
   } catch (e) {
-    console.error("[digest] stories fetch mislukt", e);
+    console.error("[digest] ALERT: stories fetch mislukt — geen mails verstuurd", e);
     return;
   }
 
   const n = parseInt(env.DIGEST_TOP_N ?? "10", 10) || 10;
   if (stories.length === 0) {
-    console.warn("[digest] stories.json is leeg — overslaan");
+    console.warn("[digest] ALERT: stories.json is leeg — geen mails verstuurd");
     return;
   }
+
+  const skipIdentical =
+    env.DIGEST_SKIP_IDENTICAL !== "false" && env.DIGEST_SKIP_IDENTICAL !== "0";
 
   const siteUrl = env.SITE_URL.replace(/\/$/, "");
   const from = formatResendFrom(env.RESEND_FROM);
@@ -303,13 +318,45 @@ async function runDailyDigest(env: Env): Promise<void> {
     topics_json: string | null;
   }>();
   const apiBase = (env.PUBLIC_API_URL ?? "").replace(/\/$/, "");
-  console.log(`[digest] versturen naar ${(rows.results ?? []).length} abonnees (max ${n} verhalen per mail)`);
+  const totalSubscribers = (rows.results ?? []).length;
+  console.log(
+    `[digest] start run: ${totalSubscribers} abonnees, max ${n} verhalen, identieke inhoud overslaan=${skipIdentical}`
+  );
+
+  if (totalSubscribers === 0) {
+    console.warn("[digest] ALERT: geen bevestigde abonnees — niets te versturen");
+    return;
+  }
+
+  let sent = 0;
+  let failed = 0;
+  let skippedIdentical = 0;
+  let skippedEmpty = 0;
 
   for (const row of rows.results ?? []) {
     const to = row.email;
     if (!to) continue;
     const top = pickTopStoriesForSubscriber(stories, row.topics_json, n);
-    if (top.length === 0) continue;
+    if (top.length === 0) {
+      skippedEmpty++;
+      continue;
+    }
+
+    const fp = storyListFingerprint(top);
+
+    if (skipIdentical) {
+      try {
+        const kvKey = await digestSubscriberKvKey(to);
+        const prev = await env.RATE_LIMIT.get(kvKey);
+        if (prev === fp) {
+          skippedIdentical++;
+          continue;
+        }
+      } catch (e) {
+        console.warn(`[digest] KV fingerprint read mislukt voor ${to}, mail alsnog versturen`, e);
+      }
+    }
+
     const unsub =
       apiBase && row.unsubscribe_token
         ? `${apiBase}/v1/unsubscribe?token=${encodeURIComponent(row.unsubscribe_token)}`
@@ -322,7 +369,25 @@ async function runDailyDigest(env: Env): Promise<void> {
       stories: top,
       unsubscribeUrl: unsub
     });
-    if (!r.ok) console.error(`[digest] mislukt voor ${to}`, r.error);
-    await new Promise((r) => setTimeout(r, 150));
+
+    if (r.ok) {
+      sent++;
+      if (skipIdentical) {
+        try {
+          const kvKey = await digestSubscriberKvKey(to);
+          await env.RATE_LIMIT.put(kvKey, fp);
+        } catch (e) {
+          console.warn(`[digest] KV fingerprint opslaan mislukt voor ${to}`, e);
+        }
+      }
+    } else {
+      failed++;
+      console.error(`[digest] mislukt voor ${to}`, r.error);
+    }
+    await new Promise((resolve) => setTimeout(resolve, 150));
   }
+
+  console.log(
+    `[digest] samenvatting: verzonden=${sent} mislukt=${failed} overgeslagen_identieke_inhoud=${skippedIdentical} overgeslagen_leeg=${skippedEmpty} (abonnees=${totalSubscribers})`
+  );
 }

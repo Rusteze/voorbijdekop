@@ -54,6 +54,8 @@ Open `workers/wrangler.toml` en:
   - **`SITE_URL`** — basis-URL van je site (zonder slash aan het eind), voor links in e-mails.
   - **`PUBLIC_API_URL`** — basis-URL van deze Worker (digest-/feedback-/afmelden), zonder slash, bijv. `https://api.voorbijdekop.nl`. Gebruikt in digest-mails voor de afmeldlink.
   - **`STORIES_JSON_URL`** — volledige URL naar je `stories.json` (moet in de browser te openen zijn).
+  - **`DIGEST_TOP_N`** — maximaal aantal verhalen in de digest (string, bijv. `"10"`).
+  - **`DIGEST_SKIP_IDENTICAL`** (optioneel) — standaard gedrag = overslaan als de top-slugs gelijk zijn aan de vorige succesvolle mail voor die abonnee; zet op `false` of `0` om dat uit te zetten.
 
 ### 6. Migraties op **remote** D1 toepassen
 
@@ -136,7 +138,7 @@ Worker draait op `http://localhost:8787`. Zet in de web-app tijdelijk:
 |--------|-----|------|
 | `POST` | `/v1/digest` | Aanmelden; status `pending`, bevestigingsmail (als Resend gezet is) |
 | `GET` | `/v1/confirm?token=…` | Zet status op `confirmed` |
-| `GET` | `/v1/unsubscribe?token=…` | Afmelden digest (`unsubscribe_token`); zet `unsubscribed_at` + status |
+| `GET`, `POST` | `/v1/unsubscribe?token=…` | Afmelden digest (`unsubscribe_token`); zelfde token voor browselink (GET) en **one-click** (POST, RFC 8058) |
 | `POST` | `/v1/feedback` | Body: `{ slug, type, createdAt? }` (zelfde als frontend) |
 | `GET` | `/v1/cron/digest?secret=…` | Handmatig digest-run (zelfde als cron) |
 | `POST` | `/v1/webhooks/resend` | Optioneel: `Authorization: Bearer WEBHOOK_SECRET` — zet `bounced` / `complained` |
@@ -147,10 +149,13 @@ Worker draait op `http://localhost:8787`. Zet in de web-app tijdelijk:
 `wrangler.toml` bevat `crons = ["0 6 * * *"]` (06:00 UTC). Alleen rijen met `status = 'confirmed'` krijgen mail. De job haalt `STORIES_JSON_URL` op en stuurt tot **N** (`DIGEST_TOP_N`) verhalen op importance en recency.
 
 - **Per topic:** als `topics_json` bij de abonnee gevuld is (zoals bij aanmelden vanaf de site), worden alleen verhalen met dat topic meegenomen (met terugval naar alle verhalen als er geen match is).
+- **Geen identieke digest (standaard aan):** na een succesvolle mail wordt een fingerprint van de gekozen top-**slugs** per abonnee in **KV** gezet (`digest:lastfp:…` in dezelfde namespace als `RATE_LIMIT`). Is de volgende run **identiek** aan die vorige send, dan wordt die abonnee overgeslagen (geen dubbele spam bij ongewijzigde `stories.json`). Eerste run na deploy of zonder KV-waarde mailt wél. Zet optioneel **`DIGEST_SKIP_IDENTICAL`** op `false` of `0` in `[vars]` om dit uit te zetten (handig voor tests).
+- **Resend:** bij tijdelijke fouten (5xx, 429) worden e-mails **beperkt opnieuw** geprobeerd met backoff; geen “één fout en volgende adres”.
 - **Onderwerpregel:** `Voorbijdekop — [datum in Europe/Amsterdam]`.
-- **Preheader + platte tekst + List-Unsubscribe-header** (als `PUBLIC_API_URL` en `unsubscribe_token` gezet zijn).
+- **Preheader + platte tekst + `List-Unsubscribe` + `List-Unsubscribe-Post`** (als `PUBLIC_API_URL` en `unsubscribe_token` gezet zijn; POST ondersteunt one-click afmelden bij grote providers).
 - **Afzender:** zie **RESEND_FROM** hierboven (weergavenaam Voorbijdekop).
 - **HTML:** miniaturen (`imageUrl` uit `stories.json` indien aanwezig), titel voorkeur `shortHeadline`, knop “Lees verder”, footer met echte afmeldlink en korte AI-transparantiezin.
+- **Monitoring (logs):** bij mislukte fetch van `STORIES_JSON_URL`, lege storylijst of geen bevestigde abonnees verschijnt een regel **`[digest] ALERT:`**. Aan het einde van elke run: **`[digest] samenvatting:`** met verzonden, mislukt, overgeslagen wegens identieke inhoud, overgeslagen leeg, en totaal abonnees — handig voor alerts in Logpush/Workers Analytics.
 
 ## Frontend (statische Next-export)
 
@@ -221,8 +226,8 @@ Na **`npm run d1:remote`** op de actieve DB (`voorbijdekop-db`) zijn deze kolomm
 
 ## Nog open / logische vervolgstappen
 
-1. **Afmelden (unsubscribe)** — link in elke digest-mail + kolom `status = unsubscribed` + endpoint `GET /v1/unsubscribe?token=…`.
-2. **Per-topic digest** — `topics_json` bij subscriber gebruiken om te filteren vóór verzenden (nu: alleen globale top N).
+1. **Frequentie-cap** — optioneel maximaal **X** digest-mails per week per abonnee (nu: dagelijkse cron + overslaan bij identieke inhoud).
+2. **Onderwerpen beheren** — abonnees laten wijzigen welke topics ze in de digest willen (nu: ingesteld bij aanmelding).
 3. **Resend-webhooks** — payload kan afwijken; pas `/v1/webhooks/resend` aan op [Resend webhook docs](https://resend.com/docs/dashboard/webhooks) en zet webhook-URL in Resend-dashboard.
 4. **Juridisch** — korte privacytekst bij digest- en feedbackformulier in de web-app + bewaartermijn documenteren.
 5. **Admin** — CSV-export of betere auth i.p.v. alleen `?secret=`.

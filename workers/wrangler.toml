@@ -26,6 +26,8 @@ PUBLIC_API_URL = "https://api.voorbijdekop.nl"
 # Volledige URL naar stories.json van de statische site
 STORIES_JSON_URL = "https://voorbijdekop.nl/data/stories.json"
 DIGEST_TOP_N = "10"
+# Optioneel: "false" of "0" = altijd mailen (geen overslaan bij identieke top-slugs t.o.v. vorige send)
+# DIGEST_SKIP_IDENTICAL = "true"
 # Max POSTs per IP per uur (per route)
 RATE_LIMIT_DIGEST = "20"
 RATE_LIMIT_FEEDBACK = "40"
