@@ -2,69 +2,69 @@
   "date": "2026-03-30",
   "questions": [
     {
-      "word": "Koffie",
+      "word": "Zwart",
       "category": "general",
       "options": [
-        "Suiker",
-        "Thee",
-        "Ochtend",
-        "Cafe"
+        "Nacht",
+        "Wit",
+        "Kleding",
+        "Donker"
       ],
       "initialRanking": [
-        "Thee",
-        "Ochtend",
-        "Cafe",
-        "Suiker"
+        "Wit",
+        "Nacht",
+        "Donker",
+        "Kleding"
       ]
     },
     {
-      "word": "Broer",
+      "word": "Zomer",
       "category": "general",
       "options": [
-        "Vriend",
-        "Moeder",
-        "Vader",
-        "Zus"
+        "Vakantie",
+        "Strand",
+        "Winter",
+        "Zon"
       ],
       "initialRanking": [
-        "Zus",
-        "Vader",
-        "Moeder",
-        "Vriend"
+        "Zon",
+        "Strand",
+        "Vakantie",
+        "Winter"
       ]
     },
     {
-      "word": "Muziek",
+      "word": "Film",
       "category": "fun",
       "options": [
-        "Album",
-        "Zang",
-        "Ritme",
-        "Gitaar"
+        "Trailer",
+        "Genre",
+        "Bioscoop",
+        "Regisseur"
       ],
       "initialRanking": [
-        "Ritme",
-        "Gitaar",
-        "Zang",
-        "Album"
+        "Bioscoop",
+        "Trailer",
+        "Regisseur",
+        "Genre"
       ]
     },
     {
-      "word": "Trump",
+      "word": "Iran",
       "category": "news",
       "initialRanking": [
-        "Iran",
-        "Olie",
+        "Oorlog",
+        "Trump",
         "Terwijl",
-        "Amerikaanse"
+        "Eiland"
       ],
       "options": [
-        "Iran",
-        "Amerikaanse",
+        "Trump",
+        "Oorlog",
         "Terwijl",
-        "Olie"
+        "Eiland"
       ]
     }
   ],
-  "generatedAt": "2026-03-30T10:53:57.468Z"
+  "generatedAt": "2026-03-30T12:31:44.459Z"
 }
