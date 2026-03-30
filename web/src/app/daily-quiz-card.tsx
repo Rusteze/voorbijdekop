@@ -38,6 +38,8 @@ export function DailyQuizCard({
     return init;
   });
 
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [resultsByWord, setResultsByWord] = useState<ResultsByWord>({});
@@ -52,6 +54,7 @@ export function DailyQuizCard({
     const init: Record<string, string | null> = {};
     for (const q of data.questions) init[q.word] = null;
     setSelections(init);
+    setActiveIndex(0);
     setSubmitted(false);
     setSubmitting(false);
     setResultsByWord({});
@@ -152,6 +155,9 @@ export function DailyQuizCard({
   }, [data.questions, selections]);
 
   const allAnswered = data.questions.length > 0 && answeredCount >= data.questions.length;
+
+  const activeQuestion = data.questions[Math.max(0, Math.min(activeIndex, data.questions.length - 1))];
+  const activePicked = activeQuestion ? selections[activeQuestion.word] : null;
 
   useEffect(() => {
     if (submitted || submitting) return;
@@ -322,41 +328,63 @@ export function DailyQuizCard({
           Beantwoord: {answeredCount} / {data.questions.length}
         </div>
 
-        <div className="mt-3 space-y-4">
-          {data.questions.map((q, qIdx) => {
-            const picked = selections[q.word];
-            return (
-              <div key={q.word} className="space-y-2">
-                <div className="text-[15px] font-bold leading-snug tracking-tight text-[var(--text)]">
-                  {qIdx + 1}. {q.word}
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  {q.options.map((opt, optIdx) => {
-                    const isThis = picked === opt;
-                    return (
-                      <button
-                        key={opt}
-                        type="button"
-                        disabled={submitting || submitted}
-                        onClick={() => setSelections((prev) => ({ ...prev, [q.word]: opt }))}
-                        aria-pressed={isThis}
-                        className={
-                          "rounded-md border px-3 py-2 text-left text-sm leading-snug transition-colors " +
-                          (isThis
-                            ? "border-red-400/80 bg-red-50 dark:bg-red-950/30 dark:border-red-500/40"
-                            : "border-[var(--border)] bg-white hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900")
-                        }
-                      >
-                        <span className="font-medium text-zinc-600 dark:text-zinc-300">{String.fromCharCode(65 + optIdx)}.</span>{" "}
-                        <span className="text-[var(--text)]">{opt}</span>
-                      </button>
-                    );
-                  })}
-                </div>
+        {activeQuestion ? (
+          <div className="mt-3 space-y-2">
+            <div className="text-[15px] font-bold leading-snug tracking-tight text-[var(--text)]">
+              {activeIndex + 1}. {activeQuestion.word}
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {activeQuestion.options.map((opt, optIdx) => {
+                const isThis = activePicked === opt;
+                return (
+                  <button
+                    key={opt}
+                    type="button"
+                    disabled={submitting || submitted}
+                    onClick={() => {
+                      if (submitting || submitted) return;
+                      setSelections((prev) => ({ ...prev, [activeQuestion.word]: opt }));
+                      // Auto-advance naar volgende woord
+                      setActiveIndex((i) => Math.min(i + 1, data.questions.length - 1));
+                    }}
+                    aria-pressed={isThis}
+                    className={
+                      "rounded-md border px-3 py-2 text-left text-sm leading-snug transition-colors " +
+                      (isThis
+                        ? "border-red-400/80 bg-red-50 dark:bg-red-950/30 dark:border-red-500/40"
+                        : "border-[var(--border)] bg-white hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900")
+                    }
+                  >
+                    <span className="font-medium text-zinc-600 dark:text-zinc-300">{String.fromCharCode(65 + optIdx)}.</span>{" "}
+                    <span className="text-[var(--text)]">{opt}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="mt-2 flex items-center justify-between text-[11px] text-zinc-500 dark:text-zinc-500">
+              <button
+                type="button"
+                disabled={activeIndex <= 0 || submitting || submitted}
+                onClick={() => setActiveIndex((i) => Math.max(0, i - 1))}
+                className="rounded-md px-2 py-1 hover:bg-zinc-100 disabled:opacity-40 dark:hover:bg-zinc-800/70"
+              >
+                Vorige
+              </button>
+              <div>
+                Vraag {activeIndex + 1} / {data.questions.length}
               </div>
-            );
-          })}
-        </div>
+              <button
+                type="button"
+                disabled={activeIndex >= data.questions.length - 1 || submitting || submitted || !activePicked}
+                onClick={() => setActiveIndex((i) => Math.min(data.questions.length - 1, i + 1))}
+                className="rounded-md px-2 py-1 hover:bg-zinc-100 disabled:opacity-40 dark:hover:bg-zinc-800/70"
+              >
+                Volgende
+              </button>
+            </div>
+          </div>
+        ) : null}
       </div>
     </section>
   );
