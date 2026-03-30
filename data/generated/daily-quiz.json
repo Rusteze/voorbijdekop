@@ -3,12 +3,12 @@
   "question": "Welk onderwerp past het best bij het meest prominente verhaal van deze editie?",
   "contextLine": "Protesten in VS tegen Trump en Franse wijnbouwers",
   "options": [
+    "Grondstoffen",
+    "Defensie",
     "Politieke instabiliteit",
-    "Desinformatie",
-    "Machtsverschuiving",
-    "Hybride oorlog"
+    "Inlichtingen"
   ],
-  "correctIndex": 0,
+  "correctIndex": 2,
   "sourceSlug": "amerikaans-protest-tegen-trump-en-franse-wijnbouwers-2cf978",
-  "generatedAt": "2026-03-30T00:11:12.617Z"
+  "generatedAt": "2026-03-30T01:31:39.371Z"
 }
