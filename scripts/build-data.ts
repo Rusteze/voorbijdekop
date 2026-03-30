@@ -2,6 +2,7 @@ import "dotenv/config";
 import fs from "node:fs/promises";
 import * as fsSync from "node:fs";
 import path from "node:path";
+import os from "node:os";
 import { fetchRssArticles } from "./fetch-rss.js";
 import { clusterArticlesToStories } from "./cluster.js";
 import { enrichStoriesWithAi } from "./ai-enrich.js";
@@ -12,7 +13,7 @@ import { computeImportanceV3 } from "./importance-v3.js";
 import { classifyTopicsV2 } from "./topic-classify-v2.js";
 import { readEditorialPickFromRepo } from "./editorial-pick.js";
 import { generateDailyQuiz } from "./daily-quiz.js";
-import { updateAssociationsCache } from "./associations-cache.js";
+import { importSwowToAssociationsCache, updateAssociationsCache } from "./associations-cache.js";
 
 async function writeJson(filePath: string, data: unknown) {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
@@ -465,6 +466,33 @@ async function main() {
 
   // Associatie-quiz: cache updaten (ConceptNet). Niet fataal als extern faalt.
   try {
+    const swowLocalPath = path.join(repoRoot, "data", "swow-nl.csv");
+    const swowUrl = (process.env.SWOW_CSV_URL ?? "").trim();
+
+    // 1) SWOW lokaal (als bestand aanwezig is) - volledig automatisch in elke build.
+    if (fsSync.existsSync(swowLocalPath)) {
+      await importSwowToAssociationsCache(repoRoot, swowLocalPath);
+    } else if (swowUrl) {
+      // 2) SWOW remote (optioneel via secret/env), zonder handmatige importstap.
+      try {
+        const res = await fetch(swowUrl, { headers: { accept: "text/csv,text/plain,*/*" } });
+        if (res.ok) {
+          const csvText = await res.text();
+          const tmpPath = path.join(
+            os.tmpdir(),
+            `swow-nl-${Date.now()}-${Math.random().toString(36).slice(2)}.csv`
+          );
+          await fs.writeFile(tmpPath, csvText, "utf8");
+          await importSwowToAssociationsCache(repoRoot, tmpPath);
+          await fs.unlink(tmpPath).catch(() => {});
+        } else {
+          console.warn(`[build-data] SWOW_CSV_URL gaf status ${res.status} (niet fataal)`);
+        }
+      } catch (e) {
+        console.warn("[build-data] SWOW_CSV_URL fetch/import faalde (niet fataal)", e);
+      }
+    }
+
     const enableConceptNet =
       process.env.ASSOC_ENABLE_CONCEPTNET === "1" || process.env.ASSOC_ENABLE_CONCEPTNET === "true";
     await updateAssociationsCache(repoRoot, {

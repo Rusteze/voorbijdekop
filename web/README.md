@@ -41,6 +41,17 @@ npm run build:data
 `wordPool.json` blijft leidend als handmatige override.  
 ConceptNet-uitbreiding is optioneel en standaard uit; zet `ASSOC_ENABLE_CONCEPTNET=1` als je die extra bron wilt proberen.
 
+### Volledig automatisch (geen handwerk per dag)
+
+De buildpipeline (`npm run build:data`) probeert automatisch, in deze volgorde:
+
+1. `data/swow-nl.csv` (als dit bestand bestaat in de repo)
+2. `SWOW_CSV_URL` (als env/secret gezet is)
+3. fallback op bestaande cache + `wordPool.json`
+
+Voor GitHub Actions kun je `SWOW_CSV_URL` als repository secret zetten.  
+Dan draait SWOW-import automatisch mee in elke scheduled update.
+
 Ankers: `#aanrader`, `#quiz-van-de-dag` (verdwijnt zolang de quiz verborgen is).
 
 ## Getting Started
