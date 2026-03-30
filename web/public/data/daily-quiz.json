@@ -1,14 +1,14 @@
 {
   "kind": "topic",
   "question": "Welk onderwerp past het best bij het meest prominente verhaal van deze editie?",
-  "contextLine": "Protesten in VS richten zich op Trump en Franse wijnbouwers",
+  "contextLine": "Australische staten verlagen accijns en stimuleren gratis OV door prijsstijging",
   "options": [
-    "Diplomatie",
-    "Beïnvloeding",
-    "Politieke instabiliteit",
-    "Economische machtsstrijd"
+    "Sancties",
+    "Geopolitiek",
+    "Cyberoorlog",
+    "Oorlog"
   ],
-  "correctIndex": 2,
-  "sourceSlug": "amerikaans-protest-tegen-trump-en-franse-wijnbouwers-2cf978",
-  "generatedAt": "2026-03-30T04:08:00.923Z"
+  "correctIndex": 3,
+  "sourceSlug": "accijns-op-brandstof-gehalveerd-en-gratis-openbaar-vervoer-aangeboden-vanwege-pr-24b7a7",
+  "generatedAt": "2026-03-30T05:41:18.280Z"
 }
