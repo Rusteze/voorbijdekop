@@ -2,45 +2,45 @@
   "date": "2026-03-30",
   "questions": [
     {
-      "word": "Tranen",
+      "word": "Tram",
       "options": [
-        "Wenen",
-        "Water",
-        "Nat",
-        "Verdriet"
+        "Spoor",
+        "Trein",
+        "Bus",
+        "Stad"
       ],
-      "correctOption": "Verdriet"
+      "correctOption": "Trein"
     },
     {
-      "word": "Overstromen",
+      "word": "Overste",
       "options": [
-        "Schade",
-        "Rivier",
-        "Water",
-        "Ramp"
+        "Baas",
+        "Moeder",
+        "Klooster",
+        "Non"
       ],
-      "correctOption": "Water"
+      "correctOption": "Baas"
     },
     {
-      "word": "Leggen",
+      "word": "Legaal",
       "options": [
-        "Kip",
-        "Eieren",
-        "Plaatsen",
-        "Ei"
+        "Correct",
+        "Wettelijk",
+        "Wet",
+        "Illegaal"
       ],
-      "correctOption": "Ei"
+      "correctOption": "Wettelijk"
     },
     {
-      "word": "Zuigfles",
+      "word": "Zuigen",
       "options": [
+        "Borst",
+        "Borstvoeding",
         "Baby",
-        "Speen",
-        "Melk",
-        "Drinken"
+        "Rietje"
       ],
       "correctOption": "Baby"
     }
   ],
-  "generatedAt": "2026-03-30T14:41:14.219Z"
+  "generatedAt": "2026-03-30T16:29:59.720Z"
 }
