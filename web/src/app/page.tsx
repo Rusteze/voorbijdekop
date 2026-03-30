@@ -15,6 +15,7 @@ import { getMobileInsertsAfterStory } from "@/lib/homeFeedInserts";
 import { isActiveDailyQuiz } from "@/lib/dailyQuiz";
 import type { DailyQuizFile } from "@/lib/dailyQuiz";
 import type { EditorialPickFile } from "@/lib/editorialPick";
+import { ImportanceIndicator } from "@/lib/importance-indicator";
 import { AI_TAGLINE } from "@/lib/siteCopy";
 import { usePointerDragScroll } from "@/lib/usePointerDragScroll";
 
@@ -214,6 +215,8 @@ function firstSentence(text?: string | null) {
 
 export default function Home() {
   const { query, topic, setTopic, openAiInfo } = useVoorbijDekop();
+  const showImportance =
+    process.env.NODE_ENV === "development" || process.env.NEXT_PUBLIC_SHOW_IMPORTANCE === "1";
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -655,6 +658,9 @@ export default function Home() {
                               <div className="uppercase tracking-wide">
                                 {topicLabel(s.topic ?? s.category ?? "overig")}
                               </div>
+                              {showImportance ? (
+                                <ImportanceIndicator value={s.importance} compact />
+                              ) : null}
                             </div>
 
                             <p className="hidden md:block mt-2 line-clamp-2 text-base leading-relaxed text-zinc-600 md:text-sm md:leading-5 md:text-[var(--muted)]">
@@ -747,6 +753,7 @@ export default function Home() {
                               <div className="uppercase tracking-wide">
                                 {topicLabel(s.topic ?? s.category ?? "overig")}
                               </div>
+                              {showImportance ? <ImportanceIndicator value={s.importance} compact /> : null}
                             </div>
 
                             <p className="mt-2 line-clamp-2 text-base leading-relaxed text-zinc-600 md:text-sm md:leading-5 md:text-[var(--muted)]">

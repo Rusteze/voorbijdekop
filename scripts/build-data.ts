@@ -8,7 +8,7 @@ import { enrichStoriesWithAi } from "./ai-enrich.js";
 import type { AiStory, Article, Story, StoryTopic } from "./types.js";
 import { inferTopicFromText, resolveTopicWithTextFallback } from "./topicRegistry.js";
 import { sha256Hex } from "./utils/hash.js";
-import { computeImportanceV2 } from "./importance-v2.js";
+import { computeImportanceV3 } from "./importance-v3.js";
 import { classifyTopicsV2 } from "./topic-classify-v2.js";
 import { readEditorialPickFromRepo } from "./editorial-pick.js";
 import { generateDailyQuiz } from "./daily-quiz.js";
@@ -405,9 +405,9 @@ async function main() {
   // We houden `story.topic` bewust stabiel via de overig-correctie hierboven.
   stories = (stories as any[]).map((s) => {
     const res = classifyTopicsV2(s as Story, { maxTopics: 7 });
-    const topics = Array.isArray(res.topics) ? res.topics : ["overig"];
+    const topics: StoryTopic[] = Array.isArray(res.topics) ? (res.topics as StoryTopic[]) : (["overig"] as StoryTopic[]);
     // Zet de corrected `topic` vooraan als die in de lijst zit; anders vóór alles.
-    const t = s.topic as StoryTopic;
+    const t = (s.topic ?? "overig") as StoryTopic;
     const unique: StoryTopic[] = [];
     if (topics.includes(t)) unique.push(t);
     else if (t) unique.push(t);
@@ -416,11 +416,30 @@ async function main() {
   }) as Story[];
 
   // Importance fix: de oude score-clamp gaf in de praktijk altijd 100.
-  // We herberekenen deterministisch op basis van bronkwaliteit, topic, entities en recency.
-  stories = (stories as any[]).map((s) => ({
-    ...s,
-    importance: computeImportanceV2(s as Story, Date.now())
-  })) as Story[];
+  // We herberekenen deterministisch op basis van bronkwaliteit, topic, impact, entiteiten, recency en (optioneel) NL-audience.
+  {
+    const IMPORTANCE_DEBUG = process.env.IMPORTANCE_DEBUG === "1" || process.env.IMPORTANCE_DEBUG === "true";
+    const IMPORTANCE_DEBUG_LIMIT = parseInt(process.env.IMPORTANCE_DEBUG_LIMIT ?? "10", 10) || 10;
+
+    let logged = 0;
+    stories = (stories as any[]).map((s) => {
+      const { score, breakdown } = computeImportanceV3(s as Story, Date.now());
+      if (IMPORTANCE_DEBUG && logged < IMPORTANCE_DEBUG_LIMIT) {
+        console.log("[importance-debug]", {
+          slug: s.slug,
+          title: s.title,
+          importance: score,
+          breakdown
+        });
+        logged++;
+      }
+      return {
+        ...s,
+        importance: score,
+        importanceBreakdown: breakdown
+      };
+    }) as Story[];
+  }
 
   // Specifieke image voorkeur:
   // - Als `thecipherbrief.com` in de bronnen zit: gebruik een image van een andere bron waar mogelijk.

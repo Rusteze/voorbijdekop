@@ -12,6 +12,7 @@ import {
   topicLabel,
 } from "@/lib/storyUtils";
 import { stripAiMarkup } from "@/lib/stripAiMarkup";
+import { ImportanceIndicator } from "@/lib/importance-indicator";
 // Static export: genereer alle story routes op build-time.
 export const dynamicParams = false;
 
@@ -124,6 +125,8 @@ function pickCipherPreferredImage(story: any) {
 
 export default function StoryPage({ params }: { params: { slug: string } }) {
   const story = getStoryBySlug(params.slug);
+  const showImportance =
+    process.env.NODE_ENV === "development" || process.env.NEXT_PUBLIC_SHOW_IMPORTANCE === "1";
 
   if (!story) {
     return (
@@ -263,6 +266,12 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
               <span className="hidden md:inline"> ({formatAbsoluteDateTimeNl(lastUpdatedMs)})</span>
             ) : null}
           </p>
+
+          {showImportance && typeof (story as any).importance === "number" ? (
+            <div className="mt-3">
+              <ImportanceIndicator value={(story as any).importance} />
+            </div>
+          ) : null}
         </header>
 
         <NarrativeLead
@@ -295,6 +304,14 @@ export default function StoryPage({ params }: { params: { slug: string } }) {
           <h2 className="mb-2 text-base font-semibold leading-tight text-gray-900 dark:text-gray-100 md:mb-4 md:text-xl">
             Transparantie
           </h2>
+          {showImportance && (story as any).importanceBreakdown ? (
+            <div className="mt-4">
+              <h3 className="mb-2 text-sm font-semibold text-gray-600 dark:text-gray-300">Belangrijkheid (debug)</h3>
+              <pre className="max-h-64 overflow-auto whitespace-pre-wrap rounded-md border border-[var(--border)] bg-white/40 p-3 text-[12px] leading-5 text-gray-900 dark:bg-zinc-950/30 dark:text-gray-100">
+                {JSON.stringify((story as any).importanceBreakdown, null, 2)}
+              </pre>
+            </div>
+          ) : null}
           <div className="text-[15px] leading-7 md:text-sm md:leading-relaxed">
             <div className="mt-1 md:mt-2">
               <span className="font-semibold text-gray-500 dark:text-gray-500">Gebruikte bronnen:</span>{" "}

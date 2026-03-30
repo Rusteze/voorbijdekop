@@ -8,6 +8,7 @@ Copy `.env.example` to `.env.local` and fill in:
 - `NEXT_PUBLIC_CONTACT_EMAIL` (optioneel): getoond op `/privacy` als contact voor privacyverzoeken
 - `NEXT_PUBLIC_DIGEST_ENDPOINT`: optional POST endpoint for digest signups (bijv. `https://<worker>.workers.dev/v1/digest` — zie `workers/README.md`)
 - `NEXT_PUBLIC_FEEDBACK_ENDPOINT`: optional POST endpoint for story feedback (bijv. `…/v1/feedback`)
+- `NEXT_PUBLIC_SHOW_IMPORTANCE` (optioneel): zet op `"1"` om Belangrijkheid-indicatoren (badge/bar) op de homepage en debug breakdown op de storypagina te tonen.
 
 If the endpoint variables are empty or unreachable, the app automatically falls back to localStorage so the UI keeps working.
 

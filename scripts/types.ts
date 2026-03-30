@@ -105,6 +105,7 @@ export type Story = {
   category?: StoryCategory;
   topic?: StoryTopic;
   importance: number;
+  importanceBreakdown?: ImportanceBreakdown;
   topics: string[];
   generatedAt: string; // ISO (canonieke timestamp)
   buildAt?: string; // legacy compat
@@ -129,5 +130,16 @@ export type Story = {
   ai?: AiStory;
   aiStatus: "ok" | "fallback" | "skipped";
   aiCacheKey?: string;
+};
+
+export type ImportanceBreakdown = {
+  source: number;
+  topic: number;
+  entity: number;
+  impact: number;
+  narrative: number;
+  recency: number; // 0..1
+  multiSource: number;
+  audience: number; // 0.7..1.5
 };
 
