@@ -2,69 +2,45 @@
   "date": "2026-03-30",
   "questions": [
     {
-      "word": "Zwart",
-      "category": "general",
+      "word": "Hevig",
       "options": [
-        "Nacht",
-        "Wit",
-        "Kleding",
-        "Donker"
+        "Erg",
+        "Sterk",
+        "Hard",
+        "Fel"
       ],
-      "initialRanking": [
-        "Wit",
-        "Nacht",
-        "Donker",
-        "Kleding"
-      ]
+      "correctOption": "Fel"
     },
     {
-      "word": "Zomer",
-      "category": "general",
+      "word": "Ijsje",
       "options": [
-        "Vakantie",
-        "Strand",
-        "Winter",
-        "Zon"
+        "Vanille",
+        "Lekker",
+        "Zomer",
+        "Koud"
       ],
-      "initialRanking": [
-        "Zon",
-        "Strand",
-        "Vakantie",
-        "Winter"
-      ]
+      "correctOption": "Lekker"
     },
     {
-      "word": "Film",
-      "category": "fun",
+      "word": "Kletsnat",
       "options": [
-        "Trailer",
-        "Genre",
-        "Bioscoop",
-        "Regisseur"
+        "Paraplu",
+        "Koud",
+        "Water",
+        "Regen"
       ],
-      "initialRanking": [
-        "Bioscoop",
-        "Trailer",
-        "Regisseur",
-        "Genre"
-      ]
+      "correctOption": "Regen"
     },
     {
-      "word": "Iran",
-      "category": "news",
-      "initialRanking": [
-        "Oorlog",
-        "Trump",
-        "Terwijl",
-        "Eiland"
-      ],
+      "word": "Spreidstand",
       "options": [
-        "Trump",
-        "Oorlog",
-        "Terwijl",
-        "Eiland"
-      ]
+        "Ballet",
+        "Turnen",
+        "Lenig",
+        "Benen"
+      ],
+      "correctOption": "Turnen"
     }
   ],
-  "generatedAt": "2026-03-30T12:31:44.459Z"
+  "generatedAt": "2026-03-30T13:06:11.233Z"
 }

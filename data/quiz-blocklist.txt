@@ -1,0 +1,19 @@
+# Woorden/termen die nooit in de associatie-quiz mogen verschijnen.
+# Eén term per regel, case-insensitive substring match.
+
+spleetoog
+spleetogen
+nigger
+neger
+kut
+kankerhoer
+hoer
+pedo
+pedofiel
+verkrach
+nazi
+hitler
+terrorist
+zelfmoord
+suicide
+

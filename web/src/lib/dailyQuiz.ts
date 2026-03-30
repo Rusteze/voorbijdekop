@@ -2,9 +2,8 @@ export type DailyQuizQuestion = {
   word: string;
   /** 4 opties voor de UI (shuffled voor weergave). */
   options: string[];
-  /** Opties in volgorde van "meest logisch" (AI-bootstrapping). */
-  initialRanking: string[];
-  category: "general" | "news" | "fun";
+  /** De juiste associatie (hoogste count in SWOW). */
+  correctOption: string;
 };
 
 export type DailyQuizPayload = {

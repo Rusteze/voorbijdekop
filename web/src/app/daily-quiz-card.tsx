@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import type { DailyQuizPayload } from "@/lib/dailyQuiz";
 import { dismissQuizForEdition, isQuizDismissedForEdition } from "@/lib/quizDismissStorage";
 
@@ -40,10 +40,7 @@ export function DailyQuizCard({
 
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [resultsByWord, setResultsByWord] = useState<ResultsByWord>({});
-  const hasSubmittedRef = useRef(false);
 
   useLayoutEffect(() => {
     if (isQuizDismissedForEdition(data.generatedAt)) setHiddenByUser(true);
@@ -56,98 +53,12 @@ export function DailyQuizCard({
     setSelections(init);
     setActiveIndex(0);
     setSubmitted(false);
-    setSubmitting(false);
-    setResultsByWord({});
-    hasSubmittedRef.current = false;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.generatedAt]);
 
   function handleDismiss() {
     dismissQuizForEdition(data.generatedAt);
     setHiddenByUser(true);
-  }
-
-  function quizApiUrl(path: string): string {
-    const digest = process.env.NEXT_PUBLIC_DIGEST_ENDPOINT;
-    if (!digest) return path;
-    try {
-      const u = new URL(digest);
-      return `${u.origin}${path}`;
-    } catch {
-      return path;
-    }
-  }
-
-  async function submitAllAndLoadResults() {
-    if (hasSubmittedRef.current) return;
-    hasSubmittedRef.current = true;
-    setSubmitting(true);
-    try {
-      const apiSubmit = quizApiUrl("/v1/quiz/submit");
-      const apiAgg = quizApiUrl("/v1/quiz/aggregate");
-
-      // 1) Crowd submit (per woord)
-      await Promise.all(
-        data.questions.map(async (q) => {
-          const answer = selections[q.word];
-          if (!answer) return;
-          try {
-            await fetch(apiSubmit, {
-              method: "POST",
-              headers: { "content-type": "application/json; charset=utf-8" },
-              body: JSON.stringify({ date: data.date, word: q.word, answer })
-            });
-          } catch {
-            // ignore submit errors; we still show AI fallback
-          }
-        })
-      );
-
-      // 2) Aggregate per woord
-      const aggResults = await Promise.all(
-        data.questions.map(async (q) => {
-          try {
-            const res = await fetch(apiAgg, {
-              method: "POST",
-              headers: { "content-type": "application/json; charset=utf-8" },
-              body: JSON.stringify({ date: data.date, word: q.word, options: q.options })
-            });
-            if (!res.ok) throw new Error("aggregate_bad_response");
-            const json = (await res.json()) as {
-              totalResponses: number;
-              optionCounts: Record<string, number>;
-              crowdMostChosen: string[];
-            };
-            return { word: q.word, ...json };
-          } catch {
-            return { word: q.word, totalResponses: 0, optionCounts: {}, crowdMostChosen: [] as string[] };
-          }
-        })
-      );
-
-      const next: ResultsByWord = {};
-      for (const item of aggResults) {
-        const q = data.questions.find((qq) => qq.word === item.word);
-        const totalResponses = Number(item.totalResponses ?? 0) || 0;
-        const optionCounts = item.optionCounts ?? {};
-        const crowdMostChosen = item.crowdMostChosen ?? [];
-
-        const useCrowd = totalResponses >= 50;
-        const aiMostChosen = q?.initialRanking?.[0] ? [q.initialRanking[0]] : [];
-        next[item.word] = {
-          totalResponses,
-          optionCounts,
-          crowdMostChosen,
-          mostChosen: useCrowd ? crowdMostChosen : aiMostChosen,
-          source: useCrowd ? "crowd" : "ai"
-        };
-      }
-
-      setResultsByWord(next);
-      setSubmitted(true);
-    } finally {
-      setSubmitting(false);
-    }
   }
 
   const answeredCount = useMemo(() => {
@@ -160,11 +71,10 @@ export function DailyQuizCard({
   const activePicked = activeQuestion ? selections[activeQuestion.word] : null;
 
   useEffect(() => {
-    if (submitted || submitting) return;
+    if (submitted) return;
     if (!allAnswered) return;
-    submitAllAndLoadResults();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allAnswered, submitted, submitting]);
+    setSubmitted(true);
+  }, [allAnswered, submitted]);
 
   const score = useMemo(() => {
     if (!submitted) return null;
@@ -172,12 +82,11 @@ export function DailyQuizCard({
     let correct = 0;
     for (const q of data.questions) {
       const picked = selections[q.word];
-      const res = resultsByWord[q.word];
-      if (!picked || !res) continue;
-      if ((res.mostChosen ?? []).includes(picked)) correct++;
+      if (!picked) continue;
+      if (picked === q.correctOption) correct++;
     }
     return { correct, total };
-  }, [data.questions, resultsByWord, selections, submitted]);
+  }, [data.questions, selections, submitted]);
 
   if (hiddenByUser) {
     return null;
@@ -211,29 +120,13 @@ export function DailyQuizCard({
           </div>
 
           <div className="mt-2 text-xs text-zinc-500 dark:text-zinc-500">
-            {score?.correct} / {score?.total} gelijk met de meeste mensen
+            {score?.correct} / {score?.total} goed
           </div>
 
           <div className="mt-3 space-y-4">
             {data.questions.map((q, qIdx) => {
-              const res = resultsByWord[q.word];
-              const total = res?.totalResponses ?? 0;
               const picked = selections[q.word] ?? "";
-
-              const aiFallback = q.initialRanking?.[0] ?? "";
-              const source = res?.source ?? "ai";
-              const sourceLabel = source === "crowd" ? "Meest gekozen" : "Meest voor de hand liggend";
-              const mostChosenLabel = (res?.mostChosen ?? []).length ? res!.mostChosen.join(", ") : aiFallback;
-
-              const showLowAnswers = source === "ai";
-              const mostPercent =
-                source === "crowd" && total
-                  ? (() => {
-                      const most = res?.mostChosen ?? [];
-                      const maxCount = most.reduce((acc, opt) => Math.max(acc, res?.optionCounts?.[opt] ?? 0), 0);
-                      return Math.round((maxCount / total) * 100);
-                    })()
-                  : 0;
+              const ok = picked && picked === q.correctOption;
 
               return (
                 <div key={q.word} className="space-y-2">
@@ -249,45 +142,12 @@ export function DailyQuizCard({
                   </div>
 
                   <div className="text-sm text-[var(--text)]">
-                    <div className="font-medium">Jij koos: {picked}</div>
-                    {showLowAnswers ? (
-                      <div className="mt-0.5 text-xs text-zinc-600 dark:text-zinc-300">
-                        {sourceLabel}: {mostChosenLabel}
-                        <span className="block mt-0.5">Nog weinig antwoorden</span>
-                      </div>
-                    ) : (
-                      <div className="mt-0.5 text-xs text-zinc-600 dark:text-zinc-300">
-                        {sourceLabel}: {mostChosenLabel} ({mostPercent}%)
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="space-y-1">
-                    {q.options.map((opt) => {
-                      const c = res?.optionCounts?.[opt] ?? 0;
-                      const pct = total ? Math.round((c / total) * 100) : 0;
-                      const isTop = (res?.mostChosen ?? []).includes(opt);
-                      return (
-                        <div key={opt} className="flex items-center gap-2">
-                          <div
-                            className={
-                              "w-[92px] text-[11px] leading-4 text-zinc-600 dark:text-zinc-300 " +
-                              (isTop ? "font-semibold text-zinc-900 dark:text-zinc-100" : "")
-                            }
-                          >
-                            {opt} ({pct}%)
-                          </div>
-                          <div className="flex-1">
-                            <div className="h-2 w-full rounded-full bg-zinc-200/70 dark:bg-zinc-800">
-                              <div
-                                className={"h-2 rounded-full " + (isTop ? "bg-emerald-600/90" : "bg-red-400/80")}
-                                style={{ width: `${pct}%` }}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
+                    <div className={"font-medium " + (ok ? "text-emerald-800 dark:text-emerald-300" : "text-red-800 dark:text-red-300")}>
+                      Jij koos: {picked || "—"}
+                    </div>
+                    <div className="mt-0.5 text-xs text-zinc-600 dark:text-zinc-300">
+                      Juiste associatie: <span className="font-semibold text-[var(--text)]">{q.correctOption}</span>
+                    </div>
                   </div>
                 </div>
               );
@@ -340,9 +200,9 @@ export function DailyQuizCard({
                   <button
                     key={opt}
                     type="button"
-                    disabled={submitting || submitted}
+                        disabled={submitted}
                     onClick={() => {
-                      if (submitting || submitted) return;
+                          if (submitted) return;
                       setSelections((prev) => ({ ...prev, [activeQuestion.word]: opt }));
                       // Auto-advance naar volgende woord
                       setActiveIndex((i) => Math.min(i + 1, data.questions.length - 1));
@@ -365,7 +225,7 @@ export function DailyQuizCard({
             <div className="mt-2 flex items-center justify-between text-[11px] text-zinc-500 dark:text-zinc-500">
               <button
                 type="button"
-                disabled={activeIndex <= 0 || submitting || submitted}
+                disabled={activeIndex <= 0 || submitted}
                 onClick={() => setActiveIndex((i) => Math.max(0, i - 1))}
                 className="rounded-md px-2 py-1 hover:bg-zinc-100 disabled:opacity-40 dark:hover:bg-zinc-800/70"
               >
@@ -376,7 +236,7 @@ export function DailyQuizCard({
               </div>
               <button
                 type="button"
-                disabled={activeIndex >= data.questions.length - 1 || submitting || submitted || !activePicked}
+                disabled={activeIndex >= data.questions.length - 1 || submitted || !activePicked}
                 onClick={() => setActiveIndex((i) => Math.min(data.questions.length - 1, i + 1))}
                 className="rounded-md px-2 py-1 hover:bg-zinc-100 disabled:opacity-40 dark:hover:bg-zinc-800/70"
               >
