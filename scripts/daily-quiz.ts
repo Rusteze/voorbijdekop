@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import type { Story } from "./types.js";
+import { readAssociationsCache } from "./associations-cache.js";
 
 export type DailyQuizQuestion = {
   word: string;
@@ -125,8 +126,21 @@ export async function generateDailyQuiz(
   const date = toAmsterdamDayString(new Date(generatedAt));
 
   const wordPool = await readWordPool(repoRoot);
-  const generalPool = wordPool.filter((w) => w.category === "general" && Array.isArray(w.associations) && w.associations.length >= 4);
-  const funPool = wordPool.filter((w) => w.category === "fun" && Array.isArray(w.associations) && w.associations.length >= 4);
+  const cache = await readAssociationsCache(repoRoot);
+
+  const cacheEntries = Array.isArray(cache.entries) ? cache.entries : [];
+  const cacheGeneral = cacheEntries.filter((e) => e.category === "general" && Array.isArray(e.associations) && e.associations.length >= 4);
+  const cacheFun = cacheEntries.filter((e) => e.category === "fun" && Array.isArray(e.associations) && e.associations.length >= 4);
+
+  // Pool = cache (groeit vanzelf) + wordPool fallback.
+  const generalPoolWords = uniqueNonEmpty([
+    ...cacheGeneral.map((e) => e.word),
+    ...wordPool.filter((w) => w.category === "general").map((w) => w.word)
+  ]);
+  const funPoolWords = uniqueNonEmpty([
+    ...cacheFun.map((e) => e.word),
+    ...wordPool.filter((w) => w.category === "fun").map((w) => w.word)
+  ]);
 
   const history = await readQuizHistory(repoRoot);
   // “Geen reuse in last 30 dagen” (best-effort): we vermijden woorden uit dezelfde pool.
@@ -169,16 +183,16 @@ export async function generateDailyQuiz(
   // Selecteer woorden (deterministisch, liefst niet herhalen).
   const seedBase = date + ":associatie";
   const pickGeneral = seededShuffle(
-    generalPool.map((w) => w.word).filter((w) => !usedInLast30Days.has(w)),
+    generalPoolWords.filter((w) => !usedInLast30Days.has(w)),
     seedBase + ":general"
   );
   const pickFun = seededShuffle(
-    funPool.map((w) => w.word).filter((w) => !usedInLast30Days.has(w)),
+    funPoolWords.filter((w) => !usedInLast30Days.has(w)),
     seedBase + ":fun"
   );
 
-  const selectedGeneral = (pickGeneral.length ? pickGeneral : generalPool.map((w) => w.word)).slice(0, 2);
-  const selectedFun = (pickFun.length ? pickFun : funPool.map((w) => w.word)).slice(0, 1);
+  const selectedGeneral = (pickGeneral.length ? pickGeneral : generalPoolWords).slice(0, 2);
+  const selectedFun = (pickFun.length ? pickFun : funPoolWords).slice(0, 1);
 
   const selectedNewsRaw = (() => {
     const filtered = newsCandidates.filter((tok) => !usedInLast30Days.has(toDisplayWord(tok)));
@@ -192,9 +206,14 @@ export async function generateDailyQuiz(
 
   // Helper: build options from association map
   const poolByWord = new Map(wordPool.map((e) => [e.word, e]));
+  const cacheByWord = new Map(cacheEntries.map((e) => [e.word, e]));
   const makeFromPool = (word: string, category: "general" | "fun"): DailyQuizQuestion => {
-    const entry = poolByWord.get(word);
-    const initialRanking = entry?.associations?.slice(0, 4) ?? [word];
+    const cached = cacheByWord.get(word);
+    const manual = poolByWord.get(word);
+    const initialRanking =
+      cached?.associations?.slice(0, 4) ??
+      manual?.associations?.slice(0, 4) ??
+      [word];
     const safeInitial = uniqueNonEmpty(initialRanking).slice(0, 4);
     while (safeInitial.length < 4) safeInitial.push(`Optie ${safeInitial.length + 1}`);
     const options = seededShuffle(safeInitial, `${seedBase}:${word}:ui`);

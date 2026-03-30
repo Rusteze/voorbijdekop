@@ -1,0 +1,101 @@
+{
+  "updatedAt": "2026-03-30T11:49:15.984Z",
+  "entries": [
+    {
+      "word": "Broer",
+      "category": "general",
+      "associations": [
+        "Zus",
+        "Vader",
+        "Moeder",
+        "Vriend"
+      ],
+      "source": "manual",
+      "updatedAt": "2026-03-30T11:49:15.984Z"
+    },
+    {
+      "word": "Film",
+      "category": "fun",
+      "associations": [
+        "Bioscoop",
+        "Trailer",
+        "Regisseur",
+        "Genre"
+      ],
+      "source": "manual",
+      "updatedAt": "2026-03-30T11:49:15.984Z"
+    },
+    {
+      "word": "Koffie",
+      "category": "general",
+      "associations": [
+        "Thee",
+        "Ochtend",
+        "Cafe",
+        "Suiker"
+      ],
+      "source": "manual",
+      "updatedAt": "2026-03-30T11:49:15.984Z"
+    },
+    {
+      "word": "Muziek",
+      "category": "fun",
+      "associations": [
+        "Ritme",
+        "Gitaar",
+        "Zang",
+        "Album"
+      ],
+      "source": "manual",
+      "updatedAt": "2026-03-30T11:49:15.984Z"
+    },
+    {
+      "word": "Podcast",
+      "category": "fun",
+      "associations": [
+        "Aflevering",
+        "Luisteren",
+        "Gast",
+        "Nieuws"
+      ],
+      "source": "manual",
+      "updatedAt": "2026-03-30T11:49:15.984Z"
+    },
+    {
+      "word": "Reizen",
+      "category": "fun",
+      "associations": [
+        "Vliegtuig",
+        "Hotel",
+        "Bagage",
+        "Bestemming"
+      ],
+      "source": "manual",
+      "updatedAt": "2026-03-30T11:49:15.984Z"
+    },
+    {
+      "word": "Zomer",
+      "category": "general",
+      "associations": [
+        "Zon",
+        "Strand",
+        "Vakantie",
+        "Winter"
+      ],
+      "source": "manual",
+      "updatedAt": "2026-03-30T11:49:15.984Z"
+    },
+    {
+      "word": "Zwart",
+      "category": "general",
+      "associations": [
+        "Wit",
+        "Nacht",
+        "Donker",
+        "Kleding"
+      ],
+      "source": "manual",
+      "updatedAt": "2026-03-30T11:49:15.984Z"
+    }
+  ]
+}

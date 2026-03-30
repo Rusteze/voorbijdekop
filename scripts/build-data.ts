@@ -12,6 +12,7 @@ import { computeImportanceV3 } from "./importance-v3.js";
 import { classifyTopicsV2 } from "./topic-classify-v2.js";
 import { readEditorialPickFromRepo } from "./editorial-pick.js";
 import { generateDailyQuiz } from "./daily-quiz.js";
+import { updateAssociationsCache } from "./associations-cache.js";
 
 async function writeJson(filePath: string, data: unknown) {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
@@ -460,6 +461,19 @@ async function main() {
   } catch (e) {
     console.error("[build-data] editorial-pick mislukt", e);
     throw e;
+  }
+
+  // Associatie-quiz: cache updaten (ConceptNet). Niet fataal als extern faalt.
+  try {
+    const enableConceptNet =
+      process.env.ASSOC_ENABLE_CONCEPTNET === "1" || process.env.ASSOC_ENABLE_CONCEPTNET === "true";
+    await updateAssociationsCache(repoRoot, {
+      maxNewWords: 30,
+      fetchBudget: 30,
+      enableConceptNet
+    });
+  } catch (e) {
+    console.warn("[build-data] associations-cache update faalde (niet fataal)", e);
   }
 
   const quiz = await generateDailyQuiz(stories, generatedAt, { repoRoot });

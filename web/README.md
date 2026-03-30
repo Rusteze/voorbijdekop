@@ -22,6 +22,25 @@ De Cloudflare Worker in `/workers` verzorgt dubbele opt-in, D1-opslag, rate limi
   Crowd-votes gaan naar de Worker (zelfde host als `NEXT_PUBLIC_DIGEST_ENDPOINT`):
   `/v1/quiz/submit` (opslaan) en `/v1/quiz/aggregate` (cijfers). Hiervoor zijn D1 tabellen nodig (`quiz_responses`, plus optioneel `daily_quiz`).
 
+### SWOW import (optioneel, aanbevolen)
+
+Je kunt een eigen Nederlandse SWOW-export importeren naar `data/associations-cache.json`:
+
+```bash
+npm run quiz:import-swow -- data/swow-nl.csv
+```
+
+Verwacht CSV/TSV met minimaal kolommen `cue` en `response` (optioneel `count`/`freq`).
+Zie `data/swow-nl.template.csv` voor formaat.  
+Daarna:
+
+```bash
+npm run build:data
+```
+
+`wordPool.json` blijft leidend als handmatige override.  
+ConceptNet-uitbreiding is optioneel en standaard uit; zet `ASSOC_ENABLE_CONCEPTNET=1` als je die extra bron wilt proberen.
+
 Ankers: `#aanrader`, `#quiz-van-de-dag` (verdwijnt zolang de quiz verborgen is).
 
 ## Getting Started
