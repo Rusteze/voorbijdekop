@@ -2,45 +2,45 @@
   "date": "2026-03-30",
   "questions": [
     {
-      "word": "Tram",
+      "word": "Trampoline",
       "options": [
-        "Spoor",
-        "Trein",
-        "Bus",
-        "Stad"
+        "Springen",
+        "Hoog",
+        "Kinderen",
+        "Turnen"
       ],
-      "correctOption": "Trein"
+      "correctOption": "Springen"
     },
     {
-      "word": "Overste",
+      "word": "Oversteken",
       "options": [
-        "Baas",
-        "Moeder",
-        "Klooster",
-        "Non"
+        "Gevaar",
+        "Opletten",
+        "Straat",
+        "Zebrapad"
       ],
-      "correctOption": "Baas"
+      "correctOption": "Zebrapad"
     },
     {
-      "word": "Legaal",
+      "word": "Legende",
       "options": [
-        "Correct",
-        "Wettelijk",
-        "Wet",
-        "Illegaal"
+        "Geschiedenis",
+        "Kaart",
+        "Oud",
+        "Verhaal"
       ],
-      "correctOption": "Wettelijk"
+      "correctOption": "Verhaal"
     },
     {
-      "word": "Zuigen",
+      "word": "Zuigfles",
       "options": [
-        "Borst",
-        "Borstvoeding",
         "Baby",
-        "Rietje"
+        "Speen",
+        "Melk",
+        "Drinken"
       ],
       "correctOption": "Baby"
     }
   ],
-  "generatedAt": "2026-03-30T16:29:59.720Z"
+  "generatedAt": "2026-03-30T18:29:32.818Z"
 }
