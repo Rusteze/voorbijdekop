@@ -1,0 +1,464 @@
+Topic assignment audit (latest 50 stories)
+GeneratedAt in dataset may differ from "now"; ordering based on story.generatedAt (fallback: max article publishedAt).
+
+Story: de-ultieme-test-hoe-on-gezond-is-een-e-bike-2394b0
+Title: De ultieme test: hoe (on)gezond is een e-bike?
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): bike, gezond, hoe, deze, gebruik, onderzoekt, ongezond, tekst, test, ultieme
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: man-18-vrij-op-borgtocht-terwijl-onderzoek-naar-fabriekbrand-doorgaat-b1a327
+Title: Man, 18, vrij op borgtocht terwijl onderzoek naar fabriekbrand doorgaat
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): terwijl, afzetting, autoriteiten, bestaan, blijven, borgtocht, dagen, doorgaat, fabriekbrand, gemaakt
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: giftig-pfas-residu-vastgesteld-op-37-van-californie-s-groente-en-fruit-nieuwe-an-b8f4c2
+Title: Giftig Pfas-residu vastgesteld op 37% van Californië's groente en fruit, nieuwe analyse toont aan
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): analyse, aardbeien, altijd, besmet, bijna, californiës, chemicals, druiven, forever, fruit
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: mensen-zouden-bang-moeten-zijn-veroordelingen-in-amerikaanse-antifa-proces-zette-40da03
+Title: ‘Mensen zouden bang moeten zijn’: veroordelingen in Amerikaanse ‘antifa’-proces zetten gevaarlijk precedent
+Assigned topic: geopolitiek
+Expected (rule): overig
+Mismatch: YES
+Keywords(top): activisten, administratie, amerikaanse, antifa, bang, bestrijden, experts, geeft, gevaarlijk, groepen
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: israelische-politie-verhindert-top-katholiek-figuur-in-jeruzalem-om-palmzondagmi-58bd6b
+Title: Israëlische politie verhindert top katholiek figuur in Jeruzalem om Palmzondagmis bij het Heilig Graf te houden
+Assigned topic: geopolitiek
+Expected (rule): geopolitiek
+Mismatch: NO
+Keywords(top): graf, heilig, italiaanse, palmzondagmis, referendum, aangedreven, blootlegt, figuur, giorgia, haar
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: lange-rij-voor-duitse-botoxkliniek-na-aanbieden-gratis-injecties-artsen-kritisch-dbf112
+Title: Lange rij voor Duitse botoxkliniek na aanbieden gratis injecties, artsen kritisch
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): duitse, rij, aanbieden, artsen, bemachtigen, botoxkliniek, duisburg, gisteren, gratis, honderden
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: frankrijk-twee-nieuwe-arrestaties-na-verijdelde-aanval-op-bank-of-america-9308de
+Title: Frankrijk: Twee nieuwe arrestaties na verijdelde aanval op Bank of America
+Assigned topic: oorlog
+Expected (rule): oorlog
+Mismatch: NO
+Keywords(top): america, bank, parijs, twee, franse, politie, bomaanslag, verdachten, gearresteerd, heeft
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: iraanse-aanvallen-in-de-golf-gaan-door-terwijl-grote-industriele-sites-worden-ge-972179
+Title: Iraanse aanvallen in de Golf gaan door terwijl grote industriële sites worden getroffen
+Assigned topic: conflict
+Expected (rule): overig
+Mismatch: YES
+Keywords(top): aanvallen, aluminiumbedrijven, bahrein, gaan, geraakt, getroffen, gewond, golf, grote, industriële
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: midden-oostencrisis-live-iraanse-troepen-wachten-op-amerikaanse-grondtroepen-en--c597c6
+Title: Midden-Oostencrisis live: Iraanse troepen wachten op Amerikaanse grondtroepen en zullen 'ze in brand steken', waarschuwt parlementaire voorz
+Assigned topic: conflict
+Expected (rule): geopolitiek
+Mismatch: YES
+Keywords(top): iraanse, amerikaanse, brand, buitenlandse, dood, drie, gerichte, grondtroepen, journalisten, libanon
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: bezoek-van-paus-leo-aan-monaco-met-rijken-en-superjachten-heeft-dubbele-boodscha-84df1a
+Title: Bezoek van paus Leo aan Monaco met rijken en superjachten heeft dubbele boodschap
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): leo, monaco, paus, bezoek, 488, boodschap, dubbele, superjachten, aanwezig, arm
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: olie-op-weg-naar-recordmaandstijging-door-oorlog-in-iran-die-markten-ontregelt-d9216e
+Title: Olie op weg naar recordmaandstijging door oorlog in Iran die markten ontregelt
+Assigned topic: energiepolitiek
+Expected (rule): energiepolitiek
+Mismatch: NO
+Keywords(top): iran, oorlog, afgelopen, begin, beijing, brent, chinas, daling, diplomatieke, doormaakt
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: verlaag-belastingen-op-energierekeningen-voordat-er-reddingsoperaties-komen-zegt-eb1927
+Title: Verlaag belastingen op energierekeningen voordat er reddingsoperaties komen, zegt Badenoch
+Assigned topic: energiepolitiek
+Expected (rule): overig
+Mismatch: YES
+Keywords(top): zegt, badenoch, belastingen, betalingen, directe, energierekeningen, huishoudens, komen, kosten, leider
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: pakistan-organiseert-vierlandeninitiatief-om-vs-en-iran-richting-diplomatie-aan--0a87cb
+Title: Pakistan organiseert vierlandeninitiatief om VS en Iran richting diplomatie aan te moedigen
+Assigned topic: oorlog
+Expected (rule): oorlog
+Mismatch: NO
+Keywords(top): iran, oorlog, pakistan, arabië, egypte, saoedi, turkije, israël, tegen, aanvallen
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: we-zullen-een-nieuwe-regering-zien-in-venezuela-cuba-en-iran-140d5c
+Title: 'We zullen een nieuwe regering zien in Venezuela, Cuba en Iran'
+Assigned topic: oorlog
+Expected (rule): oorlog
+Mismatch: NO
+Keywords(top): trump, kings, iran, tegen, president, amerikaanse, donald, bijeenkomsten, cuba, demonstranten
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: man-aangehouden-op-verdenking-van-poging-tot-moord-na-aanrijding-met-voetgangers-281d33
+Title: Man aangehouden op verdenking van poging tot moord na aanrijding met voetgangers in Derby
+Assigned topic: politieke instabiliteit
+Expected (rule): overig
+Mismatch: YES
+Keywords(top): voetgangers, aangehouden, aanrijding, auto, derby, drukke, ernstige, gewond, levensbedreigende, maar
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: britse-politie-arresteert-verdachte-na-aanrijding-van-voetgangers-e88d76
+Title: Britse politie arresteert verdachte na aanrijding van voetgangers
+Assigned topic: politieke instabiliteit
+Expected (rule): overig
+Mismatch: YES
+Keywords(top): voetgangers, derby, politie, zeven, automobilist, britse, gewond, mensen, aanreed, aanrijding
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: piastri-imponeert-gasly-excelleert-beoordeling-coureurs-japanse-gp-54c4c1
+Title: Piastri imponeert, Gasly excelleert - beoordeling coureurs Japanse GP
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): coureurs, japanse, bbc, benjamin, beoordeelt, beoordeling, commentator, excelleert, gasly, grand
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: leugendetectors-hebben-grote-tekortkomingen-zijn-er-betere-opties-dbcde0
+Title: Leugendetectors hebben grote tekortkomingen. Zijn er betere opties?
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): alternatieven, betere, gaat, grote, hebben, leugendetectie, leugendetectors, maar, mogelijk, onderzoek
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: eli-lilly-sluit-deal-van-2-miljard-dollar-voor-ai-medicijnontwikkeling-met-hongk-0b849b
+Title: Eli Lilly sluit deal van 2 miljard dollar voor AI-medicijnontwikkeling met Hongkongse biotech
+Assigned topic: geopolitiek
+Expected (rule): geopolitiek
+Mismatch: NO
+Keywords(top): actief, bedrijven, biotech, china, deal, dollar, eli, farmaceutische, hongkongse, lilly
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: kunnen-stijgende-energieprijzen-china-s-deflatoire-malaise-oplossen-99cabd
+Title: Kunnen stijgende energieprijzen China’s deflatoire malaise oplossen?
+Assigned topic: energiepolitiek
+Expected (rule): geopolitiek
+Mismatch: YES
+Keywords(top): china, deflatoire, energieprijzen, gids, komende, kunnen, malaise, market, oplossen, questions
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: duizenden-bouwplaatsen-in-gevaar-door-toenemende-financiele-druk-op-engelse-coll-81fe5e
+Title: Duizenden bouwplaatsen in gevaar door toenemende financiële druk op Engelse colleges
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): bouwplaatsen, colleges, doelstellingen, druk, duizenden, engelse, financiële, financiering, gevaar, niet
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: straffen-rusland-voor-het-helpen-van-iran-bij-het-aanvallen-van-het-amerikaanse--8fe434
+Title: Straffen Rusland voor het helpen van Iran bij het aanvallen van het Amerikaanse leger
+Assigned topic: sancties
+Expected (rule): oorlog
+Mismatch: YES
+Keywords(top): iran, midden, oorlog, aanvallen, amerikaanse, oosten, terwijl, uss, 500, abraham
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=YES, economy=NO, tech=NO
+
+Story: cori-bush-wil-haar-zetel-terug-en-een-rematch-tegen-aipac-2a6df4
+Title: Cori Bush wil haar zetel terug — en een rematch tegen AIPAC
+Assigned topic: geopolitiek
+Expected (rule): geopolitiek
+Mismatch: NO
+Keywords(top): campagne, haar, terug, 2024, affairs, aipac, american, bush, committee, cori
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: erin-o-connor-zegt-dat-instagram-haar-zwangerschapsfoto-heeft-verwijderd-wegens--70d18f
+Title: Erin O’Connor zegt dat Instagram haar zwangerschapsfoto heeft verwijderd wegens naakt
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): connor, erin, instagram, naakt, haar, heeft, maar, model, moederdag, plaatste
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: een-wrede-straf-mensen-met-een-handicap-krijgen-lagere-uitkeringen-als-hun-aando-0eb0f8
+Title: ‘Een wrede straf’: mensen met een handicap krijgen lagere uitkeringen als hun aandoening niet als levenslang wordt beschouwd
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): levenslang, niet, aandoening, aandoeningen, beschouwd, criteria, ervoor, handicap, hun, krijgen
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: arnhem-zoekt-oplossing-voor-82-000-tegels-die-losraken-van-museumgevel-7414ad
+Title: Arnhem zoekt oplossing voor 82.000 tegels die losraken van museumgevel
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): arnhem, 000, oplossing, tegels, dreigen, gemeente, gevel, gewond, iemand, laten
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: olympisch-geslachtstest-een-gebrek-aan-respect-voor-vrouwen-zegt-semenya-uit-zui-5dfc94
+Title: Olympisch geslachtstest 'een gebrek aan respect voor vrouwen', zegt Semenya uit Zuid-Afrika
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): olympisch, vrouwen, afrika, bekritiseert, bewijzen, coventry, gebrek, geslachtstest, gouden, ioc
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: werkt-de-turingtest-nog-in-het-ai-tijdperk-f09e20
+Title: Werkt de Turingtest nog in het AI-tijdperk?
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): turingtest, artikel, bespreekt, grote, huidige, nog, relevantie, rol, speelt, tijd
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: parlementslid-stopt-persoonlijke-gesprekken-vanwege-incidenten-bdd689
+Title: Parlementslid stopt persoonlijke gesprekken vanwege 'incidenten'
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): gearresteerd, gesprekken, haar, incidenten, mannen, meldt, owen, parlementslid, persoonlijke, sarah
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: fitzpatrick-schrijft-geschiedenis-met-eerste-dp-tour-zege-45e5c2
+Title: Fitzpatrick schrijft geschiedenis met eerste DP Tour-zege
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): tour, broer, eerste, fitzpatrick, behaalt, cup, geschiedenis, jongere, matt, nadat
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: keir-starmer-zegt-dat-het-vk-moet-ingrijpen-om-verslavende-functies-van-sociale--118171
+Title: Keir Starmer zegt dat het VK moet ingrijpen om verslavende functies van sociale media te beperken
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): functies, ingrijpen, keir, media, moet, sociale, starmer, verslavende, zegt, algoritmes
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: actrice-in-de-modellenindustrie-eist-onderzoek-naar-hoe-bureaus-epstein-s-misbru-7fb51b
+Title: Actrice in de modellenindustrie eist onderzoek naar hoe bureaus Epstein’s misbruik mogelijk maakten
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): actrice, afgevaardigden, alliance, bedrijfsleiders, bureaus, commissie, eist, epstein, hoe, huis
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: social-media-is-op-de-vingers-getikt-c40b27
+Title: Social media is op de vingers getikt
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): beschermen, druk, getikt, jongeren, juridische, media, neemt, social, toe, vingers
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: irans-agressie-zal-golfstaten-dichter-bij-de-vs-brengen-fe4057
+Title: Irans agressie zal Golfstaten dichter bij de VS brengen
+Assigned topic: beïnvloeding
+Expected (rule): oorlog
+Mismatch: YES
+Keywords(top): amerikaanse, israëlische, aanvallen, doden, hebben, irak, regio, teheran, zich, 000
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: jij-bent-echt-heel-spontaan-wat-maakt-dit-zo-n-gewilde-eigenschap-in-de-liefde-3cceeb
+Title: ‘Jij bent echt heel spontaan!’ Wat maakt dit zo’n gewilde eigenschap in de liefde?
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): artikel, bent, bespreekt, echt, eigenschap, gewaardeerd, gewilde, heel, jij, liefde
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: jelleke-de-nooy-van-tol-je-kunt-me-naief-noemen-maar-ik-hou-liever-hoop-4dbfc1
+Title: Jelleke de Nooy van Tol: ‘Je kunt me naïef noemen, maar ik hou liever hoop’
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): haar, hoop, jelleke, naïef, noemen, nooy, tol, hou, kunnen, kunt
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: in-de-pijlinktvis-zit-een-vreemd-glazig-staafje-verborgen-ce9f1f
+Title: In de pijlinktvis zit een vreemd glazig staafje verborgen
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): glazig, pijlinktvis, staafje, verborgen, vreemd, zit, lichaam, ontdekt
+Keywords(unique count): 8/8
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: oekraine-blaast-russische-zware-raketsystemen-op-in-de-krim-d8eeb6
+Title: Oekraïne blaast Russische zware raketsystemen op in de Krim
+Assigned topic: defensie
+Expected (rule): defensie
+Mismatch: NO
+Keywords(top): krim, russische, zware, aanval, bezette, blaast, drone, eenheid, hebben, karakul
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: anti-oorlogsprotesten-in-israel-honderden-verzamelen-zich-in-tel-aviv-28bc87
+Title: Anti-oorlogsprotesten in Israël: Honderden verzamelen zich in Tel Aviv
+Assigned topic: oorlog
+Expected (rule): oorlog
+Mismatch: NO
+Keywords(top): iran, israël, oorlog, rebellen, zich, aanval, houthi, houthis, midden, oosten
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: russische-aanvallen-op-oekraine-veroorzaken-minstens-5-doden-6f3007
+Title: Russische aanvallen op Oekraïne veroorzaken minstens 5 doden
+Assigned topic: defensie
+Expected (rule): defensie
+Mismatch: NO
+Keywords(top): russische, oekraïne, haven, oekraïense, 270, brand, doden, droneaanval, droneaanvallen, loega
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: u-s-navy-neemt-nieuwe-snelle-aanvalsonderzeeer-in-dienst-e0918e
+Title: U.S. Navy neemt nieuwe snelle aanvalsonderzeeër in dienst
+Assigned topic: geopolitiek
+Expected (rule): overig
+Mismatch: YES
+Keywords(top): aanvalsonderzeeër, uss, albany, amerikaanse, dienst, klasse, maart, marine, snelle, 798
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: man-29-doodgestoken-bij-massale-vechtpartij-in-uitgaansgebied-hoorn-935d99
+Title: Man (29) doodgestoken bij massale vechtpartij in uitgaansgebied Hoorn
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): vechtpartij, hoorn, man, massale, andere, binnenstad, dode, doodgestoken, gevallen, gisteravond
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: de-amerikaanse-marine-start-wedstrijd-voor-nieuwe-trainingsvliegtuigen-84d315
+Title: De Amerikaanse marine start wedstrijd voor nieuwe trainingsvliegtuigen
+Assigned topic: geopolitiek
+Expected (rule): overig
+Mismatch: YES
+Keywords(top): amerikaanse, marine, heeft, indienen, jet, marineluftvaartpiloten, nieuw, nieuwe, start, straaltrainervliegtuig
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: is-het-de-moeite-waard-max-verstappen-overweegt-f1-toekomst-na-regelwijzigingen-4b3ad6
+Title: 'Is het de moeite waard?' - Max Verstappen overweegt F1-toekomst na regelwijzigingen
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): sport, arbeloa, bbc, beste, haalt, hoe, madrid, max, real, regelwijzigingen
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: nepal-voormalig-minister-van-energie-gearresteerd-wegens-witwaspraktijken-685cd1
+Title: Nepal: Voormalig minister van energie gearresteerd wegens witwaspraktijken
+Assigned topic: energiepolitiek
+Expected (rule): energiepolitiek
+Mismatch: NO
+Keywords(top): gearresteerd, premier, oli, nepal, voormalig, voormalige, wegens, dodelijk, dodelijke, energie
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: opeens-is-duitse-actrice-fernandes-boegbeeld-van-een-beweging-tegen-digitaal-sek-5aff6b
+Title: Opeens is Duitse actrice Fernandes boegbeeld van een beweging tegen digitaal seksueel geweld
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): actrice, digitaal, duitse, fernandes, geweld, seksueel, tegen, beweging, boegbeeld, campagne
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: het-amerikaanse-leger-versterkt-de-ondersteuning-van-munitieproductie-afc081
+Title: Het Amerikaanse leger versterkt de ondersteuning van munitieproductie
+Assigned topic: defensie
+Expected (rule): defensie
+Mismatch: NO
+Keywords(top): amerikaanse, leger, ammunition, beheer, contract, dollar, engineeringondersteuning, gericht, gestart, initiatief
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: uitgeputte-palestijnen-worstelen-met-het-opnieuw-opbouwen-van-hun-leven-terwijl--4b3045
+Title: Uitgeputte Palestijnen worstelen met het opnieuw opbouwen van hun leven terwijl de wereld zich richt op Iran
+Assigned topic: oorlog
+Expected (rule): oorlog
+Mismatch: NO
+Keywords(top): gaza, iran, zich, richt, wereld, aandacht, aangekondigde, blijft, blijven, burgers
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: scholen-hebben-niet-genoeg-personeel-om-send-hervormingen-te-laten-slagen-waarsc-e699e1
+Title: Scholen hebben niet genoeg personeel om SEND-hervormingen te laten slagen, waarschuwt vakbond
+Assigned topic: overig
+Expected (rule): overig
+Mismatch: NO
+Keywords(top): hebben, scholen, alle, education, financiering, genoeg, hervormingen, inclusief, klaslokalen, laten
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+Story: deepfake-video-s-van-belgische-kroonprinses-op-facebook-783355
+Title: Deepfake-video's van Belgische kroonprinses op Facebook
+Assigned topic: desinformatie
+Expected (rule): overig
+Mismatch: YES
+Keywords(top): belgische, videos, facebook, kroonprinses, camera, deepfake, elisabeth, fotos, koninklijk, korte
+Keywords(unique count): 10/10
+Missing domain flags: energy=NO, defense=NO, economy=NO, tech=NO
+
+==== Summary ====
+Sample size: 50
+Mismatches (assigned != rule expected): 12/50 (24.0%)
+Assigned "overig": 25/50 (50.0%)
+Overig but expected != overig: 0/25 (0.0% of "overig" cases)
+
+Missing domain signals (assigned topic not in that domain's topic set):
+- energy missing: 0
+- defense missing: 1
+- economy missing: 0
+- tech missing: 0

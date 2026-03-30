@@ -6,8 +6,10 @@ import { fetchRssArticles } from "./fetch-rss.js";
 import { clusterArticlesToStories } from "./cluster.js";
 import { enrichStoriesWithAi } from "./ai-enrich.js";
 import type { AiStory, Article, Story, StoryTopic } from "./types.js";
-import { resolveTopicWithTextFallback } from "./topicRegistry.js";
+import { inferTopicFromText, resolveTopicWithTextFallback } from "./topicRegistry.js";
 import { sha256Hex } from "./utils/hash.js";
+import { computeImportanceV2 } from "./importance-v2.js";
+import { classifyTopicsV2 } from "./topic-classify-v2.js";
 import { readEditorialPickFromRepo } from "./editorial-pick.js";
 import { generateDailyQuiz } from "./daily-quiz.js";
 
@@ -377,6 +379,48 @@ async function main() {
   })) as Story[];
 
   console.log("[build-data] aiStatus after topic filter:", stats(stories as any[]), "stories=", stories.length);
+
+  // Topic-correctie (uitlegbaar en deterministisch):
+  // Als de deterministische "rule" op basis van titel+samenvatting+eerste artikelen `overig` voorspelt,
+  // maar de AI/heuristiek gaf een niet-overig topic → zet terug naar `overig`.
+  // Dit reduceert topic-mismatches merkbaar (gemeten op de laatste 50 stories).
+  {
+    let corrected = 0;
+    const maxLogs = 15;
+    for (const s of stories as any[]) {
+      const prev = s.topic as StoryTopic;
+      const rule = inferTopicFromText(storyTextForTopic(s as Story)) as StoryTopic;
+      if (rule === "overig" && prev !== "overig") {
+        if (corrected < maxLogs) {
+          console.log(`[topic-rule-correct] ${s.slug}: ${prev} -> overig`);
+        }
+        s.topic = "overig";
+        corrected++;
+      }
+    }
+    if (corrected > 0) console.log(`[topic-rule-correct] totaal corrected=${corrected}`);
+  }
+
+  // Multi-topic array vullen (max ~7) voor extra uitlegbaarheid/filters in de toekomst.
+  // We houden `story.topic` bewust stabiel via de overig-correctie hierboven.
+  stories = (stories as any[]).map((s) => {
+    const res = classifyTopicsV2(s as Story, { maxTopics: 7 });
+    const topics = Array.isArray(res.topics) ? res.topics : ["overig"];
+    // Zet de corrected `topic` vooraan als die in de lijst zit; anders vóór alles.
+    const t = s.topic as StoryTopic;
+    const unique: StoryTopic[] = [];
+    if (topics.includes(t)) unique.push(t);
+    else if (t) unique.push(t);
+    for (const tp of topics) if (!unique.includes(tp)) unique.push(tp);
+    return { ...s, topics: unique };
+  }) as Story[];
+
+  // Importance fix: de oude score-clamp gaf in de praktijk altijd 100.
+  // We herberekenen deterministisch op basis van bronkwaliteit, topic, entities en recency.
+  stories = (stories as any[]).map((s) => ({
+    ...s,
+    importance: computeImportanceV2(s as Story, Date.now())
+  })) as Story[];
 
   // Specifieke image voorkeur:
   // - Als `thecipherbrief.com` in de bronnen zit: gebruik een image van een andere bron waar mogelijk.

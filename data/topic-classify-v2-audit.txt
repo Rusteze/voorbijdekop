@@ -1,0 +1,137 @@
+Topic classify v2 audit (sample 50)
+
+Story: mensen-zouden-bang-moeten-zijn-veroordelingen-in-amerikaanse-antifa-proces-zette-40da03
+Title: ‘Mensen zouden bang moeten zijn’: veroordelingen in Amerikaanse ‘antifa’-proces zetten gevaarlijk precedent
+Assigned: geopolitiek
+Predicted(top): grondstoffen (confidence=0.77)
+Why(top): grondstoffen/commodities termen
+
+Story: iraanse-aanvallen-in-de-golf-gaan-door-terwijl-grote-industriele-sites-worden-ge-972179
+Title: Iraanse aanvallen in de Golf gaan door terwijl grote industriële sites worden getroffen
+Assigned: conflict
+Predicted(top): oorlog (confidence=0.66)
+Why(top): oorlog/aanval termen
+
+Story: midden-oostencrisis-live-iraanse-troepen-wachten-op-amerikaanse-grondtroepen-en--c597c6
+Title: Midden-Oostencrisis live: Iraanse troepen wachten op Amerikaanse grondtroepen en zullen 'ze in brand steken', waarschuwt parlementaire voorz
+Assigned: conflict
+Predicted(top): geopolitiek (confidence=0.77)
+Why(top): land/regio tokens
+
+Story: bezoek-van-paus-leo-aan-monaco-met-rijken-en-superjachten-heeft-dubbele-boodscha-84df1a
+Title: Bezoek van paus Leo aan Monaco met rijken en superjachten heeft dubbele boodschap
+Assigned: overig
+Predicted(top): energiepolitiek (confidence=0.67)
+Why(top): energie/Oil/Gas termen
+
+Story: olie-op-weg-naar-recordmaandstijging-door-oorlog-in-iran-die-markten-ontregelt-d9216e
+Title: Olie op weg naar recordmaandstijging door oorlog in Iran die markten ontregelt
+Assigned: energiepolitiek
+Predicted(top): geopolitiek (confidence=0.47)
+Why(top): land/regio tokens
+
+Story: pakistan-organiseert-vierlandeninitiatief-om-vs-en-iran-richting-diplomatie-aan--0a87cb
+Title: Pakistan organiseert vierlandeninitiatief om VS en Iran richting diplomatie aan te moedigen
+Assigned: oorlog
+Predicted(top): geopolitiek (confidence=0.54)
+Why(top): land/regio tokens
+
+Story: we-zullen-een-nieuwe-regering-zien-in-venezuela-cuba-en-iran-140d5c
+Title: 'We zullen een nieuwe regering zien in Venezuela, Cuba en Iran'
+Assigned: oorlog
+Predicted(top): geopolitiek (confidence=0.52)
+Why(top): land/regio tokens
+
+Story: man-aangehouden-op-verdenking-van-poging-tot-moord-na-aanrijding-met-voetgangers-281d33
+Title: Man aangehouden op verdenking van poging tot moord na aanrijding met voetgangers in Derby
+Assigned: politieke instabiliteit
+Predicted(top): overig (confidence=0.15)
+Why(top): geen sterke signalen
+
+Story: britse-politie-arresteert-verdachte-na-aanrijding-van-voetgangers-e88d76
+Title: Britse politie arresteert verdachte na aanrijding van voetgangers
+Assigned: politieke instabiliteit
+Predicted(top): overig (confidence=0.15)
+Why(top): geen sterke signalen
+
+Story: piastri-imponeert-gasly-excelleert-beoordeling-coureurs-japanse-gp-54c4c1
+Title: Piastri imponeert, Gasly excelleert - beoordeling coureurs Japanse GP
+Assigned: overig
+Predicted(top): energiepolitiek (confidence=0.82)
+Why(top): energie/Oil/Gas termen
+
+Story: kunnen-stijgende-energieprijzen-china-s-deflatoire-malaise-oplossen-99cabd
+Title: Kunnen stijgende energieprijzen China’s deflatoire malaise oplossen?
+Assigned: energiepolitiek
+Predicted(top): geopolitiek (confidence=0.50)
+Why(top): land/regio tokens
+
+Story: straffen-rusland-voor-het-helpen-van-iran-bij-het-aanvallen-van-het-amerikaanse--8fe434
+Title: Straffen Rusland voor het helpen van Iran bij het aanvallen van het Amerikaanse leger
+Assigned: sancties
+Predicted(top): oorlog (confidence=0.54)
+Why(top): oorlog/aanval termen
+
+Story: keir-starmer-zegt-dat-het-vk-moet-ingrijpen-om-verslavende-functies-van-sociale--118171
+Title: Keir Starmer zegt dat het VK moet ingrijpen om verslavende functies van sociale media te beperken
+Assigned: overig
+Predicted(top): spionage (confidence=0.60)
+Why(top): spionage termen
+
+Story: social-media-is-op-de-vingers-getikt-c40b27
+Title: Social media is op de vingers getikt
+Assigned: overig
+Predicted(top): spionage (confidence=0.87)
+Why(top): spionage termen
+
+Story: irans-agressie-zal-golfstaten-dichter-bij-de-vs-brengen-fe4057
+Title: Irans agressie zal Golfstaten dichter bij de VS brengen
+Assigned: beïnvloeding
+Predicted(top): oorlog (confidence=0.52)
+Why(top): oorlog/aanval termen
+
+Story: oekraine-blaast-russische-zware-raketsystemen-op-in-de-krim-d8eeb6
+Title: Oekraïne blaast Russische zware raketsystemen op in de Krim
+Assigned: defensie
+Predicted(top): oorlog (confidence=0.64)
+Why(top): oorlog/aanval termen
+
+Story: anti-oorlogsprotesten-in-israel-honderden-verzamelen-zich-in-tel-aviv-28bc87
+Title: Anti-oorlogsprotesten in Israël: Honderden verzamelen zich in Tel Aviv
+Assigned: oorlog
+Predicted(top): geopolitiek (confidence=0.47)
+Why(top): land/regio tokens
+
+Story: russische-aanvallen-op-oekraine-veroorzaken-minstens-5-doden-6f3007
+Title: Russische aanvallen op Oekraïne veroorzaken minstens 5 doden
+Assigned: defensie
+Predicted(top): oorlog (confidence=0.54)
+Why(top): oorlog/aanval termen
+
+Story: u-s-navy-neemt-nieuwe-snelle-aanvalsonderzeeer-in-dienst-e0918e
+Title: U.S. Navy neemt nieuwe snelle aanvalsonderzeeër in dienst
+Assigned: geopolitiek
+Predicted(top): oorlog (confidence=0.84)
+Why(top): oorlog/aanval termen
+
+Story: de-amerikaanse-marine-start-wedstrijd-voor-nieuwe-trainingsvliegtuigen-84d315
+Title: De Amerikaanse marine start wedstrijd voor nieuwe trainingsvliegtuigen
+Assigned: geopolitiek
+Predicted(top): overig (confidence=0.15)
+Why(top): geen sterke signalen
+
+Story: uitgeputte-palestijnen-worstelen-met-het-opnieuw-opbouwen-van-hun-leven-terwijl--4b3045
+Title: Uitgeputte Palestijnen worstelen met het opnieuw opbouwen van hun leven terwijl de wereld zich richt op Iran
+Assigned: oorlog
+Predicted(top): geopolitiek (confidence=0.62)
+Why(top): land/regio tokens
+
+Story: deepfake-video-s-van-belgische-kroonprinses-op-facebook-783355
+Title: Deepfake-video's van Belgische kroonprinses op Facebook
+Assigned: desinformatie
+Predicted(top): overig (confidence=0.15)
+Why(top): geen sterke signalen
+
+==== Summary ====
+Mismatches assigned vs predicted(top): 22/50 (44.0%)
+Predicted overig count: 25/50 (50.0%)
