@@ -2,45 +2,45 @@
   "date": "2026-03-30",
   "questions": [
     {
-      "word": "Hevig",
+      "word": "Tranen",
       "options": [
-        "Erg",
-        "Sterk",
-        "Hard",
-        "Fel"
-      ],
-      "correctOption": "Fel"
-    },
-    {
-      "word": "Ijsje",
-      "options": [
-        "Vanille",
-        "Lekker",
-        "Zomer",
-        "Koud"
-      ],
-      "correctOption": "Lekker"
-    },
-    {
-      "word": "Kletsnat",
-      "options": [
-        "Paraplu",
-        "Koud",
+        "Wenen",
         "Water",
-        "Regen"
+        "Nat",
+        "Verdriet"
       ],
-      "correctOption": "Regen"
+      "correctOption": "Verdriet"
     },
     {
-      "word": "Spreidstand",
+      "word": "Overstromen",
       "options": [
-        "Ballet",
-        "Turnen",
-        "Lenig",
-        "Benen"
+        "Schade",
+        "Rivier",
+        "Water",
+        "Ramp"
       ],
-      "correctOption": "Turnen"
+      "correctOption": "Water"
+    },
+    {
+      "word": "Leggen",
+      "options": [
+        "Kip",
+        "Eieren",
+        "Plaatsen",
+        "Ei"
+      ],
+      "correctOption": "Ei"
+    },
+    {
+      "word": "Zuigfles",
+      "options": [
+        "Baby",
+        "Speen",
+        "Melk",
+        "Drinken"
+      ],
+      "correctOption": "Baby"
     }
   ],
-  "generatedAt": "2026-03-30T13:06:11.233Z"
+  "generatedAt": "2026-03-30T14:41:14.219Z"
 }
