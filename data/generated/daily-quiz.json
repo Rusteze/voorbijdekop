@@ -1,14 +1,14 @@
 {
   "kind": "topic",
   "question": "Welk onderwerp past het best bij het meest prominente verhaal van deze editie?",
-  "contextLine": "Israël breidt militaire operatie in Zuid-Libanon uit",
+  "contextLine": "VS versoepelt impliciete oliemaatstaf naar Cuba bij aankomst Russische tanker",
   "options": [
-    "Energiepolitiek",
+    "Sancties",
     "Geopolitiek",
-    "Defensie",
-    "Oorlog"
+    "Spionage",
+    "Cyberoorlog"
   ],
-  "correctIndex": 3,
-  "sourceSlug": "israel-breidt-invasie-in-zuid-libanon-uit-live-verslag-35be0d",
-  "generatedAt": "2026-03-30T08:12:29.632Z"
+  "correctIndex": 0,
+  "sourceSlug": "trump-lijkt-de-facto-oliemaatstaf-tegen-cuba-te-versoepelen-nu-russische-olietan-4f12fb",
+  "generatedAt": "2026-03-30T09:25:33.837Z"
 }
