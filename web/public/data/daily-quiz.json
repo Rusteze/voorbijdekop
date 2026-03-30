@@ -1,14 +1,14 @@
 {
   "kind": "topic",
   "question": "Welk onderwerp past het best bij het meest prominente verhaal van deze editie?",
-  "contextLine": "Poetin’s regime afhankelijk van meer dan militaire overwinning",
+  "contextLine": "Israël breidt militaire operatie in Zuid-Libanon uit",
   "options": [
-    "Overig",
-    "Internationale betrekkingen",
+    "Energiepolitiek",
+    "Geopolitiek",
     "Defensie",
-    "Inlichtingen"
+    "Oorlog"
   ],
-  "correctIndex": 2,
-  "sourceSlug": "poetin-is-niet-gevangen-waarom-het-voortbestaan-van-het-regime-niet-afhangt-van--5b4baa",
-  "generatedAt": "2026-03-30T07:29:47.330Z"
+  "correctIndex": 3,
+  "sourceSlug": "israel-breidt-invasie-in-zuid-libanon-uit-live-verslag-35be0d",
+  "generatedAt": "2026-03-30T08:12:29.632Z"
 }
