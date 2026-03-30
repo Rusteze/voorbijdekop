@@ -8,13 +8,15 @@ import { dismissQuizForEdition, isQuizDismissedForEdition } from "@/lib/quizDism
 export function DailyQuizCard({
   data,
   stories,
-  placement = "feed"
+  placement = "feed",
+  className
 }: {
   data: DailyQuizPayload;
   /** Actuele lijst (zelfde als homepage); nodig om een geldige /story/-slug te kiezen. */
   stories: Array<{ slug?: string; importance?: number }>;
   /** `feed` = tussen overige verhalen (minder prominent). */
   placement?: "feed" | "featured";
+  className?: string;
 }) {
   const [picked, setPicked] = useState<number | null>(null);
   const [hiddenByUser, setHiddenByUser] = useState(false);
@@ -45,7 +47,7 @@ export function DailyQuizCard({
     <section
       id="quiz-van-de-dag"
       aria-label="Quiz van de dag"
-      className={compact ? "scroll-mt-20" : "scroll-mt-24"}
+      className={[compact ? "scroll-mt-20" : "scroll-mt-24", className ?? ""].filter(Boolean).join(" ")}
     >
       <div
         className={

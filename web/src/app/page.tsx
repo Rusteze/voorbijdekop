@@ -460,7 +460,9 @@ export default function Home() {
   const activeQuiz =
     dailyQuizFile !== null && isActiveDailyQuiz(dailyQuizFile) ? dailyQuizFile : null;
   /** Na het 2e overige verhaal (of na het enige als er maar één is). */
-  const quizAfterRestIndex = rest.length >= 2 ? 1 : 0;
+  // Quiz tussen "Overige verhalen": na het 3e item (desktop vaak netter).
+  // Als er minder dan 3 items zijn, dan plakken we de quiz aan het einde.
+  const quizAfterRestIndex = rest.length >= 3 ? 2 : rest.length - 1;
   const showQuizInFeed = Boolean(activeQuiz && rest.length > 0);
 
   const followedTopicsChips = (
@@ -758,12 +760,13 @@ export default function Home() {
                     if (showQuizInFeed && index === quizAfterRestIndex && activeQuiz) {
                       return [
                         storyLink,
-                        <div
+                        <DailyQuizCard
                           key={`quiz-${s.slug}`}
+                          data={activeQuiz}
+                          stories={storiesRuntime}
+                          placement="feed"
                           className="md:col-span-2 lg:col-span-3"
-                        >
-                          <DailyQuizCard data={activeQuiz} stories={storiesRuntime} placement="feed" />
-                        </div>
+                        />
                       ];
                     }
                     return [storyLink];
