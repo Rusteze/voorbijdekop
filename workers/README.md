@@ -142,6 +142,8 @@ Worker draait op `http://localhost:8787`. Zet in de web-app tijdelijk:
 | `GET` | `/v1/confirm?token=…` | Zet status op `confirmed` |
 | `GET`, `POST` | `/v1/unsubscribe?token=…` | Afmelden digest (`unsubscribe_token`); zelfde token voor browselink (GET) en **one-click** (POST, RFC 8058) |
 | `POST` | `/v1/feedback` | Body: `{ slug, type, createdAt? }` (zelfde als frontend) |
+| `POST` | `/v1/quiz/submit` | Body: `{ date, word, answer }` (crowd votes per woord per dag) |
+| `POST` | `/v1/quiz/aggregate` | Body: `{ date, word, options }` (retour: counts + meest gekozen, incl. ties) |
 | `GET` | `/v1/cron/digest?secret=…` | Handmatig digest-run (zelfde als cron) |
 | `POST` | `/v1/webhooks/resend` | Optioneel: `Authorization: Bearer WEBHOOK_SECRET` — zet `bounced` / `complained` |
 | `GET` | `/v1/admin/summary?secret=…` | JSON-export (zelfde secret als `CRON_SECRET`) |

@@ -1,522 +1,488 @@
-importance uitdraai: 414 stories
-
-importance=97 (1)
-- israel-breidt-invasie-in-zuid-libanon-uit-live-verslag-35be0d | Israël breidt militaire operatie in Zuid-Libanon uit
-
-importance=94 (2)
-- g7-crisisgesprekken-terwijl-oorlog-in-iran-wereldwijde-economie-blijft-ontwricht-c74016 | G7 onderhandelt over gevolgen Iran-oorlog voor wereldwijde economie
-- trump-nieuws-in-vogelvlucht-generatiekloof-over-oorlog-met-iran-zichtbaar-op-con-9374ed | Jonge conservatieven verdeeld over Trumps oorlog met Iran
-
-importance=92 (1)
-- vluchteling-met-wapen-verliet-gebouw-voordat-hij-werd-doodgeschoten-zegt-commiss-a6e910 | Voortvluchtige Dezi Freeman met wapen uit gebouw geschoten door politie
-
-importance=89 (3)
-- verwijder-btw-van-energierekeningen-voor-drie-jaar-dringen-tory-s-aan-15c970 | Tory's pleiten voor btw-vrijstelling op energierekeningen door stijgende kosten
-- waarom-heeft-de-vs-iran-s-kharg-eiland-in-het-vizier-41922d | VS richt zich op Iran's strategische Kharg-eiland energieinfrastructuur
-- vs-laat-russische-olietanker-cuba-naderen-ondanks-blokkade-5d918d | VS staat Russische olietanker toe olie aan Cuba te leveren
-
-importance=88 (3)
-- straaf-rusland-voor-het-helpen-van-iran-bij-het-richten-op-het-amerikaanse-leger-84c646 | Rusland mogelijk bestraffen voor Iran-steun tegen VS-militairen
-- netanyahu-beveelt-diepere-israelische-inval-in-libanon-960622 | Netanyahu breidt Israëlische inval in Zuid-Libanon uit
-- russische-studenten-misleid-om-contracten-met-het-leger-te-tekenen-005ef2 | Russische studenten misleid voor militaire contracten
-
-importance=87 (1)
-- vs-israel-oorlog-tegen-iran-wat-gebeurt-er-op-dag-31-van-de-aanvallen-8b1641 | Escalatie in VS-Israël conflict met Iran op dag 31
-
-importance=85 (1)
-- een-maand-in-iran-de-politieke-realiteit-voor-de-republikeinen-dringt-door-8997d7 | Republikeinse steun voor Iranoorlog wankelt in swingstates
-
-importance=84 (3)
-- ineos-vlaggenschipproject-loopt-vertraging-op-door-crisis-in-straat-van-hormuz-5c6712 | Ineos-project mogelijk vertraagd door crisis in Straat van Hormuz
-- vs-zet-miljarden-dollars-in-op-onervaren-groepen-in-zeldzame-aardmetalen-deals-42b67d | VS investeren miljarden in zeldzame aardmetalen metingen
-- china-pakt-beenderas-begrafenissen-aan-in-lege-appartementen-1667c9 | China pakt bot-as-begrafenissen in lege appartementen aan
-
-importance=83 (1)
-- wat-de-deelname-van-de-houthi-s-aan-de-iraanse-oorlog-betekent-voor-het-conflict-de4632 | Impact van Houthi betrokkenheid in Iraanse oorlog op regio
-
-importance=82 (1)
-- israelische-politie-verhindert-katholieke-leiders-om-palmzondagmis-in-jeruzalem--bcee9d | Israël blokkeert katholieke Palmzondagmis wegens veiligheidsrisico's
-
-importance=81 (1)
-- komt-er-een-amerikaans-grondoffensief-in-iran-er-zijn-tal-van-mogelijkheden-aa9396 | Discussie over mogelijk Amerikaans grondoffensief in Iran
-
-importance=80 (2)
-- jeremy-bowen-trump-voert-oorlog-op-instinct-en-het-werkt-niet-827226 | Trumps instinctieve aanpak in Iranconflict blijkt niet effectief
-- tranen-en-verzet-bij-begrafenis-van-11-jarig-libanees-kind-omgekomen-bij-israeli-8aacbd | Begrafenis van Libanees kind na Israëlische aanval
-
-importance=77 (9)
-- elke-soldaat-een-softwarebouwer-het-besturen-van-het-nieuwe-digitale-personeel-v-fc8b12 | Leger stimuleert softwareontwikkeling door eigen personeel
-- poetin-zit-niet-vast-waarom-het-overleven-van-het-regime-niet-afhangt-van-overwi-160a45 | Poetin's regime overleeft onafhankelijk van oorlogssucces
-- landdag-wat-gebeurde-er-op-30-maart-1976-in-palestina-9a1783 | Landdag 1976: Palestijnse protesten tegen landverliezen
-- firstft-trump-zegt-dat-vs-iraanse-olie-kunnen-nemen-caaf9e | Trump zegt dat VS Iraanse olie kunnen nemen
-- iranese-aanval-beschadigt-energie-en-ontziltingsinstallatie-in-koeweit-dode-werk-6f13ac | Iranese aanval beschadigt Koeweitse energie-installatie, dode arbeider
-- eli-lilly-sluit-deal-van-2-miljard-dollar-voor-ai-medicijnontwikkeling-met-biote-0b849b | Eli Lilly sluit miljardencontract voor AI-geneesmiddelontwikkeling
-- no-kings-protesten-trekken-grote-menigten-naar-bijeenkomst-tegen-donald-trump-b50bcd | Grootschalige No Kings-bijeenkomst tegen Donald Trump in Minnesota
-- eerste-stop-de-maan-volgende-stop-mars-waarom-nasa-s-missie-belangrijk-is-6c1bff | VS investeert fors in maanmissies richting Mars
-- twijfels-over-vrede-in-gaza-nemen-toe-nu-de-aandacht-verschuift-naar-iran-78caea | Twijfels over vrede in Gaza nemen toe door focus op Iran
-
-importance=76 (2)
-- amnesty-waarschuwt-voor-mensenrechtenrisico-s-bij-wk-2026-768c16 | Amnesty waarschuwt voor mensenrechten bij WK 2026
-- hoe-zuid-korea-ijzer-naar-de-straat-van-hormuz-kan-brengen-82d734 | Zuid-Korea verplaatst raketafweersystemen naar Straat van Hormuz
-
-importance=75 (2)
-- paus-lijkt-hegseth-te-berispen-over-leiders-met-handen-vol-bloed-07105e | Paus Leo veroordeelt oorlog en leiders met 'handen vol bloed'
-- u-s-army-versterkt-ondersteuning-productie-munitie-afc081 | Amerikaans leger investeert 44,6 miljoen dollar in munitieproductie
-
-importance=74 (1)
-- potentiele-houthi-dreiging-voor-scheepvaart-in-de-rode-zee-kan-de-wereldeconomie-8bb01f | Houthi-dreiging bedreigt scheepvaart en mondiale economie
-
-importance=73 (2)
-- finland-meldt-drone-crashes-en-beweert-schending-van-territorium-225bb3 | Twee onbekende drones crashen in Zuid-Finland
-- frankrijk-twee-nieuwe-arrestaties-rond-verijdelde-aanval-op-bank-of-america-e89ec7 | Twee nieuwe arrestaties bij verijdelde aanval Parijs
-
-importance=72 (2)
-- het-slagveld-is-de-volgende-gokmarkt-4556a4 | Nieuwe gokmarkt rond militaire operaties en satellietbeelden
-- terwijl-de-wereld-naar-het-midden-oosten-kijkt-broeit-er-oorlog-in-zuid-azie-6512bb | Spanningen tussen India en Pakistan zorgen voor zorgen in Zuid-Azië
-
-importance=71 (10)
-- china-hervat-vliegverkeer-op-noord-korea-na-6-jaar-8c5df7 | China hervat vluchten naar Noord-Korea na zes jaar
-- oeigoeren-in-turkije-vrezen-verbeterde-relatie-met-china-89a48c | Oeigoerse gemeenschap maakt zich zorgen over Turkije-China relaties
-- taiwanse-oppositieleider-accepteert-uitnodiging-van-xi-om-china-te-bezoeken-f8a031 | Taiwanse oppositieleider bezoekt China na uitnodiging van Xi
-- vijf-eu-regeringen-blijken-de-rechtsstaat-consistente-te-ondermijnen-684f25 | Vijf EU-landen ondermijnen structureel de rechtsstaat
-- hoe-hongarije-de-fraudecontrole-van-europa-omzeilt-cd304c | Hongarije betaalt slechts 18% van EU-fraude terug
-- israelische-politie-laat-priester-niet-toe-in-heilig-graf-in-jeruzalem-op-palmpa-1987aa | Israëlische politie weigert priester toegang tot Heilig Graf
-- ontvoerd-en-gemarteld-op-een-beruchte-migratieroute-naar-saoedi-arabie-bfeab6 | Migranten ontvoerd en mishandeld op gevaarlijke route naar Saoedi-Arabië
-- iranese-raket-treft-amerikaanse-e-3-awacs-vliegtuig-op-saoedische-basis-3973b6 | Iraanse raketaanval beschadigt Amerikaans E-3 AWACS-vliegtuig in Saoedi-Arabië
-- de-ernstigste-misdaad-tegen-de-menselijkheid-wat-betekent-de-vn-stemming-over-sl-cbbfd7 | VN-classificatie van slavernij als ernstigste misdaad tegen menselijkheid
-- irans-opperste-leider-ali-khamenei-gedood-zegt-hoge-israelische-functionaris-37d794 | Israël meldt dood van Iraanse leider Ali Khamenei na aanval
-
-importance=69 (4)
-- voetbal-frankrijk-verslaat-colombia-drie-dagen-na-zege-op-brazilie-voor-wk-372a98 | Frankrijk wint oefenwedstrijd tegen Colombia na zege op Brazilië
-- we-doden-ze-bro-israeliers-corrigeren-iraanse-online-streamer-764cb7 | Israëliërs weerleggen claims van Iraanse streamer over luchtaanvallen
-- rusland-wil-gestolen-auto-s-in-de-eu-legaliseren-aa2ed6 | Rusland wil gestolen EU-auto's legaliseren, zorgen in Duitsland
-- inzichten-in-trumps-denken-over-de-oorlog-met-iran-9103fa | Trump zegt binnen uur Iran's belangrijke installaties te kunnen vernietigen
-
-importance=68 (6)
-- verwacht-dat-paasfeestdagen-de-drukste-op-de-britse-wegen-zijn-in-vier-jaar-88f70b | Paasweekend verwacht drukste wegverkeer in vier jaar en meer hulp op stranden
-- brandstofbelasting-gehalveerd-en-gratis-openbaar-vervoer-aangeboden-door-oorlog--24b7a7 | Australische staten verlagen brandstofbelasting en bieden gratis OV
-- europese-landen-bekritiseren-israelische-plannen-voor-de-doodstraf-c61bb6 | Europese landen uiten zorgen over Israëlische doodstrafplannen
-- voormalig-trump-adviseur-over-iran-zegt-dat-oorlog-zal-escaleren-411dab | Voormalig adviseur voorspelt escalatie oorlog met Iran
-- waarom-de-dag-erna-de-belangrijkste-dag-is-in-het-conflict-in-iran-2f552c | Belangrijke ontwikkelingen na conflict in Iran uitgelegd
-- proxydruk-op-iran-de-belofte-en-valkuilen-van-het-bewapenen-van-de-koerden-21b34c | Koerden bewapenen in strijd tegen Iran: kansen en risico's
-
-importance=67 (2)
-- pro-ai-groep-besteedt-100-miljoen-dollar-aan-amerikaanse-tussentijdse-verkiezing-0c7c50 | Pro-AI groep investeert $100 miljoen in Amerikaanse tussentijdse verkiezingen
-- dhs-financieringsbevriezing-nu-langste-gedeeltelijke-shutdown-in-de-amerikaanse--28b6ae | Langste gedeeltelijke shutdown in Amerikaanse geschiedenis
-
-importance=66 (8)
-- myanmar-junta-leider-min-aung-hlaing-genomineerd-als-president-61d60f | Myanmar junta-leider Min Aung Hlaing bevestigd als president
-- reuzenotter-hyena-sneeuwuil-en-37-andere-dieren-krijgen-meer-bescherming-4c1102 | Veertig diersoorten krijgen uitgebreidere bescherming na internationale overeenkomst
-- wto-hervormingsgesprekken-stranden-door-ruzie-tussen-vs-en-brazilie-9b6b51 | WTO-hervorming mislukt door geschil over e-commerce tarieven
-- ja-de-gasvoorraad-raakt-behoorlijk-leeg-maar-loopt-weer-vol-volgens-energie-expe-326125 | Gasvoorraad raakt leeg maar vult zich weer, zeggen experts
-- deputy-sheriff-van-la-county-overlijdt-na-medische-noodsituatie-tijdens-estafett-b3f879 | Adjunct-hoofdsherriff overlijdt tijdens Baker naar Vegas estafette
-- chesney-de-kangoeroe-drie-dagen-na-ontsnapping-van-boerderij-gevonden-2fc0c2 | Kangoeroe Chesney gevonden na drie dagen op avontuur
-- senatoren-willen-dat-amerikaanse-energie-informatieagentschap-elektriciteitsgebr-c8c2d5 | Senatoren eisen jaarlijkse rapportage elektriciteitsgebruik datacenters
-- hoe-beinvloedt-de-oorlog-in-iran-de-energiezekerheid-van-china-a45f93 | Invloed oorlog Iran op energiezekerheid China beperkt
-
-importance=65 (9)
-- een-voortijdig-staakt-het-vuren-brengt-risico-op-een-nieuwe-ronde-van-conflict-i-515e67 | Risico op nieuwe conflicten door voortijdig bestand
-- zelensky-brengt-bezoek-aan-jordanie-tijdens-midden-oostentoer-om-veiligheidsband-7ffe78 | Zelensky bezoekt Jordanië om veiligheidsbanden te versterken
-- kabinet-presenteert-eerste-voorjaarsnota-a1da80 | Kabinet presenteert eerste Voorjaarsnota en Startnota met begrotingskaders
-- 10-oekrainers-vernederden-twee-navo-bataljons-wanneer-wordt-navo-wakker-3528b2 | Tien Oekraïners verslaan twee NAVO-bataljons bij oefening
-- van-de-luchten-van-kyiv-tot-de-perzische-golf-hoe-oekraiense-dronetechnologie-de-aca4a4 | Oekraïense drones veranderen wereldwijde defensiestrategieën
-- roemenie-betaalt-de-cyberprijs-voor-steun-aan-oekraine-waar-is-de-eu-3ecfc5 | Cyberaanvallen treffen Roemenië door hybride oorlogsvoering
-- oorlog-als-kracht-van-vernietiging-verandering-en-kansen-ac091b | Oorlog in Oekraïne als kracht voor verandering en kansen
-- conflict-en-gevolgen-6005d8 | Dood Ali Larijani bevestigd, impact op Iran en Israël
-- trump-blijft-gokken-met-de-economie-en-komt-ermee-weg-c00268 | Trump riskeert Amerikaanse economie te midden van Iraanse crisis
-
-importance=64 (4)
-- sinner-verhoogt-de-druk-op-alcaraz-met-historische-sunshine-double-8a19a2 | Sinner voltooit historische Sunshine Double
-- foto-s-tonen-zwaar-beschadigde-amerikaanse-radarvliegtuig-op-saoedische-basis-ebeb63 | Zwaar beschadigd Amerikaans radarvliegtuig op Saoedische basis
-- opnieuw-naar-de-stembus-gorinchem-staat-voor-moeilijk-besluit-na-aanwijzingen-st-867ca3 | Gorinchem overweegt nieuwe verkiezingen na mogelijke stemfraude
-- de-toekomst-van-drones-in-amerika-45fc0b | Toenemend dronegebruik zorgt voor drukke luchtruim in Amerika
-
-importance=63 (4)
-- russisch-olietanker-nadert-cuba-trump-versoepelt-de-facto-blokkade-retoriek-a41369 | Russisch olietanker vaart Cuba binnen, VS versoepelt blokkade-retoriek
-- looksmaxxing-influencer-clavicular-gearresteerd-voor-mishandelingscharge-in-flor-aad34d | Influencer Clavicular gearresteerd na uitlokken vechtpartij
-- iran-laat-twee-gastankers-met-indiase-vlag-via-hormuz-naar-india-varen-zeggen-br-308ec7 | Iran laat Indiase gastankers door Straat van Hormuz varen
-- ecb-zal-reageren-als-oorlog-in-iran-inflatie-opdrijft-zegt-nagel-9c7ccb | ECB blijft alert bij inflatie door oorlog in Iran
-
-importance=62 (15)
-- iaea-zegt-dat-iran-s-khondab-zwaarwaterreactor-niet-langer-in-werking-is-65ae0c | IAEA meldt dat Iran's Khondab zwaarwaterinstallatie stilgelegd is
-- spurs-willen-de-zerbi-als-nieuwe-permanente-baas-751883 | Spurs willen Roberto De Zerbi aanstellen als hoofdcoach
-- china-s-militaire-zuiveringen-waren-omvangrijker-dan-gedacht-638ca8 | Negen topmilitairen in China uit hoogste orgaan gezet
-- de-onvermijdelijkheid-van-chinese-militaire-zuiveringen-518306 | Grote zuiveringen in Chinees leger onder Xi Jinping
-- neergeslagen-maar-niet-verslagen-iran-s-as-van-verzet-9e9453 | Iran en bondgenoten versterken positie na aanval Hamas op Israël
-- definitie-van-overwinning-in-de-iranoorlog-a1b0f6 | Onzekerheid over overwinning in de Iran-oorlog
-- tel-niet-op-lanceringen-het-verkeerd-interpreteren-van-iran-s-dronecapaciteit-3f59a4 | Misvattingen over Iran's dronescapaciteit na Golfoorlog
-- hegseth-negeerde-militaire-functionarissen-bij-het-schrappen-van-kantoren-die-ri-17b653 | Minister Hegseth schrapt kantoren voor burgerbescherming ondanks waarschuwingen
-- republikeinse-wetgevers-negeren-extra-financiering-voor-oorlog-tegen-iran-783bf1 | Republikeinen tonen geen steun voor extra oorlogsfondsen Iran
-- pentagon-meldt-140-gewonden-in-operatie-epic-fury-9f3718 | Pentagon meldt 140 gewonde militairen bij Operatie Epic Fury
-- amerika-s-tekort-aan-wapens-van-de-exquisite-class-8311a6 | VS fabriceert viermaal meer wapens uit 'Exquisite Class'
-- interceptor-wiskunde-hoe-irans-dronezwermen-de-amerikaanse-defenses-belasten-1e7b30 | Iranse dronezwermen zetten Amerikaanse verdediging onder druk
-- trumps-oorlogsdroom-iraans-onvoorwaardelijke-overgave-8908b3 | VS eist onvoorwaardelijke overgave van Iran, Congres stemt tegen beperking oorlog
-- oorlog-met-iran-is-net-begonnen-zegt-hegseth-83d28d | Topmilitairen: oorlog met Iran is nog maar net begonnen
-- wetgevers-verdeeld-over-zaak-van-trump-administratie-voor-oorlog-tegen-iran-247354 | Wetgevers verdeeld over oorlogsbasis van Trump-regering tegen Iran
-
-importance=61 (3)
-- verzwakte-bultrug-opnieuw-vast-in-ondiep-water-voor-duitse-oostzeekust-8b703b | Bultrug al drie keer vastgelopen in ondiep Duits water
-- suikerdip-meer-dan-twaalf-ton-kitkat-s-nieuwe-chocoladereeks-gestolen-in-italie-d66a6c | Meer dan twaalf ton KitKat-chocolade gestolen in Italië
-- nederland-draagt-opnieuw-met-militairen-bij-aan-vredesmissie-in-bosnie-en-herzeg-f4439c | Nederland levert militairen aan vredesmissie in Bosnië vanaf 2025
-
-importance=60 (9)
-- nederzetters-verbranden-voertuigen-in-stad-nabij-hebron-c7720c | Voertuigen verbrand bij aanval door nederzetters nabij Hebron
-- israel-herstelt-toegang-latijnse-patriarch-tot-heilig-grafkerk-na-internationale-54d926 | Netanyahu herstelt toegang Latijnse Patriarch tot Heilig Grafkerk
-- diefstal-van-schilderijen-van-renoir-cezanne-en-matisse-ter-waarde-van-miljoenen-7adb64 | Diefstal van meesterwerken uit museum nabij Parma
-- totalenergies-boekte-enorme-winst-op-olie-inzet-in-het-midden-oosten-9ecd49 | TotalEnergies behaalt grote winst op olie uit VAE en Oman
-- voedselgiganten-begonnen-eindelijk-prijzen-te-verlagen-toen-begon-de-oorlog-0cb054 | Voedselbedrijven verlagen prijzen ondanks dreigende inflatiepiek
-- yen-versterkt-na-waarschuwing-japanse-functionaris-over-besluitvaardige-actie-b5373f | Yen versterkt na waarschuwing over mogelijke marktinterventie olie
-- tijdelijke-halvering-van-accijns-op-benzine-en-diesel-in-australie-45db27 | Australië halveert tijdelijk accijns op benzine en diesel
-- cori-bush-wil-haar-zetel-terug-en-een-herkansing-tegen-aipac-2a6df4 | Cori Bush start nieuwe campagne na verlies door AIPAC
-- opnieuw-drinken-uit-de-bittere-beker-in-het-midden-oosten-d94c69 | Wapenstilstand 1988 beëindigde Iran-Irak oorlog na jaren
-
-importance=58 (2)
-- marco-bezzecchi-wint-motogp-in-de-vs-en-verlengt-perfecte-seizoensstart-48a411 | Marco Bezzecchi wint USA MotoGP en blijft ongeslagen
-- rocket-report-rusland-heropent-toegang-tot-iss-cape-canaveral-organiseert-rakett-bf4662 | Rusland hervat toegang tot ISS; rakettest in Cape Canaveral
-
-importance=57 (10)
-- wat-doet-rfk-met-vaccins-voor-kinderen-in-amerika-94f043 | Tegenslag voor RFK's vaccininitiatief in Amerika
-- ontbrekende-hulpboten-zijn-veilig-aangekomen-in-cuba-bevestigt-vs-8823dd | Vermiste hulpboten met humanitaire hulp veilig aangekomen in Cuba
-- gouverneurs-zien-af-van-vorige-reactie-op-hoge-benzineprijzen-1068d5 | Gouverneurs kiezen andere aanpak bij hoge benzineprijzen
-- burgum-iran-energieprijs-schok-kwestie-van-weken-niet-maanden-ca26be | Burgum: Energieprijsschok Iran duurt weken, niet maanden
-- de-oorlog-in-iran-en-implicaties-voor-het-nucleaire-non-proliferatieregime-93d273 | Invloed van Iran-conflict op nucleair non-proliferatieregime
-- trumps-bezoek-aan-china-zal-weinig-oplossen-als-het-al-doorgaat-ad7969 | Mogelijk uitstel van Trumps staatsbezoek aan China door oorlog met Iran
-- energieadviseur-witte-huis-zegt-dat-oliemaatschappijen-allemaal-akkoord-zijn-met-cc292c | Witte Huis meldt akkoord oliemaatschappijen voor productieopvoer
-- wanneer-deepfakes-doctrine-worden-b9f722 | VS en Israël gebruiken Deepfakes in conflict met Iran
-- wright-dringt-erop-aan-dat-olie-en-gasindustrie-productie-opvoert-te-midden-van--ec7acd | Wright roept op tot meer olie- en gasproductie door Iran-oorlog
-- hormuz-moet-heropenen-waarom-de-olie-industrie-trump-niet-kan-helpen-om-de-stijg-377b47 | Olie-industrie ontmoedigd door Iran-beleid, Hormuz moet heropenen
-
-importance=56 (4)
-- vrees-voor-meer-kleine-bootoversteken-op-het-kanaal-nu-uk-franse-overeenkomst-bi-be5b84 | Onzekerheid rond kanaaloversteken en Engels-Franse lokale bestuurservaringen
-- vrijheid-in-ons-land-is-lekker-je-auto-voltanken-83a0a4 | Vrijheid ervaren bij autobrandstof; kinderopvang blijft problematisch
-- britse-spaarders-moeten-nu-handelen-voor-deadline-cash-isa-op-paaszondag-2fae87 | Britse spaarders aangespoord tot actie voor paaszondag deadline cash ISA
-- hoe-de-amerikaanse-bevrijdingsdag-tarieven-de-wereldhandel-veranderden-101a95 | Analyse van Amerikaanse tarieven en hun gevolgen voor de mondiale handel
-
-importance=55 (6)
-- mohamed-salah-gewaarschuwd-tegen-overstap-naar-vs-nu-mls-clubs-interesse-tonen-6aa201 | Waarschuwing voor Mohamed Salah bij overstap naar MLS
-- wat-te-doen-wanneer-het-publieke-goed-van-informatie-slecht-wordt-280ac6 | Moeilijkheden bij betrouwbare nieuwsvoorziening in economisch perspectief
-- de-zorg-accepteert-twijfelachtige-certificaten-bij-zoektocht-naar-nieuw-personee-64e123 | Zorg accepteert twijfelachtige certificaten bij personeelswerving
-- leugendetectoren-hebben-grote-tekortkomingen-zijn-er-betere-opties-dbcde0 | Onderzoek naar betere methoden voor leugendetectie loopt door
-- amerikaanse-marine-start-wedstrijd-voor-nieuw-trainingsvliegtuig-84d315 | Amerikaanse marine start wedstrijd voor nieuw trainingsvliegtuig
-- winkels-en-restaurants-in-egypte-moeten-eerder-sluiten-door-verergerende-energie-1590d4 | Winkels en restaurants in Egypte sluiten om 21 uur door energiecrisis
-
-importance=54 (5)
-- de-amerikaanse-luchtmacht-zet-f-35a-gevechtsvliegtuigen-in-in-noord-japan-d3417d | F-35A-jagers van Amerikaanse luchtmacht gestationeerd in noordelijk Japan
-- russische-wetgever-bespot-amerikaanse-militaire-capaciteiten-in-opmerkingen-869f66 | Russische wetgever bekritiseert Amerikaanse militaire capaciteiten
-- northrop-grumman-bouwt-sentinel-icbm-lanceersilo-56f752 | Northrop Grumman ontwikkelt lanceersilo voor Sentinel ICBM
-- binnen-het-witte-huis-plan-om-de-iran-oorlog-online-te-verkopen-b16e08 | Witte Huis gebruikt videospelstijl voor Iran-oorlogcommunicatie
-- rusland-financieel-steunen-voor-vrede-is-een-verliesgevende-zaak-7aeb6a | Rusland pleit voor financiële herintegratie ondanks sancties
-
-importance=53 (1)
-- nederland-en-oekraine-versterken-onderlinge-samenwerking-met-conferentie-in-bred-429a4f | Conferentie in Breda versterkt samenwerking Nederland en Oekraïne
-
-importance=52 (4)
-- no-kings-protest-populairder-dan-ooit-acht-miljoen-mensen-demonstreren-tegen-tru-70a8bd | Acht miljoen demonstreren bij ‘No Kings’-protest tegen Trump
-- voormalig-premier-van-nepal-gearresteerd-wegens-dodelijke-protestonderdrukking-091e1c | Voormalig premier Nepal gearresteerd na dodelijke protesten
-- unicredit-doet-laag-bod-op-commerzbank-om-gesprekken-te-verzekeren-bece9f | UniCredit biedt ruim 30% op Commerzbank voor gesprekken
-- meta-plant-ingrijpende-ontslagen-vanwege-oplopende-ai-kosten-bf03f3 | Meta bereidt grootschalige ontslagen voor door hoge AI-kosten
-
-importance=51 (6)
-- just-bevestigt-dat-persoonlijke-e-mail-van-fbi-directeur-kash-patel-is-gehackt-4d58cc | Persoonlijke e-mail FBI-directeur Kash Patel gehackt
-- syrie-vn-commissie-documenteert-ernstige-schendingen-tijdens-escalatie-in-juli-2-a54b5c | VN-commissie rapporteert ernstige schendingen in Sweida
-- hellevlakte-taiwan-een-stekelvarkenverdediging-in-het-drone-tijdperk-9e9bc4 | Chinese invasie van Taiwan in 2029 met drone-ondersteuning
-- hoe-houdt-de-samenwerking-van-iran-met-wit-rusland-en-rusland-stand-tijdens-oorl-7534ef | Iran onderhoudt nauwe banden met Belarus en Rusland tijdens oorlog
-- de-breuken-van-de-navo-zijn-niet-haar-einde-980bda | NAVO-scheuren zijn normaal, niet het einde van het bondgenootschap
-- hoe-het-was-om-onder-vijandelijk-vuur-te-liggen-van-de-oorlog-tegen-terreur-tot--967642 | Ervaringen met indirect vuur van oorlog op terrorisme tot nu
+importance uitdraai: 420 stories
 
 importance=50 (1)
-- waarom-hief-de-verenigde-staten-sancties-op-tegen-chemische-wapenswetenschappers-479a44 | Verenigde Staten heft sancties op voor Syrische chemiewapenswetenschappers
+- trump-lijkt-de-facto-oliemaatstaf-tegen-cuba-te-versoepelen-nu-russische-olietan-4f12fb | VS versoepelt impliciete oliemaatstaf naar Cuba bij aankomst Russische tanker
 
-importance=49 (54)
-- prostaatkanker-kan-nu-ook-behandeld-worden-met-hormoonpleister-in-plaats-van-pri-8a3472 | Nieuwe hormoonpleister voor prostaatkankerbehandeling beschikbaar
-- het-reuzenrad-in-noordwijk-blijft-een-zomer-langer-staan-5dbccb | Reuzenrad in Noordwijk blijft een extra zomer staan
-- politie-victoria-vraagt-bescherming-tegen-zelfincriminatie-tijdens-getuigenis-ov-022ea2 | Politie in Victoria vraagt bescherming tegen zelfincriminatie bij getuigenis over dood
-- twee-gewonden-vrijgelaten-uit-ziekenhuis-na-auto-incident-in-derby-2f8bfd | Twee slachtoffers vrijgelaten na auto-incident in Derby
-- victorianen-liberalen-organiseren-nieuwe-voorverkiezing-na-terugtrekking-kandida-0a689c | Victorianen Liberalen organiseren nieuwe voorverkiezing na terugtrekking kandidaat
-- kabinet-wil-dat-hbo-ers-ook-doctorstitel-kunnen-halen-61ce45 | Hbo'ers kunnen nieuwe doctorstitel Professional Doctor behalen
-- huurders-van-glasgow-arts-hub-veroordelen-onhoudbare-huurverhogingen-door-verhuu-4a9f48 | Huurders in Glasgow verzetten zich tegen sterke huurverhogingen
-- britse-pakistanen-in-birmingham-zijn-klaar-met-alle-vooroordelen-4fe03d | Britse Pakistanen in Birmingham hekelen bestaande vooroordelen
-- bronzen-schild-uit-de-prehistorie-teruggevonden-in-veenmoeras-keert-na-meer-dan--f18244 | Prehistorisch bronzen schild na 230 jaar terug in Schotland
-- hoe-tropische-cycloon-narelle-de-lucht-rood-kleurde-in-west-australie-b7f656 | Cycloon Narelle veroorzaakt rode lucht door stofstorm in West-Australië
-- labor-steunt-onderzoek-groenlinks-naar-gasexportbelasting-live-verslag-e48a87 | Labor ondersteunt onderzoek GroenLinks naar belasting op gasexport
-- ik-wees-een-mma-vechter-af-tijdens-een-avond-uit-toen-sloeg-hij-me-6dcce8 | Vrouw raakt ernstig gewond na klap van MMA-vechter
-- kim-novak-zegt-dat-sydney-sweeney-volledig-fout-zit-om-mij-te-spelen-in-biopic-0110b0 | Kim Novak keurt casting Sydney Sweeney in biopic af
-- kortetermijnrentes-zijn-te-hoog-gestegen-ef2253 | Korte rente ligt hoger dan verwacht
-- aanvullende-lectuur-van-ftav-49e3b6 | Verruiming van perspectieven in aanvullende FTAV-lectuur
-- de-kranten-horror-op-straat-en-angst-voor-tekorten-neemt-toe-ae3b06 | Auto rijdt in op voetgangers in centrum Derby
-- zeven-jaar-na-de-dood-van-emiliano-sala-wat-is-er-veranderd-in-de-wildernis-van--ba50ab | Veranderingen in voetbalkoop na Emiliano Sala's overlijden
-- schakeringen-van-gascoigne-de-opkomst-van-engeland-s-anderson-43df47 | Elliot Anderson maakt snelle opmars naar Engels elftal
-- ik-vrees-dat-de-telefoon-gaat-binnen-in-de-kennels-die-reageren-op-agressieve-xl-925253 | Stijgende agressie bij XL bully-honden vraagt om zorgvuldige opvang
-- distressed-debt-fondsen-enthousiast-over-privekredietdeals-7a25d0 | Distressed-debt fondsen tonen interesse in privékredieten
-- gaat-thg-grote-winsten-boeken-4df973 | THG analyseert kansen op grote winsten nauwkeurig
-- hardloopevenementen-kunnen-meer-doen-bij-hitteberoertes-zeggen-experts-51cf3e | Effectieve koeling redt levens bij oververhitte hardlopers
-- wekdienst-30-3-gorinchem-beslist-over-herstemming-hoger-beroep-ali-b-gaat-verder-583e79 | Gorinchem beslist over herstemming gemeenteraadsverkiezingen
-- nederland-stemt-vaak-per-volmacht-zwakte-in-ons-verkiezingsproces-91aa69 | Veel Nederlanders stemmen per volmacht bij verkiezingen
-- moordproces-met-vrijmetselaars-en-franse-geheime-agenten-begint-bij-rechtbank-in-270d13 | Proces tegen 22 verdachten in moordzaak bij rechtbank Parijs gestart
-- transcript-hoe-trumps-tarieven-de-wereldhandel-verstoren-2565b5 | Impact van Trumps tarieven op wereldwijde handel
-- het-beste-van-tv-en-streaming-deze-week-636a53 | Aanraders: ‘The Pitt’, Britse ‘Saturday Night Live’ en nieuwe series
-- raphael-de-renaissance-tentoonstelling-in-het-met-toont-een-kunstenaar-die-perfe-671c60 | Grote Raphael-tentoonstelling toont zoektocht naar perfectie
-- privaat-kapitaal-wat-zijn-de-risico-s-f1502e | Risico's privaat kapitaalsector gewaardeerd tegenover 2008
-- de-amerikaanse-gig-economie-f71e3b | Zelfstandigheid stimuleert consumptie in Amerikaanse gig-economie
-- eli-lilly-dringt-aan-op-prijsverhogingen-van-nhs-medicijnen-in-ruil-voor-investe-28f897 | Eli Lilly wil hogere NHS-medicijnprijzen voor investeringen in VK
-- kan-de-valhalla-de-fortuin-van-aston-martin-een-boost-geven-9cea2f | Eerste proefrit Valhalla hybride kan Aston Martin nieuw succes brengen
-- verzekeraars-geven-emirates-belachelijk-goedkope-oorlogverzekering-82146f | Emirates betaalt opvallend lage premie voor oorlogverzekering
-- de-heren-en-vermeende-wetsovertreders-onder-de-eclectische-leners-van-mfs-7d48a7 | Diverse kredietnemers van Market Financial Solutions onderzocht
-- onwankelbare-elegantie-van-koningin-elizabeth-ii-geeerd-in-londense-tentoonstell-f8c6de | Tentoonstelling in Buckingham Palace eert stijl Queen Elizabeth II
-- langzame-spanning-van-the-killing-s-s-ren-sveistrup-en-andere-nieuwe-misdaadboek-ea9165 | Nieuwe misdaadboeken met intriges in de outback en kunstwereld
-- start-up-oprichters-mijden-groene-pitches-op-progressief-sxsw-f0132a | Start-up oprichters mijden groene pitches op SXSW
-- urgente-actie-nodig-om-toename-digitale-geweld-in-afrika-te-voorkomen-zeggen-exp-6c1260 | Toename digitaal geweld tegen vrouwen in Afrika vraagt actie
-- exclusief-binnenkijken-bij-de-nieuwe-eetbestemming-in-west-londen-7e0374 | Nieuw chique restaurant opent in Olympia-centrum West-Londen
-- het-karaokebedrijf-de-pennystockbelegger-en-de-17-miljard-vrachtwagencrash-b72d95 | Investeerder koopt aandeel voor AI-aandelenkoers stijgt
-- hoe-de-tarieven-van-trump-de-wereldhandelorde-hebben-verscheurd-3da154 | Invloed van Trumps tarieven op de wereldhandel onderzocht
-- steeds-vaker-duiken-op-sociale-media-ai-beelden-op-van-de-holocaust-daarin-schui-7c720c | Toename AI-beelden van Holocaust op sociale media vormt risico
-- in-mexico-heeft-het-wk-voetbal-een-vieze-bij-smaak-de-fan-zegt-dit-is-het-toerno-811938 | Discussie over imago WK voetbal in Mexico door politiek
-- wanneer-en-hoe-de-volle-pink-moon-van-april-te-zien-is-b4b0bd | Wanneer en waarom de volle Roze Maan van april verschijnt
-- harry-potter-ster-paapa-essiedu-hoopt-dat-zijn-tv-drama-babies-het-zwijgen-rond--92a5ef | Paapa Essiedu's serie Babies bespreekt zwangerschapsverlies
-- kindergerichte-aanpak-in-familierechtzaken-grootste-verandering-in-30-jaar-zegt--28d5b5 | Nieuw kindgerichte aanpak in familierecht na 30 jaar
-- tech-ceo-s-geven-plots-ai-de-schuld-van-massale-ontslagen-waarom-102cb2 | Tech-CEO's geven AI schuld aan massale ontslagen
-- miljoenen-bestuurders-krijgen-informatie-over-het-claimen-van-compensatie-voor-v-9693ec | Miljoenen kunnen compensatie claimen voor verkeerd verkochte autoleningen
-- 75-van-de-fans-is-tegen-var-in-de-premier-league-zegt-football-supporters-associ-998dad | 75% van fans keurt VAR in Premier League af, zegt enquête
-- emotionele-woodland-behaalt-eerste-overwinning-sinds-hersenoperatie-8c258a | Gary Woodland wint eerste golfwedstrijd na hersenoperatie
-- afrikaanse-voetbalbaas-motsepe-respecteert-cas-beslissing-over-beroep-senegal-33c6ed | CAF-voorzitter Motsepe respecteert CAS-beslissing over Senegal
-- een-mier-voor-220-dollar-de-nieuwe-grens-van-de-illegale-dierenhandel-d884f3 | Hoge prijzen voor mieren door illegale handel in Kenia
-- twee-hulpgoederenchepen-naar-cuba-gevonden-na-dagen-te-zijn-verdwenen-95eb78 | Twee hulpschepen veilig gevonden na dagen vermist te zijn
-- trump-speelt-texas-hold-em-met-senaatssteun-0c0f0b | Trump onthoudt zich van steun in Texas Senaatsrunoff
+importance=46 (1)
+- dit-is-een-nachtmerrie-scenario-als-het-verder-escaleert-226e95 | Houthis lanceren raketaanvallen op Israël, risico op regionale escalatie neemt toe
 
-importance=48 (7)
-- op-massaal-anti-trump-protest-zijn-democraten-voorzichtig-optimistisch-6c647c | Democraten optimistisch na massaal anti-Trump-protest
-- een-torpedo-in-de-handelsroutes-maritieme-oorlogsvoering-keert-terug-in-de-indo--ae7785 | Amerikaanse onderzeeër zinkt Iraans oorlogsschip in Indo-Pacific
-- uw-defensiecode-is-al-ai-gegenereerd-en-nu-7183d0 | AI-gegenereerde code compliceert defensiebeleid over softwareontwikkeling
-- de-stille-uitbreiding-van-trumps-oorlog-tegen-kartels-2adaa8 | Uitbreiding van militaire strijd tegen drugskartels onder Trump
-- belangrijke-punten-van-de-nationale-volkscongresvergadering-van-china-96acf1 | Belangrijkste punten van China’s Nationale Volkscongres 2026
-- investeren-in-vrouwen-is-investeren-in-de-toekomst-bd48dd | Investeren in vrouwen versterkt toekomst en economie
-- na-de-oorlog-en-na-poetin-drie-mogelijke-opvolgingsscenario-s-voor-rusland-s-mod-d19670 | Drie mogelijke opvolgingsscenario's na Poetin in Rusland
+importance=45 (2)
+- crisis-in-het-midden-oosten-live-trump-zegt-dat-hij-de-olie-van-iran-wil-innemen-a356ff | Trump spreekt over innemen Iraanse olie te midden van escalerend conflict
+- vn-vredessoldaat-gedood-in-zuid-libanon-terwijl-israelische-invasie-intensiveert-7a0b1d | VN-vredessoldaat omgekomen tijdens Israëlische operatie in Zuid-Libanon
 
-importance=47 (18)
-- stekker-uit-rtl-tonight-na-de-zomer-nieuwe-talkshow-met-renze-klamer-78f5cf | RTL Tonight stopt, nieuwe talkshow met Renze Klamer na zomer
-- italie-onderzoekt-sephora-en-benefit-wegens-marketing-van-huidverzorging-aan-kin-c64379 | Italië onderzoekt LVMH voor marketing van kinderhuidverzorging
-- raadplegingen-in-engeland-aangespoord-universele-parkeerapp-te-gebruiken-om-onee-feeb11 | Engelse gemeenten aangespoord universele parkeerapp te gebruiken
-- week-begint-guur-met-veel-buien-ook-rest-van-de-week-wisselvallig-741f66 | Week start fris en nat met buien, wisselvallig weer blijft
-- worstelende-bultrugwalvis-voor-derde-keer-aangespoeld-aan-duitse-kust-ba810d | Bultrugwalvis drie keer gestrand aan Duitse Oostzeekust
-- canadese-new-democratic-party-kiest-avi-lewis-als-leider-ee1a23 | Avi Lewis gekozen als nieuwe leider van Canadese NDP
-- drie-gearresteerd-in-parijs-na-poging-tot-bomaanslag-buiten-bank-of-america-7263ca | Drie gearresteerd na poging bomaanslag in Parijs
-- politie-pakt-man-21-op-in-eindhoven-mogelijk-link-met-is-d4aeb7 | Man (21) opgepakt in Eindhoven, mogelijke IS-link onderzocht
-- nasa-astronaut-die-noodterugkeer-maakte-kon-opeens-niet-meer-praten-c647f2 | NASA-astronaut raakte plotseling sprakeloos tijdens ISS-missie
-- zero-waste-dag-internationaal-chef-massimo-bottura-spreekt-met-france-24-3ef594 | Internationale Dag van Zero Waste met Massimo Bottura
-- zuckerberg-verruilt-zijn-hoodies-voor-prada-en-de-echte-sterren-dragen-een-boek-3e7eba | Zuckerberg kiest Prada, sterren dragen boeken bij evenementen
-- afrikaans-voetbalbaas-treedt-af-na-rel-rond-finale-marokko-senegal-af6ca6 | Afrikaanse voetbalbaas stapt op na discussie finale Marokko-Senegal
-- de-wet-komt-eraan-voor-sociale-media-terwijl-de-wetenschap-nog-onzeker-is-fde844 | Wetgeving tegen sociale media voor jongeren in opkomst
-- 50-jaar-na-opnames-a-bridge-too-far-deventer-blikt-terug-op-hollywoodzomer-b92125 | Deventer herdenkt 50 jaar filmopnames A Bridge Too Far
-- wat-kunnen-de-bazen-van-de-formule-1-doen-om-verstappen-in-de-sport-te-houden-318110 | F1 werkt aan regels om Verstappen in de sport te houden
-- lange-rij-voor-duitse-botoxkliniek-na-aanbieden-gratis-injecties-artsen-kritisch-dbf112 | Honderden in lange rij voor gratis botoxinjecties in Duisburg
-- britse-politie-ondervraagt-verdachte-na-incident-met-auto-in-derby-7eef32 | Auto rijdt in op voetgangers in Derby, zeven ernstig gewond
-- koning-willem-alexander-prinses-beatrix-en-minister-president-jetten-bij-uitreik-ebb814 | Koning en prinses wonen Four Freedoms Awards bij in Middelburg
-
-importance=46 (7)
-- safaa-19-ik-doneer-20-procent-van-mijn-geld-deels-vanuit-mijn-geloof-cd7cb7 | Safaa (19) doneert 20 procent van haar inkomen uit geloof
-- de-prik-of-het-drankje-bij-euthanasie-kiest-bijna-niemand-voor-het-laatste-9217c2 | Bij euthanasie kiest bijna niemand voor het drankje als methode
-- volg-het-geld-financien-en-de-toekomst-van-geallieerde-economische-staatskunst-1ca81e | Financiële stromen als cruciaal element in wereldwijde machtsstrijd
-- door-trump-gesteunde-leider-van-de-senaat-van-north-carolina-verliest-met-23-ste-c27040 | Trump-gesteunde senator North Carolina verliest nipt
-- vae-olieproductie-daalt-met-meer-dan-de-helft-door-sluiting-van-hormuz-573b25 | VAE olieproductie halveert door sluiting Straat van Hormuz
-- qatar-sluit-gasvervluchtiging-af-herstart-duurt-weken-volgens-bronnen-62cacd | Qatar stopzet gasvervluchtiging, herstart kost weken
-- zwitserse-nationale-bank-verhoogt-bereidheid-om-excessieve-waardestijging-van-de-a1a1be | Zwitserse Bank verhoogt kans op ingrijpen tegen sterke frank
-
-importance=45 (6)
-- ons-huis-is-verdwenen-bbc-spreekt-met-ontheemde-families-in-libanon-eec69e | Meer dan een miljoen ontheemden in Libanon na crisis
-- inperking-van-islamitische-staat-stort-in-syrie-in-54b68d | Syrisch offensief belemmert controle op Islamitische Staat
-- open-oorlog-aan-de-durand-lijn-kan-de-escalatie-van-pakistan-de-taliban-tot-een--2df8bd | Pakistan verklaart open oorlog aan Taliban aan de Durand-lijn
-- de-toekomst-van-oorlog-is-nu-wat-washington-moet-horen-van-het-slagveld-bf9f5b | Washington bespreekt lessen van moderne oorlogvoering
-- het-echte-probleem-van-de-droneoorlog-is-niet-technologie-maar-snelheid-b3fd3e | Tempo is het echte probleem bij droneoorlogvoering
-- beslissing-op-bezwaar-op-woo-besluit-over-nederlanders-in-russische-of-oekraiens-94b4b8 | Beslissing bezwaar over registratie Nederlanders in buitenlandse legers
-
-importance=44 (12)
-- vaarwel-graaff-reinet-naamswijziging-zuid-afrikaanse-stad-veroorzaakt-raciale-sp-02ca3d | Naamswijziging Graaff-Reinet veroorzaakt spanningen in Zuid-Afrika
-- geluidsopnamen-van-gevangenistelefoongesprekken-roepen-vragen-op-over-bekwaamhei-b97e29 | Telefonische bewijsfragmenten roepen twijfel op over procesbekwaamheid ex-topman
-- hoe-het-deepfake-pornoscandaal-rond-tv-ster-duitsland-schokte-b58cb1 | Deepfake-pornoscandaal rond tv-ster in Duitsland
-- denk-dat-love-island-slecht-is-wacht-tot-je-de-ai-fruitversie-ziet-442e0a | AI-fruitversie van Love Island zet strijd voort
-- india-herstelt-een-eeuwenoude-koninklijke-keuken-die-nooit-is-gestopt-met-het-se-b6cce6 | India restaureert eeuwenoude koninklijke keuken
-- kijk-iconische-wereldwijde-monumenten-doven-lichten-voor-earth-hour-190c6f | Wereldberoemde monumenten doven licht tijdens Earth Hour
-- glazuur-hagelslag-en-lagen-plezier-gigantische-cakepicknick-in-sydney-27d8ef | Honderden bakkers verzamelen voor reuzen-taartpicknick in Sydney
-- waarom-josh-simons-ontslag-nam-van-de-overheid-8f2dbc | Josh Simons treedt af na journalistiek onderzoek en excuses
-- bank-of-america-betaalt-72-5-miljoen-dollar-uit-wegens-epstein-rechtszaak-2e9e50 | Bank of America betaalt 72,5 miljoen dollar in Epstein-zaak
-- tweeentwintig-migranten-sterven-voor-de-griekse-kust-na-zes-dagen-op-zee-b42212 | Tweeëntwintig migranten sterven voor Griekse kust na dagen op zee
-- aanstaande-moeders-in-cuba-worstelen-onder-brandstofblokkade-b46404 | Zwangere vrouwen in Cuba getroffen door brandstoftekort
-- nepalese-oud-premier-oli-gearresteerd-wegens-het-neerslaan-van-gen-z-protesten-m-b53a6d | Nepalese oud-premier Oli gearresteerd na neerslaan protesten
-
-importance=43 (7)
-- hegseth-trump-had-geen-bevoegdheid-om-anthropic-op-zwarte-lijst-te-zetten-zegt-r-92877d | Rechter: Trump had geen bevoegdheid om Anthropic te sanctioneren
-- texas-maakt-zich-op-voor-strijd-om-datacenters-141768 | Texas bereidt zich voor op debat over datacenters en energie
-- amerika-is-digitaal-kwetsbaar-en-onze-tegenstanders-weten-dat-0380bd | Digitale kwetsbaarheid Amerika vergroot risico op cyberaanvallen
-- militair-operationeel-denken-in-een-tijdperk-van-kunstmatige-intelligentie-468165 | Uitdagingen bij integratie van AI in militaire planning
-- jesse-jackson-jr-s-comeback-poging-mislukt-in-de-voorverkiezing-van-illinois-202c1e | Donna Miller verslaat Jesse Jackson Jr. in Illinois voorverkiezing
-- pentagon-zegt-dat-dodelijke-botenaanvallen-nog-maar-het-begin-zijn-in-zuid-en-mi-005e09 | Pentagon waarschuwt: dodelijke bootaanvallen slechts begin
-- besluit-op-subsidieverzoek-over-activiteiten-stichting-amstel-a0f31b | Besluit over subsidieaanvraag stichting Amstel 218 in 2026
-
-importance=41 (2)
-- herziening-versterkingsbesluit-ncg-pand-appingedam-192017 | Herziening versterkingsbesluit NCG voor pand in Appingedam
-- portefeuilleverdeling-kabinet-jetten-f00304 | Ministerraad stelt definitieve portefeuilleverdeling kabinet-Jetten vast
-
-importance=40 (27)
-- ontheemde-gezinnen-in-sudan-worstelen-terwijl-hulp-tekortschiet-d1fc40 | Hulp aan ontheemde gezinnen in Wit-Nil-Staat van Sudan schiet tekort
-- het-belang-van-de-overval-op-nassau-b5af2a | Overval op Nassau markeert eerste amfibische landing van de Amerikaanse mariniers
-- canadese-youtuber-legt-opstopping-van-tientallen-schepen-in-straat-van-hormuz-va-2156a5 | Canadese YouTuber filmt opstopping van tientallen schepen in Straat van Hormuz
-- wetsvoorstel-masterstudenten-kunnen-ook-doctor-worden-op-hbo-177260 | Wetsvoorstel maakt hbo-docoraat mogelijk voor masterstudenten
-- fakhar-zaman-beschuldigd-van-ball-tampering-door-pakistaanse-bond-in-psl-503017 | Fakhar Zaman beschuldigd van balmanipulatie in PSL
-- australie-halveert-accijns-op-brandstof-door-wereldwijde-energiecrisis-6f57fe | Australië halveert brandstofbelasting door stijgende olieprijs
-- caf-secretaris-generaal-stopt-na-controverse-rond-afcon-finale-752cea | CAF-secretaris-generaal vertrekt na controverse AFCON-finale
-- oorlog-in-het-midden-oosten-vn-initiatieven-ondersteunen-bemiddelingsinspanninge-cb915d | VN ondersteunt bemiddeling en meststofleveringen in Midden-Oosten
-- tiger-woods-vrijgelaten-op-borgtocht-na-arrestatie-wegens-rijden-onder-invloed-b53ab6 | Tiger Woods vrijgelaten op borgtocht na DUI-arrestatie
-- van-gestoord-radiozendingen-tot-een-geblokkeerde-website-80-jaar-verzet-van-bbc--281165 | BBC Russian: 80 jaar verzet ondanks blokkades en storingen
-- noah-wyle-is-terug-in-a-e-met-nieuwe-dramaserie-the-pitt-ik-hoop-dat-mensen-met--7ca968 | Noah Wyle speelt arts met PTSS in nieuwe medische serie
-- we-hebben-een-moment-angst-en-ontkenning-in-silicon-valley-over-rechtszaak-over--63eebb | Rechtszaak sociale media in Silicon Valley krijgt bredere impact
-- noodtoestand-op-de-filippijnen-vanwege-oliecrisis-ecbacf | Filippijnen roepen noodtoestand uit door oliecrisis
-- wetenschappers-filmen-walvis-die-bevalling-ondergaat-terwijl-andere-walvissen-sa-abbc9e | Wetenschappers filmen potvis terwijl ze kalf krijgt met hulp
-- lovende-recensies-maar-toch-niet-blij-pijn-volgt-zelden-logica-c9125c | Pijn ervaart men vaak zonder duidelijke reden ondanks positieve signalen
-- de-boeken-in-melania-s-winkel-in-kyiv-zijn-doorweekt-maar-de-lezers-blijven-kome-262a07 | Boeken in Melania’s winkel in Kiev zijn nat, maar populair
-- de-geweldadigheid-van-racistische-tirannie-afrikaanse-guernica-naast-picasso-s-m-0b98cf | Afrikaanse Guernica naast Picasso’s meesterwerk in Reina Sofía
-- de-favoriete-tegenstander-van-progressief-nederland-de-allerrijksten-1d267e | Progressief Nederland zet zich af tegen de allerrijksten
-- australie-blijft-zonder-onderzeeers-als-het-aukus-opzegt-waarschuwt-hoge-defensi-172839 | Australië zonder onderzeeërs als Aukus-plan faalt
-- twee-humanitaire-hulpboten-op-weg-naar-cuba-vermist-zegt-mexico-0d9fdd | Zoekactie naar verdwenen hulpboten voor Cuba gestart
-- loekasjenko-en-kim-bezegelen-hun-vriendschap-met-een-knuffel-b96b1c | Loekasjenko en Kim bevestigen vriendschap met omhelzing
-- advocaat-ali-b-gaat-vol-in-de-tegenaanval-f342ab | Advocaat Ali B reageert krachtig in actuele kwestie
-- nepalese-toekomstige-premier-gebruikt-rap-om-op-te-roepen-tot-eenheid-in-eerste--dc34ca | Nepal’s toekomstige premier roept op tot eenheid met rap
-- waarom-zijn-podcasts-met-kletspraat-van-bn-ers-zo-populair-8715c1 | Populariteit van podcasts met BN’ers verklaard
-- voor-de-volgende-olympische-spelen-moeten-alle-vrouwen-een-gentest-doen-745471 | Vrouwen moeten gentest doen voor volgende Olympische Spelen
-- nigeria-neemt-zijn-plaats-in-op-het-wereldtoneel-in-de-zoektocht-naar-regionale--79c07e | Nigeria versterkt handelsbanden met VK en streeft naar regionale macht
-- wanneer-houdt-het-op-de-elevator-pitch-die-olie-executives-en-diplomaten-houden--17578a | Kernvraag bij energieconferentie in Houston: 'Wanneer houdt het op?'
-
-importance=39 (1)
-- 2-nederlandse-projecten-aangewezen-als-strategisch-project-onder-europese-net-ze-5b733c | Twee Nederlandse projecten erkend als strategisch onder Net-Zero Act
+importance=44 (1)
+- trump-wil-iran-binnenvallen-om-olie-te-winnen-noemt-amerikaanse-tegenstanders-do-fc0e54 | VS bereidt mogelijke inval in Iran voor om olie te bemachtigen
 
 importance=38 (3)
-- pints-ontmoeten-prop-bets-polymarkets-situation-room-pop-up-bar-in-dc-7c8b44 | Polymarkets opent pop-up bar in DC voor voorspellingsmarkten
-- amerikaanse-marine-neemt-nieuwe-snel-aanvalsonderzeeer-in-gebruik-11769c | Amerikaanse marine neemt nieuwe snel-aanvalsonderzeeër in gebruik
-- regeringsconsultaties-tussen-nederland-en-noordrijn-westfalen-ffccfe | Derde regeringsconsultaties Nederland en Noordrijn-Westfalen
+- moordproces-geopend-over-vermeend-misdaadnetwerk-van-een-vrijmetselaarsloge-in-p-52e506 | Proces tegen 22 verdachten rond vermeend misdaadnetwerk van vrijmetselaarsloge gestart in Parijs
+- heeft-israel-de-oorlog-tegen-iran-verkeerd-ingeschat-adec01 | Evaluatie van Israëlische strategie in het conflict met Iran
+- verwijder-btw-van-energierekeningen-voor-drie-jaar-dringen-tories-aan-3436fb | Tories pleiten voor btw-vrijstelling op energierekeningen
 
-importance=37 (3)
-- trump-functionarissen-sluiten-verbod-op-olie-export-uit-in-overleg-met-branchele-2db72d | Trump-functionarissen sluiten olie-exportverbod uit tijdens overleg
-- trump-regering-overweegt-mogelijk-opheffen-sancties-op-iraanse-olie-vanwege-stij-616dbd | Sancties op Iraanse olie mogelijk versoepeld door hoge energieprijzen
-- gewijzigde-beslissing-op-bezwaar-2e-deelbesluit-op-bezwaarschrift-wob-verzoek-ln-75637d | Gewijzigde beslissing op bezwaar Wob-verzoek LNG-project Mozambique
+importance=37 (1)
+- vluchteling-kwam-uit-gebouw-met-wapen-voor-hij-werd-doodgeschoten-zegt-commissar-a6e910 | Voortvluchtige met wapen doodgeschoten na zeven maanden manhunt
 
 importance=36 (2)
-- escalatie-van-geweld-en-toestroom-van-terugkerenden-in-drc-veroorzaken-regionale-77d01a | Toenemend geweld in DRC vergroot regionale instabiliteit
-- kabinet-neemt-extra-maatregelen-met-pakket-voor-groene-groei-9ed1c6 | Kabinet introduceert maatregelen voor Groene Groei en energietransitie
+- starmer-zegt-dat-oorlog-met-iran-betekent-dat-labour-s-waarden-nu-meer-dan-ooit--2b3853 | Starmer: Labour’s waarden essentieel bij risico oorlog met Iran
+- dezi-freeman-doodgeschoten-door-politie-na-zeven-maanden-durende-klopjacht-166561 | Dezi Freeman na lange klopjacht door politie gedood
 
-importance=35 (10)
-- waarom-sommige-democraten-hasan-piker-s-megafoon-willen-afsluiten-9fb159 | Democraten willen invloed Hasan Piker beperken
-- uitleg-waarom-we-geen-tweevoet-lange-libellen-meer-zien-faalt-be97ce | Ademhaling verklaart niet waarom reusachtige libellen verdwenen zijn
-- de-amerikaanse-marine-herstelt-de-inzetbaarheid-van-de-uss-albany-onderzeeer-1cc4e6 | USS Albany onderzeeër voert onderhoud en upgrades succesvol uit
-- oorzakelijkheid-optioneel-testen-van-de-onbepaalde-oorzakelijke-volgorde-superpo-439f3e | Kwantumexperiment test invloed van volgorde van gebeurtenissen
-- hoe-nieuwe-vistechnologie-helpt-bij-het-verminderen-van-bijvangst-van-zeeschildp-4881de | Nieuwe vistuigen verminderen bijvangst van schildpadden en dieren
-- polen-ontwikkelt-kurier-onbemand-vrachtsvliegtuig-7edde1 | Poolse KURIER onbemande vrachthelikopter voor logistiek
-- amazon-ceo-verwacht-dat-ai-de-eerdere-aws-verkoopprognoses-verdubbelt-tot-600-mi-03fca3 | Amazon verwacht $600 miljard omzet AWS dankzij AI in 2036
-- elliott-neemt-significant-belang-in-japanse-rederij-mitsui-osk-bba62c | Elliott breidt belang uit in Japanse rederij Mitsui OSK
-- levendige-gedurfde-geanimeerde-spider-man-avontuur-f837e9 | Nieuwe spannende animatiefilm over Spider-Man met tienerheld Miles
-- elon-musks-spacex-overweegt-notering-op-nasdaq-na-vroege-indextoelating-zeggen-b-b3d085 | SpaceX overweegt Nasdaq-notering voor grote beursgang
-
-importance=34 (3)
-- democratische-presidentskandidaten-in-2028-proberen-afstand-te-nemen-van-aipac-2f6a3e | Democratische kandidaten distantiëren zich van AIPAC in 2028
-- geschiedenis-omzetten-in-harde-macht-een-pools-duitse-afrekening-80b8bd | Polen voelt ongenoegen over Duitse excuses WOII
-- het-elektriciteitsnet-van-cuba-stort-in-voor-de-derde-keer-deze-maand-zonder-str-75b09e | Elektriciteitsnet Cuba voor derde keer deze maand uitgevallen
+importance=35 (1)
+- firstft-trump-zegt-dat-vs-olie-van-iran-kan-nemen-de541a | Trump stelt dat VS olie van Iran kunnen 'nemen'
 
 importance=33 (1)
-- bbc-news-app-4717bb | BBC lanceert nieuws-app met gepersonaliseerde berichtgeving
+- ineos-vlaggenschipproject-loopt-risico-op-vertraging-door-crisis-in-straat-van-h-5c6712 | Ineos-project mogelijk vertraagd door crisis in Straat van Hormuz
 
-importance=32 (33)
-- dhs-bevestigt-dat-lewandowski-samen-met-noem-vertrok-bda735 | Lewandowski verlaat DHS samen met Noem, reden onbekend
-- wolfenstein-3d-in-2026-met-een-hand-spelen-8ac574 | Wolfenstein 3D in 2026 spelen met één hand mogelijk
-- met-nieuwe-pluginfunctie-gaat-openai-codex-officieel-verder-dan-coderen-acd7b9 | OpenAI Codex breidt uit met nieuwe plugins-functie
-- uitbraak-gerelateerd-aan-rauwe-kaas-groeit-9-gevallen-totaal-een-met-nierfalen-9d203c | Uitbraak in rauwe kaas met 9 gevallen, één nierfalen
-- rechter-boos-omdat-verdachte-via-zoom-deelneemt-tijdens-het-rijden-en-hierover-l-031e2b | Verdachte neemt via Zoom deel tijdens rijden, rechter eist opheldering
-- av1-s-open-royalty-free-belofte-ter-discussie-nu-dolby-snapchat-aanklaagt-over-c-e67990 | Dolby sleept Snapchat voor de rechter om AV1 codec discussie
-- trump-s-cyberstrategie-is-een-sterk-draaiboek-maar-het-draait-om-uitvoering-1c0d43 | Nieuwe Amerikaanse Cyberstrategie richt op versterkte infrastructuurverdediging
+importance=32 (3)
+- verwacht-dat-paasbankholiday-de-drukste-verkeersdagen-in-vier-jaar-wordt-in-het--4ff076 | Drukste Paasverkeer in vier jaar in het VK voorspeld
+- vrijheid-in-ons-land-is-lekker-je-auto-voltanken-83a0a4 | Vrijheid ervaren bij auto voltanken, zorgen bij kinderopvang
+- vs-zet-miljarden-dollars-in-op-ongeteste-groepen-in-zeldzame-aardmetalen-deals-42b67d | VS investeren miljarden in zeldzame aardmetalen metingen
+
+importance=31 (4)
+- ecuador-zet-amx-13-tanks-in-bij-anti-mijnbouwactie-f7afa9 | Ecuador inzet AMX-13 tanks bij operatie tegen illegale mijnbouw
+- het-aanvallen-van-links-tegen-farage-en-trump-kan-de-voorsprong-van-reform-in-pe-57134d | Kritiek op Farage en Trump kan Reform partij momentum kosten
+- elke-soldaat-een-softwarebouwer-het-beheren-van-het-nieuwe-digitale-personeelsbe-fc8b12 | Leger integreert softwareontwikkeling in eigen gelederen
+- waarom-heeft-de-vs-het-iraanse-kharg-eiland-in-het-vizier-0ebcc2 | VS richt aandacht op Iraans Kharg-eiland wegens energie-infrastructuur
+
+importance=30 (2)
+- brandstofrantsoenen-en-gratis-bussen-hoe-landen-reageren-op-stijgende-olieprijze-785f96 | Overheden beperken impact van hoge olieprijzen met rationering en gratis vervoer
+- voedselreuzen-begonnen-eindelijk-prijzen-te-verlagen-toen-begon-de-oorlog-0cb054 | Voedselbedrijven verlagen prijzen ondanks dreigende inflatiepiek
+
+importance=29 (1)
+- mistral-haalt-830-miljoen-dollar-op-voor-nvidia-aangedreven-ai-centrales-in-euro-59cd3f | Mistral werft $830 miljoen aan voor Europese AI-centrales; AI speelt rol in VS-verkiezingen
+
+importance=28 (4)
+- japan-moderniseert-marineschip-voor-langeafstandsraketten-d075be | Japanse destroyer nu uitgerust voor Tomahawk-raketten
+- stroomuitval-en-honger-grijpen-cuba-vast-44edcc | Stroomuitval en voedseltekort treffen Cuba hard
+- belasting-op-brandstof-gehalveerd-en-gratis-openbaar-vervoer-aangeboden-door-oor-24b7a7 | Accijns brandstof gehalveerd en gratis OV in Australië
+- g7-crisisonderhandelingen-terwijl-oorlog-in-iran-mondiale-economie-blijft-versto-820a96 | G7 bespreekt gevolgen oorlog Iran voor wereldwijde economie
+
+importance=27 (3)
+- poetin-is-niet-vastgelijmd-waarom-het-overleven-van-het-regime-niet-afhangt-van--160a45 | Regime van Poetin niet afhankelijk van overwinning
+- hardloopevenementen-kunnen-meer-doen-bij-hitteberoertes-zeggen-experts-51cf3e | Effectieve koeling redt levens bij oververhitte hardlopers
+- no-kings-protesten-trekken-grote-menigten-voor-bijeenkomst-tegen-donald-trump-a2e644 | Grote No Kings-bijeenkomsten demonstreren tegen Donald Trump
+
+importance=26 (4)
+- oeigoeren-in-turkije-vrezen-verbeterde-relatie-met-china-89a48c | Oeigoeren in Turkije maken zich zorgen over bilaterale betrekkingen met China
+- landdag-wat-gebeurde-er-op-30-maart-1976-in-palestina-9a1783 | Herdenking Landdag: Palestijnen protesteren tegen landonteigening
+- britse-spaarders-moeten-nu-actie-ondernemen-voor-deadline-van-contante-isa-op-pa-2fae87 | Britse spaarders aangespoord cash Isa-allowance vóór Pasen te gebruiken
+- ik-wees-een-mma-vechter-af-tijdens-een-avond-uit-dus-sloeg-hij-me-6dcce8 | MMA-vechter slaat vrouw na afwijzing tijdens avond uit
+
+importance=25 (1)
+- ik-vrees-dat-de-telefoon-gaat-binnen-in-de-kennel-bij-agressieve-xl-bully-aanval-925253 | Stijgend agressieniveau bij XL bully's in opvangcentra
+
+importance=24 (6)
+- israel-herstelt-toegang-latijnse-patriarch-tot-heilig-grafkerk-na-internationale-fdde8d | Israël herstelt toegang Latijnse Patriarch tot Heilig Grafkerk
+- raphael-de-grote-renaissance-tentoonstelling-in-het-met-toont-een-kunstenaar-op--671c60 | Grote Raphael-tentoonstelling toont zoektocht naar perfectie
+- verzekeraars-geven-emirates-buitensporig-goedkope-oorlogverzekering-82146f | Emirates betaalt opvallend lage premie voor oorlogverzekering
+- langzame-spanning-van-the-killing-s-s-ren-sveistrup-en-andere-nieuwe-misdaadboek-ea9165 | Nieuwe misdaadboeken met intriges in de outback en kunstwereld
+- tijdelijke-halvering-van-accijns-op-benzine-en-diesel-in-australie-45db27 | Australië halveert tijdelijk accijns op benzine en diesel
+- iraanse-aanval-beschadigt-koeweitse-energie-en-ontziltingsinstallatie-raakt-indi-b44490 | Iranese aanval op Koeweitse installatie eist mensenleven
+
+importance=23 (5)
+- voetbal-frankrijk-verslaat-colombia-drie-dagen-na-overwinning-op-brazilie-voor-w-372a98 | Frankrijk wint oefenwedstrijd tegen Colombia na zege op Brazilië
+- nederzetters-steken-voertuigen-in-brand-in-stad-nabij-hebron-c7720c | Voertuigen in brand gestoken bij Hebron door nederzetters
+- vijf-eu-regeringen-vinden-het-consistente-ondermijnen-van-de-rechtsstaat-684f25 | Vijf EU-landen breken systematisch de rechtsstaat af
+- onderhandelingen-over-wto-hervorming-mislukken-door-impasse-tussen-vs-en-brazili-9b6b51 | WTO-hervorming mislukt door geschil over e-commerce tarieven
+- china-treft-maatregelen-tegen-botas-begrafenissen-in-lege-appartementen-1667c9 | China pakt bot-as-begrafenissen in lege appartementen aan
+
+importance=22 (11)
+- demonstraties-een-recept-voor-rellen-het-punt-is-dat-ze-inherent-onvoorspelbaar--97b2ec | Demonstraties blijven onvoorspelbaar in verloop
+- gestolen-van-gogh-na-zes-jaar-terug-in-groninger-museum-88f2e9 | Gerestaureerd Van Gogh-schilderij terug in Groninger Museum
+- twee-gewonden-bij-auto-incident-in-derby-ontslagen-uit-ziekenhuis-2f8bfd | Twee gewonden bij auto-incident in Derby uit ziekenhuis ontslagen
+- drie-doden-nadat-onafgebouwde-gebouw-instort-tijdens-kerkdienst-in-ghana-f3d549 | Onafgebouwd gebouw stort in tijdens kerkdienst in Ghana
+- diefstal-van-renoir-cezanne-en-matisse-schilderijen-ter-waarde-van-miljoenen-uit-7adb64 | Schilderijen van Renoir, Cézanne en Matisse gestolen uit Italiaans museum
+- hoe-de-amerikaanse-bevrijdingsdag-tarieven-de-wereldhandel-hervormden-082a34 | Amerikaanse tarieven veranderen wereldhandel grondig
+- schakeringen-van-gascoigne-de-opkomst-van-engeland-s-anderson-43df47 | Elliot Andersons snelle opkomst naar WK-sleutelspeler
+- transcript-hoe-trumps-tarieven-de-wereldhandel-verstoorden-f48027 | Impact van Trumps tarieven op de mondiale handel
+- hongarije-betaalt-slechts-18-terug-van-door-eu-fraudewaakhond-gemelde-gelden-cd304c | Hongarije betaalt 18% terug van EU-fraudegelden
+- trump-nieuws-in-het-kort-generatiekloof-over-oorlog-met-iran-zichtbaar-op-belang-3fb1ca | Generatiekloof over Iran-oorlog bij conservatieve conferentie
+- olie-stijgt-naar-116-door-trump-die-angst-voor-langdurig-conflict-aanwakkert-b159c6 | Olieprijs stijgt naar $116 door zorgen over regionaal conflict
+
+importance=21 (4)
+- kabinet-wil-dat-hbo-ers-ook-doctorstitel-kunnen-halen-61ce45 | Kabinet introduceert Professional Doctor-titel voor hbo'ers
+- reuzenotter-hyena-sneeuwuil-en-37-andere-dieren-krijgen-meer-bescherming-4c1102 | Veertig diersoorten krijgen betere bescherming in Brazilië
+- totalenergies-boekte-enorme-winst-op-olie-inzet-in-het-midden-oosten-9ecd49 | TotalEnergies behaalt grote winst op olie uit VAE en Oman
+- dringende-actie-nodig-om-toename-van-digitale-geweld-in-afrika-te-voorkomen-zegg-6c1260 | Toename digitaal geweld tegen vrouwen in Afrika vraagt actie
+
+importance=20 (4)
+- onze-president-salvador-dali-6f6d53 | Salvador Dalí centraal in culturele reflectie
+- gebroken-glas-maakt-horner-s-terugkeer-moeilijk-wolff-494ccc | Terugkeer Horner naar F1 moeizaam volgens Wolff
+- canadese-youtuber-legt-opstopping-van-tientallen-schepen-in-straat-van-hormuz-va-2156a5 | Canadese YouTuber filmt scheepsopstopping in Straat van Hormuz
+- nederland-stemt-vaak-per-volmacht-zwakte-in-ons-verkiezingsproces-91aa69 | Veel Nederlanders stemmen per volmacht bij verkiezingen
+
+importance=19 (12)
+- rusland-zet-britse-diplomaat-uit-na-beschuldiging-van-spionage-9c74cd | Rusland wijst Britse diplomaat uit wegens vermeende spionage
+- china-hervat-vliegverkeer-op-noord-korea-na-6-jaar-8c5df7 | China hervat directe vluchten naar Noord-Korea na zes jaar
+- prostaatkanker-kan-nu-ook-behandeld-worden-met-hormoonpleister-in-plaats-van-inj-8a3472 | Nieuwe hormoonpleister beschikbaar voor prostaatkanker
+- iraniers-worstelen-met-levensonderhoud-bommen-en-zorgen-over-de-toekomst-372aea | Iraniërs worstelen met economische en veiligheidsuitdagingen
+- het-reuzenrad-in-noordwijk-blijft-een-zomer-langer-staan-5dbccb | Reuzenrad in Noordwijk blijft langer staan
+- victoriaanse-politie-vraagt-bescherming-tegen-zelfbeschuldiging-bij-getuigenis-o-022ea2 | Victoriaanse politie vraagt bescherming bij getuigenis over dood Noongar man
+- victorianen-liberalen-houden-nieuwe-voorselectie-na-terugtrekking-kandidaat-die--0a689c | Victorian Liberals organiseren nieuwe voorselectie na terugtrekking kandidaat
+- taiwanese-oppositieleider-accepteert-uitnodiging-van-xi-voor-bezoek-aan-china-f8a031 | Oppositieleider Taiwan plant bezoek aan China na uitnodiging Xi
+- myanmar-junta-leider-min-aung-hlaing-genomineerd-als-president-61d60f | Myanmar juntaleider Min Aung Hlaing genomineerd als president
+- australie-halveert-accijns-op-brandstof-nu-wereldwijde-energiecrisis-verergert-6f57fe | Australië halveert brandstofbelasting door stijgende olieprijs
+- amnesty-waarschuwt-voor-mensenrechtenrisico-s-tijdens-wk-2026-768c16 | Amnesty waarschuwt voor mensenrechten bij WK 2026
+- eli-lilly-tekent-deal-van-2-miljard-voor-ai-medicijnontwikkeling-met-hongkongse--0b849b | Eli Lilly sluit miljardencontract voor AI-geneesmiddelontwikkeling
+
+importance=18 (11)
+- huurders-van-glasgow-arts-hub-veroordelen-onhoudbare-huurverhogingen-door-verhuu-4a9f48 | Huurders kunstencentrum Glasgow verzet tegen sterke huurverhogingen
+- engelse-spelers-spelen-niet-genoeg-county-cricket-lehmann-e93b77 | Lehmann: Engelse spelers missen county cricket
+- britse-pakistanen-in-birmingham-zijn-klaar-met-alle-vooroordelen-4fe03d | Britse Pakistanen in Birmingham verzetten zich tegen stereotypering
+- bronzen-schild-uit-de-steentijd-na-meer-dan-230-jaar-terug-in-schotland-f18244 | Bronzen schild uit de Bronstijd terug in Schotland na eeuwen
+- hoe-tropische-cycloon-narelle-de-lucht-in-west-australie-rood-kleurde-b7f656 | Cycloon Narelle veroorzaakt rode lucht door stofstorm in West-Australië
+- korte-rente-is-te-ver-doorgeschoten-ef2253 | Kortetermijnrente stijgt, sociale media rechtszaken spelen rol
+- verdere-lectuur-van-ftav-49e3b6 | Selectie interessante leesstukken: verraad, geschiedenis en natuur
+- sinner-verhoogt-de-inzet-voor-alcaraz-met-historische-sunshine-double-8a19a2 | Jannik Sinner wint Miami Open na Indian Wells
+- paus-lijkt-hegseth-terecht-te-wijzen-over-leiders-met-handen-vol-bloed-2373b5 | Paus bekritiseert leiders met 'handen vol bloed' na Hegseth
+- hij-heeft-overal-over-gelogen-iran-oorlog-zet-trump-op-wankele-grond-bij-jonge-m-f8b424 | Iran-oorlog veroorzaakt verdeeldheid onder jonge MAGA-aanhangers
+- israelische-politie-blokkeert-katholieke-leiders-bij-palmpasenmis-in-jeruzalem-bcee9d | Israël blokkeert katholieke Palmzondagmis wegens veiligheidsrisico's
+
+importance=17 (7)
+- vrees-voor-toename-kleine-bootoversteken-kanaal-nu-britse-franse-overeenkomst-bi-33fead | Nieuwe UK-Franse migratieovereenkomst nog niet getekend, risico op meer kleine boottochten
+- moordproces-met-vrijmetselaars-en-franse-geheime-agenten-gestart-in-parijse-rech-270d13 | Proces tegen 22 verdachten in moordzaak bij rechtbank Parijs gestart
+- de-heren-en-vermeende-wetsovertreders-onder-mfs-s-uiteenlopende-kredietnemers-7d48a7 | Diverse kredietnemers van Market Financial Solutions onderzocht
+- steeds-vaker-duiken-ai-beelden-op-van-de-holocaust-daarin-schuilt-een-groot-geva-f89b91 | Gevaar van AI-beelden over de Holocaust neemt toe
+- eerste-stop-de-maan-volgende-stop-mars-waarom-nasa-s-missie-belangrijk-is-6c1bff | VS investeert fors in maanmissies richting Mars
+- la-county-sheriff-blijkt-overleden-na-medisch-noodgeval-tijdens-estafetterace-b3f879 | Adjunct-hoofdsherriff overlijdt tijdens Baker naar Vegas estafette
+- europese-landen-noemen-geplande-uitbreiding-van-de-doodstraf-in-israel-een-ernst-b16154 | Europese landen uiten zorgen over uitbreiding doodstraf in Israël
+
+importance=16 (12)
+- beslissing-op-bezwaar-inzake-verzoek-om-openbaarmaking-van-communicatie-tussen-e-ed0f9d | Beslissing over openbaarmaking communicatie bewindspersoon en Kamerlid
+- de-asielinstroom-van-week-13-bedroeg-ongeveer-900-aca943 | Ongeveer 900 asielaanvragen in week 13
+- peiling-maha-wil-meer-ze-kunnen-zich-tot-democraten-wenden-om-dat-te-krijgen-0aa031 | MAHA zoekt nieuwe bondgenoten onder Democraten
+- kim-novak-zegt-dat-sydney-sweeney-helemaal-fout-zit-om-mij-te-spelen-in-biopic-0110b0 | Kim Novak keurt casting Sydney Sweeney in biopic af
+- zeven-jaar-na-de-dood-van-emiliano-sala-wat-is-er-veranderd-aan-de-wildwest-van--ba50ab | Zeven jaar na Emiliano Sala: veranderingen in voetbaltransfers
+- distressed-debtfondsen-enthousiast-over-private-credit-aanbiedingen-7a25d0 | Investeerders zien kansen in private credit-kortingen
+- gaan-de-aandelen-van-thg-flink-stijgen-4df973 | THG analyseert kansen op grote winsten nauwkeurig
+- wetsvoorstel-masterstudenten-kunnen-ook-doctor-worden-op-hbo-177260 | Wetsvoorstel maakt hbo-docoraat mogelijk voor masterstudenten
+- caf-secretaris-generaal-stapt-op-na-controverse-rond-afcon-finale-b9ce17 | CAF-secretaris-generaal vertrekt na controverse AFCON-finale
+- zinkende-bultrugwalvis-voor-de-derde-keer-gestrand-aan-duitse-kust-c6ffa8 | Bultrugwalvis voor derde keer gestrand aan Duitse kust
+- komt-er-een-amerikaans-grondoffensief-in-iran-er-zijn-tal-van-mogelijkheden-aa9396 | Discussie over mogelijk Amerikaans grondoffensief in Iran
+- zelensky-bezoekt-jordanie-tijdens-midden-oostentour-om-veiligheidsbanden-te-vers-7ffe78 | Zelensky bezoekt Jordanië om veiligheidsbanden te versterken
+
+importance=15 (13)
+- verplaatste-gezinnen-in-soedan-worstelen-door-gebrek-aan-hulp-d1fc40 | Hulp aan verplaatste families in Soedan onvoldoende
+- het-belang-van-de-overval-op-nassau-b5af2a | De eerste amfibische aanval van het US Marine Corps in Nassau
+- wekdienst-30-3-gorinchem-beslist-over-herstemming-hoger-beroep-ali-b-gaat-verder-583e79 | Gorinchem beslist over herstemming gemeenteraadsverkiezingen
+- privaat-kapitaal-wat-zijn-de-risico-s-f1502e | Risico's privaat kapitaalsector gewaardeerd tegenover 2008
+- wat-te-doen-als-het-algemeen-belang-van-informatie-ontspoort-280ac6 | Moeilijkheden bij betrouwbare nieuwsvoorziening in economisch perspectief
+- de-amerikaanse-gig-economie-f71e3b | Zelfstandigheid stimuleert consumptie in Amerikaanse gig-economie
+- eli-lilly-dringt-aan-op-prijsverhogingen-van-nhs-medicijnen-in-ruil-voor-investe-28f897 | Eli Lilly wil hogere NHS-medicijnprijzen voor investeringen in VK
+- kan-de-valhalla-aston-martins-fortuin-een-boost-geven-9cea2f | Eerste proefrit Valhalla hybride kan Aston Martin nieuw succes brengen
+- queen-elizabeth-ii-s-onwrikbare-elegantie-gevierd-in-londense-tentoonstelling-f8c6de | Tentoonstelling in Buckingham Palace eert stijl Queen Elizabeth II
+- start-up-oprichters-wijken-terug-voor-groene-pitches-bij-progressieve-sxsw-f0132a | Start-up oprichters mijden groene pitches op SXSW
+- exclusief-binnenkijken-bij-de-nieuwe-populaire-eetbestemming-in-west-londen-7e0374 | Nieuw chique restaurant opent in Olympia-centrum West-Londen
+- het-karaokebedrijf-de-penny-stock-belegger-en-de-17-miljard-trucking-crash-b72d95 | Investeerder koopt aandeel voor AI-aandelenkoers stijgt
+- deelsluit-van-de-overheid-wordt-de-langste-in-de-amerikaanse-geschiedenis-8dac26 | Langste gedeeltelijke sluiting Amerikaanse overheid: 44 dagen
+
+importance=14 (4)
+- mohamed-salah-gewaarschuwd-tegen-overstap-naar-mls-terwijl-clubs-belangstelling--6aa201 | Waarschuwing voor Mohamed Salah bij mogelijke overstap naar MLS
+- klassennijd-zal-nooit-verdwijnen-maar-kan-wel-worden-verlicht-betoogt-deze-filos-4d86e6 | Filosoof: klassennijd blijft, maar kan verzacht worden
+- yen-en-roepie-stijgen-terwijl-aziatische-landen-worstelen-om-hun-valuta-te-verde-b5373f | Yen en roepie stijgen terwijl Aziatische valuta onder druk staan
+- latijns-patriarch-krijgt-toegang-tot-heilige-plaats-in-jeruzalem-na-politie-ingr-4ca5b1 | Latijns patriarch krijgt weer toegang tot heilige plaats in Jeruzalem
+
+importance=13 (10)
+- marco-bezzecchi-wint-usa-motogp-en-verlengt-perfecte-seizoensstart-48a411 | Marco Bezzecchi wint USA MotoGP en blijft ongeslagen
+- details-over-compensatie-autolening-worden-bekendgemaakt-met-gemiddelde-uitbetal-9693ec | Details compensatie autoleningen met gemiddelde uitbetaling van £700
+- 75-van-de-fans-is-tegen-var-in-de-premier-league-zegt-football-supporters-associ-998dad | 75% van fans keurt VAR in Premier League af, zegt enquête
+- drie-aangehouden-in-parijs-na-mislukte-bomaanslag-bij-bank-of-america-7263ca | Drie gearresteerd na poging bomaanslag in Parijs
+- politie-pakt-man-21-op-in-eindhoven-mogelijk-link-met-is-d4aeb7 | Man (21) opgepakt in Eindhoven, mogelijke IS-link onderzocht
+- qatarese-nieuwszender-ai-araby-veroordeelt-aanval-op-haar-kantoor-c43aad | Qatarees nieuwskanaal veroordeelt aanval op kantoor
+- paus-leo-veroordeelt-het-gebruik-van-god-om-oorlog-te-rechtvaardigen-tijdens-pal-5eba01 | Paus Leo veroordeelt gebruik God ter rechtvaardiging van oorlog
+- de-week-in-beelden-enorme-aanval-overdag-op-oekraine-no-kings-en-frankrijk-neemt-4bcecd | Grote dagaanval op Oekraïne, hulde aan Jospin in Frankrijk
+- russische-studenten-misleid-om-contracten-met-leger-te-tekenen-53188d | Russische studenten misleid bij ondertekenen legercontracten
+- straffen-rusland-voor-het-helpen-van-iran-bij-het-richten-op-het-amerikaanse-leg-e70e7f | VS benadrukken rol Rusland en Iran in conflict Midden-Oosten
+
+importance=12 (7)
+- fakhar-zaman-beschuldigd-van-ball-tampering-door-pakistaanse-bond-in-psl-503017 | Fakhar Zaman beschuldigd van balmanipulatie in PSL
+- het-beste-van-tv-en-streaming-deze-week-636a53 | Aanraders: ‘The Pitt’, Britse ‘Saturday Night Live’ en nieuwe series
+- hoe-en-wanneer-de-volle-roze-maan-van-april-te-zien-is-b4b0bd | Wanneer en waarom de volle Roze Maan van april verschijnt
+- harry-potter-ster-paapa-essiedu-hoopt-dat-zijn-tv-drama-babies-het-taboe-op-zwan-92a5ef | Paapa Essiedu's serie Babies bespreekt zwangerschapsverlies
+- kindgerichte-aanpak-in-familierechtzaken-grootste-verandering-in-30-jaar-zegt-ho-28d5b5 | Nieuw kindgerichte aanpak in familierecht na 30 jaar
+- chesney-de-kangoeroe-drie-dagen-nadat-hij-van-de-boerderij-was-weggesprongen-gev-2fc0c2 | Kangoeroe Chesney gevonden na drie dagen op avontuur
+- finland-meldt-dronecrashes-en-beweert-schending-van-territorium-c30b11 | Finland meldt neerstorten van drones na grensschending
+
+importance=11 (1)
+- rusland-wil-auto-s-gestolen-in-de-eu-legaliseren-aa2ed6 | Rusland wil gestolen EU-auto's legaliseren, zorgen in Duitsland
+
+importance=10 (5)
+- iaea-zegt-dat-iraanse-zware-waterreactor-in-khondab-niet-langer-operationeel-is-65ae0c | IAEA meldt dat Iran's Khondab zwaarwaterinstallatie stilgelegd is
+- stekker-uit-rtl-tonight-na-de-zomer-nieuwe-talkshow-met-renze-klamer-78f5cf | RTL Tonight stopt, nieuwe talkshow met Renze Klamer na zomer
+- italie-onderzoekt-sephora-en-benefit-vanwege-marketing-van-huidverzorging-aan-ki-c64379 | Italië onderzoekt LVMH voor marketing van kinderhuidverzorging
+- opnieuw-naar-de-stembus-gorinchem-staat-voor-moeilijk-besluit-na-aanwijzingen-st-867ca3 | Gorinchem overweegt nieuwe verkiezingen na mogelijke stemfraude
+- een-maand-in-iran-de-politieke-realiteit-van-de-gop-dringt-door-439633 | Republikeinen in sleutelsstaten steunen president in oorlog Iran
+
+importance=9 (6)
+- raadsleden-in-engeland-aangespoord-om-universele-parkeerapp-te-gebruiken-om-onee-feeb11 | Engelse gemeenten aangespoord universele parkeerapp te gebruiken
+- spurs-willen-de-zerbi-als-nieuwe-vaste-coach-86de69 | Spurs willen Roberto De Zerbi als vaste hoofdcoach
+- foto-s-tonen-zwaar-beschadigde-amerikaanse-radarvliegtuig-op-saoedische-basis-ebeb63 | Zwaar beschadigd Amerikaans radarvliegtuig op Saoedische basis
+- week-begint-guur-met-veel-buien-ook-rest-van-de-week-wisselvallig-741f66 | Week start fris en nat met buien, wisselvallig weer blijft
+- canada-s-nieuwe-democratische-partij-kiest-avi-lewis-als-leider-ee1a23 | Avi Lewis gekozen als nieuwe leider van Canadese NDP
+- veerboot-maakt-laatste-oversteek-over-de-mersey-na-66-jaar-5e6eca | Ferry Royal Iris maakt laatste overtocht na 66 jaar
+
+importance=8 (8)
+- madame-la-maire-maureen-searle-wordt-de-eerste-engelse-vrouw-die-een-franse-stad-527c1b | Maureen Searle eerste Engelse vrouw als burgemeester in Frankrijk
+- de-mandenmakers-van-de-mythe-willen-niet-te-veel-verdienen-we-zijn-antikapitalis-f1d630 | Mandenmakers van De Mythe kiezen bewust voor beperkte inkomsten
+- zuckerberg-verruilt-zijn-hoodies-voor-prada-en-de-echte-sterren-dragen-een-boek-3e7eba | Zuckerberg kiest Prada, sterren dragen boeken bij evenementen
+- de-wet-komt-eraan-voor-sociale-media-terwijl-de-wetenschap-nog-onzeker-is-fde844 | Wetgeving tegen sociale media voor jongeren in opkomst
+- britse-politie-verhoort-verdachte-na-incident-met-auto-in-derby-a5eb26 | Auto-incident in Derby, zeven ernstig gewond, verdachte gearresteerd
+- amerikaanse-marine-neemt-nieuwe-virginia-klasse-snelle-aanvalsonderzeeer-in-gebr-11769c | Amerikaanse marine neemt nieuwe snel-aanvalsonderzeeër in gebruik
+- u-s-army-versterkt-ondersteuning-bij-munitieproductie-afc081 | Amerikaans leger investeert 44,6 miljoen dollar in munitieproductie
+- vaarwel-graaff-reinet-zuid-afrikaanse-stad-verdeeld-over-naamswijziging-02ca3d | Naamswijziging Graaff-Reinet veroorzaakt spanningen in Zuid-Afrika
+
+importance=7 (2)
+- dag-van-zero-waste-chef-massimo-bottura-spreekt-op-france-24-3ef594 | Internationale Dag van Zero Waste met Massimo Bottura
+- afrikaanse-voetbalbaas-treedt-af-na-rel-rond-finale-marokko-senegal-af6ca6 | Afrikaanse voetbalbaas stapt op na discussie finale Marokko-Senegal
+
+importance=5 (4)
+- cori-bush-wil-haar-zetel-terug-en-een-herkiezing-tegen-aipac-2a6df4 | Cori Bush start nieuwe campagne na verlies door AIPAC
+- u-s-navy-start-wedstrijd-voor-nieuw-trainingsvliegtuig-84d315 | Amerikaanse marine start wedstrijd voor nieuw trainingsvliegtuig
+- winkels-en-restaurants-in-egypte-moeten-vroeg-sluiten-vanwege-energiecrisis-1590d4 | Winkels en restaurants in Egypte sluiten om 21 uur door energiecrisis
+- tranen-en-verzet-bij-begrafenis-van-libanees-kind-11-gedood-bij-israelische-aanv-8aacbd | Begrafenis van Libanees kind na Israëlische aanval
+
+importance=4 (5)
+- pints-meet-prop-bets-polymarket-s-situation-room-pop-up-bar-in-dc-7c8b44 | Polymarkets opent pop-up bar in DC voor voorspellingsmarkten
+- polygraphen-hebben-grote-tekortkomingen-zijn-er-betere-opties-dbcde0 | Onderzoek naar betere methoden voor leugendetectie loopt door
+- opnames-van-gevangenistelefoongesprekken-roepen-vragen-op-over-bekwaamheid-oud-a-b97e29 | Telefonische bewijsfragmenten roepen twijfel op over procesbekwaamheid ex-topman
+- een-mier-voor-220-de-nieuwe-grens-van-de-handel-in-wilde-dieren-d884f3 | Hoge prijzen voor mieren door illegale handel in Kenia
+- denkt-u-dat-love-island-erg-is-wacht-maar-tot-u-de-ai-versie-met-fruit-ziet-442e0a | AI-fruitversie van Love Island zet strijd voort
+
+importance=3 (13)
+- hoe-het-deepfake-pornoscandaal-rond-een-tv-ster-duitsland-opschudde-b58cb1 | Deepfake-pornoscandaal rond tv-ster in Duitsland
+- kijk-iconische-wereldwijde-bezienswaardigheden-doven-lichten-voor-earth-hour-190c6f | Wereldberoemde monumenten doven licht tijdens Earth Hour
+- glazuur-sprinkels-en-lagen-plezier-reuze-taartpicknick-in-sydney-27d8ef | Honderden bakkers verzamelen voor reuzen-taartpicknick in Sydney
+- twee-hulpboten-op-weg-naar-cuba-gevonden-na-dagen-vermist-te-zijn-95eb78 | Twee hulpschepen veilig gevonden na dagen vermist te zijn
+- waarom-josh-simons-vertrok-uit-de-regering-8f2dbc | Josh Simons treedt af na journalistiek onderzoek en excuses
+- zwangere-vrouwen-in-cuba-worstelen-met-brandstofblokkade-b46404 | Zwangere vrouwen in Cuba getroffen door brandstoftekort
+- looksmaxxing-influencer-clavicular-gearresteerd-wegens-mishandeling-in-florida-aad34d | Influencer Clavicular gearresteerd na uitlokken vechtpartij
+- conflict-in-het-midden-oosten-vn-initiatieven-steunen-bemiddeling-en-levensredde-bec05f | VN ondersteunt bemiddeling en kunstmestleveringen in Midden-Oosten
+- ontvoerd-en-gemarteld-op-beruchte-migratieroute-naar-saoedi-arabie-bfeab6 | Migranten ontvoerd en mishandeld op gevaarlijke route naar Saoedi-Arabië
+- u-s-air-force-zet-f-35a-gevechtsvliegtuigen-in-in-noord-japan-d3417d | F-35A-jagers van Amerikaanse luchtmacht gestationeerd in noordelijk Japan
+- russische-parlementarier-bespot-amerikaanse-militaire-capaciteiten-in-opmerkinge-869f66 | Russische wetgever bekritiseert Amerikaanse militaire capaciteiten
+- northrop-grumman-bouwt-sentinel-icbm-lanceersilo-56f752 | Northrop Grumman ontwikkelt lanceersilo voor Sentinel ICBM
+- twijfels-over-vrede-in-gaza-nemen-toe-nu-de-aandacht-verschuift-naar-iran-96e71d | Twijfels over vrede in Gaza groeien door focus op Iran
+
+importance=2 (12)
+- bank-of-america-betaalt-72-5-miljoen-dollar-in-epstein-rechtszaak-2e9e50 | Bank of America betaalt 72,5 miljoen dollar in Epstein-zaak
+- tweeentwintig-migranten-stierven-voor-de-griekse-kust-na-zes-dagen-op-zee-b42212 | Tweeëntwintig migranten sterven voor Griekse kust na dagen op zee
+- waarom-sommige-democraten-hasan-piker-s-megafoon-willen-afsluiten-9fb159 | Democraten willen invloed Hasan Piker beperken
+- nepalese-oud-premier-oli-gearresteerd-voor-het-dodelijk-neerslaan-van-gen-z-prot-b53a6d | Nepalese oud-premier Oli gearresteerd na neerslaan protesten
+- amerikaanse-marine-herstelt-gereedheid-onderzeeboot-uss-albany-1cc4e6 | USS Albany onderzeeër voert onderhoud en upgrades succesvol uit
+- amerikaanse-ambassade-in-mexico-veroorzaakt-verontwaardiging-met-ai-video-die-ze-d60fdd | VS-ambassade in Mexico wekt verontwaardiging met AI-video over migranten
+- republikeinen-huis-verwerpen-senaatsovereenkomst-verlengen-gedeeltelijke-sluitin-14c800 | House-republikeinen verwerpen akkoord, shutdown VS duurt voort
+- nepals-ex-premier-gearresteerd-vanwege-dodelijke-protestonderdrukking-774751 | Nepals oud-premier gearresteerd na protesten met dodelijke afloop
+- tiger-woods-op-borgtocht-vrij-na-arrestatie-voor-rijden-onder-invloed-b53ab6 | Tiger Woods vrijgelaten op borgtocht na DUI-arrestatie
+- ons-huis-is-weg-bbc-spreekt-met-ontheemde-families-in-libanon-eec69e | Meer dan een miljoen ontheemden in Libanon na crisis
+- kp-sharma-oli-voormalig-premier-van-nepal-gearresteerd-wegens-vermeende-rol-in-d-dbc747 | Voormalig premier Nepal gearresteerd na dodelijke protesten
+- voormalig-trump-adviseur-iran-zegt-dat-oorlog-escaleert-a6c844 | Voormalig Trump-adviseur voorziet escalatie in conflict met Iran
+
+importance=1 (42)
+- verklaring-waarom-we-geen-libellen-van-twee-voet-meer-zien-faalt-be97ce | Ademhaling verklaart niet waarom reusachtige libellen verdwenen zijn
+- causaliteit-optioneel-testen-van-de-onbepaalde-oorzakelijke-volgorde-superpositi-439f3e | Kwantumexperiment test invloed van volgorde van gebeurtenissen
+- hoe-nieuwe-vistuigtechniek-bijvangst-van-schildpadden-en-andere-dieren-kan-vermi-4881de | Nieuwe vistuigen verminderen bijvangst van schildpadden en dieren
+- van-verstoorde-uitzendingen-tot-een-geblokkeerde-website-80-jaar-doorzettingsver-281165 | BBC Russian: 80 jaar verzet ondanks blokkades en storingen
+- noah-wyle-is-terug-in-a-e-met-nieuwe-drama-the-pitt-ik-hoop-dat-mensen-met-empat-7ca968 | Noah Wyle speelt arts met PTSS in nieuwe medische serie
+- de-ernstigste-misdaad-tegen-de-menselijkheid-wat-betekent-de-vn-stem-over-slaver-b1b69e | VN-stemming over slavernij: discussies over compensatie gestart
+- dhs-bevestigt-dat-lewandowski-samen-met-noem-het-departement-verliet-bda735 | Lewandowski verlaat DHS samen met Noem, reden onbekend
+- wolfenstein-3d-met-een-hand-spelen-in-2026-8ac574 | Wolfenstein 3D in 2026 spelen met één hand mogelijk
+- met-nieuwe-plug-infunctie-brengt-openai-codex-officieel-verder-dan-coderen-acd7b9 | OpenAI Codex breidt uit met nieuwe plugins-functie
+- uitbraak-gelinkt-aan-rauwmelkse-kaas-groeit-totaal-9-gevallen-een-met-nierfalen-9d203c | Uitbraak in rauwe kaas met 9 gevallen, één nierfalen
+- rechter-woedend-wanneer-verdachte-via-zoom-deelneemt-terwijl-hij-rijdt-en-daarov-031e2b | Verdachte neemt via Zoom deel tijdens rijden, rechter eist opheldering
+- av1-s-open-royalty-vrije-belofte-in-twijfel-door-rechtszaak-van-dolby-tegen-snap-e67990 | Dolby sleept Snapchat voor de rechter om AV1 codec discussie
+- hegseth-trump-had-geen-bevoegdheid-om-anthropic-op-de-zwarte-lijst-te-zetten-zeg-92877d | Rechter: Trump had geen bevoegdheid om Anthropic te sanctioneren
+- noodtoestand-op-de-filipijnen-vanwege-oliecrisis-ecbacf | Filippijnen roepen noodtoestand uit door oliecrisis
+- trumps-cyberstrategie-is-een-sterk-plan-maar-draait-om-de-uitvoering-1c0d43 | Nieuwe Amerikaanse Cyberstrategie richt op versterkte infrastructuurverdediging
+- doj-bevestigt-dat-persoonlijke-e-mail-van-fbi-directeur-kash-patel-is-gehackt-4d58cc | Persoonlijke e-mail FBI-directeur Kash Patel gehackt
 - voorjaarsnota-ocw-investeringen-in-emancipatie-en-basisvaardigheden-ook-bezuinig-13df28 | Kabinet investeert extra in veiligheid lhbtiq+ en bestrijding geweld
-- sony-verhoogt-opnieuw-de-playstation-5-prijzen-ditmaal-met-100-tot-150-86ca2e | Sony verhoogt PlayStation 5-prijzen door tekorten
-- niemand-is-blij-met-nasa-s-nieuwe-idee-voor-private-ruimtestations-426997 | NASA's voorstel voor privé-ruimtevaartstations roept kritiek op
+- wetenschappers-filmen-walvis-die-baart-terwijl-andere-walvissen-samenwerken-om-h-abbc9e | Wetenschappers filmen potvis terwijl ze kalf krijgt met hulp
+- wat-doet-rfk-met-vaccins-voor-kinderen-in-amerika-94f043 | Tegenslag voor RFK's vaccininitiatief in Amerika
+- escalatie-van-geweld-en-toestroom-van-terugkeerders-in-drc-veroorzaken-regionale-77d01a | Toenemend geweld in DRC vergroot regionale instabiliteit
+- lovende-recensies-maar-toch-niet-blij-pijn-volgt-zelden-logica-c9125c | Pijn ervaart men vaak zonder duidelijke reden ondanks positieve signalen
 - benoemingen-bij-gemeenschappelijk-hof-van-justitie-afc82a | Drie nieuwe plaatsvervangend leden benoemd bij Hof van Justitie
 - kabinet-wet-gelijke-behandeling-ook-van-toepassing-op-overheid-233c3a | Kabinet wil gelijke behandeling wettelijk regelen voor overheid
+- waarom-de-dag-erna-de-belangrijkste-dag-is-in-het-conflict-in-iran-691a61 | Belang van de 'Dag erna' in conflict met Iran
+- kabinet-presenteert-eerste-voorjaarsnota-a1da80 | Kabinet presenteert eerste Voorjaarsnota en Startnota met begrotingskaders
 - 150-miljoen-voor-agrarische-ondernemers-en-natuurherstel-0d17b5 | Kabinet investeert 150 miljoen euro in landbouw en natuurherstel
 - benoeming-bij-het-acoi-2d7789 | Annetje Ottow benoemd tot lid Adviescollege ACOI
 - republikeinen-verdeeld-over-wetgeving-voor-datacenters-c3d3bd | Republikeinen verdeeld over datacenterwetgeving
-- apple-stopt-met-zijn-dure-vaak-verwaarloosde-mac-pro-desktop-ac3c4a | Apple stopt verkoop en vervanging Mac Pro desktop
 - kabinet-versterkt-aanpak-ernstige-verstoringen-openbare-orde-met-nieuwe-politieb-a99778 | Kabinet versterkt politiebevoegdheden voor openbare orde
 - 120-miljoen-voor-aanleg-van-warmtenetten-en-bouw-ouderenwoningen-a367ab | Kabinet investeert 120 miljoen in warmtenetten en ouderenwoningen
 - advies-bedrijfsarts-wordt-leidend-bij-re-integratietoets-zieke-werknemer-ac0194 | Bedrijfsartsadvies leidend bij toets re-integratie zieke werknemer
-- rivian-en-vw-groep-voltooien-wintertests-van-nieuwe-zonale-architectuur-06b8a2 | Rivian en VW voltooien wintertesten nieuwe zonale architectuur
-- portugal-de-electorale-legitimiteit-van-extreemrechts-kan-uiteindelijk-machtspos-2bff6a | Extreemrechts in Portugal kan via verkiezingen regeringsmacht verkrijgen
-- amd-s-ryzen-9-9950x3d2-dual-edition-stopt-208mb-cache-in-een-chip-5b0971 | AMD introduceert Ryzen 9 9950X3D2 met 208MB cache
+- texas-bereidt-zich-voor-op-strijd-om-datacenters-141768 | Texas bereidt zich voor op debat over datacenters en energie
+- portugal-de-electorale-legitimiteit-van-extreemrechts-kan-uiteindelijk-regerings-2bff6a | Extreemrechts in Portugal kan via verkiezingen regeringsmacht verkrijgen
+- senatoren-willen-dat-amerikaanse-energieagentschap-het-stroomverbruik-van-datace-c8c2d5 | Senatoren eisen jaarlijkse rapportage elektriciteitsgebruik datacenters
+- vn-s-baanbrekende-uitspraak-over-slavernij-versterkt-afrikaanse-unie-in-strijd-o-6429bb | VN bestempelt slavenhandel als ernstigste misdaad
+- rocket-report-rusland-heropent-toegang-tot-iss-cape-canaveral-houdt-rakettest-bf4662 | Rusland hervat toegang tot ISS; rakettest in Cape Canaveral
+- syrie-vn-commissie-documenteert-ernstige-schendingen-tijdens-escalatie-in-juli-2-a54b5c | VN-commissie rapporteert ernstige schendingen in Sweida
+- nederland-en-oekraine-versterken-onderlinge-samenwerking-met-conferentie-in-bred-429a4f | Conferentie in Breda versterkt samenwerking Nederland en Oekraïne
+- de-boeken-in-melania-s-winkel-in-kyiv-zijn-doorweekt-maar-lezers-blijven-komen-262a07 | Boeken in Melania’s winkel in Kiev zijn nat, maar populair
+- hellevuur-taiwan-een-egeltjesverdediging-in-het-drone-tijdperk-9e9bc4 | Chinese invasie van Taiwan in 2029 met drone-ondersteuning
+- de-favoriete-tegenstander-van-progressief-nederland-de-allerrijksten-1d267e | Progressief Nederland zet zich af tegen de allerrijksten
+- australie-heeft-geen-onderzeeers-meer-als-het-aukus-verlaat-waarschuwt-hoge-defe-172839 | Australië zonder onderzeeërs als Aukus-plan faalt
+
+importance=0 (181)
+- sony-verhoogt-opnieuw-de-prijzen-van-de-playstation-5-ditmaal-met-100-tot-150-86ca2e | Sony verhoogt PlayStation 5-prijzen door tekorten
+- niemand-is-blij-met-nasa-s-nieuwe-idee-voor-priveruimtevaartstations-426997 | NASA's voorstel voor privé-ruimtevaartstations roept kritiek op
+- apple-stopt-met-de-verkoop-van-zijn-dure-vaak-verwaarloosde-mac-pro-desktop-ac3c4a | Apple stopt verkoop en vervanging Mac Pro desktop
+- rivian-en-vw-group-voltooien-wintertests-van-nieuwe-zonsarchitectuur-06b8a2 | Rivian en VW voltooien wintertesten nieuwe zonale architectuur
+- amd-s-ryzen-9-9950x3d2-dual-edition-propt-208mb-cache-in-een-chip-5b0971 | AMD introduceert Ryzen 9 9950X3D2 met 208MB cache
 - myanmar-wfp-meldt-fragiel-herstel-een-jaar-na-dodelijke-aardbeving-a4a2aa | WFP meldt kwetsbaar herstel in Myanmar na aardbeving
 - ontwerpbesluit-wijziging-reglement-rijbewijzen-218696 | Aanpassing Reglement rijbewijzen en opsporingsambtenaren openbaar vervoer
-- de-cartoonisten-van-het-land-over-de-politieke-week-f64abd | Politieke cartoonisten leggen opvallende gebeurtenissen visueel vast
+- trump-speelt-texas-hold-em-met-goedkeuring-senaat-0c0f0b | Trump onthoudt zich van steun in Texas Senaatsrunoff
+- de-politieke-tekenaars-van-het-land-over-de-politieke-week-f64abd | Politieke cartoonisten leggen opvallende gebeurtenissen visueel vast
 - ontwerp-besluit-diploma-s-archivarissen-0db5f6 | Ontwerp besluit over diploma-eisen voor archivarissen
-- het-pentagon-wil-dual-use-innovatie-octrooirecht-kan-dit-straffen-82d24f | Patentwetgeving beïnvloedt Pentagon innovatiebeleid
-- andy-beshears-strategie-voor-2028-hoe-een-democraat-wint-in-trumpgebied-d10767 | Andy Beshear’s strategie voor Democratische winst in Trump-gebied
-- elon-musk-verliest-grote-juridische-zaak-boycot-van-x-geheel-legaal-b3bcf3 | Rechter verklaart boycot van X door adverteerders legaal
+- het-pentagon-wil-dual-use-innovatie-het-octrooirecht-kan-het-bestraffen-82d24f | Patentwetgeving beïnvloedt Pentagon innovatiebeleid
+- het-geweld-van-racistische-tirannie-afrikaanse-guernica-te-zien-naast-picasso-me-0b98cf | Afrikaanse Guernica naast Picasso’s meesterwerk in Reina Sofía
+- andy-beshear-s-speelboek-voor-2028-hoe-een-democraat-wint-in-trump-land-d10767 | Andy Beshear’s strategie voor Democratische winst in Trump-gebied
+- twee-hulpboten-op-weg-naar-cuba-vermist-zegt-mexico-0d9fdd | Zoekactie naar verdwenen hulpboten voor Cuba gestart
+- elon-musk-verliest-grote-rechtszaak-x-boycot-helemaal-legaal-b3bcf3 | Rechter verklaart boycot van X door adverteerders legaal
+- loekasjenko-en-kim-bezegelen-hun-vriendschap-met-een-knuffel-b96b1c | Loekasjenko en Kim bevestigen vriendschap met omhelzing
+- advocaat-ali-b-gaat-vol-in-de-tegenaanval-f342ab | Advocaat Ali B reageert krachtig in actuele kwestie
+- nepal-s-aankomend-premier-gebruikt-rap-om-op-te-roepen-tot-eenheid-in-eerste-boo-dc34ca | Nepal’s toekomstige premier roept op tot eenheid met rap
+- waarom-zijn-podcasts-met-ouwehoerende-bn-ers-zo-populair-8715c1 | Populariteit van podcasts met BN’ers verklaard
+- voor-de-volgende-olympische-spelen-moeten-alle-vrouwen-een-gentest-doen-745471 | Vrouwen moeten gentest doen voor volgende Olympische Spelen
 - besluit-op-bezwaar-inzake-woo-verzoek-over-praktische-werkafspraken-tussen-de-re-611da5 | Besluit over werkafspraken Rechtspraak en Justitie bij schadevergoeding
+- nigeria-neemt-zijn-plaats-in-op-het-wereldtoneel-in-streven-naar-regionale-groot-79c07e | Nigeria versterkt handelsbanden met VK en streeft naar regionale macht
+- safaa-19-ik-doneer-20-procent-van-mijn-geld-deels-vanuit-mijn-geloof-cd7cb7 | Safaa (19) doneert 20 procent van haar inkomen uit geloof
 - minister-van-den-brink-versterkt-migratiesamenwerking-met-duitsland-e7e7ff | Minister Van den Brink versterkt migratiesamenwerking met Duitsland
 - werkconferentie-holocausteducatie-in-den-haag-in-teken-van-onderwijspraktijk-en--cc4e2d | Werkconferentie Holocausteducatie richt zich op onderwijs en kennis
-- abigail-spanberger-staat-voor-een-nationale-test-met-virginia-herindeling-8e81d6 | Spanberger staat voor cruciale test door herindeling Virginia
-
-importance=31 (3)
-- estland-klaar-om-te-praten-over-backup-bij-straat-van-hormuz-0c3753 | Estland staat open voor overleg over alternatieve route Hormuz
-- aipac-aanvallen-mislukken-terwijl-democraat-daniel-biss-de-voorverkiezing-van-he-0c20f3 | Democraat Daniel Biss wint voorverkiezing Illinois na AIPAC-aanval
-- het-gevaar-van-vibe-patriottisme-in-defensietechnologie-fa2d6b | De risico's van vibe-patriottisme in defensietechnologie
-
-importance=29 (19)
-- bondgenoten-en-congres-staan-op-het-punt-een-belangrijke-inkijk-in-amerikaanse-m-850d7b | Pentagon deelt geen Global Posture Review meer met bondgenoten
-- vijf-wargames-die-elk-force-design-proces-nodig-heeft-d0b753 | Vijf oorlogsspellen essentieel voor Force Design 2030
+- abigail-spanberger-staat-voor-een-nationale-test-met-de-herindeling-in-virginia-8e81d6 | Spanberger staat voor cruciale test door herindeling Virginia
+- de-prik-of-het-drankje-bij-euthanasie-kiest-bijna-niemand-voor-het-laatste-9217c2 | Bij euthanasie kiest bijna niemand voor het drankje als methode
+- 2-nederlandse-projecten-aangewezen-als-strategisch-project-onder-europese-net-ze-5b733c | Twee Nederlandse projecten erkend als strategisch onder Net-Zero Act
+- 10-oekrainers-versloegen-twee-navo-bataljons-wanneer-wordt-navo-wakker-3528b2 | Tien Oekraïners verslaan twee NAVO-bataljons bij oefening
+- een-torpedo-in-de-handelsroutes-maritieme-oorlogsvoering-keert-terug-in-de-indo--ae7785 | Amerikaanse onderzeeër zinkt Iraans oorlogsschip in Indo-Pacific
+- hoe-zuid-korea-ijzer-kan-brengen-naar-de-straat-van-hormuz-e12e2e | Zuid-Korea helpt VS bij raketverdediging in Straat van Hormuz
+- oekraiense-energiefunctionaris-opheffen-sancties-op-russische-olie-is-verkeerde--26c299 | Oekraïne ziet opheffen sancties Russische olie als foute aanpak
+- bondgenoten-en-congres-dreigen-belangrijk-inzicht-in-amerikaanse-militaire-plann-850d7b | Pentagon deelt geen Global Posture Review meer met bondgenoten
+- van-de-luchten-boven-kiev-tot-de-perzische-golf-hoe-oekraiense-dronetechnologie--aca4a4 | Oekraïense drones veranderen wereldwijde defensiestrategieën
+- bestuurders-laten-eerdere-reactie-op-hoge-benzineprijzen-varen-1068d5 | Gouverneurs kiezen andere aanpak bij hoge benzineprijzen
+- hoe-houdt-de-partnerschap-van-iran-met-belarus-en-rusland-stand-tijdens-de-oorlo-6667ad | Relaties Iran, Wit-Rusland en Rusland blijven sterk tijdens oorlog
+- roemenie-betaalt-de-cyberprijs-voor-steun-aan-oekraine-waar-is-de-eu-3ecfc5 | Cyberaanvallen treffen Roemenië door hybride oorlogsvoering
+- koning-willem-alexander-prinses-beatrix-en-minister-president-jetten-bij-uitreik-ebb814 | Koning en prinses wonen Four Freedoms Awards bij in Middelburg
+- rechters-verhogen-zelden-straffen-na-maximumstrafverhoging-640d1f | Rechters verhogen zelden straffen na strafmaximumverhoging
+- uw-verdedigingscode-is-al-door-ai-gegenereerd-en-nu-7183d0 | AI-gegenereerde code compliceert defensiebeleid over softwareontwikkeling
+- vijf-oorlogsspellen-die-elk-krachtontwerpproces-noodzakelijk-heeft-d0b753 | Vijf oorlogsspellen essentieel voor Force Design 2030
+- proxy-druk-op-iran-de-belofte-en-valkuilen-van-het-bewapenen-van-koerden-60dad0 | Bewapening Koerden in strategie tegen Iran heeft risico's
+- volg-het-geld-financien-en-de-toekomst-van-geallieerde-economische-staatsvoering-1ca81e | Financiële stromen als cruciaal element in wereldwijde machtsstrijd
+- vs-moeten-straat-van-hormuz-heropenen-om-stijgende-energieprijzen-te-verlagen-ze-9e264e | VS moeten Straat van Hormuz heropenen om energieprijzen te verlagen
 - machado-venezuela-kan-olieproductie-vervijfvoudigen-onder-een-democratische-rege-428b4a | Machado presenteert plan voor vervijfvoudiging olieproductie Venezuela
+- burgum-energieprijs-schok-in-iran-binnen-weken-niet-maanden-ca26be | Burgum: Energieprijsschok Iran duurt weken, niet maanden
+- door-trump-gesteunde-leider-senaat-noord-carolina-verliest-met-23-stemmen-c27040 | Trump-gesteunde senator North Carolina verliest nipt
 - trump-krijgt-zijn-zin-in-caracas-maar-het-is-gecompliceerd-356211 | Samenwerking tussen Rubio en Cabello voor kalmering Caracas
+- de-oorlog-in-iran-en-gevolgen-voor-het-nucleaire-non-proliferatieregime-93d273 | Invloed van Iran-conflict op nucleair non-proliferatieregime
 - tweede-kamer-stemt-in-met-novelle-bij-wet-versterking-regie-volkshuisvesting-664ae3 | Tweede Kamer stemt in met novelle Versterking regie volkshuisvesting
+- oorlog-als-een-kracht-van-vernietiging-verandering-en-kans-ac091b | Oorlog in Oekraïne als kracht voor verandering en kansen
+- democratische-kandidaten-2028-zoeken-afstand-tot-aipac-2f6a3e | Democratische kandidaten distantiëren zich van AIPAC in 2028
 - newsom-we-kunnen-het-land-in-2028-verliezen-b38410 | Newsom waarschuwt voor mogelijk verlies land in 2028
 - de-volgende-transformatie-van-de-amerikaanse-scheepsbouw-251ba3 | HII bespreekt traagheid bij AI-integratie in scheepsbouw
-- de-kans-is-hier-terrapower-ceo-prijst-nrc-om-snelle-voortgang-op-projecten-df16dc | TerraPower krijgt vergunning voor geavanceerde kernreactorbouw
+- geschiedenis-omzetten-in-macht-een-pools-duitse-afrekening-80b8bd | Polen voelt ongenoegen over Duitse excuses WOII
+- de-stille-uitbreiding-van-trumps-oorlog-tegen-kartels-2adaa8 | Uitbreiding van militaire strijd tegen drugskartels onder Trump
+- de-kans-is-hier-terrapower-ceo-prijst-nrc-voor-snelle-voortgang-bij-projecten-df16dc | TerraPower krijgt vergunning voor geavanceerde kernreactorbouw
+- energieadviseur-witte-huis-zegt-dat-oliemaatschappijen-allemaal-akkoord-zijn-met-f3eb1f | Witte Huis: oliebedrijven willen productie verhogen ondanks Iran-conflict
+- wanneer-deepfakes-doctrine-worden-dd00bc | Deepfakes als nieuwe tactiek in moderne conflicten
+- navo-s-breuken-betekenen-niet-het-einde-980bda | NAVO-scheuren zijn normaal, niet het einde van het bondgenootschap
 - besluit-taakomschrijving-staatssecretaris-van-binnenlandse-zaken-en-koninkrijksr-ea93b5 | Bekendmaking taken Staatssecretaris Binnenlandse Zaken
+- zelensky-zet-zijn-troef-in-9fc324 | Zelensky biedt wapenhulp tegen Iraanse drones in Perzische Golf
 - ministerie-van-financien-onderzoekt-ongeautoriseerde-toegang-tot-systemen-76600c | Ministerie Financiën onderzoekt ongeautoriseerde systeemtoegang
 - sector-en-ministerie-van-lvvn-lanceren-campagne-om-stalbranden-te-voorkomen-fd0683 | Ministerie start campagne tegen stalbranden in Nederland
-- eerste-aanvullingswet-nieuw-wetboek-van-strafvordering-naar-tweede-kamer-b6bf69 | Aanvullingswet nieuw Wetboek van Strafvordering naar Tweede Kamer
+- irans-lange-geschiedenis-van-terreur-en-een-vertraagde-reactie-475337 | VS en Israël vallen Iran aan na jarenlange conflicten
+- de-drone-toekomst-van-amerika-4a8682 | Toekomst van miljoenen drones in Amerika en lokale uitdagingen
+- waarom-texas-niet-juicht-om-de-stijging-van-de-olieprijs-a7b282 | Texas reageert terughoudend op stijgende olieprijzen
+- wanneer-houdt-het-op-de-elevator-pitch-die-olie-executives-en-diplomaten-aan-het-17578a | Kernvraag bij energieconferentie in Houston: 'Wanneer houdt het op?'
+- het-slagveld-is-de-volgende-gokmarkt-b3a581 | Operatie Epic Fury toont veranderende militaire strategieën
+- het-elektriciteitsnet-van-cuba-valt-voor-de-derde-keer-deze-maand-uit-75b09e | Elektriciteitsnet Cuba voor derde keer deze maand uitgevallen
 - ze-noemden-hem-ooit-een-gansmarcherende-extremist-nu-doen-ze-niet-mee-aan-zijn-c-c35a17 | GOP-kandidaat Herrera zonder steun in moeilijke verkiezingsstrijd
-- ik-ben-super-republicaan-maar-je-hebt-mijn-stem-de-democratische-hertenjager-die-ee4187 | Democratische kandidaat Rob Sand wil Iowa politiek veranderen
-- je-kunt-wedden-op-klimaatrampen-de-handel-floreert-0c0f34 | Handel in weddenschappen op klimaatrampen groeit
-- het-volgende-strijdtoneel-is-perceptie-niet-territorium-46e3d3 | Perceptie wordt nieuw strijdtoneel in geopolitieke conflicten
-- de-staten-waar-hogere-gasprijzen-de-tussentijdse-verkiezingen-kunnen-beinvloeden-7a8c1b | Hogere benzineprijzen beïnvloeden tussentijdse verkiezingen in VS
+- ik-ben-super-republicaan-maar-je-krijgt-mijn-stem-de-democratische-hertenjager-d-ee4187 | Democratische kandidaat Rob Sand wil Iowa politiek veranderen
+- je-kunt-inzetten-op-klimaatrampen-de-handel-floreert-0c0f34 | Handel in weddenschappen op klimaatrampen groeit
+- het-volgende-slagveld-is-perceptie-niet-territorium-46e3d3 | Perceptie wordt nieuw strijdtoneel in geopolitieke conflicten
+- de-staten-waar-hogere-benzineprijzen-mogelijk-invloed-hebben-op-de-tussentijdse--7a8c1b | Hogere benzineprijzen beïnvloeden tussentijdse verkiezingen in VS
+- hormuz-moet-heropenen-waarom-de-olie-industrie-trump-niet-kan-helpen-met-het-tem-e49bb1 | Olie-industrie kan stijgende benzineprijzen niet beteugelen
+- terwijl-de-wereld-naar-het-midden-oosten-kijkt-broeit-er-oorlog-in-zuid-azie-6cd37a | Oorlog dreigt opnieuw tussen India en Pakistan in Zuid-Azië
 - pete-buttigiegs-project-voor-2026-de609d | Pete Buttigieg reist door VS ter voorbereiding op 2026
-- de-politieke-tekenaars-van-het-land-over-de-week-in-de-politiek-f7b943 | Weekoverzicht politieke cartoons met scherpe observaties
-
-importance=26 (27)
+- de-politieke-cartoonisten-van-het-land-over-de-politieke-week-f7b943 | Weekoverzicht politieke cartoons met scherpe observaties
+- hoe-het-was-om-onder-vuur-te-liggen-van-de-oorlog-tegen-het-terrorisme-tot-nu-967642 | Ervaringen met indirect vuur van oorlog op terrorisme tot nu
+- waarom-verheft-de-verenigde-staten-de-sancties-op-assad-s-chemische-wapens-weten-4a1b68 | VS heft sancties op tegen Syrische chemiewapenspecialisten
+- wat-de-donroe-doctrine-kan-betekenen-voor-china-s-economische-staatskunst-40f90b | Donroe Doctrine beïnvloedt China’s economische strategieën
 - ruben-gallego-wil-de-democraten-weer-leuk-maken-63ddda | Ruben Gallego wil Democraten weer aantrekkelijk maken
+- neer-maar-niet-uitgeschakeld-iran-s-as-van-verzet-dbd8ac | Iran en bondgenoten in as van verzet Midden-Oosten na Hamas-aanval
+- trump-functionarissen-sluiten-verbod-op-olie-export-uit-in-vergadering-met-indus-2db72d | Trump-functionarissen sluiten olie-exportverbod uit tijdens overleg
+- trump-regering-overweegt-mogelijk-sancties-op-iraanse-olie-deels-op-te-heffen-do-616dbd | Sancties op Iraanse olie mogelijk versoepeld door hoge energieprijzen
 - beslissing-op-bezwaar-met-betrekking-tot-woo-verzoek-advies-van-de-landsadvocaat-e624d3 | Beslissing op bezwaar over vergoeding honoraire rechters-plaatsvervangers
-- politieke-medewerkers-met-banden-met-trump-verdienden-miljoenen-aan-commissies-v-332d3e | Medewerkers met Trump-connecties verdienden miljoenen aan DHS-advertenties
-- hij-moet-rechtvaardigen-wat-hij-deed-zwarte-leiders-bekritiseren-jb-pritzker-na--724774 | Zwarte leiders uiten kritiek op JB Pritzker na Illinois voorverkiezing
-- gps-niet-meer-beschikbaar-tijd-voor-een-upgrade-2ec61b | GPS kwetsbaarheden benadrukken noodzaak voor upgrades
+- china-s-militaire-zuiveringen-waren-omvangrijker-dan-we-dachten-638ca8 | Negen topmilitairen in China uit hoogste orgaan gezet
+- politieke-activisten-met-banden-met-trump-verdienden-miljoenen-aan-commissies-va-332d3e | Medewerkers met Trump-connecties verdienden miljoenen aan DHS-advertenties
+- hij-moet-rechtvaardigen-wat-hij-deed-zwarte-leiders-bekritiseren-jb-pritzker-na--54cc73 | Zwarte leiders uiten kritiek op JB Pritzker na Illinois primaire
+- tegen-drones-en-het-tempo-van-moderne-oorlogvoering-190cea | Amerika ontwikkelt strategieën tegen dronebedreigingen
+- de-onvermijdelijkheid-van-chinese-militaire-zuiveringen-518306 | Grote zuiveringen in Chinees leger onder Xi Jinping
+- inperkingsmaatregelen-tegen-islamitische-staat-vallen-uit-elkaar-in-syrie-54b68d | Syrisch offensief belemmert controle op Islamitische Staat
+- binnenkijken-in-trumps-denken-over-de-oorlog-met-iran-9103fa | Trump zegt binnen uur Iran's belangrijke installaties te kunnen vernietigen
+- estland-klaar-om-te-praten-over-alternatief-voor-straat-van-hormuz-0c3753 | Estland staat open voor overleg over alternatieve route Hormuz
+- hoe-beinvloedt-de-oorlog-in-iran-de-energiezekerheid-van-china-4745ca | Impact Iran-oorlog op China’s energiezekerheid beperkt
+- vance-en-wright-spreken-olie-executives-te-midden-van-spanningen-met-iran-d91376 | Vance en Wright spreken oliebedrijven over spanningen met Iran
+- gps-ontbroken-tijd-voor-een-upgrade-2ec61b | GPS kwetsbaarheden benadrukken noodzaak voor upgrades
+- america-is-digitaal-kwetsbaar-en-onze-tegenstanders-weten-dat-0380bd | Digitale kwetsbaarheid Amerika vergroot risico op cyberaanvallen
+- amazon-ceo-verwacht-dat-ai-eerdere-aws-verkoopprognoses-verdubbelt-tot-600-milja-03fca3 | Amazon verwacht $600 miljard omzet AWS dankzij AI in 2036
+- elliott-neemt-aanmerkelijk-belang-in-japanse-rederij-mitsui-osk-bba62c | Elliott breidt belang uit in Japanse rederij Mitsui OSK
 - organisatiebesluit-mandaatbesluit-mandaatregister-en-instellingsbesluit-minister-976f04 | Nieuwe organisatie- en mandaatbesluiten bij ministerie Financiën
-- aipac-krijgt-oproepen-om-strategie-te-herzien-na-uitslag-in-illinois-939cba | AIPAC moet strategie herzien na wisselende resultaten in Illinois
-- koning-van-illinois-pritzker-beinvloedt-senaatsrace-terwijl-hij-trump-op-het-oog-2ad65d | Pritzker beïnvloedt senaatsrace met focus op Trump
-- aipac-ai-geld-bezorgt-melissa-bean-comeback-overwinning-in-illinois-ac9109 | Melissa Bean wint Democratische voorverkiezing in Illinois
-- in-het-centrum-van-s-werelds-gevaarlijkste-knelpunt-f74bc1 | Straat van Hormuz belangrijk knelpunt in wereldwijde energievoorziening
-- 5-zaken-om-op-te-letten-bij-de-voorverkiezingen-in-illinois-op-dinsdag-ada1c3 | Belangrijke aandachtspunten bij Illinois voorverkiezingen
+- militair-operationeel-denken-in-een-tijdperk-van-kunstmatige-intelligentie-468165 | Uitdagingen bij integratie van AI in militaire planning
+- rusland-financieel-steunen-voor-vrede-is-een-verliezenstrategie-7aeb6a | Rusland pleit voor financiële herintegratie ondanks sancties
+- weer-drinken-uit-de-bittere-beker-in-het-midden-oosten-d94c69 | Wapenstilstand 1988 beëindigde Iran-Irak oorlog na jaren
+- aipac-krijgt-oproepen-om-strategie-te-herzien-na-kiesuitslag-in-illinois-939cba | AIPAC moet strategie herzien na wisselende resultaten in Illinois
+- aipac-faalt-in-aanval-terwijl-democraat-daniel-biss-primaire-verkiezing-voor-ill-0c20f3 | Democraat Daniel Biss wint voorverkiezing Illinois na AIPAC-aanval
+- aipac-ai-geld-brengt-melissa-bean-terugzege-in-illinois-f6e2a4 | Melissa Bean wint Democratische voorverkiezing Illinois 8e district
+- pentagon-zegt-dat-dodelijke-bootaanvallen-noch-maar-het-begin-zijn-in-zuid-en-mi-005e09 | Pentagon waarschuwt: dodelijke bootaanvallen slechts begin
+- in-het-hart-van-s-werelds-gevaarlijkste-knelpunt-f74bc1 | Straat van Hormuz belangrijk knelpunt in wereldwijde energievoorziening
+- belangrijke-punten-van-de-nationale-volkscongresvergadering-in-china-96acf1 | Belangrijkste punten van China’s Nationale Volkscongres 2026
+- definitie-van-overwinning-in-de-oorlog-met-iran-a1b0f6 | Onzekerheid over overwinning in de Iran-oorlog
+- 5-aandachtspunten-voor-de-voorverkiezingen-in-illinois-dinsdag-ada1c3 | Belangrijke aandachtspunten bij Illinois voorverkiezingen
+- open-oorlog-aan-de-durandlijn-kan-de-escalatie-van-pakistan-de-taliban-tot-herbe-2df8bd | Pakistan verklaart open oorlog aan Taliban aan de Durand-lijn
 - hoe-canada-s-omarming-van-chinese-elektrische-auto-s-de-amerikaanse-markt-kan-ve-8efe84 | Canada importeert Chinese EV's en beïnvloedt Noord-Amerikaanse markt
 - hochul-promoot-haar-agenda-met-door-de-staat-gefinancierde-reclamecampagne-9dd58f | Hochul gebruikt staatsmiddelen voor promotiecampagne
+- investeren-in-vrouwen-is-investeren-in-de-toekomst-bd48dd | Investeren in vrouwen versterkt toekomst en economie
 - subsidieverlening-s-heerenloo-wasbaar-incontinentiemateriaal-2024-2026-171227 | Subsidie voor wasbaar incontinentiemateriaal bij 's Heerenloo 2024-2026
-- we-krijgen-een-probleem-republikeinen-willen-dat-trump-verdergaat-met-2020-f0e9ca | Republikeinen vragen Trump te stoppen met 2020 klachten
-- de-nieuwste-marine-instructies-zijn-geen-plan-geen-strategie-en-geen-gevechtsvoo-9f2c2d | Nieuwe gevechtsinstructies marine zonder concrete richting
+- vae-olieproductie-daalt-met-meer-dan-de-helft-door-sluiting-van-hormuz-573b25 | VAE olieproductie halveert door sluiting Straat van Hormuz
+- unicredit-doet-laag-bod-op-commerzbank-om-gesprekken-veilig-te-stellen-4f217a | UniCredit doet bod op meer dan 30% van Commerzbank
+- we-krijgen-een-probleem-republikeinen-willen-dat-trump-verdergaat-na-2020-f0e9ca | Republikeinen vragen Trump te stoppen met 2020 klachten
+- het-gevaar-van-vibe-patriottisme-in-defensietechnologie-fa2d6b | De risico's van vibe-patriottisme in defensietechnologie
+- tel-geen-lanceringen-de-dronecapaciteit-van-iran-verkeerd-geinterpreteerd-0641f3 | Analyse van Iran's dronecapaciteit na Golfoorlog misleidend
+- de-nieuwste-instructies-van-de-marine-zijn-geen-plan-geen-strategie-en-geen-vech-9f2c2d | Nieuwe gevechtsinstructies marine zonder concrete richting
 - de-race-van-de-national-park-service-om-geschiedenis-te-herschrijven-wordt-een-s-13783b | National Park Service worstelt met herziening van parkententoonstellingen
-- dem-veteraan-2028-oom-sam-wil-jou-dc9b67 | Democratische partij overweegt militaire veteraan in 2028
+- energienminister-chris-wright-zegt-dat-oorlog-met-iran-waarschijnlijk-binnen-wek-1d1dac | Energiechef verwacht snelle afloop van oorlog met Iran
+- levendig-gedurfd-geanimeerd-spider-man-avontuur-f837e9 | Nieuwe spannende animatiefilm over Spider-Man met tienerheld Miles
+- hegseth-negeerde-militaire-officials-bij-het-schrappen-van-kantoren-die-risico-v-17b653 | Minister Hegseth schrapt kantoren voor burgerbescherming ondanks waarschuwingen
+- china-s-militaire-leerpunten-uit-de-iran-oorlog-c7f097 | China trekt militaire lessen uit conflict tussen VS en Iran
+- iran-laat-twee-gastankers-via-hormuz-naar-india-varen-zeggen-bronnen-308ec7 | Iran laat Indiase gastankers door Straat van Hormuz varen
 - hoe-geoint-de-amerikaanse-voordelen-in-afrika-kan-behouden-ff9878 | Belang van GEOINT voor Amerikaanse veiligheid in Afrika
-- zuidoost-azie-s-nucleaire-blinde-vlek-latente-paden-en-expliciete-druk-41fe1e | Zuid-Oost-Azië kwetsbaarder door veranderende nucleaire dynamiek
+- republikeinse-wetgevers-reageren-onverschillig-op-meer-financiering-voor-oorlog--783bf1 | Republikeinen tonen geen steun voor extra oorlogsfondsen Iran
+- zuid-oost-azie-s-nucleaire-blinde-vlek-latente-paden-en-expliciete-druk-41fe1e | Zuid-Oost-Azië kwetsbaarder door veranderende nucleaire dynamiek
+- de-toekomst-van-oorlog-is-nu-wat-washington-van-het-slagveld-moet-horen-bf9f5b | Washington bespreekt lessen van moderne oorlogvoering
+- gewijzigde-beslissing-op-bezwaar-2e-deelbesluit-op-bezwaarschrift-wob-verzoek-ln-75637d | Gewijzigde beslissing op bezwaar Wob-verzoek LNG-project Mozambique
+- na-de-oorlog-en-na-poetin-drie-potentiele-opvolgingsscenario-s-voor-rusland-s-mo-d19670 | Drie mogelijke opvolgingsscenario's na Poetin in Rusland
+- ecb-zal-reageren-als-oorlog-in-iran-inflatie-doet-stijgen-zegt-nagel-9c7ccb | ECB blijft alert bij inflatie door oorlog in Iran
+- besluit-op-subsidieverzoek-over-activiteiten-stichting-amstel-a0f31b | Besluit over subsidieaanvraag stichting Amstel 218 in 2026
 - afschrift-besluit-gebiedsaanwijzing-wbmgp-gemeente-zaanstad-8351ac | Gemeente Zaanstad krijgt gebiedsaanwijzing onder Wbmgp
 - postcodegebieden-en-straten-voor-toepassing-artikel-8-wbmgp-bij-verhuur-in-parti-56f29b | Overzicht postcodegebieden artikel 8 Wbmgp bij particuliere verhuur
+- spacex-van-elon-musk-overweegt-notering-op-nasdaq-na-vroege-indextoegang-zeggen--b3d085 | SpaceX overweegt Nasdaq-notering voor grote beursgang
+- amerika-s-tekort-aan-exquise-klasse-wapens-8311a6 | VS fabriceert viermaal meer wapens uit 'Exquisite Class'
+- het-echte-probleem-van-de-droneoorlog-is-niet-technologie-maar-snelheid-b3fd3e | Tempo is het echte probleem bij droneoorlogvoering
 - ontwerp-verkeersbesluit-verhogen-maximumsnelheid-op-a6-tussen-aansluiting-lelyst-95623a | Maximumsnelheid A6 Lelystad-Noord naar Ketelbrug verhoogd
-- ontwerpbesluit-wegens-wijziging-besluit-houders-van-dieren-1453aa | Technische wijziging in Besluit houders van dieren voorgesteld
+- interceptormath-hoe-iraanse-drones-zwermen-de-amerikaanse-verdediging-belasten-1e7b30 | Iranse dronezwermen zetten Amerikaanse verdediging onder druk
+- bondgenoten-vrezen-dat-oorlog-met-iran-hen-zal-beroven-van-amerikaanse-wapens-di-93f518 | Bondgenoten vrezen tekort aan Amerikaanse wapens door Iran-conflict
+- trump-s-oorlogsdroom-iran-s-onvoorwaardelijke-overgave-329544 | VS eist onvoorwaardelijke overgave van Iran in conflict
+- ontwerp-vanwege-wijziging-besluit-houders-van-dieren-1453aa | Technische wijziging in Besluit houders van dieren voorgesteld
 - gop-remmers-zeggen-dat-trump-hen-in-de-steek-liet-3ac3f5 | Beperkers binnen GOP voelen zich door Trump in de steek gelaten
-- harvard-ontloopt-hegseths-verbod-op-militaire-studenten-11280e | Harvard stelt militaire studenten uit na Pentagonverbod
+- congres-weigert-oorlog-tegen-iran-te-stoppen-412542 | Congres blokkeert poging tot beperking oorlogsmacht president Iran
+- beslissing-op-bezwaar-op-woo-besluit-over-nederlanders-in-russische-of-oekraiens-94b4b8 | Beslissing bezwaar over registratie Nederlanders in buitenlandse legers
+- trump-blijft-risico-s-nemen-met-de-economie-en-komt-daar-mee-weg-d90bb3 | Trump neemt economische risico's en blijft ermee wegkomen
+- harvard-omzeilt-hegseths-verbod-op-militaire-studenten-11280e | Harvard stelt militaire studenten uit na Pentagonverbod
+- oorlog-met-iran-is-pas-net-begonnen-zegt-hegseth-83d28d | Topmilitairen: oorlog met Iran is nog maar net begonnen
+- qatar-staakt-gasvloeibaarmaking-herstart-duurt-weken-volgens-bronnen-62cacd | Qatar stopzet gasvervluchtiging, herstart kost weken
 - koninklijke-besluiten-kabinet-jetten-e0430d | Koninklijke besluiten rond beëindiging en aanstelling kabinet-Jetten
-
-importance=24 (18)
-- capitol-agenda-gop-wedt-op-immigratiestrijd-niet-op-grote-wetsvoorstellen-646e76 | Republikeinen richten zich op immigratiestrijd in plaats van grote wetgeving
+- zwitserse-nationale-bank-verhoogt-bereidheid-om-te-reageren-op-excessieve-waarde-a1a1be | Zwitserse Bank verhoogt kans op ingrijpen tegen sterke frank
+- irans-opperste-leider-ali-khamenei-gedood-zegt-hoge-israelische-functionaris-37d794 | Israël meldt dood van Iraanse leider Ali Khamenei na aanval
+- capitol-agenda-gop-zet-in-op-immigratiestrijd-niet-op-grote-wetsvoorstellen-646e76 | Republikeinen richten zich op immigratiestrijd in plaats van grote wetgeving
+- portefeuilleverdeling-kabinet-jetten-f00304 | Ministerraad stelt definitieve portefeuilleverdeling kabinet-Jetten vast
 - ontslagverlening-en-benoeming-kabinet-c5b79e | Kabinet ontvangt ontslagverlening en benoeming bevestigd
 - kabinet-jetten-beedigd-7cfc51 | Kabinet-Jetten beëdigd met ministers van D66, VVD en CDA
-- ik-heb-betaalbaarheid-gewonnen-trump-kijkt-vooruit-op-sotu-tijdens-rally-in-geor-136129 | Trump benadrukt betaalbaarheid tijdens rally in Georgia
+- ik-heb-betaalbaarheid-gewonnen-trump-geeft-voorproefje-van-sotu-tijdens-rally-in-136129 | Trump benadrukt betaalbaarheid tijdens rally in Georgia
 - beediging-en-presentatie-nieuw-kabinet-35b2b9 | Nieuw kabinet wordt op 23 februari beëdigd in Den Haag
 - najaarsnota-2025-begrotingstekort-daalt-naar-1-8-d6a288 | Begrotingstekort Nederland daalt in 2025 naar 1,8% bbp
 - kabinet-wil-naturalisatietermijn-verlengen-van-5-naar-10-jaar-eada45 | Kabinet wil naturalisatietermijn verlengen naar 10 jaar
@@ -525,9 +491,13 @@ importance=24 (18)
 - benoemingen-ministers-en-staatssecretarissen-5424cd | Kabinet kondigt benoemingen van ministers en staatssecretarissen aan
 - overeenstemming-over-vrijgekomen-portefeuilles-ministers-en-staatssecretarissen-aa6a6d | Overeenstemming over verdeling vrijgekomen ministersposten
 - minister-president-schoof-biedt-ontslag-kabinet-aan-888433 | Kabinet Schoof biedt ontslag aan de Koning aan
+- bbc-news-app-4717bb | BBC lanceert nieuws-app met gepersonaliseerde berichtgeving
+- kabinet-neemt-extra-maatregelen-met-pakket-voor-groene-groei-9ed1c6 | Kabinet introduceert maatregelen voor Groene Groei en energietransitie
 - kabinet-presenteert-startpakket-om-vergunningverlening-weer-op-gang-te-brengen-e23f64 | Kabinet introduceert startpakket voor versnelling vergunningverlening
+- nederland-draagt-opnieuw-met-militairen-bij-aan-vredesmissie-in-bosnie-en-herzeg-f4439c | Nederland levert militairen aan vredesmissie in Bosnië vanaf 2025
 - nationale-herdenking-en-viering-van-de-bevrijding-4-en-5-mei-c75e1f | Koning en premier bij Nationale Herdenking en Bevrijdingsviering
 - kabinet-stelt-nederlandse-belangen-centraal-bij-inzet-missies-en-operaties-cd54b9 | Kabinet richt internationale missies op Nederlandse belangen
 - internationale-samenwerking-om-joodse-roofkunst-terug-te-krijgen-bij-de-rechtmat-10dc01 | Internationale samenwerking voor teruggave Joodse roofkunst
 - kabinet-helpt-bedrijven-die-vastlopen-door-het-volle-stroomnet-d17720 | Kabinet start subsidie voor bedrijven met volle stroomnetproblemen
+- regeringsconsultaties-tussen-nederland-en-noordrijn-westfalen-ffccfe | Derde regeringsconsultaties Nederland en Noordrijn-Westfalen
 - kabinet-aan-de-slag-met-22-structurele-bezuiniging-bij-rijksoverheid-d892fe | Kabinet streeft naar 22% bezuiniging bij rijksoverheid

@@ -462,7 +462,7 @@ async function main() {
     throw e;
   }
 
-  const quiz = generateDailyQuiz(stories, generatedAt);
+  const quiz = await generateDailyQuiz(stories, generatedAt, { repoRoot });
   const quizOut =
     quiz ?? ({ skipped: true as const, generatedAt, reason: "insufficient_stories_or_headlines" } as const);
   await writeJson(path.join(generatedDir, "daily-quiz.json"), quizOut);

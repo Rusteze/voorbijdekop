@@ -1,0 +1,44 @@
+[
+  {
+    "word": "Broer",
+    "category": "general",
+    "associations": ["Zus", "Vader", "Moeder", "Vriend"]
+  },
+  {
+    "word": "Zwart",
+    "category": "general",
+    "associations": ["Wit", "Nacht", "Donker", "Kleding"]
+  },
+  {
+    "word": "Zomer",
+    "category": "general",
+    "associations": ["Zon", "Strand", "Vakantie", "Winter"]
+  },
+  {
+    "word": "Koffie",
+    "category": "general",
+    "associations": ["Thee", "Ochtend", "Cafe", "Suiker"]
+  },
+
+  {
+    "word": "Film",
+    "category": "fun",
+    "associations": ["Bioscoop", "Trailer", "Regisseur", "Genre"]
+  },
+  {
+    "word": "Muziek",
+    "category": "fun",
+    "associations": ["Ritme", "Gitaar", "Zang", "Album"]
+  },
+  {
+    "word": "Podcast",
+    "category": "fun",
+    "associations": ["Aflevering", "Luisteren", "Gast", "Nieuws"]
+  },
+  {
+    "word": "Reizen",
+    "category": "fun",
+    "associations": ["Vliegtuig", "Hotel", "Bagage", "Bestemming"]
+  }
+]
+

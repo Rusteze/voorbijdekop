@@ -17,7 +17,10 @@ De Cloudflare Worker in `/workers` verzorgt dubbele opt-in, D1-opslag, rate limi
 ## Aanrader & quiz (homepage)
 
 - **`data/editorial-pick.json`** (repo-root): redactionele **Aanrader** — zet `enabled` op `true` en vul `title`, `dek`, `kind` (`book` \| `film` \| `podcast` \| `series` \| `link`), `href` (intern `/…` of externe URL). Optioneel `imageUrl`, `label`, `updatedAt`. `npm run build:data` valideert en schrijft naar `web/public/data/editorial-pick.json`.
-- **`daily-quiz.json`**: wordt **automatisch** gegenereerd bij `build:data` op basis van `stories.json` (topic-quiz als er ≥4 verschillende topics zijn, anders kop-quiz). Staat na de build in `web/public/data/`. Bij te weinig verhalen of unieke koppen: `{ "skipped": true, … }` — dan toont de site geen quiz. Op de homepage staat de quiz **tussen de overige verhalen** (na het 2e item in die lijst, of na het enige item als er maar één is), niet meer direct onder de uitlichting. Knop **Minder tonen** onthoudt dat per browser tot de volgende kalenderdag (Europe/Amsterdam) of tot de quiz opnieuw wordt gebouwd (`generatedAt`).
+- **`daily-quiz.json`**: wordt **automatisch** gegenereerd bij `build:data` op basis van `stories.json` + `data/wordPool.json`. Het resultaat (in `web/public/data/`) is een **Associatie Quiz** met 4 woorden; na beantwoorden toont de site een verdeling (crowd) en een “meest gekozen”/AI-fallback. Bij generatieproblemen: `{ "skipped": true, … }` — dan toont de site geen quiz. Knop **Minder tonen** onthoudt dat per browser tot de volgende kalenderdag (Europe/Amsterdam) of tot de quiz opnieuw wordt gebouwd (`generatedAt`).
+
+  Crowd-votes gaan naar de Worker (zelfde host als `NEXT_PUBLIC_DIGEST_ENDPOINT`):
+  `/v1/quiz/submit` (opslaan) en `/v1/quiz/aggregate` (cijfers). Hiervoor zijn D1 tabellen nodig (`quiz_responses`, plus optioneel `daily_quiz`).
 
 Ankers: `#aanrader`, `#quiz-van-de-dag` (verdwijnt zolang de quiz verborgen is).
 

@@ -26,6 +26,8 @@ export interface Env {
   DIGEST_MAX_PER_WEEK?: string;
   RATE_LIMIT_DIGEST: string;
   RATE_LIMIT_FEEDBACK: string;
+  /** Rate limit voor quiz submits (per ip-hash per uur). Fallback: `RATE_LIMIT_FEEDBACK` of `30`. */
+  RATE_LIMIT_QUIZ?: string;
   RESEND_API_KEY: string;
   RESEND_FROM: string;
   CRON_SECRET?: string;
@@ -236,6 +238,103 @@ export default {
           .run();
 
         return json({ ok: true }, 200, origin);
+      }
+
+      // --- Associatie quiz: antwoord opslaan (crowd) ---
+      if (path === "/v1/quiz/submit" && request.method === "POST") {
+        const ip = clientIp(request);
+        const ipHash = await hashIp(ip);
+
+        const maxPerHour = parseInt(env.RATE_LIMIT_QUIZ ?? env.RATE_LIMIT_FEEDBACK ?? "30", 10) || 30;
+        const rl = await checkRateLimit(env.RATE_LIMIT, ipHash, "quiz", maxPerHour);
+        if (!rl.ok) return json({ error: "rate_limited" }, 429, origin);
+
+        let body: { date?: string; word?: string; answer?: string };
+        try {
+          body = (await request.json()) as typeof body;
+        } catch {
+          return json({ error: "invalid_json" }, 400, origin);
+        }
+
+        const date = (body.date ?? "").trim();
+        const word = (body.word ?? "").trim();
+        const answer = (body.answer ?? "").trim();
+
+        if (
+          !/^\d{4}-\d{2}-\d{2}$/.test(date) ||
+          word.length < 1 ||
+          word.length > 64 ||
+          answer.length < 1 ||
+          answer.length > 64
+        ) {
+          return json({ error: "invalid_payload" }, 400, origin);
+        }
+
+        const now = new Date().toISOString();
+        const userAgent = (request.headers.get("User-Agent") ?? "").slice(0, 512);
+
+        await env.DB.prepare(
+          `INSERT INTO quiz_responses (date, word, answer, ip_hash, user_agent, created_at)
+           VALUES (?, ?, ?, ?, ?, ?)
+           ON CONFLICT(date, word, ip_hash)
+           DO UPDATE SET
+             answer = excluded.answer,
+             user_agent = excluded.user_agent,
+             created_at = excluded.created_at`
+        )
+          .bind(date, word, answer, ipHash, userAgent || null, now)
+          .run();
+
+        return json({ ok: true }, 200, origin);
+      }
+
+      // --- Associatie quiz: aggregate per woord ---
+      if (path === "/v1/quiz/aggregate" && request.method === "POST") {
+        let body: { date?: string; word?: string; options?: string[] };
+        try {
+          body = (await request.json()) as typeof body;
+        } catch {
+          return json({ error: "invalid_json" }, 400, origin);
+        }
+
+        const date = (body.date ?? "").trim();
+        const word = (body.word ?? "").trim();
+        const rawOptions = Array.isArray(body.options) ? body.options : [];
+        const options = rawOptions.map((x) => String(x).trim()).filter(Boolean).slice(0, 4);
+        const allowed = new Set(options);
+
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || word.length < 1 || word.length > 64) {
+          return json({ error: "invalid_payload" }, 400, origin);
+        }
+
+        const rows = await env.DB.prepare(
+          `SELECT answer, COUNT(*) as c
+           FROM quiz_responses
+           WHERE date = ? AND word = ?
+           GROUP BY answer`
+        )
+          .bind(date, word)
+          .all<{ answer: string; c: number }>();
+
+        const optionCounts: Record<string, number> = {};
+        let totalResponses = 0;
+        for (const r of rows.results ?? []) {
+          const ans = (r.answer ?? "").trim();
+          const c = Number(r.c ?? 0) || 0;
+          if (!ans || c <= 0) continue;
+          if (!allowed.has(ans)) continue;
+          optionCounts[ans] = (optionCounts[ans] ?? 0) + c;
+          totalResponses += c;
+        }
+
+        const uniqOptions = Array.from(new Set(options));
+        const countsForOptions: Record<string, number> = {};
+        for (const opt of uniqOptions) countsForOptions[opt] = optionCounts[opt] ?? 0;
+
+        const maxVotes = totalResponses ? Math.max(0, ...Object.values(countsForOptions)) : 0;
+        const crowdMostChosen = totalResponses && maxVotes > 0 ? uniqOptions.filter((o) => (countsForOptions[o] ?? 0) === maxVotes) : [];
+
+        return json({ totalResponses, optionCounts: countsForOptions, crowdMostChosen }, 200, origin);
       }
 
       // --- Resend webhook: bounces / klachten (minimaal) ---

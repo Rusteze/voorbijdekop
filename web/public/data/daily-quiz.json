@@ -1,14 +1,70 @@
 {
-  "kind": "topic",
-  "question": "Welk onderwerp past het best bij het meest prominente verhaal van deze editie?",
-  "contextLine": "VS versoepelt impliciete oliemaatstaf naar Cuba bij aankomst Russische tanker",
-  "options": [
-    "Sancties",
-    "Geopolitiek",
-    "Spionage",
-    "Cyberoorlog"
+  "date": "2026-03-30",
+  "questions": [
+    {
+      "word": "Zwart",
+      "category": "general",
+      "options": [
+        "Nacht",
+        "Wit",
+        "Kleding",
+        "Donker"
+      ],
+      "initialRanking": [
+        "Wit",
+        "Nacht",
+        "Donker",
+        "Kleding"
+      ]
+    },
+    {
+      "word": "Zomer",
+      "category": "general",
+      "options": [
+        "Vakantie",
+        "Strand",
+        "Winter",
+        "Zon"
+      ],
+      "initialRanking": [
+        "Zon",
+        "Strand",
+        "Vakantie",
+        "Winter"
+      ]
+    },
+    {
+      "word": "Film",
+      "category": "fun",
+      "options": [
+        "Trailer",
+        "Genre",
+        "Bioscoop",
+        "Regisseur"
+      ],
+      "initialRanking": [
+        "Bioscoop",
+        "Trailer",
+        "Regisseur",
+        "Genre"
+      ]
+    },
+    {
+      "word": "Iran",
+      "category": "news",
+      "initialRanking": [
+        "Oorlog",
+        "Trump",
+        "Terwijl",
+        "Heeft"
+      ],
+      "options": [
+        "Trump",
+        "Oorlog",
+        "Terwijl",
+        "Heeft"
+      ]
+    }
   ],
-  "correctIndex": 0,
-  "sourceSlug": "trump-lijkt-de-facto-oliemaatstaf-tegen-cuba-te-versoepelen-nu-russische-olietan-4f12fb",
-  "generatedAt": "2026-03-30T09:25:33.837Z"
+  "generatedAt": "2026-03-30T10:41:11.918Z"
 }
