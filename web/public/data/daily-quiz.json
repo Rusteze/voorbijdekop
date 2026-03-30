@@ -1,46 +1,46 @@
 {
-  "date": "2026-03-30",
+  "date": "2026-03-31",
   "questions": [
     {
-      "word": "Tram",
+      "word": "Onheil",
       "options": [
-        "Spoor",
-        "Trein",
-        "Bus",
-        "Stad"
+        "Gevaar",
+        "Ramp",
+        "Onweer",
+        "Ongeluk"
       ],
-      "correctOption": "Trein"
+      "correctOption": "Ramp"
     },
     {
-      "word": "Overste",
+      "word": "Duikerpak",
       "options": [
-        "Baas",
-        "Moeder",
-        "Klooster",
-        "Non"
+        "Duiken",
+        "Zwart",
+        "Water",
+        "Zee"
       ],
-      "correctOption": "Baas"
+      "correctOption": "Zee"
     },
     {
-      "word": "Legaal",
+      "word": "Puber",
       "options": [
-        "Correct",
-        "Wettelijk",
-        "Wet",
-        "Illegaal"
+        "Lastig",
+        "Tiener",
+        "Jong",
+        "Moeilijk"
       ],
-      "correctOption": "Wettelijk"
+      "correctOption": "Tiener"
     },
     {
-      "word": "Zuigen",
+      "word": "Veroordeling",
       "options": [
-        "Borst",
-        "Borstvoeding",
-        "Baby",
-        "Rietje"
+        "Rechter",
+        "Gevangenis",
+        "Rechtbank",
+        "Straf"
       ],
-      "correctOption": "Baby"
+      "correctOption": "Straf"
     }
   ],
-  "generatedAt": "2026-03-30T20:21:26.529Z"
+  "generatedAt": "2026-03-30T22:17:17.396Z"
 }
