@@ -1,14 +1,14 @@
 {
   "kind": "topic",
   "question": "Welk onderwerp past het best bij het meest prominente verhaal van deze editie?",
-  "contextLine": "Australische staten verlagen accijns en stimuleren gratis OV door prijsstijging",
+  "contextLine": "Conservatieven willen btw-verlichting op energierekeningen voor drie jaar",
   "options": [
-    "Sancties",
-    "Geopolitiek",
+    "Economische machtsstrijd",
     "Cyberoorlog",
-    "Oorlog"
+    "Energiepolitiek",
+    "Geopolitiek"
   ],
-  "correctIndex": 3,
-  "sourceSlug": "accijns-op-brandstof-gehalveerd-en-gratis-openbaar-vervoer-aangeboden-vanwege-pr-24b7a7",
-  "generatedAt": "2026-03-30T05:41:18.280Z"
+  "correctIndex": 2,
+  "sourceSlug": "tories-dringen-aan-op-het-schrappen-van-btw-op-energierekeningen-voor-drie-jaar-3436fb",
+  "generatedAt": "2026-03-30T06:31:33.761Z"
 }
