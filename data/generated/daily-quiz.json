@@ -1,46 +1,46 @@
 {
-  "date": "2026-03-31",
+  "date": "2026-04-01",
   "questions": [
     {
-      "word": "Pc",
+      "word": "Rijst",
       "options": [
-        "Laptop",
-        "Computer",
-        "Werk",
-        "Internet"
+        "Kip",
+        "Wit",
+        "China",
+        "Eten"
       ],
-      "correctOption": "Computer"
+      "correctOption": "Eten"
     },
     {
-      "word": "Job",
+      "word": "Bacon",
       "options": [
-        "Geld",
-        "Baan",
-        "Loon",
-        "Werk"
+        "Vlees",
+        "Hesp",
+        "Varken",
+        "Spek"
       ],
-      "correctOption": "Werk"
+      "correctOption": "Spek"
     },
     {
-      "word": "Noteren",
+      "word": "Christelijk",
       "options": [
-        "Papier",
-        "Schrijven",
-        "Pen",
-        "Opschrijven"
+        "God",
+        "Geloof",
+        "Jezus",
+        "Kerk"
       ],
-      "correctOption": "Opschrijven"
+      "correctOption": "Kerk"
     },
     {
-      "word": "Giftig",
+      "word": "Vlaanderen",
       "options": [
-        "Dood",
-        "Spin",
-        "Slang",
-        "Paddestoel"
+        "België",
+        "Leeuw",
+        "Vlaams",
+        "Belgie"
       ],
-      "correctOption": "Slang"
+      "correctOption": "Leeuw"
     }
   ],
-  "generatedAt": "2026-03-31T20:20:41.200Z"
+  "generatedAt": "2026-03-31T22:18:05.384Z"
 }
