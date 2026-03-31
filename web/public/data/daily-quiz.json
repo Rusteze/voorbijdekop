@@ -2,45 +2,45 @@
   "date": "2026-03-31",
   "questions": [
     {
-      "word": "Paviljoen",
+      "word": "Pech",
       "options": [
-        "Gebouw",
-        "Wereldtentoonstelling",
-        "Park",
-        "Tuin"
+        "Tegenslag",
+        "Ongeluk",
+        "Auto",
+        "Jammer"
       ],
-      "correctOption": "Gebouw"
+      "correctOption": "Auto"
     },
     {
-      "word": "Job",
+      "word": "Joch",
       "options": [
+        "Klein",
+        "Jongen",
+        "Kind",
+        "Jong"
+      ],
+      "correctOption": "Jongen"
+    },
+    {
+      "word": "Notitie",
+      "options": [
+        "Agenda",
+        "Schrijven",
+        "Nota",
+        "Pen"
+      ],
+      "correctOption": "Schrijven"
+    },
+    {
+      "word": "Gift",
+      "options": [
+        "Geschenk",
         "Geld",
-        "Baan",
-        "Loon",
-        "Werk"
+        "Cadeau",
+        "Goed Doel"
       ],
-      "correctOption": "Werk"
-    },
-    {
-      "word": "Notenleer",
-      "options": [
-        "Notenbalk",
-        "Muziek",
-        "Muziekschool",
-        "Piano"
-      ],
-      "correctOption": "Muziek"
-    },
-    {
-      "word": "Giftig",
-      "options": [
-        "Dood",
-        "Spin",
-        "Slang",
-        "Paddestoel"
-      ],
-      "correctOption": "Slang"
+      "correctOption": "Geschenk"
     }
   ],
-  "generatedAt": "2026-03-31T00:52:13.382Z"
+  "generatedAt": "2026-03-31T03:14:54.885Z"
 }
