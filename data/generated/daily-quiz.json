@@ -2,45 +2,45 @@
   "date": "2026-03-31",
   "questions": [
     {
-      "word": "Onheil",
+      "word": "Paviljoen",
       "options": [
-        "Gevaar",
-        "Ramp",
-        "Onweer",
-        "Ongeluk"
+        "Gebouw",
+        "Wereldtentoonstelling",
+        "Park",
+        "Tuin"
       ],
-      "correctOption": "Ramp"
+      "correctOption": "Gebouw"
     },
     {
-      "word": "Duikerpak",
+      "word": "Job",
       "options": [
-        "Duiken",
-        "Zwart",
-        "Water",
-        "Zee"
+        "Geld",
+        "Baan",
+        "Loon",
+        "Werk"
       ],
-      "correctOption": "Zee"
+      "correctOption": "Werk"
     },
     {
-      "word": "Puber",
+      "word": "Notenleer",
       "options": [
-        "Lastig",
-        "Tiener",
-        "Jong",
-        "Moeilijk"
+        "Notenbalk",
+        "Muziek",
+        "Muziekschool",
+        "Piano"
       ],
-      "correctOption": "Tiener"
+      "correctOption": "Muziek"
     },
     {
-      "word": "Veroordeling",
+      "word": "Giftig",
       "options": [
-        "Rechter",
-        "Gevangenis",
-        "Rechtbank",
-        "Straf"
+        "Dood",
+        "Spin",
+        "Slang",
+        "Paddestoel"
       ],
-      "correctOption": "Straf"
+      "correctOption": "Slang"
     }
   ],
-  "generatedAt": "2026-03-30T22:17:17.396Z"
+  "generatedAt": "2026-03-31T00:52:13.382Z"
 }
