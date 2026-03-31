@@ -2,45 +2,45 @@
   "date": "2026-03-31",
   "questions": [
     {
-      "word": "Pc",
+      "word": "Pech",
       "options": [
-        "Laptop",
-        "Computer",
-        "Werk",
-        "Internet"
+        "Tegenslag",
+        "Ongeluk",
+        "Auto",
+        "Jammer"
       ],
-      "correctOption": "Computer"
+      "correctOption": "Auto"
     },
     {
-      "word": "Job",
+      "word": "Joch",
       "options": [
-        "Geld",
-        "Baan",
-        "Loon",
-        "Werk"
+        "Klein",
+        "Jongen",
+        "Kind",
+        "Jong"
       ],
-      "correctOption": "Werk"
+      "correctOption": "Jongen"
     },
     {
-      "word": "Noteren",
+      "word": "Notitie",
       "options": [
-        "Papier",
+        "Agenda",
         "Schrijven",
-        "Pen",
-        "Opschrijven"
+        "Nota",
+        "Pen"
       ],
-      "correctOption": "Opschrijven"
+      "correctOption": "Schrijven"
     },
     {
-      "word": "Giftig",
+      "word": "Gift",
       "options": [
-        "Dood",
-        "Spin",
-        "Slang",
-        "Paddestoel"
+        "Geschenk",
+        "Geld",
+        "Cadeau",
+        "Goed Doel"
       ],
-      "correctOption": "Slang"
+      "correctOption": "Geschenk"
     }
   ],
-  "generatedAt": "2026-03-31T08:33:50.012Z"
+  "generatedAt": "2026-03-31T10:29:22.108Z"
 }
