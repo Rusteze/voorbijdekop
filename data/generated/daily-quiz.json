@@ -2,45 +2,45 @@
   "date": "2026-04-01",
   "questions": [
     {
-      "word": "Rijst",
+      "word": "Klant",
       "options": [
-        "Kip",
-        "Wit",
-        "China",
-        "Eten"
+        "Winkel",
+        "Koning",
+        "Kopen",
+        "Betalen"
       ],
-      "correctOption": "Eten"
+      "correctOption": "Winkel"
     },
     {
-      "word": "Bacon",
+      "word": "Theekopje",
       "options": [
-        "Vlees",
-        "Hesp",
-        "Varken",
-        "Spek"
+        "Thee",
+        "Drinken",
+        "Porselein",
+        "Warm"
       ],
-      "correctOption": "Spek"
+      "correctOption": "Thee"
     },
     {
-      "word": "Christelijk",
+      "word": "Hinken",
       "options": [
-        "God",
-        "Geloof",
-        "Jezus",
-        "Kerk"
+        "Pijn",
+        "Spel",
+        "Springen",
+        "Manken"
       ],
-      "correctOption": "Kerk"
+      "correctOption": "Manken"
     },
     {
-      "word": "Vlaanderen",
+      "word": "Burger",
       "options": [
-        "België",
-        "Leeuw",
-        "Vlaams",
-        "Belgie"
+        "Inwoner",
+        "Mens",
+        "Hamburger",
+        "Land"
       ],
-      "correctOption": "Leeuw"
+      "correctOption": "Hamburger"
     }
   ],
-  "generatedAt": "2026-03-31T22:18:05.384Z"
+  "generatedAt": "2026-04-01T00:58:11.147Z"
 }
