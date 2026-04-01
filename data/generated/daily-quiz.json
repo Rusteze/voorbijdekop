@@ -2,45 +2,45 @@
   "date": "2026-04-01",
   "questions": [
     {
-      "word": "Klap",
+      "word": "Klant",
       "options": [
-        "Pijn",
-        "Band",
-        "Slag",
-        "Mep"
+        "Winkel",
+        "Koning",
+        "Kopen",
+        "Betalen"
       ],
-      "correctOption": "Mep"
+      "correctOption": "Winkel"
     },
     {
-      "word": "Theelepel",
+      "word": "Theekopje",
       "options": [
         "Thee",
-        "Suiker",
-        "Koffie",
-        "Klein"
+        "Drinken",
+        "Porselein",
+        "Warm"
       ],
       "correctOption": "Thee"
     },
     {
-      "word": "Hinkelen",
+      "word": "Hinken",
       "options": [
+        "Pijn",
+        "Spel",
         "Springen",
-        "Kinderen",
-        "Krijt",
-        "Spel"
+        "Manken"
       ],
-      "correctOption": "Kinderen"
+      "correctOption": "Manken"
     },
     {
-      "word": "Burgemeester",
+      "word": "Burger",
       "options": [
-        "Gemeente",
-        "Sjerp",
-        "Politiek",
-        "Stad"
+        "Inwoner",
+        "Mens",
+        "Hamburger",
+        "Land"
       ],
-      "correctOption": "Gemeente"
+      "correctOption": "Hamburger"
     }
   ],
-  "generatedAt": "2026-04-01T03:14:55.902Z"
+  "generatedAt": "2026-04-01T05:05:49.615Z"
 }
