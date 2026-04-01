@@ -2,7 +2,7 @@ name: Update News
 
 on:
   schedule:
-    - cron: "0 */2 * * *"  # elke 2 uur
+    - cron: "0 */4 * * *"  # elke 4 uur
   workflow_dispatch:
 
 concurrency:
