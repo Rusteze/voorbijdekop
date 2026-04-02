@@ -2,45 +2,45 @@
   "date": "2026-04-02",
   "questions": [
     {
-      "word": "Waarschuwing",
+      "word": "Waarschuwen",
       "options": [
-        "Verwittiging",
         "Gevaar",
-        "Opletten",
-        "Politie"
+        "Roepen",
+        "Alarm",
+        "Verwittigen"
       ],
       "correctOption": "Gevaar"
     },
     {
-      "word": "Koekjes",
+      "word": "Koekje",
       "options": [
-        "Lekker",
+        "Koffie",
         "Chocolade",
-        "Eten",
-        "Zoet"
+        "Zoet",
+        "Lekker"
       ],
       "correctOption": "Lekker"
     },
     {
-      "word": "Commentaar",
+      "word": "Commando",
       "options": [
-        "Uitleg",
-        "Kritiek",
-        "Negatief",
-        "Krant"
+        "Computer",
+        "Opdracht",
+        "Bevel",
+        "Leger"
       ],
-      "correctOption": "Kritiek"
+      "correctOption": "Bevel"
     },
     {
-      "word": "Klaproos",
+      "word": "Klappen",
       "options": [
-        "Rood",
-        "Bloem",
-        "Mooi",
-        "Drugs"
+        "Handen",
+        "Applaus",
+        "Zweep",
+        "Slaan"
       ],
-      "correctOption": "Rood"
+      "correctOption": "Handen"
     }
   ],
-  "generatedAt": "2026-04-02T12:18:10.389Z"
+  "generatedAt": "2026-04-02T16:20:34.537Z"
 }
