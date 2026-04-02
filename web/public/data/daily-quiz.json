@@ -2,45 +2,45 @@
   "date": "2026-04-02",
   "questions": [
     {
-      "word": "Taai",
+      "word": "Waarschuwing",
       "options": [
-        "Hard",
-        "Sterk",
-        "Vlees",
-        "Biefstuk"
+        "Verwittiging",
+        "Gevaar",
+        "Opletten",
+        "Politie"
       ],
-      "correctOption": "Vlees"
+      "correctOption": "Gevaar"
     },
     {
-      "word": "Kennismaking",
+      "word": "Koekjes",
       "options": [
-        "Nieuw",
-        "Hallo",
-        "Ontmoeting",
-        "Aangenaam"
+        "Lekker",
+        "Chocolade",
+        "Eten",
+        "Zoet"
       ],
-      "correctOption": "Ontmoeting"
+      "correctOption": "Lekker"
     },
     {
-      "word": "Israel",
+      "word": "Commentaar",
       "options": [
-        "Palestina",
-        "Land",
-        "Joden",
-        "Oorlog"
+        "Uitleg",
+        "Kritiek",
+        "Negatief",
+        "Krant"
       ],
-      "correctOption": "Oorlog"
+      "correctOption": "Kritiek"
     },
     {
-      "word": "Angstaanjagend",
+      "word": "Klarinet",
       "options": [
-        "Schrik",
-        "Bang",
-        "Eng",
-        "Vreselijk"
+        "Muziek",
+        "Instrument",
+        "Blazen",
+        "Orkest"
       ],
-      "correctOption": "Bang"
+      "correctOption": "Muziek"
     }
   ],
-  "generatedAt": "2026-04-02T00:20:56.922Z"
+  "generatedAt": "2026-04-02T04:44:51.351Z"
 }
