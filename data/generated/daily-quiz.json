@@ -1,46 +1,46 @@
 {
-  "date": "2026-04-01",
+  "date": "2026-04-02",
   "questions": [
     {
-      "word": "Klap",
+      "word": "Taai",
       "options": [
-        "Pijn",
-        "Band",
-        "Slag",
-        "Mep"
+        "Hard",
+        "Sterk",
+        "Vlees",
+        "Biefstuk"
       ],
-      "correctOption": "Mep"
+      "correctOption": "Vlees"
     },
     {
-      "word": "Theelepel",
+      "word": "Kennismaking",
       "options": [
-        "Thee",
-        "Suiker",
-        "Koffie",
-        "Klein"
+        "Nieuw",
+        "Hallo",
+        "Ontmoeting",
+        "Aangenaam"
       ],
-      "correctOption": "Thee"
+      "correctOption": "Ontmoeting"
     },
     {
-      "word": "Hinkelen",
+      "word": "Israel",
       "options": [
-        "Springen",
-        "Kinderen",
-        "Krijt",
-        "Spel"
+        "Palestina",
+        "Land",
+        "Joden",
+        "Oorlog"
       ],
-      "correctOption": "Kinderen"
+      "correctOption": "Oorlog"
     },
     {
-      "word": "Burgemeester",
+      "word": "Angstaanjagend",
       "options": [
-        "Gemeente",
-        "Sjerp",
-        "Politiek",
-        "Stad"
+        "Schrik",
+        "Bang",
+        "Eng",
+        "Vreselijk"
       ],
-      "correctOption": "Gemeente"
+      "correctOption": "Bang"
     }
   ],
-  "generatedAt": "2026-04-01T20:13:50.786Z"
+  "generatedAt": "2026-04-02T00:20:56.922Z"
 }
