@@ -2,45 +2,45 @@
   "date": "2026-04-03",
   "questions": [
     {
-      "word": "Nestelen",
+      "word": "Zeegroen",
       "options": [
-        "Gezellig",
-        "Vogels",
-        "Warm",
-        "Zetel"
+        "Zee",
+        "Water",
+        "Algen",
+        "Kleur"
       ],
-      "correctOption": "Gezellig"
+      "correctOption": "Kleur"
     },
     {
-      "word": "Stilletjes",
+      "word": "Prehistorisch",
       "options": [
-        "Rust",
-        "Rustig",
-        "Zacht",
-        "Kalm"
+        "Oud",
+        "Oertijd",
+        "Dinosaurus",
+        "Geschiedenis"
       ],
-      "correctOption": "Kalm"
+      "correctOption": "Oud"
     },
     {
-      "word": "Gepeperd",
+      "word": "Canada",
       "options": [
-        "Rekening",
-        "Duur",
-        "Gekruid",
-        "Pikant"
+        "Amerika",
+        "Natuur",
+        "Koud",
+        "Land"
       ],
-      "correctOption": "Duur"
+      "correctOption": "Koud"
     },
     {
-      "word": "Langwerpig",
+      "word": "Kont",
       "options": [
-        "Lang",
-        "Lat",
-        "Stok",
-        "Smal"
+        "Achterwerk",
+        "Poep",
+        "Achterste",
+        "Gat"
       ],
-      "correctOption": "Lang"
+      "correctOption": "Achterwerk"
     }
   ],
-  "generatedAt": "2026-04-03T00:22:27.914Z"
+  "generatedAt": "2026-04-03T04:45:55.986Z"
 }
