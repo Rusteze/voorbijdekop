@@ -2,45 +2,45 @@
   "date": "2026-04-03",
   "questions": [
     {
-      "word": "Zeegroen",
+      "word": "Zeef",
       "options": [
-        "Zee",
+        "Bloem",
         "Water",
-        "Algen",
-        "Kleur"
+        "Gaatjes",
+        "Zand"
       ],
-      "correctOption": "Kleur"
+      "correctOption": "Zand"
     },
     {
-      "word": "Prehistorisch",
+      "word": "Prehistorie",
       "options": [
-        "Oud",
-        "Oertijd",
+        "Mammoet",
         "Dinosaurus",
+        "Oermens",
         "Geschiedenis"
       ],
-      "correctOption": "Oud"
+      "correctOption": "Geschiedenis"
     },
     {
-      "word": "Canada",
+      "word": "Canape",
       "options": [
-        "Amerika",
-        "Natuur",
-        "Koud",
-        "Land"
+        "Liggen",
+        "Bank",
+        "Sofa",
+        "Zetel"
       ],
-      "correctOption": "Koud"
+      "correctOption": "Zetel"
     },
     {
-      "word": "Kont",
+      "word": "Konvooi",
       "options": [
-        "Achterwerk",
-        "Poep",
-        "Achterste",
-        "Gat"
+        "Vrachtwagens",
+        "Groep",
+        "Oorlog",
+        "Leger"
       ],
-      "correctOption": "Achterwerk"
+      "correctOption": "Leger"
     }
   ],
-  "generatedAt": "2026-04-03T04:45:55.986Z"
+  "generatedAt": "2026-04-03T08:18:01.221Z"
 }
