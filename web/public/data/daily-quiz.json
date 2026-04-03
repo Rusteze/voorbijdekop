@@ -1,46 +1,46 @@
 {
-  "date": "2026-04-02",
+  "date": "2026-04-03",
   "questions": [
     {
-      "word": "Waarschuwing",
+      "word": "Nestelen",
       "options": [
-        "Verwittiging",
-        "Gevaar",
-        "Opletten",
-        "Politie"
+        "Gezellig",
+        "Vogels",
+        "Warm",
+        "Zetel"
       ],
-      "correctOption": "Gevaar"
+      "correctOption": "Gezellig"
     },
     {
-      "word": "Koekjes",
+      "word": "Stilletjes",
       "options": [
-        "Lekker",
-        "Chocolade",
-        "Eten",
-        "Zoet"
+        "Rust",
+        "Rustig",
+        "Zacht",
+        "Kalm"
       ],
-      "correctOption": "Lekker"
+      "correctOption": "Kalm"
     },
     {
-      "word": "Commentaar",
+      "word": "Gepeperd",
       "options": [
-        "Uitleg",
-        "Kritiek",
-        "Negatief",
-        "Krant"
+        "Rekening",
+        "Duur",
+        "Gekruid",
+        "Pikant"
       ],
-      "correctOption": "Kritiek"
+      "correctOption": "Duur"
     },
     {
-      "word": "Klaproos",
+      "word": "Langwerpig",
       "options": [
-        "Rood",
-        "Bloem",
-        "Mooi",
-        "Drugs"
+        "Lang",
+        "Lat",
+        "Stok",
+        "Smal"
       ],
-      "correctOption": "Rood"
+      "correctOption": "Lang"
     }
   ],
-  "generatedAt": "2026-04-02T20:11:16.267Z"
+  "generatedAt": "2026-04-03T00:22:27.914Z"
 }
