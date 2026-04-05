@@ -1,46 +1,46 @@
 {
-  "date": "2026-04-04",
+  "date": "2026-04-05",
   "questions": [
     {
-      "word": "Vanmiddag",
+      "word": "Familielid",
       "options": [
-        "Straks",
-        "Eten",
-        "Vandaag",
-        "Namiddag"
+        "Moeder",
+        "Zus",
+        "Vader",
+        "Broer"
       ],
-      "correctOption": "Eten"
+      "correctOption": "Moeder"
     },
     {
-      "word": "Artrose",
+      "word": "Duim",
       "options": [
-        "Gewrichten",
-        "Ziekte",
-        "Oud",
-        "Pijn"
+        "Goed",
+        "Nagel",
+        "Hand",
+        "Vinger"
       ],
-      "correctOption": "Pijn"
+      "correctOption": "Hand"
     },
     {
-      "word": "Afsnijden",
+      "word": "Mier",
       "options": [
-        "Bocht",
-        "Mes",
-        "Pijn",
-        "Vlees"
+        "Klein",
+        "Rood",
+        "Zwart",
+        "Insect"
       ],
-      "correctOption": "Mes"
+      "correctOption": "Klein"
     },
     {
-      "word": "Voelen",
+      "word": "Stilletjes",
       "options": [
         "Zacht",
-        "Handen",
-        "Aanraken",
-        "Tasten"
+        "Kalm",
+        "Rustig",
+        "Rust"
       ],
-      "correctOption": "Tasten"
+      "correctOption": "Kalm"
     }
   ],
-  "generatedAt": "2026-04-04T00:16:39.360Z"
+  "generatedAt": "2026-04-05T00:17:55.750Z"
 }
