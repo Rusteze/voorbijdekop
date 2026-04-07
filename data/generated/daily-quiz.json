@@ -1,46 +1,46 @@
 {
-  "date": "2026-04-06",
+  "date": "2026-04-07",
   "questions": [
     {
-      "word": "Publiciteit",
+      "word": "Scheermes",
       "options": [
-        "Televisie",
-        "Media",
-        "Krant",
-        "Reclame"
+        "Scherp",
+        "Baard",
+        "Schuim",
+        "Scheerschuim"
       ],
-      "correctOption": "Reclame"
+      "correctOption": "Baard"
     },
     {
-      "word": "Malaria",
+      "word": "Oorbel",
       "options": [
-        "Koorts",
-        "Ziekte",
-        "Mug",
-        "Afrika"
+        "Vrouw",
+        "Oor",
+        "Goud",
+        "Mooi"
       ],
-      "correctOption": "Ziekte"
+      "correctOption": "Oor"
     },
     {
-      "word": "Helikopter",
+      "word": "Euforie",
       "options": [
-        "Lucht",
-        "Schroef",
-        "Lawaai",
-        "Vliegen"
+        "Vreugde",
+        "Blij",
+        "Blijdschap",
+        "Geluk"
       ],
-      "correctOption": "Vliegen"
+      "correctOption": "Blij"
     },
     {
-      "word": "Converseren",
+      "word": "Zak",
       "options": [
-        "Babbelen",
-        "Spreken",
-        "Praten",
-        "Gesprek"
+        "Winkel",
+        "Plastiek",
+        "Sinterklaas",
+        "Broek"
       ],
-      "correctOption": "Praten"
+      "correctOption": "Winkel"
     }
   ],
-  "generatedAt": "2026-04-06T00:19:00.028Z"
+  "generatedAt": "2026-04-07T00:19:17.971Z"
 }
