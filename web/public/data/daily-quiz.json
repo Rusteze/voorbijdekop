@@ -1,46 +1,46 @@
 {
-  "date": "2026-04-07",
+  "date": "2026-04-08",
   "questions": [
     {
-      "word": "Scheermes",
+      "word": "Tattoo",
       "options": [
-        "Scherp",
-        "Baard",
-        "Schuim",
-        "Scheerschuim"
+        "Piercing",
+        "Lelijk",
+        "Inkt",
+        "Tekening"
       ],
-      "correctOption": "Baard"
+      "correctOption": "Inkt"
     },
     {
-      "word": "Oorbel",
+      "word": "Stoppelbaard",
       "options": [
-        "Vrouw",
-        "Oor",
-        "Goud",
-        "Mooi"
+        "Man",
+        "Prikken",
+        "Scheren",
+        "Onverzorgd"
       ],
-      "correctOption": "Oor"
+      "correctOption": "Onverzorgd"
     },
     {
-      "word": "Euforie",
+      "word": "Ramp",
       "options": [
-        "Vreugde",
-        "Blij",
-        "Blijdschap",
-        "Geluk"
+        "Aardbeving",
+        "Tsunami",
+        "Natuur",
+        "Doden"
       ],
-      "correctOption": "Blij"
+      "correctOption": "Tsunami"
     },
     {
-      "word": "Zak",
+      "word": "Behendig",
       "options": [
-        "Winkel",
-        "Plastiek",
-        "Sinterklaas",
-        "Broek"
+        "Handig",
+        "Soepel",
+        "Lenig",
+        "Snel"
       ],
-      "correctOption": "Winkel"
+      "correctOption": "Handig"
     }
   ],
-  "generatedAt": "2026-04-07T00:19:17.971Z"
+  "generatedAt": "2026-04-08T00:19:57.778Z"
 }
