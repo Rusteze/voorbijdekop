@@ -1,46 +1,46 @@
 {
-  "date": "2026-04-08",
+  "date": "2026-04-09",
   "questions": [
     {
-      "word": "Tattoo",
+      "word": "Zweep",
       "options": [
-        "Piercing",
-        "Lelijk",
-        "Inkt",
-        "Tekening"
+        "Pijn",
+        "Sm",
+        "Leer",
+        "Paard"
       ],
-      "correctOption": "Inkt"
+      "correctOption": "Paard"
     },
     {
-      "word": "Stoppelbaard",
+      "word": "Maat",
       "options": [
-        "Man",
-        "Prikken",
-        "Scheren",
-        "Onverzorgd"
+        "Vriend",
+        "Hoeveelheid",
+        "Beker",
+        "Kleding"
       ],
-      "correctOption": "Onverzorgd"
+      "correctOption": "Vriend"
     },
     {
-      "word": "Ramp",
+      "word": "Verdwenen",
       "options": [
-        "Aardbeving",
-        "Tsunami",
-        "Natuur",
-        "Doden"
+        "Zoeken",
+        "Zoek",
+        "Kwijt",
+        "Weg"
       ],
-      "correctOption": "Tsunami"
+      "correctOption": "Weg"
     },
     {
-      "word": "Behendig",
+      "word": "Stapelbed",
       "options": [
-        "Handig",
-        "Soepel",
-        "Lenig",
-        "Snel"
+        "Twee",
+        "Kinderen",
+        "Boven",
+        "Slapen"
       ],
-      "correctOption": "Handig"
+      "correctOption": "Slapen"
     }
   ],
-  "generatedAt": "2026-04-08T00:19:57.778Z"
+  "generatedAt": "2026-04-09T00:15:44.715Z"
 }
