@@ -1,46 +1,46 @@
 {
-  "date": "2026-04-09",
+  "date": "2026-04-10",
   "questions": [
     {
-      "word": "Zweep",
+      "word": "Woef",
       "options": [
-        "Pijn",
-        "Sm",
-        "Leer",
-        "Paard"
+        "Blaffen",
+        "Hond",
+        "Blaf",
+        "Geluid"
       ],
-      "correctOption": "Paard"
+      "correctOption": "Hond"
     },
     {
-      "word": "Maat",
+      "word": "Veldslag",
       "options": [
-        "Vriend",
-        "Hoeveelheid",
-        "Beker",
-        "Kleding"
+        "Strijd",
+        "Soldaten",
+        "Oorlog",
+        "Napoleon"
       ],
-      "correctOption": "Vriend"
+      "correctOption": "Oorlog"
     },
     {
-      "word": "Verdwenen",
+      "word": "Checken",
       "options": [
-        "Zoeken",
-        "Zoek",
-        "Kwijt",
-        "Weg"
+        "Controle",
+        "Nagaan",
+        "Nakijken",
+        "Controleren"
       ],
-      "correctOption": "Weg"
+      "correctOption": "Nakijken"
     },
     {
-      "word": "Stapelbed",
+      "word": "Visite",
       "options": [
-        "Twee",
-        "Kinderen",
-        "Boven",
-        "Slapen"
+        "Bezoek",
+        "Familie",
+        "Gezellig",
+        "Vrienden"
       ],
-      "correctOption": "Slapen"
+      "correctOption": "Bezoek"
     }
   ],
-  "generatedAt": "2026-04-09T00:15:44.715Z"
+  "generatedAt": "2026-04-10T00:18:54.289Z"
 }
