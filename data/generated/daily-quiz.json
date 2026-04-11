@@ -1,46 +1,46 @@
 {
-  "date": "2026-04-10",
+  "date": "2026-04-11",
   "questions": [
     {
-      "word": "Woef",
+      "word": "Scherpen",
       "options": [
-        "Blaffen",
-        "Hond",
-        "Blaf",
-        "Geluid"
+        "Mes",
+        "Potlood",
+        "Slijper",
+        "Slijpen"
       ],
-      "correctOption": "Hond"
+      "correctOption": "Potlood"
     },
     {
-      "word": "Veldslag",
+      "word": "Nectarine",
       "options": [
-        "Strijd",
-        "Soldaten",
-        "Oorlog",
-        "Napoleon"
+        "Sappig",
+        "Lekker",
+        "Fruit",
+        "Perzik"
       ],
-      "correctOption": "Oorlog"
+      "correctOption": "Fruit"
     },
     {
-      "word": "Checken",
+      "word": "Lusteloos",
       "options": [
-        "Controle",
-        "Nagaan",
-        "Nakijken",
-        "Controleren"
+        "Moe",
+        "Geen Zin",
+        "Futloos",
+        "Depressief"
       ],
-      "correctOption": "Nakijken"
+      "correctOption": "Moe"
     },
     {
-      "word": "Visite",
+      "word": "Munt",
       "options": [
-        "Bezoek",
-        "Familie",
-        "Gezellig",
-        "Vrienden"
+        "Euro",
+        "Geld",
+        "Thee",
+        "Kruid"
       ],
-      "correctOption": "Bezoek"
+      "correctOption": "Geld"
     }
   ],
-  "generatedAt": "2026-04-10T00:18:54.289Z"
+  "generatedAt": "2026-04-11T00:17:52.778Z"
 }
