@@ -1,46 +1,46 @@
 {
-  "date": "2026-04-11",
+  "date": "2026-04-12",
   "questions": [
     {
-      "word": "Scherpen",
+      "word": "Pekelen",
       "options": [
-        "Mes",
-        "Potlood",
-        "Slijper",
-        "Slijpen"
+        "Zouten",
+        "Zout",
+        "Haring",
+        "Vis"
       ],
-      "correctOption": "Potlood"
+      "correctOption": "Haring"
     },
     {
-      "word": "Nectarine",
+      "word": "Loodzwaar",
       "options": [
-        "Sappig",
-        "Lekker",
-        "Fruit",
-        "Perzik"
+        "Zwaar",
+        "Lood",
+        "Moeilijk",
+        "Gewicht"
       ],
-      "correctOption": "Fruit"
+      "correctOption": "Gewicht"
     },
     {
-      "word": "Lusteloos",
+      "word": "Succes",
       "options": [
-        "Moe",
-        "Geen Zin",
-        "Futloos",
-        "Depressief"
+        "Geluk",
+        "Werk",
+        "Geslaagd",
+        "Geld"
       ],
-      "correctOption": "Moe"
+      "correctOption": "Geluk"
     },
     {
-      "word": "Munt",
+      "word": "Zij",
       "options": [
-        "Euro",
-        "Geld",
-        "Thee",
-        "Kruid"
+        "Kant",
+        "Hij",
+        "Meisje",
+        "Vrouw"
       ],
-      "correctOption": "Geld"
+      "correctOption": "Vrouw"
     }
   ],
-  "generatedAt": "2026-04-11T00:17:52.778Z"
+  "generatedAt": "2026-04-12T00:20:05.294Z"
 }
