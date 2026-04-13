@@ -1,46 +1,46 @@
 {
-  "date": "2026-04-12",
+  "date": "2026-04-13",
   "questions": [
     {
-      "word": "Pekelen",
+      "word": "Uitnodiging",
       "options": [
-        "Zouten",
-        "Zout",
-        "Haring",
-        "Vis"
+        "Feest",
+        "Vrienden",
+        "Feestje",
+        "Invitatie"
       ],
-      "correctOption": "Haring"
+      "correctOption": "Feest"
     },
     {
-      "word": "Loodzwaar",
+      "word": "Trofee",
       "options": [
-        "Zwaar",
-        "Lood",
-        "Moeilijk",
-        "Gewicht"
+        "Winnen",
+        "Beker",
+        "Winnaar",
+        "Wedstrijd"
       ],
-      "correctOption": "Gewicht"
+      "correctOption": "Beker"
     },
     {
-      "word": "Succes",
+      "word": "Kots",
       "options": [
-        "Geluk",
-        "Werk",
-        "Geslaagd",
-        "Geld"
+        "Overgeven",
+        "Misselijk",
+        "Vies",
+        "Ziek"
       ],
-      "correctOption": "Geluk"
+      "correctOption": "Ziek"
     },
     {
-      "word": "Zij",
+      "word": "Sterfbed",
       "options": [
-        "Kant",
-        "Hij",
-        "Meisje",
-        "Vrouw"
+        "Verdriet",
+        "Dood",
+        "Afscheid",
+        "Einde"
       ],
-      "correctOption": "Vrouw"
+      "correctOption": "Dood"
     }
   ],
-  "generatedAt": "2026-04-12T00:20:05.294Z"
+  "generatedAt": "2026-04-13T00:20:47.291Z"
 }
